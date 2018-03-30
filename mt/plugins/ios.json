@@ -1,0 +1,52 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-contacts": {
+      "CONTACTS_USAGE_DESCRIPTION": " ",
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-email-composer": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-wechat": {
+      "WECHATAPPID": "wx48c8ae06e1aa4b5f",
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "cordova-sms-plugin": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "CAMERA_USAGE_DESCRIPTION": " ",
+      "PACKAGE_NAME": "com.webs.motooling"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.webs.motooling"
+    }
+  }
+}

@@ -1,0 +1,246 @@
+$vi-color:#416eb6;
+.vi-color{
+  color:$vi-color;
+}
+.purchase{
+  .item{
+    padding-left: 15px!important;
+  }
+  .scrollbar_hide::-webkit-scrollbar{
+    width: 0;height: 0;
+  }
+  .mw-tab {
+    height: 60px;
+    width: 100%;
+    overflow-x: scroll;
+    &::-webkit-scrollbar{
+    width: 0;height: 0;
+  }
+    ul.tab-content {
+      transition: transform .6s, -webkit-transform .6s;
+      -webkit-transition: transform .6s, -webkit-transform .6s;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      background-color: white;
+      li {
+        flex: 1;
+        list-style: none;
+        text-align: center;
+        padding: 15px 0;
+        opacity: .5;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        &.active {
+          opacity: 1;
+          border-bottom: 2px solid $vi-color;
+          color: $vi-color;
+        }
+      }
+    }
+  }
+
+    .content {
+      height: 100%;
+    }
+    .divider {
+      height: 8px;
+      background-color: transparent;
+    }
+
+    .normal {
+      margin-right: 15px !important;
+      color: $vi-color;
+      i {
+        position: absolute;
+        right: 0;
+        font-size: 20px;
+        top: -3px;
+      }
+    }
+
+    .col-content {
+      height: 250px;
+      overflow-x: hidden;
+      -webkit-transition: height .5s;
+      transition: height .5s;
+      width: 100%;
+      &::-webkit-scrollbar{
+        width: 0;height: 0;
+      }
+      &.coll {
+        height: 0;
+      }
+    }
+
+    textarea {
+      margin-top: 8px;
+      resize: none;
+      width: 100%;
+      height: 140px;
+      margin-bottom: 5px;
+      padding: 15px;
+      background: #fff;
+    }
+
+
+    .inquiry_detail{
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
+
+    //物料需求计划 requirements/index
+  .req-item{
+    width: 100%;
+    height: 100%;
+    color: #ababab;
+    position: relative;
+    .req-item-title{
+      line-height: 30px;
+      font-size: 16px;
+      overflow: scroll;
+      .icon{
+        float: right;
+        font-size: 24px;
+      }
+    }
+    .req-item-content{
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      span{
+        flex: 1 0 50%;
+        line-height: 26px;
+      }
+    }
+  }
+  .mask{
+    width: 100%;
+    height: 100%;
+    background-color: #282828;
+    opacity: .6;
+    z-index: 11;
+    position: absolute;
+    left: 0;
+    top:0
+  }
+  .filter{
+    width: 0;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    top:0;
+    background-color: white;
+    z-index: 12;
+    overflow-x: hidden;
+    transition: width .25s;
+    -webkit-transition: width .25s;
+    &.active{
+      width: 80%;
+    }
+    .btns{
+      position: absolute;
+      justify-content: center;
+      .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+      }
+    }
+  }
+  .types{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      flex: 0 0 30%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin-left: 2%;
+      margin-top: 2%;
+      border-radius: 20px;
+      border: 1px solid #ababab;
+      color: #ababab;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      &.active{
+        border: 1px solid #416eb6;
+        color: #416eb6;
+      }
+    }
+
+  }
+  .side-title{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+  }
+  .side-content{
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .side-footer{
+    height: 50px;
+  }
+  .filter-btns{
+    display: flex;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    .filter-btn{
+      flex: 1 0 auto;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  //请购单 requisition/index
+
+  .hasFilter .tabs .tab-item:last-child{
+    color: black;
+    height: 99%;
+    box-shadow: -2px 0 0 rgba(200,120,200,.4);
+  }
+
+
+  //复选框
+  .checkBox{
+    float: left;
+    height: 100%;
+    display: flex;
+    width: 0;
+    top:0;
+    left: 0;
+    position: absolute;
+    overflow-x: hidden;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    transition: width .25s;
+    font-size: 20px;
+  }
+  .req-item-detail{
+    float: left;
+    width: 100%;
+    height: 100%;
+    transition: transform .25s;
+
+  }
+  .check{
+    .req-item-detail{
+      transform: translateX(10%);
+    }
+    .checkBox{
+      width: 12%;
+    }
+    .ion-android-checkbox.active{
+      color: #416eb6;
+    }
+  }
+}

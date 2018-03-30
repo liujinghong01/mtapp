@@ -1,0 +1,337 @@
+
+
+$vi-color:#416eb6;
+.vi-color{
+  color:$vi-color;
+}
+
+*{
+  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+  -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+html,body{
+  //-webkit-overflow-scrolling : touch !important;
+  overflow: auto !important;
+  height: 100% !important;
+}
+input,textarea{
+  -webkit-touch-callout:default!important;
+  -webkit-user-select: text !important;
+}
+
+.tabbar .tabbar-item {
+  .icon-wrapper{
+    height: 28px;
+    line-height: 26px;
+  }
+  .iconfont{
+    font-size: 22px;
+  }
+  .von-scalable{
+    transform: scale(.55,.55)!important;
+  }
+}
+.navbar,.navbar>.navbar-container,.bar ,.bar .title{
+  height: 60px;
+  line-height: 60px;
+  color: white;
+}
+.top{
+  height: 60px;top:0
+}
+.page.has-navbar .page-content{
+  padding-top: 60px;
+}
+.ab-center,.fix-center{
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.re-center{
+  margin: 0 auto;
+}
+.page-content{
+  background-color: #f3f7fb!important;
+  -webkit-overflow-scrolling: initial!important;
+}
+.bar-header{
+  box-shadow: none!important;
+  background-color: $vi-color!important;
+  .title{
+    color: #FFFFFF!important;
+  }
+  button{
+    color: #FFFFFF!important;
+  }
+}
+
+.tip{     //小红点提示
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: red;
+  right: 30px;
+  top: 5px;
+  padding: 0;
+}
+
+.von-badge{
+  padding: 0;
+  top: 0!important;
+  width: 14px;
+  height: 14px;
+  .von-badge-num{
+    line-height: 14px;
+    height: 14px;
+    font-size: 12px;
+    transform: scale(.8,.8);
+    -webkit-transform: scale(.8,.8);
+    text-align: center;
+  }
+}
+
+.loading-container .loading{
+  position: fixed;
+  bottom: 13%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  z-index: 10000;
+}
+.svg-icon{
+  width: 32px;
+  height: 32px;
+  vertical-align:middle;
+  fill: currentcolor;
+  padding-left: .1rem;
+  overflow: hidden;
+  float: left;
+}
+.item-icon-left{
+  padding-left: 70px!important;
+}
+.list{
+  margin-bottom: 0px;
+}
+.app-content{
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.button-icon span{
+  color: white;
+}
+
+.tabs{
+  top: 0 !important;
+}
+
+.item.item-icon-right .item-note{
+  margin-right: 15px;
+}
+.right-menu{
+  color: white;height: 60px;line-height: 50px;padding-right: 5px;
+}
+
+.mw-page{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow:hidden;
+}
+
+/*flex头部*/
+.mw-page-header{
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  background-color: $vi-color;
+  color: white;
+  i{
+    flex: 0 0 20%;
+    font-size: 14px;
+    padding: 15px;
+    &.right{
+      text-align: right;
+    }
+  }
+  .icon{
+    font-size: 24px;
+  }
+  span{
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+.hairline-top:before{
+  left: auto;
+  right: 0;
+  width: 96%;
+}
+.hairline-bottom:after{
+  display: none;
+}
+.mw-page-content{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  //-webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 100%;
+  &.has-tab{
+    display: flex;-webkit-box-orient: vertical;flex-direction: column;
+    >div:last-child{
+      flex:1;
+      position: relative;
+      .content{
+        position: absolute;
+        width:100%;
+        height: 100%;
+        top: 0;
+      }
+    }
+  }
+}
+.mw-page-footer{
+  height: 50px;
+}
+
+//底部按钮
+.btns{
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  z-index: 10;
+  position: fixed;
+  align-items:center;/*所有子元素都垂直居中了*/
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  .btn{
+    flex: 1;
+    text-align: center;
+  }
+  .divider{
+    flex: 0 0 1px;
+    height: 60%;
+    width: 1px;
+    background-color: #ababab;
+    transform: scaleY(.5);
+    -webkit-transform: scaleY(.5);
+  }
+}
+.item{
+  padding-left:15px;
+  padding-right:15px;
+  span{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.size{      //填写尺寸信息时用
+  padding: 15px 15px;
+  .lines{
+    height: 100%;display: flex;width: 78%;float:right;
+    li{
+      display: flex;
+      flex: 1;
+      input{
+        height: 16px;width: 50px;padding: 0 5px;
+      }
+    }
+  }
+}
+
+.pull-to-refresh-layer {    // 下拉刷新 样式
+  position: absolute;
+  left: 0;
+  top: -40px;
+  width: 100%;
+  height: 40px;
+  color: #aaa;
+}
+.item-input{
+  .input-label{
+    font-size: 14px;
+  }
+  span:nth-child(3){
+    text-align: right;
+    width: 66%;
+  }
+}
+
+.register-login input{
+  pointer-events: auto;
+}
+.previewBox{
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding:5px 10px;
+  background: #fff;
+  &>.preview{
+    width: 100%;
+    box-sizing: border-box;
+    .hasArrow{
+      position: relative;
+      &>.ion-ios-arrow-right{
+        width: 30px;
+        height: 30px;
+        position:absolute ;
+        text-align: center;
+        line-height: 30px;
+        right: 0;
+        top: 50%;
+        margin-top: -15px;
+        font-size: 24px;
+      }
+    }
+    &>p{
+      line-height: 20px;
+      border-bottom: 1px solid #ddd;
+      margin: 0;
+      font-size: 13px;
+      padding:  5px;
+      &:last-of-type{border-bottom: 0;}
+    }
+
+  }
+}
+
+.isMust{
+  position: relative;
+  margin-right: 22px;
+  &:after{
+    display: block;
+    content: '*';
+    color: #416eb6;
+    position: absolute;
+    right: -17px;
+    top:50%;
+    font-size: 20px;
+    width: 10px;
+    height: 10px;
+    line-height: 13px;
+    margin-top: -5px;
+
+  }
+}
+

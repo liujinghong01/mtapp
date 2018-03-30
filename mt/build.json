@@ -1,0 +1,27 @@
+
+{
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer: xiongfeng zhou (DDWZ22HPN5)",
+      "developmentTeam": "YVL56SPWWJ",
+      "packageType": "development",
+      "provisioningProfile": "mtDebug",
+      "buildFlag": [
+        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+        "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+        "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+      ]
+    },
+    "release": {
+      "codeSignIdentity": "iPhone Distribution: Shenzhen Weibosi Technology Co.,Ltd.",
+      "developmentTeam": "YVL56SPWWJ",
+      "packageType": "ad-hoc",
+      "provisioningProfile": "mtapp",
+      "buildFlag": [
+        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES",
+        "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO",
+        "LD_RUNPATH_SEARCH_PATHS = \"@executable_path/Frameworks\""
+      ]
+    }
+  }
+}
