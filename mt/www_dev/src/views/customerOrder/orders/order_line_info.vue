@@ -31,7 +31,10 @@
 
       <item style="margin: 0" @click.native="prodsClick">
         <span>制品信息：</span>
-        <span class="prodItem" v-for="(item,index) in cst_order_line.prod_list">{{ item.cst_prod_name }}</span>
+        <span class="item-note" style="padding-right: 20px;width: 80%;text-align: right"
+              v-for="(item,index) in cst_order_line.prod_list">
+              {{ item.cst_prod_name }}
+        </span>
         <i class=" ion-ios-arrow-right  "></i>
       </item>
 
@@ -154,6 +157,8 @@
         //如果是新增，则将报价单id带过来
         this.project_id = this.$route.params.line_id
         this.cst_order_line.start_date=todayDate()
+        this.cst_order_line.delivery_date=todayDate()
+        this.cst_order_line.first_try_date=todayDate()
       }else{
         this.order_line_id = this.$route.params.line_id
         this.getData();
