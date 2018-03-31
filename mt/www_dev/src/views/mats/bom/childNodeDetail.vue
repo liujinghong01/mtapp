@@ -173,6 +173,9 @@
 
       },
       rawnaturePrice(){//计算价格
+        if(this.action==='check'){
+          return
+        }
         let volume=''
         let rawnature=''
         if(this.mate_info.shape==='1'){
@@ -247,18 +250,24 @@
         })
       },
       update(){//创建或修改BOM节点数据提交
-        let pnode_id=''
+        let p_node_id=''
         if(this.edit==='edit'){
-          pnode_id=''
+          p_node_id=''
           this.node_info.node_id=this.node_id
-          this.node_info.mat_type='电极'
+          if(this.mat_type==='electrode'){
+            this.node_info.mat_type='电极'
+          }else{
+            this.node_info.mat_type=this.mate_info.mat_type_name
+          }
+
+
         }else{
-          pnode_id=this.node_id
+          p_node_id=this.node_id
         }
         const requestData={
           mat_info:this.mate_info,
           node_info:this.node_info,
-          pnode_id:pnode_id
+          p_node_id:p_node_id
         }
         updateNodes(requestData).then(res=>{
           if(res===true){
@@ -364,7 +373,7 @@
             this.mate_info.weight=''
             this.mate_info.spec=''
             this.mate_info.rawnature_id=''
-            this.mate_info.mat_id=''
+            // this.mate_info.mat_id=''
             this.mate_info.is_qc=0
             this.mate_info.rawnature_name='请选择'
             break

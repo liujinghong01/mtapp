@@ -96,7 +96,11 @@
           <li v-for="item in types" :key="item.name" @click="chooseType(item)" :class="item.chosen?'active':''">{{item.name}}</li>
         </ul>
       </list>
-      <div class="btns" v-show="showFilter">
+
+
+    </div>
+    <div class="mw-pgae-footer" v-show="showFilter">
+      <div class="btns" >
         <div class="btn reset">重置</div><div class="btn">确定</div>
       </div>
     </div>

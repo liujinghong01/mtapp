@@ -75,11 +75,14 @@
       <cst-item label="备注"  placeholder="请输入备注"  v-model="cst_order_line.remark" editType="text" :action="action" :canEdit="action==='new'||action==='edit'"></cst-item>
     </div>
     <sidebar-check :showFilter="showFilter" :dicType="dicType" :chosen="chosen" v-on:hideMask="showFilter = false"></sidebar-check>
-    <div class="btns" v-show="action!='check'&&action!=='checkOnly'&&action!=='approve'">
-      <div class="btn" @click="saveData">
-        保存
+    <div class="mw-page-footer" v-show="action!='check'&&action!=='checkOnly'&&action!=='approve'">
+      <div class="btns" >
+        <div class="btn" @click="saveData">
+          保存
+        </div>
       </div>
     </div>
+
 
     <time-picker
       v-on:chosen="chosen"
