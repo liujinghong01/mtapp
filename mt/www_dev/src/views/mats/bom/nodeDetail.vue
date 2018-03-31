@@ -485,8 +485,9 @@
               }
 
               this.mate_info.mat_name = item//选定物料名称
-              this.node_info.mat_no=this.cascadeData.mat_name_list[index].matCascadeNo
+              this.node_info.mat_name_id=this.cascadeData.mat_name_list[index].mat_cascade_no
               this.node_info.mat_id=this.cascadeData.mat_name_list[index].id//选定物料ID
+
               if(this.edit==='edit'){
                 this.mate_info.mat_id=this.node_info.mat_id
               }

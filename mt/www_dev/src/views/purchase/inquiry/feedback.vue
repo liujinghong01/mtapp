@@ -15,7 +15,7 @@
       </item>
 
       <div class="item-divider" v-show="action==='new'" style="padding-left: 15px">采购员信息</div>
-      <cst-item label="采购员" v-show="action==='new'" @click.native="selectPurch" v-model="inquiry_info.purch_man_name" :hasArrow="action==='check'?false:true" :action="action" :canEdit="false"></cst-item>
+      <cst-item label="采购员" v-show="action==='new'" v-model="inquiry_info.purch_man_name"  :action="action" :canEdit="false"></cst-item>
       <cst-item label="电话" v-show="action==='new'" v-model="inquiry_info.purch_man_phone" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
       <cst-item label="Email" v-show="action==='new'" v-model="inquiry_info.purch_man_email" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
       <div class="item-divider" style="padding-left: 15px">定单信息</div>
@@ -25,9 +25,9 @@
       <cst-item v-if="action==='check'" label="期望交货日期" v-model="inquiry_info.delivery_date" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
       <datepicker  v-else  v-model="inquiry_info.delivery_date" label="期望交货日期" date-format="yyyy-mm-dd"></datepicker>
       <cst-item label="交货地点" placeholder="请输入交货地点" v-model="inquiry_info.delivery_place" :action="action=='new'?'action':'check'"></cst-item>
-      <cst-item label="币种" v-model="inquiry_info.coin_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('coin')"></cst-item>
-      <cst-item label="发票种类" v-model="inquiry_info.invoice_type_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('invoiceType')"></cst-item>
-      <cst-item label="税率" v-model="inquiry_info.tax_ratio" :action="action==='new'?'action':'check'" :canEdit="true" editType="number"></cst-item>
+      <!--<cst-item label="币种" v-model="inquiry_info.coin_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('coin')"></cst-item>-->
+      <!--<cst-item label="发票种类" v-model="inquiry_info.invoice_type_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('invoiceType')"></cst-item>-->
+      <!--<cst-item label="税率" v-model="inquiry_info.tax_ratio" :action="action==='new'?'action':'check'" :canEdit="true" editType="number"></cst-item>-->
       <!--<cst-item label="折扣" v-model="inquiry_info.rebate" :action="action" :canEdit="true" editType="number"></cst-item>-->
       <div v-for="item in inquiry_info.mat_list" style="margin-top: 8px">
         <swipe-item swipeItemText="删除" :obj="item"  v-on:ItemClick="onItemClick">
@@ -159,14 +159,11 @@
           this.inquiry_info.purch_man_name = this.userinfo.username
           this.inquiry_info.purch_man_email = this.userinfo.email
           this.inquiry_info.purch_man_phone = this.userinfo.mobile
-        }else{
-          this.deps=this.chosenCompany.deps
-          this.deps.forEach((e,i)=>{
-            this.pickerList.push({
-              val:e.work_name+'('+e.dep_name+')',
-              id:i
-            })
-          })
+        } else{
+          //直接默认取第一个
+          this.inquiry_info.purch_man_name = this.chosenCompany.deps[0].work_name
+          this.inquiry_info.purch_man_email = this.chosenCompany.deps[0].work_email
+          this.inquiry_info.purch_man_phone = this.chosenCompany.deps[0].work_phone
         }
         this.inquiry_info.inquiry_date = todayDate()
         const inquiryMats=JSON.parse(sess.get('mats'))
@@ -236,17 +233,17 @@
           return
         }
         if(this.inquiry_info.delivery_place==''){
-          $toast.show('请输入收货地址');
+          $toast.show('请输入交货地点');
           return
         }
-        if(this.inquiry_info.coin_name==='请选择'){
-          $toast.show('请选择币种');
-          return
-        }
-        if(this.inquiry_info.invoice_type_name==='请选择'){
-          $toast.show('请选择发票类型');
-          return
-        }
+//        if(this.inquiry_info.coin_name==='请选择'){
+//          $toast.show('请选择币种');
+//          return
+//        }
+//        if(this.inquiry_info.invoice_type_name==='请选择'){
+//          $toast.show('请选择发票类型');
+//          return
+//        }
 
         let isPrice=false
         this.inquiry_info.mat_list.forEach((e,i)=>{
@@ -255,12 +252,6 @@
             return
           }
         })
-        if(isPrice){
-          $toast.show('请完善物料计划单价');
-          return
-        }
-
-
         const requestData={
           inquiry_info:this.inquiry_info
         };

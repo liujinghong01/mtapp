@@ -5,6 +5,70 @@
   },
   "config_munge": {
     "files": {
+      "*-Info.plist": {
+        "parents": {
+          "NSCameraUsageDescription": [
+            {
+              "xml": "<string>MoTooling想要访问您的相机</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
+            }
+          ],
+          "NSPhotoLibraryUsageDescription": [
+            {
+              "xml": "<string>MoTooling想要访问您的相册</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
+            }
+          ],
+          "NSLocationWhenInUseUsageDescription": [
+            {
+              "xml": "<string>MoTooling想要获取您的位置</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
+            }
+          ],
+          "NSPhotoLibraryAddUsageDescription": [
+            {
+              "xml": "<string>MoTooling想要存储照片到您的手机</string>",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml"
+            }
+          ],
+          "NSContactsUsageDescription": [
+            {
+              "xml": "<string> </string>",
+              "count": 1
+            }
+          ],
+          "LSApplicationQueriesSchemes": [
+            {
+              "xml": "<array><string>mailto</string></array>",
+              "count": 1
+            },
+            {
+              "xml": "<array><string>weixin</string><string>wechat</string></array>",
+              "count": 1
+            }
+          ],
+          "NSAppTransportSecurity": [
+            {
+              "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
+              "count": 1
+            }
+          ],
+          "CFBundleURLTypes": [
+            {
+              "xml": "<array><dict><key>CFBundleURLName</key><string>weixin</string><key>CFBundleURLSchemes</key><array><string>wx48c8ae06e1aa4b5f</string></array></dict></array>",
+              "count": 1
+            }
+          ]
+        }
+      },
       "config.xml": {
         "parents": {
           "/*": [
@@ -62,44 +126,6 @@
             },
             {
               "xml": "<feature name=\"BarcodeScanner\"><param name=\"ios-package\" value=\"CDVBarcodeScanner\" /></feature>",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "*-Info.plist": {
-        "parents": {
-          "NSContactsUsageDescription": [
-            {
-              "xml": "<string> </string>",
-              "count": 1
-            }
-          ],
-          "LSApplicationQueriesSchemes": [
-            {
-              "xml": "<array><string>mailto</string></array>",
-              "count": 1
-            },
-            {
-              "xml": "<array><string>weixin</string><string>wechat</string></array>",
-              "count": 1
-            }
-          ],
-          "NSAppTransportSecurity": [
-            {
-              "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
-              "count": 1
-            }
-          ],
-          "CFBundleURLTypes": [
-            {
-              "xml": "<array><dict><key>CFBundleURLName</key><string>weixin</string><key>CFBundleURLSchemes</key><array><string>wx48c8ae06e1aa4b5f</string></array></dict></array>",
-              "count": 1
-            }
-          ],
-          "NSCameraUsageDescription": [
-            {
-              "xml": "<string> </string>",
               "count": 1
             }
           ]

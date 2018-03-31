@@ -120,6 +120,7 @@ const user = {
         $storage.remove('token');
         $storage.remove('uid');
         resolve();
+        this.$store.dispatch('changIndex',0)
       });
     }
   }

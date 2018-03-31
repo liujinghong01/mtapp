@@ -5,7 +5,7 @@
       <span>询价单列表</span>
       <i class="right" @click="onMenuClick">筛选</i>
     </div>
-    <div class="mw-page-content" style="display: flex;flex-direction: column">
+    <div class="mw-page-content has-tab">
       <div>
         <div class="mw-tab">
           <ul class="tab-content">
@@ -14,10 +14,9 @@
           </ul>
         </div>
       </div>
-      <div class="divider"></div>
       <div style="flex: 1;position: relative;">
         <div class="content"  v-show="tabIndex===0">
-          <scroll class="page-content" :on-infinite="onInfinite"  style="-webkit-overflow-scrolling: touch">
+          <scroll class="page-content" :on-infinite="onInfinite">
             <div v-for="(item, index) in List[0]" :key="index">
               <item class="item-icon-right"  @click.native="onItemClick(item)">
                 <p data-v-99bbc47a="" data-v-4e323e6f="">询价单号 : {{item.inquiry_no}}</p>
@@ -35,8 +34,8 @@
           <scroll class="page-content" :on-infinite="onInfinite"  >
             <div v-for="(item, index) in List[1]" :key="index">
               <item class="item-icon-right"  @click.native="onItemClick(item)">
-                编号 : {{item.inquiry_no}}
-                公司名称 : {{item.company_name}}
+                询价单号 : {{item.inquiry_no}}
+                <!--公司名称 : {{item.company_name}}-->
                 <span class="item-note normal" v-show="item.deal_flag>0" >查看反馈</span>
                 <i class="icon ion-ios-arrow-right" style="color: #DDD;"></i>
               </item>

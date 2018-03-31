@@ -240,15 +240,11 @@
             query:this.query
           }
           list(requestData).then(res=>{
-            if(res.cst_order_list.length>0){
-              if(refresh){
-                that.items[that.tabIndex].list.length=0
-              }
-              that.items[that.tabIndex].list = that.items[that.tabIndex].list.concat(res.cst_order_list);
-              that.pageModels[that.tabIndex].total_page = res.total_page;
-              that.pageModels[that.tabIndex].curr_page = res.curr_page;
-              that.pageModels[that.tabIndex].total_count = res.total_count;
-            }
+            that.items[that.tabIndex].list = refresh ? res.cst_order_list : that.items[that.tabIndex].list.concat(res.cst_order_list);
+            that.pageModels[that.tabIndex].total_page = res.total_page;
+            that.pageModels[that.tabIndex].curr_page = res.curr_page;
+            that.pageModels[that.tabIndex].total_count = res.total_count;
+
           }).catch(error=>{
               $toast.show(error.description)
           })

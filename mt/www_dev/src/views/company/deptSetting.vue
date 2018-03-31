@@ -123,7 +123,7 @@
             this.member_list.forEach((e,i)=>{
               this.pickerList.push({
                 val:e.work_name,
-                id:e.uid
+                id:e.member_id
               })
             })
             this.showPicker=true

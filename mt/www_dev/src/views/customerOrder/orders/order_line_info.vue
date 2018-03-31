@@ -31,7 +31,10 @@
 
       <item style="margin: 0" @click.native="prodsClick">
         <span>制品信息：</span>
-        <span class="prodItem" v-for="(item,index) in cst_order_line.prod_list">{{ item.cst_prod_name }}</span>
+        <span class="item-note" style="padding-right: 20px;width: 80%;text-align: right"
+              v-for="(item,index) in cst_order_line.prod_list">
+              {{ item.cst_prod_name }}
+        </span>
         <i class=" ion-ios-arrow-right  "></i>
       </item>
 
@@ -72,11 +75,14 @@
       <cst-item label="备注"  placeholder="请输入备注"  v-model="cst_order_line.remark" editType="text" :action="action" :canEdit="action==='new'||action==='edit'"></cst-item>
     </div>
     <sidebar-check :showFilter="showFilter" :dicType="dicType" :chosen="chosen" v-on:hideMask="showFilter = false"></sidebar-check>
-    <div class="btns" v-show="action!='check'&&action!=='checkOnly'&&action!=='approve'">
-      <div class="btn" @click="saveData">
-        保存
+    <div class="mw-page-footer" v-show="action!='check'&&action!=='checkOnly'&&action!=='approve'">
+      <div class="btns" >
+        <div class="btn" @click="saveData">
+          保存
+        </div>
       </div>
     </div>
+
 
     <time-picker
       v-on:chosen="chosen"
@@ -154,6 +160,8 @@
         //如果是新增，则将报价单id带过来
         this.project_id = this.$route.params.line_id
         this.cst_order_line.start_date=todayDate()
+        this.cst_order_line.delivery_date=todayDate()
+        this.cst_order_line.first_try_date=todayDate()
       }else{
         this.order_line_id = this.$route.params.line_id
         this.getData();

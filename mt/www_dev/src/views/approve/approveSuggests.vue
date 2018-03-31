@@ -7,7 +7,7 @@
         </div>
         <div class="mw-page-content">
           <item v-for="item in suggests">
-            <p>审批状态 ： {{item.approve_flag | approveFlag}}</p>
+            <p>审批状态 ： {{item.approve_status}}</p>
             <p>审批人 ： {{item.approve_man_name}}</p>
             <p>审批时间 ： {{item.approve_end_date}}</p>
             <p>审批意见 ： {{item.approve_sugg ? item.approve_sugg : '无'}}</p>
