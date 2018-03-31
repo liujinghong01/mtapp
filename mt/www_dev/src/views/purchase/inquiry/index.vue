@@ -20,11 +20,12 @@
           <scroll class="page-content" :on-infinite="onInfinite"  style="-webkit-overflow-scrolling: touch">
             <div v-for="(item, index) in List[0]" :key="index">
               <item class="item-icon-right"  @click.native="onItemClick(item)">
-                编号 : {{item.inquiry_no}}
-                <br/>
-                公司名称 : {{item.company_name}}
+                <p data-v-99bbc47a="" data-v-4e323e6f="">询价单号 : {{item.inquiry_no}}</p>
+                <p data-v-99bbc47a="" data-v-4e323e6f="">询价员 : {{item.purch_man_name}}
                 <span class="item-note normal" v-show="item.deal_flag>0" >已反馈</span>
-                <i class="icon ion-ios-arrow-right" style="color: #DDD;"></i>
+                <i class="icon ion-ios-arrow-right " style="color: #DDD;height:100%"></i>
+                </p>
+                <p data-v-99bbc47a="" data-v-4e323e6f="">询价日期 : {{item.inquiry_date}}</p>
               </item>
             </div>
             <div v-if="PageModel[0].curr_page===PageModel[0].total_page" slot="infinite" class="text-center">没有更多数据</div>

@@ -47,6 +47,7 @@
                     <span>数量 : {{item.quantity}}</span>
                     <span>单价 : {{item.up}}</span>
                     <span>金额 : {{item.price}}</span>
+                    <span>当前存库量 : {{item.curr_stock_qty}}</span>
                   </div>
                 </div>
               </swipe-item>
