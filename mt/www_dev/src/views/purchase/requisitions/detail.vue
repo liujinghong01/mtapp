@@ -16,9 +16,8 @@
             </ul>
           </div>
         </div>
-        <div style="flex: 1;overflow-y: scroll">
-          <div class="divider"></div>
-          <div class="content" v-show="tabIndex===0">
+        <div style="flex: 1;position: relative">
+          <div class="page-content" v-show="tabIndex===0">
             <cst-item label="请购单号" :action="action" v-model="head_info.request_no" v-show="head_info.request_no"  :canEdit="false"></cst-item>
 
             <div v-if="action === 'new'">
@@ -37,7 +36,7 @@
             <textarea style="margin: 0" v-model="head_info.reason" :disabled="action==='check'" placeholder="请输入备注">
             </textarea>
           </div>
-          <div class="content" v-show="tabIndex===1">
+          <div class="page-content" v-show="tabIndex===1">
             <div v-for="item in head_info.line_list">
               <swipe-item swipeItemText="删除" :obj="item" v-on:SwipeItemClick="delItem(item)" v-on:ItemClick="onItemClick(item)">
                 <div class="req-item">

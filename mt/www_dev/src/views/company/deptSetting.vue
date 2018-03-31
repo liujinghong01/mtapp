@@ -133,7 +133,6 @@
         }
       },
       chosen(e){
-        console.log(e)
         if(this.selectType==='admin'){
           this.departInfo.dep_admin_name=e.val
           this.departInfo.dep_admin_id=e.id

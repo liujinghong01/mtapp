@@ -10,8 +10,8 @@
       <div style="width: 100%;background-color: white;">
         <mw-search placeholder="查询供应商信息"  v-model="searchVal" :search="onSearch" cancelText="取消" :cancelAction="onCancel"></mw-search>
       </div>
-      <div style="flex: 1" v-if="!isShowSearchResult">
-        <div style="height: 100%;position: relative">
+      <div style="flex: 1;position: relative" v-if="!isShowSearchResult">
+        <div class="content">
           <scroll class="page-content" :on-infinite="onInfinite" :on-refresh="onRefresh">
             <swipe-item :obj="item"  v-for="item in cstInfos"  v-on:ItemClick="toInfo" swipeItemText="删除" v-on:SwipeItemClick="delItem">
               <img src="../../../../static/images/company/logo_company.png" class="item-img">

@@ -9,7 +9,6 @@
       <div style="height: 60px">
         <tabs :tab-items="tabs" :tab-index="tabIndex" :on-tab-click="onTabClick"></tabs>
       </div>
-
       <div style="flex: 1;position:relative;">
         <div :class="['content',tabIndex===0 ? 'active' : '']">
           <scroll class="page-content"

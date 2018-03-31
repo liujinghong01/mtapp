@@ -3,14 +3,12 @@
         <div class="mw-page-header">
             <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
             <span>物料需求计划列表</span>
-            <i class="right"  v-if="!check" @click="check=true">操作</i>
-            <i class="right" v-if="check" @click="check=false">取消</i>
+            <i class="right"  @click="showFilter=true">筛选</i>
         </div>
         <div class="mw-page-content" style="position: relative;padding-top: 35px;">
           <div class="item-divider" >
-            <span style="padding-left: 15px;float:left;color: #416eb6;" v-show="check" @click="checkAll">全选</span>
-            <span style="float:right;padding-right: 15px;color: #416eb6;" @click="showFilter=true" v-if="!check">筛选</span>
-            <span style="float:right;padding-right: 15px;color: #416eb6;" @click="delItems" v-if="check">删除({{checkedMats.length}})</span>
+            <span style="padding-left: 15px;float:left;color: #416eb6;" @click="checkAll">全选</span>
+            <span style="float:right;padding-right: 15px;color: #416eb6;" @click="delItems">删除({{checkedMats.length}})</span>
           </div>
           <div class="content">
             <scroll class="page-content" :on-infinite="onInfinite" :on-refresh="onRefresh" style="-webkit-overflow-scrolling: touch">
@@ -78,7 +76,7 @@
       name:'requirements',
         data(){
           return {
-            check:false,
+            check:true,
             showFilter:false,
             isCheckAll:true,
             pageModel:{
@@ -188,13 +186,10 @@
               query:this.query
             }
             requirementList(reqData).then(res=>{
-              if(refresh){
-                this.require_list.length = 0
-                this.showFilter=false
-              }
+              this.showFilter=false
               this.pageModel.curr_page = res.curr_page
               this.pageModel.total_page = res.total_page
-              this.require_list = this.require_list.concat(res.require_list)
+              this.require_list = refresh ? res.require_list : this.require_list.concat(res.require_list)
 
             }).catch(error=>{
               $toast.show(error.description)
