@@ -72,6 +72,12 @@
       </dict>
     </array>
     <key>NSCameraUsageDescription</key>
-    <string/>
+    <string>MoTooling想要访问您的相机</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>MoTooling想要访问您的相册</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>MoTooling想要获取您的位置</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>MoTooling想要存储照片到您的手机</string>
   </dict>
 </plist>
