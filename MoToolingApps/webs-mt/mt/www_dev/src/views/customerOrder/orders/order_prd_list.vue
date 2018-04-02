@@ -19,7 +19,7 @@
             <span>名称</span>
             <input @blur="duplicate(item,index)" style="padding:0;float: right;width:70%;height: 15px;text-align: right" :disabled="action==='check'" type="text" v-model="item.cst_prod_name">
           </item>
-          <cst-item label="腔数" v-model="item.cavity_total" :action="action" placeholder="0" editType="number"></cst-item>
+          <cst-item label="腔数" v-model="item.cavity_total" :action="action" placeholder="1" editType="number"></cst-item>
           <!--<cst-item label="附件信息" :val="item.cavity_total" :action="edit"></cst-item>-->
         </div>
         <button v-show="action!='check'&&action!='checkOnly'&&action!='approve'" @click="addOneProd" class="button button-calm button-block button-outline">添加制品信息</button>
