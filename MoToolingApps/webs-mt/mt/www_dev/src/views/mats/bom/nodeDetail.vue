@@ -41,7 +41,7 @@
           <cst-item v-else label="材质" v-model="mate_info.rawnature_name " :action="action" :canEdit="false" :hasArrow="true" @click.native="selectList('rawnature_name')" ></cst-item>
 
           <cst-item v-show="mate_info.shape==='2'" label="物料单价" :placeholder="'0'" v-model="mate_info.plan_price" :action="action" editType="number"></cst-item>
-          <cst-item v-show="mat_type_name!=='1'" label="重量" :placeholder="'0'" v-model="mate_info.weight" :action="action" editType="number"></cst-item>{{newPrice}}
+          <cst-item v-show="mat_type_name!=='1'" label="胚料重量" :placeholder="'0'" v-model="mate_info.weight" :action="action" editType="number"></cst-item>{{newPrice}}
           <cst-item v-show="mat_type_name !== '1'" label="计划单价"  :placeholder="'0'" v-model="mate_info.plan_price" :action="action" editType="number"></cst-item>
           <item  v-show=" mat_type_name === '0' ">
             <span>生成下层物料</span>
