@@ -16,7 +16,7 @@
         </label>
       </item>
       <cst-item label="数量" editType="number" v-model="order_startup.count" :canEdit="false"></cst-item>
-      <cst-item label="未税单价" editType="number" v-model="up_not_tax" :canEdit="false"></cst-item>
+      <cst-item label="未税单价" editType="number" v-model="order_startup.up" :canEdit="false"></cst-item>
       <item>
         <span>是否制定BOM</span>
 
@@ -77,7 +77,7 @@
         order_line_id:'',
         order_startup:{
           sup_type:1,
-          up_not_tax:'',
+          up:'',
           order_line_id:'',
           process_cost:'',
           process_ratio:'',
@@ -97,14 +97,14 @@
       }
     },
     computed:{
-      up_not_tax:function () {
+      up:function () {
         if(this.order_startup.is_batch_process==1){
-          this.order_startup.up_not_tax = this.order_startup.count * this.order_startup.price
+          this.order_startup.price = this.order_startup.count * this.order_startup.up
         }else{
-          this.order_startup.up_not_tax = this.order_startup.price
+          this.order_startup.price = this.order_startup.up
         }
 //        this.resetPrice('process_ratio')
-        return this.order_startup.up_not_tax
+        return this.order_startup.price
       }
     },
     methods: {
@@ -168,7 +168,7 @@
 //              this.order_startup.design_ratio_percent = 1
 //            }
             this.order_startup.design_ratio = this.order_startup.design_ratio_percent/100
-            this.order_startup.design_cost = Number(this.order_startup.up_not_tax * (this.order_startup.design_ratio)).toFixed(2)
+            this.order_startup.design_cost = Number(this.order_startup.up * (this.order_startup.design_ratio)).toFixed(2)
             break;
           case 'process_ratio':
 //            if(this.order_startup.process_ratio_percent>99){
@@ -179,7 +179,7 @@
 //              this.order_startup.process_ratio_percent = 1
 //            }
             this.order_startup.process_ratio = this.order_startup.process_ratio_percent/100
-            this.order_startup.process_cost = Number(this.order_startup.up_not_tax * (this.order_startup.process_ratio)).toFixed(2)
+            this.order_startup.process_cost = Number(this.order_startup.up * (this.order_startup.process_ratio)).toFixed(2)
             break;
           case 'stuff_ratio':
 //            if(this.order_startup.stuff_ratio_percent>99){
@@ -190,7 +190,7 @@
 //              this.order_startup.stuff_ratio_percent = 1
 //            }
             this.order_startup.stuff_ratio = this.order_startup.stuff_ratio_percent/100
-            this.order_startup.stuff_cost = Number(this.order_startup.up_not_tax * (this.order_startup.stuff_ratio)).toFixed(2)
+            this.order_startup.stuff_cost = Number(this.order_startup.up * (this.order_startup.stuff_ratio)).toFixed(2)
             break
         }
 //        this.resetPrice(type)
@@ -199,18 +199,18 @@
         switch (type){
           case 'design_cost':
 //            if(this.order_startup.design_cost<0){
-//              this.order_startup.design_cost = this.order_startup.up_not_tax * 0.1
-//            }else if(this.order_startup.design_cost>this.order_startup.up_not_tax){
-//              this.order_startup.design_cost = this.order_startup.up_not_tax * 0.9
+//              this.order_startup.design_cost = this.order_startup.up * 0.1
+//            }else if(this.order_startup.design_cost>this.order_startup.up){
+//              this.order_startup.design_cost = this.order_startup.up * 0.9
 //            }
-            this.order_startup.design_ratio = this.order_startup.design_cost/this.order_startup.up_not_tax
+            this.order_startup.design_ratio = this.order_startup.design_cost/this.order_startup.up
             console.log(this.order_startup.design_ratio)
             this.order_startup.design_ratio_percent = Number(this.order_startup.design_ratio * 100).toFixed(2);
 //            this.resetPrice('design_ratio')
             break;
           case 'process_cost':
 //            if(this.order_startup.process_cost<0){
-//              this.order_startup.process_cost = this.order_startup.up_not_tax * 0.1
+//              this.order_startup.process_cost = this.order_startup.up * 0.1
 //            }else if(this.order_startup.process_cost>this.order_startup.up_not_tax){
 //              this.order_startup.process_cost = this.order_startup.up_not_tax * 0.9
 //            }
@@ -277,9 +277,9 @@
       this.order_line_id = this.$route.params.order_line_id
       this.order_startup.order_line_id = this.$route.params.order_line_id
       queryLineDetail({order_line_id:this.order_line_id}).then(res=>{
-        this.order_startup.price = res.up
+        this.order_startup.up = res.up
         this.order_startup.count = res.count
-        this.order_startup.up_not_tax = res.up * res.count
+        this.order_startup.price = res.up * res.count
       }).catch(error=>{
 
       })
