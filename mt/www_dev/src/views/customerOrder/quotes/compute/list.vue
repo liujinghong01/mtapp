@@ -29,16 +29,26 @@
         <div :class="['content',tabIndex===1 ? 'active' : '']">
           <scroll class="page-content"
                   :on-infinite="onInfinite">
-            <div v-for="(item, index) in items[1].list" :key="index"  >
-              <swipe-item :item="item" swipeItemText="删除" v-on:SwipeItemClick="delItem" v-on:ItemClick="onItemClick(item,'isApproval')" v-on:SwipeLeft="onSwipeLeft" :obj="item">
-                <p>编号:{{item.compute_no}}</p>
-                <p>制品信息：{{ item.prod_info }}</p>
-                <p>类型:{{item.type_name}}</p>
-                <p>制单人:{{ item.handler_name }}</p>
-                <p>核算日期:{{item.created_at}}</p>
-              </swipe-item>
-            </div>
-
+            <div v-for="(item, index) in items[1].list" :key="index"  style="clear:both;"  >
+              <div style="float: left; width: 80%">
+                <swipe-item :item="item" swipeItemText="删除" v-on:SwipeItemClick="delItem" v-on:ItemClick="onItemClick(item,'isApproval')" v-on:SwipeLeft="onSwipeLeft" :obj="item">
+                  <p>编号:{{item.compute_no}}</p>
+                  <p>制品信息：{{ item.prod_info }}</p>
+                  <p>类型:{{item.type_name}}</p>
+                  <p>制单人:{{ item.handler_name }}</p>
+                  <p>核算日期:{{item.created_at}}</p>
+                </swipe-item>
+              </div>
+              <div style="float: left; width: 20%">
+                <swipe-item :item="item" swipeItemText="撤销" v-on:SwipeItemClick="delItem" v-on:ItemClick="alert('ok');" v-on:SwipeLeft="onSwipeLeft" :obj="item">
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>撤销</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                </swipe-item>
+              </div>
+            </div><br><br><br><br><br><br><br>
             <div v-if="pageModels[1].curr_page >= pageModels[1].total_page" slot="infinite" class="text-center">没有更多数据</div>
           </scroll>
         </div>
@@ -524,6 +534,10 @@
       width: 70%;
     }
 
+  }
+
+  .align-center{
+    position:fixed;left:50%;top:50%;margin-left:width/2;margin-top:height/2;
   }
 
 </style>
