@@ -68,7 +68,7 @@
       </item>
 
       <!--<cst-item  label="交货日期"  v-model="cst_order_line.delivery_date"  :action="action" :canEdit="false"></cst-item>-->
-      <cst-item label="单价"  v-model="cst_order_line.price" editType="number" placeholder="0"  :action="action" :canEdit="action==='new'||action==='edit'"></cst-item>
+      <cst-item label="单价"  v-model="cst_order_line.up" editType="number" placeholder="0"  :action="action" :canEdit="action==='new'||action==='edit'"></cst-item>
       <cst-item label="数量"  v-model="cst_order_line.count" editType="number" placeholder="0"   :action="action" :canEdit="action==='new'||action==='edit'"></cst-item>
       <cst-item label="金额"  v-model="newPrice" editType="number" :action="action" :canEdit="false"></cst-item>
 
@@ -149,8 +149,8 @@
     computed:{
       ...mapGetters(['userinfo']),
       newPrice(){
-        let Price=Number(this.cst_order_line.count)*Number(this.cst_order_line.price)
-        this.cst_order_line.up=Price
+        let Price=Number(this.cst_order_line.count)*Number(this.cst_order_line.up)
+        this.cst_order_line.price=Price
         return Price
       }
     },
