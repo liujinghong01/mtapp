@@ -216,17 +216,19 @@
       created(){
         this.action = this.$route.params.action
         if(this.action==='new'){
+
           if(this.chosenCompany.deps.length<1){
             this.purchase.purch_man_name = this.userinfo.username
             this.purchase.purch_man_email = this.userinfo.email
             this.purchase.purch_man_phone = this.userinfo.mobile
+
           } else{
             //直接默认取第一个
             this.purchase.purch_man_name = this.chosenCompany.deps[0].work_name
             this.purchase.purch_man_email = this.chosenCompany.deps[0].work_email
             this.purchase.purch_man_phone = this.chosenCompany.deps[0].work_phone
+            console.log(this.chosenCompany.deps[0])
           }
-
 
           this.purchase.purch_man = this.userinfo.uid
           this.purchase.company_id = this.chosenCompany.company_id
