@@ -51,7 +51,7 @@
     components: {SwipeItem,CstItem},
     data(){
       return {
-        tabs:['待排场','已排场'],
+        tabs:['待排产','已排产'],
         isSearch:false,
         pageData:[
           {
