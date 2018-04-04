@@ -1,7 +1,0 @@
-
-#忽略本地 .idea  iml
-*.iml
-src/main/java/com/mt/platform/
-README.md
-target/
-/.idea/
