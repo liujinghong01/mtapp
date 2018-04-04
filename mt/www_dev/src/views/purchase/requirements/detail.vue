@@ -22,13 +22,15 @@
         物料需求来源
         <span class="item-note">{{material.create_type_name}}</span>
       </item>
-      <item v-if="!material.request_id">
+      <item v-if="material.request_no!=null">
         请购单号
-        <span class="item-note">{{material.request_id}}</span>
+        <span class="item-note">{{material.request_no}}</span>
       </item>
-      <item v-if="!material.mat_no">
+      <item v-if="material.mold_no!=null">
         模号
-        <span class="item-note">{{material.mat_no}}</span>
+        <span class="item-note">{{material.mold_no
+
+        }}</span>
       </item>
       <item>
         申请数量

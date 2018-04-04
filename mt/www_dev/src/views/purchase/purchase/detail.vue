@@ -15,9 +15,9 @@
           <cst-item label="电话" v-model="purchase.sup_linkman_phone" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
           <cst-item label="Email" v-model="purchase.sup_linkman_email" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
           <div class="item-divider" style="padding-left: 15px">采购员信息</div>
-          <cst-item label="采购员" v-model="purchase.purch_man_name" :action="action" :canEdit="false"></cst-item>
-          <cst-item label="电话" v-model="purchase.purch_man_phone" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
-          <cst-item label="Email" v-model="purchase.purch_man_email" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
+          <cst-item label="采购员" v-model="purchase.purchman_name" :action="action" :canEdit="false"></cst-item>
+          <cst-item label="电话" v-model="purchase.purchman_phone" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
+          <cst-item label="Email" v-model="purchase.purchman_email" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
           <div class="item-divider" style="padding-left: 15px">定单信息</div>
           <cst-item label="下单日期" v-model="purchase.order_date" :hasArrow="false" action="check" :canEdit="false"></cst-item>
           <!--<datepicker v-else v-model="purchase.order_date" label="请购时间" date-format="yyyy-mm-dd"></datepicker>-->
@@ -26,7 +26,8 @@
           <cst-item label="交货地点" v-model="purchase.delivery_place" :action="action"></cst-item>
           <cst-item label="币种" v-model="purchase.coin_name" :hasArrow="true" :action="action" :canEdit="false" @click.native="chooseDic('coin')"></cst-item>
           <cst-item label="发票种类" v-model="purchase.invoice_type_name" :hasArrow="true" :action="action" :canEdit="false" @click.native="chooseDic('invoiceType')"></cst-item>
-          <cst-item label="税率" v-model="purchase.tax_ratio" :action="action" :canEdit="true" editType="number"></cst-item>
+          <cst-item label="税率(%)" v-model="purchase.tax_ratio" :action="action" :canEdit="true" editType="number" @input="type"></cst-item>
+          <!--<p>税率:{{ Number(purchase.tax_ratio)===0?'0':(Number(purchase.tax_ratio)).toFixed(2) }} % </p>-->
           <cst-item label="折扣" v-model="purchase.rebate" :action="action" :canEdit="true" editType="number"></cst-item>
           <div v-for="item in purchase.purch_detail_list" style="margin-top: 8px">
             <swipe-item swipeItemText="删除" :obj="item" v-on:ItemClick="onItemClick" v-on:SwipeItemClick="delItem(item)">
@@ -43,7 +44,7 @@
               <cst-item label="金额" v-model="item.total_price" action="edit">{{ pirce }}</cst-item>
             </div>
           </div>
-          <button class="button button-calm button-block button-outline" @click="queryMats" v-show="action ==='edit' || action === 'new'">添加采购物料</button>
+         <!-- <button class="button button-calm button-block button-outline" @click="queryMats" v-show="action ==='edit' || action === 'new'">添加采购物料</button>-->
 
           <item style="margin-top: 8px">
             总金额
@@ -155,9 +156,9 @@
             purch_id:'',   //采购单id
             purch_no:'',  //采购单号
             purch_man: '', //采购员
-            purch_man_email: "",
-            purch_man_name: "请选择",
-            purch_man_phone: "",
+            purchman_email: "",
+            purchman_name: "请选择",
+            purchman_phone: "",
             rebate:'',    //折扣
             remark: "",  //备注
             send_date:'', //订单发送日期
@@ -218,15 +219,15 @@
         if(this.action==='new'){
 
           if(this.chosenCompany.deps.length<1){
-            this.purchase.purch_man_name = this.userinfo.username
-            this.purchase.purch_man_email = this.userinfo.email
-            this.purchase.purch_man_phone = this.userinfo.mobile
+            this.purchase.purchman_name = this.userinfo.username
+            this.purchase.purchman_email = this.userinfo.email
+            this.purchase.purchman_phone = this.userinfo.mobile
 
           } else{
             //直接默认取第一个
-            this.purchase.purch_man_name = this.chosenCompany.deps[0].work_name
-            this.purchase.purch_man_email = this.chosenCompany.deps[0].work_email
-            this.purchase.purch_man_phone = this.chosenCompany.deps[0].work_phone
+            this.purchase.purchman_name = this.chosenCompany.deps[0].work_name
+            this.purchase.purchman_email = this.chosenCompany.deps[0].work_email
+            this.purchase.purchman_phone = this.chosenCompany.deps[0].work_phone
             console.log(this.chosenCompany.deps[0])
           }
 
@@ -248,9 +249,9 @@
             this.$set(item,'col',!item.col)
           },
           chosenPicker(e){
-            this.purchase.purch_man_name = this.deps[e.id].work_name
-            this.purchase.purch_man_email = this.deps[e.id].work_email
-            this.purchase.purch_man_phone = this.deps[e.id].work_phone
+            this.purchase.purchman_name = this.deps[e.id].work_name
+            this.purchase.purchman_email = this.deps[e.id].work_email
+            this.purchase.purchman_phone = this.deps[e.id].work_phone
           },
           selectPurch(){
             if(this.action==='check'){
@@ -355,7 +356,7 @@
               $toast.show('请选择供应商',600)
               return
             }
-            if(this.purchase.purch_man_name==="请选择"){
+            if(this.purchase.purchman_name==="请选择"){
               $toast.show('请选择采购员信息',600)
               return
             }
