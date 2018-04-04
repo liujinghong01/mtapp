@@ -1,0 +1,103 @@
+[
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "query":{
+      "pg_id":"1",
+      "resource_id":"15",
+      "type":"1"
+    },
+    "uid": 5,
+    "token": "1253e6ee-a275-4017-a7b7-69b9bf98eda2"
+  },
+
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "query":{
+      "pg_id":"1",
+      "pop_status":"2",
+      "resource_id":"16",
+      "type":"0"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  },
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "incept_info":{
+      "incept_flag":"1",
+      "pop_id":"8"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  },
+
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "resource_info":{
+      "device_list":[
+        {
+          "device_id":"15"
+        }
+      ],
+      "member_list":[
+        {
+          "member_id": "1"
+        }
+      ],
+      "pop_id":"8"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  },
+
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "pop_list":{
+      "confirm_qty":"1",
+      "device_id":"15",
+      "pop_id":"8",
+      "real_other_time":"1",
+      "set_status":"1"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  },
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "pop_list":{
+      "confirm_qty":"1",
+      "device_id":"15",
+      "pop_id":"1",
+      "real_other_time":"1",
+      "set_status":"2"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  },
+
+
+  {
+    "client_type":"1",
+    "company_id":"35",
+    "proc_member":{
+      "member_id":"44",
+      "pop_id":"8",
+      "type":"1"
+    },
+    "uid": 5,
+    "token": "1bbc5f24-d16c-44d6-a3b9-edf2533abf99"
+  }
+
+  ]
+

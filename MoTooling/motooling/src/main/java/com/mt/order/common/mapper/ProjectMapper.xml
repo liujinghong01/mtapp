@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.Project">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="project_no" jdbcType="VARCHAR" property="projectNo" />
+    <result column="cst_order_no" jdbcType="VARCHAR" property="cstOrderNo" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="dep_id" jdbcType="INTEGER" property="depId" />
+    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="cst_company_id" jdbcType="BIGINT" property="cstCompanyId" />
+    <result column="cst_name" jdbcType="VARCHAR" property="cstName" />
+    <result column="order_accept_date" jdbcType="TIMESTAMP" property="orderAcceptDate" />
+    <result column="real_time" jdbcType="TIMESTAMP" property="realTime" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="coin_name" jdbcType="VARCHAR" property="coinName" />
+    <result column="order_money" jdbcType="DECIMAL" property="orderMoney" />
+    <result column="coin_local" jdbcType="VARCHAR" property="coinLocal" />
+    <result column="coin_local_name" jdbcType="VARCHAR" property="coinLocalName" />
+    <result column="order_money_local" jdbcType="DECIMAL" property="orderMoneyLocal" />
+    <result column="invoice_type" jdbcType="VARCHAR" property="invoiceType" />
+    <result column="invoice_type_name" jdbcType="VARCHAR" property="invoiceTypeName" />
+    <result column="invoice_to" jdbcType="VARCHAR" property="invoiceTo" />
+    <result column="is_include_tax" jdbcType="CHAR" property="isIncludeTax" />
+    <result column="tax_ratio" jdbcType="DECIMAL" property="taxRatio" />
+    <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
+    <result column="delivery_type" jdbcType="VARCHAR" property="deliveryType" />
+    <result column="delivery_place" jdbcType="VARCHAR" property="deliveryPlace" />
+    <result column="salesman" jdbcType="BIGINT" property="salesman" />
+    <result column="salesman_name" jdbcType="VARCHAR" property="salesmanName" />
+    <result column="approve_step" jdbcType="VARCHAR" property="approveStep" />
+    <result column="approve_sugg" jdbcType="VARCHAR" property="approveSugg" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project_no, cst_order_no, company_id, company_name, dep_id, dep_name, handler_id,
+    cst_company_id, cst_name, order_accept_date, real_time, coin, coin_name, order_money,
+    coin_local, coin_local_name, order_money_local, invoice_type, invoice_type_name,
+    invoice_to, is_include_tax, tax_ratio, prod_name, delivery_type, delivery_place,
+    salesman, salesman_name, approve_step, approve_sugg, status, is_active, created_at,
+    updated_at, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.Project">
+    insert into project (id, project_no, cst_order_no,
+    company_id, company_name, dep_id,
+    dep_name, handler_id, cst_company_id,
+    cst_name, order_accept_date, real_time,
+    coin, coin_name, order_money,
+    coin_local, coin_local_name, order_money_local,
+    invoice_type, invoice_type_name, invoice_to,
+    is_include_tax, tax_ratio, prod_name,
+    delivery_type, delivery_place, salesman,
+    salesman_name, approve_step, approve_sugg,
+    status, is_active, created_at,
+    updated_at, remark)
+    values (#{id,jdbcType=BIGINT}, #{projectNo,jdbcType=VARCHAR}, #{cstOrderNo,jdbcType=VARCHAR},
+    #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{depId,jdbcType=INTEGER},
+    #{depName,jdbcType=VARCHAR}, #{handlerId,jdbcType=BIGINT}, #{cstCompanyId,jdbcType=BIGINT},
+    #{cstName,jdbcType=VARCHAR}, #{orderAcceptDate,jdbcType=TIMESTAMP}, #{realTime,jdbcType=TIMESTAMP},
+    #{coin,jdbcType=VARCHAR}, #{coinName,jdbcType=VARCHAR}, #{orderMoney,jdbcType=DECIMAL},
+    #{coinLocal,jdbcType=VARCHAR}, #{coinLocalName,jdbcType=VARCHAR}, #{orderMoneyLocal,jdbcType=DECIMAL},
+    #{invoiceType,jdbcType=VARCHAR}, #{invoiceTypeName,jdbcType=VARCHAR}, #{invoiceTo,jdbcType=VARCHAR},
+    #{isIncludeTax,jdbcType=CHAR}, #{taxRatio,jdbcType=DECIMAL}, #{prodName,jdbcType=VARCHAR},
+    #{deliveryType,jdbcType=VARCHAR}, #{deliveryPlace,jdbcType=VARCHAR}, #{salesman,jdbcType=BIGINT},
+    #{salesmanName,jdbcType=VARCHAR}, #{approveStep,jdbcType=VARCHAR}, #{approveSugg,jdbcType=VARCHAR},
+    #{status,jdbcType=TINYINT}, #{isActive,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectNo != null">
+        project_no,
+      </if>
+      <if test="cstOrderNo != null">
+        cst_order_no,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="depId != null">
+        dep_id,
+      </if>
+      <if test="depName != null">
+        dep_name,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="cstCompanyId != null">
+        cst_company_id,
+      </if>
+      <if test="cstName != null">
+        cst_name,
+      </if>
+      <if test="orderAcceptDate != null">
+        order_accept_date,
+      </if>
+      <if test="realTime != null">
+        real_time,
+      </if>
+      <if test="coin != null">
+        coin,
+      </if>
+      <if test="coinName != null">
+        coin_name,
+      </if>
+      <if test="orderMoney != null">
+        order_money,
+      </if>
+      <if test="coinLocal != null">
+        coin_local,
+      </if>
+      <if test="coinLocalName != null">
+        coin_local_name,
+      </if>
+      <if test="orderMoneyLocal != null">
+        order_money_local,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceTypeName != null">
+        invoice_type_name,
+      </if>
+      <if test="invoiceTo != null">
+        invoice_to,
+      </if>
+      <if test="isIncludeTax != null">
+        is_include_tax,
+      </if>
+      <if test="taxRatio != null">
+        tax_ratio,
+      </if>
+      <if test="prodName != null">
+        prod_name,
+      </if>
+      <if test="deliveryType != null">
+        delivery_type,
+      </if>
+      <if test="deliveryPlace != null">
+        delivery_place,
+      </if>
+      <if test="salesman != null">
+        salesman,
+      </if>
+      <if test="salesmanName != null">
+        salesman_name,
+      </if>
+      <if test="approveStep != null">
+        approve_step,
+      </if>
+      <if test="approveSugg != null">
+        approve_sugg,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cstOrderNo != null">
+        #{cstOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        #{depId,jdbcType=INTEGER},
+      </if>
+      <if test="depName != null">
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="cstCompanyId != null">
+        #{cstCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="cstName != null">
+        #{cstName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAcceptDate != null">
+        #{orderAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coin != null">
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="coinName != null">
+        #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null">
+        #{orderMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="coinLocal != null">
+        #{coinLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="coinLocalName != null">
+        #{coinLocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoneyLocal != null">
+        #{orderMoneyLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTypeName != null">
+        #{invoiceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTo != null">
+        #{invoiceTo,jdbcType=VARCHAR},
+      </if>
+      <if test="isIncludeTax != null">
+        #{isIncludeTax,jdbcType=CHAR},
+      </if>
+      <if test="taxRatio != null">
+        #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null">
+        #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPlace != null">
+        #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="salesman != null">
+        #{salesman,jdbcType=BIGINT},
+      </if>
+      <if test="salesmanName != null">
+        #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStep != null">
+        #{approveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approveSugg != null">
+        #{approveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.Project">
+    update project
+    <set>
+      <if test="projectNo != null">
+        project_no = #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cstOrderNo != null">
+        cst_order_no = #{cstOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="depId != null">
+        dep_id = #{depId,jdbcType=INTEGER},
+      </if>
+      <if test="depName != null">
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="cstCompanyId != null">
+        cst_company_id = #{cstCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="cstName != null">
+        cst_name = #{cstName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAcceptDate != null">
+        order_accept_date = #{orderAcceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        real_time = #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coin != null">
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="coinName != null">
+        coin_name = #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null">
+        order_money = #{orderMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="coinLocal != null">
+        coin_local = #{coinLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="coinLocalName != null">
+        coin_local_name = #{coinLocalName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoneyLocal != null">
+        order_money_local = #{orderMoneyLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTypeName != null">
+        invoice_type_name = #{invoiceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceTo != null">
+        invoice_to = #{invoiceTo,jdbcType=VARCHAR},
+      </if>
+      <if test="isIncludeTax != null">
+        is_include_tax = #{isIncludeTax,jdbcType=CHAR},
+      </if>
+      <if test="taxRatio != null">
+        tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="prodName != null">
+        prod_name = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null">
+        delivery_type = #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPlace != null">
+        delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="salesman != null">
+        salesman = #{salesman,jdbcType=BIGINT},
+      </if>
+      <if test="salesmanName != null">
+        salesman_name = #{salesmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveStep != null">
+        approve_step = #{approveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approveSugg != null">
+        approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.Project">
+    update project
+    set project_no = #{projectNo,jdbcType=VARCHAR},
+    cst_order_no = #{cstOrderNo,jdbcType=VARCHAR},
+    company_id = #{companyId,jdbcType=INTEGER},
+    company_name = #{companyName,jdbcType=VARCHAR},
+    dep_id = #{depId,jdbcType=INTEGER},
+    dep_name = #{depName,jdbcType=VARCHAR},
+    handler_id = #{handlerId,jdbcType=BIGINT},
+    cst_company_id = #{cstCompanyId,jdbcType=BIGINT},
+    cst_name = #{cstName,jdbcType=VARCHAR},
+    order_accept_date = #{orderAcceptDate,jdbcType=TIMESTAMP},
+    real_time = #{realTime,jdbcType=TIMESTAMP},
+    coin = #{coin,jdbcType=VARCHAR},
+    coin_name = #{coinName,jdbcType=VARCHAR},
+    order_money = #{orderMoney,jdbcType=DECIMAL},
+    coin_local = #{coinLocal,jdbcType=VARCHAR},
+    coin_local_name = #{coinLocalName,jdbcType=VARCHAR},
+    order_money_local = #{orderMoneyLocal,jdbcType=DECIMAL},
+    invoice_type = #{invoiceType,jdbcType=VARCHAR},
+    invoice_type_name = #{invoiceTypeName,jdbcType=VARCHAR},
+    invoice_to = #{invoiceTo,jdbcType=VARCHAR},
+    is_include_tax = #{isIncludeTax,jdbcType=CHAR},
+    tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+    prod_name = #{prodName,jdbcType=VARCHAR},
+    delivery_type = #{deliveryType,jdbcType=VARCHAR},
+    delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+    salesman = #{salesman,jdbcType=BIGINT},
+    salesman_name = #{salesmanName,jdbcType=VARCHAR},
+    approve_step = #{approveStep,jdbcType=VARCHAR},
+    approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+    status = #{status,jdbcType=TINYINT},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!-- Alnwick 添加-->
+
+  <select id="selectProjectList" parameterType="map" resultType="map">
+    select cst_company_id,cst_name,id as project_id,DATE_FORMAT(order_accept_date,'%Y-%m-%d') order_accept_date ,approve_step,project_no,salesman_name from project
+    <where>
+      <if test="approve_step != null and approve_step !=''">
+        AND     approve_step REGEXP #{approve_step}
+      </if>
+      <if test="cst_company_id != null and cst_company_id !=''">
+        AND     cst_company_id REGEXP #{cst_company_id}
+      </if>
+      <if test="prod_name != null and prod_name !=''">
+        AND     prod_name = #{prod_name}
+      </if>
+      <if test="project_no != null and project_no !=''">
+        AND     project_no = #{project_no}
+      </if>
+      <if test="start_date != null and start_date !=''">
+                and order_accept_date &gt;= #{start_date}
+      </if>
+       <if test="end_date != null and end_date !=''">
+                and order_accept_date &lt;= #{end_date}
+      </if>
+      <if test=" companyId != null and companyId!='' ">
+        And company_id = #{companyId} and status = 1  ORDER BY order_accept_date DESC  limit #{page},#{page_size}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectProjectTotalCount" resultType="java.lang.Integer" parameterType="map">
+    select count(1)
+    from project
+    <where>
+      <if test="approve_step != null and approve_step !=''">
+        AND     approve_step REGEXP #{approve_step}
+      </if>
+      <if test="cst_company_id != null and cst_company_id !=''">
+        AND     cst_company_id REGEXP #{cst_company_id}
+      </if>
+      <if test="prod_name != null and prod_name !=''">
+        AND     prod_name = #{prod_name}
+      </if>
+      <if test="project_no != null and project_no !=''">
+        AND     project_no = #{project_no}
+      </if>
+      <if test="start_date != null and start_date !=''">
+        and order_accept_date &lt;= #{beginTime}
+      </if>
+      <if test="end_date != null and end_date !=''">
+        and order_accept_date &gt;= #{endTime}
+      </if>
+      <if test=" companyId != null and companyId !='' ">
+        and company_id = #{companyId} and status = 1 ORDER BY created_at DESC
+      </if>
+    </where>
+
+  </select>
+
+  <update id="deleteProjectNo">
+    UPDATE project SET  status = 0 WHERE  id=#{project_id}
+  </update>
+
+
+  <insert id="addModify" parameterType="map"  useGeneratedKeys="true" keyProperty="id" keyColumn="id"  >
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="project_no != null and project_no !='' ">
+        project_no,
+      </if>
+      <if test="invoice_type_name != null and invoice_type_name !='' ">
+        invoice_type_name,
+      </if>
+      <if test="invoice_type != null and invoice_type !='' ">
+        invoice_type,
+      </if>
+      <if test="cst_order_no != null and  cst_order_no !=''">
+        cst_order_no,
+      </if>
+      <if test="type != null and type != ''">
+        type,
+      </if>
+      <if test="type_name != null and type_name !=''">
+        type_name,
+      </if>
+      <if test="company_id != null and company_id !=''">
+        company_id,
+      </if>
+      <if test="company_name != null and company_name !=''">
+        company_name,
+      </if>
+      <if test="dep_id != null and dep_id !=''">
+        dep_id,
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        handler_id,
+      </if>
+      <if test="dep_name != null and dep_name != ''">
+        dep_name,
+      </if>
+      <if test="cst_company_id != null and cst_company_id !=''">
+        cst_company_id,
+      </if>
+      <if test="cst_name != null and cst_name !=''">
+        cst_name,
+      </if>
+      <if test="order_accept_date != null and order_accept_date != ''">
+        order_accept_date,
+      </if>
+      <if test="order_sale != null and order_sale !=''">
+        order_sale,
+      </if>
+      <if test="predict_time != null and predict_time !=''">
+        predict_time,
+      </if>
+      <if test="real_time != null and real_time !=''">
+        real_time,
+      </if>
+      <if test="order_money != null and order_money !=''">
+        order_money,
+      </if>
+      <if test="coin != null and coin !=''">
+        coin,
+      </if>
+      <if test="order_money_local != null and order_money_local !=''">
+        order_money_local,
+      </if>
+      <if test="coin_local != null and coin_local !=''">
+        coin_local,
+      </if>
+      <if test="invoice_to != null and invoice_to !=''">
+        invoice_to,
+      </if>
+      <if test="delivery_place != null and delivery_place != ''">
+        delivery_place,
+      </if>
+      <if test="is_include_tax != null and is_include_tax !=''">
+        is_include_tax,
+      </if>
+      <if test="tax_ratio != null and tax_ratio != ''">
+        tax_ratio,
+      </if>
+      <if test="product_name != null and product_name != ''">
+        product_name,
+      </if>
+      <if test="delivery_type != null and delivery_type !=''">
+        delivery_type,
+      </if>
+      <if test="project_man != null and project_man !=''">
+        project_man,
+      </if>
+      <if test="remark != null and remark !=''">
+        remark,
+      </if>
+      <if test="approve_step != null and approve_step !=''">
+        approve_step,
+      </if>
+      <if test="approve_sugg != null and approve_sugg !=''">
+        approve_sugg,
+      </if>
+      <if test="status != null and status !=''">
+        status,
+      </if>
+      <if test="is_active != null and  is_active !=''">
+        is_active,
+      </if>
+      <if test="created_at != null and created_at != ''">
+        created_at,
+      </if>
+      <if test="salesman != null and salesman != ''">
+        salesman,
+      </if>
+      <if test="salesman_name != null and salesman_name != ''">
+        salesman_name,
+      </if>
+      <if test="coin_name != null and coin_name != ''">
+        coin_name
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="project_no != null and project_no !='' ">
+        #{project_no},
+      </if>
+      <if test="invoice_type_name != null and invoice_type_name !='' ">
+        #{invoice_type_name},
+      </if>
+      <if test="invoice_type != null and invoice_type !='' ">
+        #{invoice_type},
+      </if>
+      <if test="cst_order_no != null and cst_order_no !=''">
+        #{cst_order_no},
+      </if>
+      <if test="type != null and type != ''">
+        #{type},
+      </if>
+      <if test="type_name != null and type_name !=''">
+        #{type_name},
+      </if>
+      <if test="company_id != null and company_id !=''">
+        #{company_id},
+      </if>
+      <if test="company_name != null and company_name !=''">
+        #{company_name},
+      </if>
+      <if test="dep_id != null and dep_id !=''">
+        #{dep_id},
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        #{handler_id},
+      </if>
+      <if test="dep_name != null and dep_name != ''">
+        #{dep_name},
+      </if>
+      <if test="cst_company_id != null and cst_company_id !=''">
+        #{cst_company_id},
+      </if>
+      <if test="cst_name != null and cst_name !=''">
+        #{cst_name},
+      </if>
+      <if test="order_accept_date != null and order_accept_date != ''">
+        #{order_accept_date},
+      </if>
+      <if test="order_sale != null and order_sale !=''">
+        #{order_sale},
+      </if>
+      <if test="predict_time != null and predict_time !=''">
+        #{predict_time},
+      </if>
+      <if test="real_time != null and real_time !=''">
+        #{real_time},
+      </if>
+      <if test="order_money != null and order_money !=''">
+        #{order_money},
+      </if>
+      <if test="coin != null and coin !=''">
+        #{coin},
+      </if>
+      <if test="order_money_local != null and order_money_local !=''">
+        #{order_money_local},
+      </if>
+      <if test="coin_local != null and coin_local !=''">
+        #{coin_local},
+      </if>
+      <if test="invoice_to != null and invoice_to !=''">
+        #{invoice_to},
+      </if>
+      <if test="delivery_place != null and delivery_place != ''">
+        #{delivery_place},
+      </if>
+      <if test="is_include_tax != null and is_include_tax !=''">
+        #{is_include_tax},
+      </if>
+      <if test="tax_ratio != null and tax_ratio != ''">
+        #{tax_ratio},
+      </if>
+      <if test="product_name != null and product_name != ''">
+        #{product_name},
+      </if>
+      <if test="delivery_type != null and delivery_type !=''">
+        #{delivery_type},
+      </if>
+      <if test="project_man != null and project_man !=''">
+        #{project_man},
+      </if>
+      <if test="remark != null and remark !=''">
+        #{remark},
+      </if>
+      <if test="approve_step != null and approve_step !=''">
+        #{approve_step},
+      </if>
+      <if test="approve_sugg != null and approve_sugg !=''">
+        #{approve_sugg},
+      </if>
+      <if test="status != null and status !=''">
+        #{status},
+      </if>
+      <if test="is_active != null and  is_active !=''">
+        #{is_active},
+      </if>
+      <if test="created_at != null and created_at != ''">
+        #{created_at},
+      </if>
+      <if test="salesman != null and salesman != ''">
+        #{salesman},
+      </if>
+      <if test="salesman_name != null and salesman_name != ''">
+        #{salesman_name},
+      </if>
+      <if test="coin_name != null and coin_name != ''">
+        #{coin_name},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateModify" parameterType="map" >
+    update project
+    <set>
+      <if test="project_no != null and project_no !='' ">
+        project_no= #{project_no},
+      </if>
+      <if test="invoice_type_name != null and invoice_type_name !='' ">
+        invoice_type_name= #{invoice_type_name},
+      </if>
+      <if test="invoice_type != null and invoice_type !='' ">
+        invoice_type= #{invoice_type},
+      </if>
+      <if test="cst_order_no != null and cst_order_no !=''">
+        cst_order_no=  #{cst_order_no},
+      </if>
+      <if test="type != null and type != ''">
+        type=#{type},
+      </if>
+      <if test="type_name != null and type_name !=''">
+        type_name=  #{type_name},
+      </if>
+      <if test="company_id != null and company_id !=''">
+        company_id= #{company_id},
+      </if>
+      <if test="company_name != null and company_name !=''">
+        company_name=  #{company_name},
+      </if>
+      <if test="dep_id != null and dep_id !=''">
+        dep_id=  #{dep_id},
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        handler_id= #{handler_id},
+      </if>
+      <if test="dep_name != null and dep_name != ''">
+        dep_name=  #{dep_name},
+      </if>
+      <if test="cst_company_id != null and cst_company_id !=''">
+        cst_company_id=   #{cst_company_id},
+      </if>
+      <if test="cst_name != null and cst_name !=''">
+        cst_name=  #{cst_name},
+      </if>
+      <if test="order_accept_date != null and order_accept_date != ''">
+        order_accept_date=   #{order_accept_date},
+      </if>
+      <if test="order_sale != null and order_sale !=''">
+        order_sale= #{order_sale},
+      </if>
+      <if test="predict_time != null and predict_time !=''">
+        predict_time=  #{predict_time},
+      </if>
+      <if test="real_time != null and real_time !=''">
+        real_time=  #{real_time},
+      </if>
+      <if test="order_money != null and order_money !=''">
+        order_money= #{order_money},
+      </if>
+      <if test="coin != null and coin !=''">
+        coin= #{coin},
+      </if>
+      <if test="order_money_local != null and order_money_local !=''">
+        order_money_local= #{order_money_local},
+      </if>
+      <if test="coin_local != null and coin_local !=''">
+        #{coin_local},
+      </if>
+      <if test="invoice_to != null and invoice_to !=''">
+        invoice_to=  #{invoice_to},
+      </if>
+      <if test="delivery_place != null and delivery_place != ''">
+        delivery_place= #{delivery_place},
+      </if>
+      <if test="is_include_tax != null and is_include_tax !=''">
+        is_include_tax= #{is_include_tax},
+      </if>
+      <if test="tax_ratio != null and tax_ratio != ''">
+        tax_ratio= #{tax_ratio},
+      </if>
+      <if test="product_name != null and product_name != ''">
+        product_name=  #{product_name},
+      </if>
+      <if test="delivery_type != null and delivery_type !=''">
+        delivery_type=  #{delivery_type},
+      </if>
+      <if test="project_man != null and project_man !=''">
+        project_man=  #{project_man},
+      </if>
+      <if test="remark != null and remark !=''">
+        remark= #{remark},
+      </if>
+      <if test="approve_step != null and approve_step !=''">
+        approve_step=#{approve_step},
+      </if>
+      <if test="approve_sugg != null and approve_sugg !=''">
+        approve_sugg=  #{approve_sugg},
+      </if>
+      <if test="status != null and status !=''">
+        status= #{status},
+      </if>
+      <if test="is_active != null and  is_active !=''">
+        is_active= #{is_active},
+      </if>
+      <if test="updated_at != null and updated_at != ''">
+      updated_at=#{updated_at},
+      </if>
+      <if test="salesman != null and salesman != ''">
+        salesman=#{salesman},
+      </if>
+      <if test="salesman_name != null and salesman_name != ''">
+        salesman_name=#{salesman_name},
+      </if>
+      <if test="coin_name != null and coin_name != ''">
+        coin_name=#{coin_name},
+      </if>
+    </set>
+    where id = #{project_id}
+  </update>
+
+  <select id="queryHead" parameterType="java.lang.Integer" resultType="map">
+    SELECT approve_step,coin, coin_name,company_id,cst_company_id,cst_name,delivery_place,delivery_type,invoice_type,invoice_type_name,is_include_tax,id as project_id,
+    project_no,remark,salesman,salesman_name,tax_ratio, DATE_FORMAT(order_accept_date,'%Y-%m-%d')order_accept_date from project  where id = #{projectId}
+  </select>
+
+  <select id="selectProjectNo" resultType="java.lang.String" parameterType="map">
+    SELECT  project_no from  project  where id = #{project_id}
+  </select>
+
+
+</mapper>

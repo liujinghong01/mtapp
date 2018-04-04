@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.QuoteMoldProdLogMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.QuoteMoldProdLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="version" jdbcType="INTEGER" property="version" />
+    <result column="quote_mold_id" jdbcType="BIGINT" property="quoteMoldId" />
+    <result column="cst_prod_name" jdbcType="VARCHAR" property="cstProdName" />
+    <result column="cst_prod_no" jdbcType="VARCHAR" property="cstProdNo" />
+    <result column="cavity_total" jdbcType="INTEGER" property="cavityTotal" />
+    <result column="prod_model_pic" jdbcType="VARCHAR" property="prodModelPic" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, version, quote_mold_id, cst_prod_name, cst_prod_no, cavity_total, prod_model_pic, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from quote_mold_prod_log
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from quote_mold_prod_log
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.QuoteMoldProdLog">
+    insert into quote_mold_prod_log (id, version, quote_mold_id, 
+      cst_prod_name, cst_prod_no, cavity_total, 
+      prod_model_pic, status)
+    values (#{id,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{quoteMoldId,jdbcType=BIGINT}, 
+      #{cstProdName,jdbcType=VARCHAR}, #{cstProdNo,jdbcType=VARCHAR}, #{cavityTotal,jdbcType=INTEGER}, 
+      #{prodModelPic,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.QuoteMoldProdLog">
+    insert into quote_mold_prod_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="quoteMoldId != null">
+        quote_mold_id,
+      </if>
+      <if test="cstProdName != null">
+        cst_prod_name,
+      </if>
+      <if test="cstProdNo != null">
+        cst_prod_no,
+      </if>
+      <if test="cavityTotal != null">
+        cavity_total,
+      </if>
+      <if test="prodModelPic != null">
+        prod_model_pic,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="quoteMoldId != null">
+        #{quoteMoldId,jdbcType=BIGINT},
+      </if>
+      <if test="cstProdName != null">
+        #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdNo != null">
+        #{cstProdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityTotal != null">
+        #{cavityTotal,jdbcType=INTEGER},
+      </if>
+      <if test="prodModelPic != null">
+        #{prodModelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.QuoteMoldProdLog">
+    update quote_mold_prod_log
+    <set>
+      <if test="quoteMoldId != null">
+        quote_mold_id = #{quoteMoldId,jdbcType=BIGINT},
+      </if>
+      <if test="cstProdName != null">
+        cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdNo != null">
+        cst_prod_no = #{cstProdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityTotal != null">
+        cavity_total = #{cavityTotal,jdbcType=INTEGER},
+      </if>
+      <if test="prodModelPic != null">
+        prod_model_pic = #{prodModelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.QuoteMoldProdLog">
+    update quote_mold_prod_log
+    set quote_mold_id = #{quoteMoldId,jdbcType=BIGINT},
+      cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+      cst_prod_no = #{cstProdNo,jdbcType=VARCHAR},
+      cavity_total = #{cavityTotal,jdbcType=INTEGER},
+      prod_model_pic = #{prodModelPic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </update>
+</mapper>

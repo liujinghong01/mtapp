@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.mt.cms.common.model.Company">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_full_name" jdbcType="VARCHAR" property="companyFullName" />
+    <result column="company_code" jdbcType="VARCHAR" property="companyCode" />
+    <result column="reg_no" jdbcType="VARCHAR" property="regNo" />
+    <result column="biz_des" jdbcType="VARCHAR" property="bizDes" />
+    <result column="biz_size" jdbcType="VARCHAR" property="bizSize" />
+    <result column="legal_person" jdbcType="VARCHAR" property="legalPerson" />
+    <result column="licence" jdbcType="VARCHAR" property="licence" />
+    <result column="ceo" jdbcType="VARCHAR" property="ceo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="ceo_id" jdbcType="VARCHAR" property="ceoId" />
+    <result column="ceo_wechat" jdbcType="VARCHAR" property="ceoWechat" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="wechat_pub_acct" jdbcType="VARCHAR" property="wechatPubAcct" />
+    <result column="industry" jdbcType="SMALLINT" property="industry" />
+    <result column="weibo" jdbcType="VARCHAR" property="weibo" />
+    <result column="company_type" jdbcType="SMALLINT" property="companyType" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="credibility" jdbcType="VARCHAR" property="credibility" />
+    <result column="stickness" jdbcType="TINYINT" property="stickness" />
+    <result column="quality_level" jdbcType="INTEGER" property="qualityLevel" />
+    <result column="plat_company_type" jdbcType="TINYINT" property="platCompanyType" />
+    <result column="is_active" jdbcType="TINYINT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_id, company_name, company_full_name, company_code, reg_no, biz_des, biz_size,
+    legal_person, licence, ceo, phone, ceo_id, ceo_wechat, email, fax, website, wechat_pub_acct,
+    industry, weibo, company_type, country, province, city, address, postcode, credibility,
+    stickness, quality_level, plat_company_type, is_active, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.cms.common.model.Company">
+    insert into company (id, company_id, company_name,
+    company_full_name, company_code, reg_no,
+    biz_des, biz_size, legal_person,
+    licence, ceo, phone,
+    ceo_id, ceo_wechat, email,
+    fax, website, wechat_pub_acct,
+    industry, weibo, company_type,
+    country, province, city,
+    address, postcode, credibility,
+    stickness, quality_level, plat_company_type,
+    is_active, created_at, updated_at,
+    status)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR},
+    #{companyFullName,jdbcType=VARCHAR}, #{companyCode,jdbcType=VARCHAR}, #{regNo,jdbcType=VARCHAR},
+    #{bizDes,jdbcType=VARCHAR}, #{bizSize,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR},
+    #{licence,jdbcType=VARCHAR}, #{ceo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+    #{ceoId,jdbcType=VARCHAR}, #{ceoWechat,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+    #{fax,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{wechatPubAcct,jdbcType=VARCHAR},
+    #{industry,jdbcType=SMALLINT}, #{weibo,jdbcType=VARCHAR}, #{companyType,jdbcType=SMALLINT},
+    #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, #{credibility,jdbcType=VARCHAR},
+    #{stickness,jdbcType=TINYINT}, #{qualityLevel,jdbcType=INTEGER}, #{platCompanyType,jdbcType=TINYINT},
+    #{isActive,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+    #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.cms.common.model.Company">
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="companyFullName != null">
+        company_full_name,
+      </if>
+      <if test="companyCode != null">
+        company_code,
+      </if>
+      <if test="regNo != null">
+        reg_no,
+      </if>
+      <if test="bizDes != null">
+        biz_des,
+      </if>
+      <if test="bizSize != null">
+        biz_size,
+      </if>
+      <if test="legalPerson != null">
+        legal_person,
+      </if>
+      <if test="licence != null">
+        licence,
+      </if>
+      <if test="ceo != null">
+        ceo,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="ceoId != null">
+        ceo_id,
+      </if>
+      <if test="ceoWechat != null">
+        ceo_wechat,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="fax != null">
+        fax,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="wechatPubAcct != null">
+        wechat_pub_acct,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="weibo != null">
+        weibo,
+      </if>
+      <if test="companyType != null">
+        company_type,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+      <if test="credibility != null">
+        credibility,
+      </if>
+      <if test="stickness != null">
+        stickness,
+      </if>
+      <if test="qualityLevel != null">
+        quality_level,
+      </if>
+      <if test="platCompanyType != null">
+        plat_company_type,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyFullName != null">
+        #{companyFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null">
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regNo != null">
+        #{regNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDes != null">
+        #{bizDes,jdbcType=VARCHAR},
+      </if>
+      <if test="bizSize != null">
+        #{bizSize,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null">
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="licence != null">
+        #{licence,jdbcType=VARCHAR},
+      </if>
+      <if test="ceo != null">
+        #{ceo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ceoId != null">
+        #{ceoId,jdbcType=VARCHAR},
+      </if>
+      <if test="ceoWechat != null">
+        #{ceoWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatPubAcct != null">
+        #{wechatPubAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=SMALLINT},
+      </if>
+      <if test="weibo != null">
+        #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null">
+        #{companyType,jdbcType=SMALLINT},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="credibility != null">
+        #{credibility,jdbcType=VARCHAR},
+      </if>
+      <if test="stickness != null">
+        #{stickness,jdbcType=TINYINT},
+      </if>
+      <if test="qualityLevel != null">
+        #{qualityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="platCompanyType != null">
+        #{platCompanyType,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.Company">
+    update company
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyFullName != null">
+        company_full_name = #{companyFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null">
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regNo != null">
+        reg_no = #{regNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDes != null">
+        biz_des = #{bizDes,jdbcType=VARCHAR},
+      </if>
+      <if test="bizSize != null">
+        biz_size = #{bizSize,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null">
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="licence != null">
+        licence = #{licence,jdbcType=VARCHAR},
+      </if>
+      <if test="ceo != null">
+        ceo = #{ceo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ceoId != null">
+        ceo_id = #{ceoId,jdbcType=VARCHAR},
+      </if>
+      <if test="ceoWechat != null">
+        ceo_wechat = #{ceoWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatPubAcct != null">
+        wechat_pub_acct = #{wechatPubAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=SMALLINT},
+      </if>
+      <if test="weibo != null">
+        weibo = #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null">
+        company_type = #{companyType,jdbcType=SMALLINT},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="credibility != null">
+        credibility = #{credibility,jdbcType=VARCHAR},
+      </if>
+      <if test="stickness != null">
+        stickness = #{stickness,jdbcType=TINYINT},
+      </if>
+      <if test="qualityLevel != null">
+        quality_level = #{qualityLevel,jdbcType=INTEGER},
+      </if>
+      <if test="platCompanyType != null">
+        plat_company_type = #{platCompanyType,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.Company">
+    update company
+    set company_id = #{companyId,jdbcType=INTEGER},
+    company_name = #{companyName,jdbcType=VARCHAR},
+    company_full_name = #{companyFullName,jdbcType=VARCHAR},
+    company_code = #{companyCode,jdbcType=VARCHAR},
+    reg_no = #{regNo,jdbcType=VARCHAR},
+    biz_des = #{bizDes,jdbcType=VARCHAR},
+    biz_size = #{bizSize,jdbcType=VARCHAR},
+    legal_person = #{legalPerson,jdbcType=VARCHAR},
+    licence = #{licence,jdbcType=VARCHAR},
+    ceo = #{ceo,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    ceo_id = #{ceoId,jdbcType=VARCHAR},
+    ceo_wechat = #{ceoWechat,jdbcType=VARCHAR},
+    email = #{email,jdbcType=VARCHAR},
+    fax = #{fax,jdbcType=VARCHAR},
+    website = #{website,jdbcType=VARCHAR},
+    wechat_pub_acct = #{wechatPubAcct,jdbcType=VARCHAR},
+    industry = #{industry,jdbcType=SMALLINT},
+    weibo = #{weibo,jdbcType=VARCHAR},
+    company_type = #{companyType,jdbcType=SMALLINT},
+    country = #{country,jdbcType=VARCHAR},
+    province = #{province,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    address = #{address,jdbcType=VARCHAR},
+    postcode = #{postcode,jdbcType=VARCHAR},
+    credibility = #{credibility,jdbcType=VARCHAR},
+    stickness = #{stickness,jdbcType=TINYINT},
+    quality_level = #{qualityLevel,jdbcType=INTEGER},
+    plat_company_type = #{platCompanyType,jdbcType=TINYINT},
+    is_active = #{isActive,jdbcType=TINYINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--  ***********自定义************  -->
+  <resultMap id="MapUserCompany" type="com.mt.upms.common.model.UserCompany">
+    <!--
+      WARNING - @mbg.generated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Tue Sep 05 17:02:17 CST 2017.
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_full_name" jdbcType="VARCHAR" property="companyFullName" />
+    <result column="company_code" jdbcType="VARCHAR" property="companyCode" />
+    <result column="reg_no" jdbcType="VARCHAR" property="regNo" />
+    <result column="legal_person" jdbcType="VARCHAR" property="legalPerson" />
+    <result column="licence" jdbcType="VARCHAR" property="licence" />
+    <result column="ceo" jdbcType="VARCHAR" property="ceo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="wechat_pub_acct" jdbcType="VARCHAR" property="wechatPubAcct" />
+    <result column="industry" jdbcType="SMALLINT" property="industry" />
+    <result column="weibo" jdbcType="VARCHAR" property="weibo" />
+    <result column="company_type" jdbcType="SMALLINT" property="companyType" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="credibility" jdbcType="VARCHAR" property="credibility" />
+    <result column="stickness" jdbcType="TINYINT" property="stickness" />
+    <result column="quality_level" jdbcType="INTEGER" property="qualityLevel" />
+    <result column="plat_company_type" jdbcType="TINYINT" property="platCompanyType" />
+    <result column="is_active" jdbcType="TINYINT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="role_code" jdbcType="CHAR" property="roleCode" />
+  </resultMap>
+
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="MapUserCompany">
+    <!--
+      WARNING - @mbg.generated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Thu Sep 07 16:18:27 CST 2017.
+    -->
+    select distinct b.*, a.role_code
+    from user_company as a
+    INNER JOIN company as b on a.company_id = b.company_id
+    where a.uid = #{uid, jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByCompanyId" resultMap="BaseResultMap">
+    select id, company_id, company_name, company_full_name, company_code, reg_no, biz_des,
+    biz_size, legal_person, licence, ceo, phone, ceo_id, ceo_wechat, email, fax, website,
+    wechat_pub_acct, industry, weibo, company_type, country, province, city, address,
+    postcode, credibility, stickness, quality_level, plat_company_type, is_active, created_at,
+    updated_at, status
+    from company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getMaxCompanyId" resultType="java.lang.Integer" >
+    select max(company_id)
+    from company
+  </select>
+
+  <!-- User: Alnwike  添加-->
+    <select id="searchCompany"  resultType="map">
+      SELECT
+      company_id,address,company_name
+      FROM  company
+      WHERE
+      locate(#{companyName,jdbcType=VARCHAR},company_name)>0 LIMIT 0,10
+    </select>
+
+  <select id="createDefaultDepartment" resultType="map" statementType="CALLABLE">
+    {call up_createDefaultDepartment(#{companyId,jdbcType=INTEGER,mode=IN}) }
+  </select>
+
+  <select id="createCompanyInitData" resultType="java.lang.String" >
+    SELECT uf_initCompanyData(#{companyId}, #{uid}) FROM dual
+  </select>
+
+  <select id="selectCompanyNme" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select  company_name from company where company_id = #{companyId}
+  </select>
+
+  <update id="deletePmPg" >
+    update pm_pg set status = '0' where pg_id = #{pgId}
+  </update>
+
+  <select id="selectAllAndSubUserCompanyByDepId" resultType="map" >
+    select
+    distinct a.avatar as icon, a.uid as member_id,
+    max(b.work_name) as work_name,
+    max(b.work_email) as work_email,
+    max(b.work_state) as work_state,
+    max(b.work_phone) as work_phone
+    from user a
+    INNER JOIN user_company b on b.uid = a.uid
+    INNER JOIN department c on c.dep_id = b.dep_id
+    where b.status = 1
+    and b.work_state in (1 ,2)
+    and   b.company_id = #{companyId}
+    and (#{depId} is null or #{depId} = 0 or
+    c.dep_id = #{depId} or locate('|' + #{depId} + '|', '|' + c.all_upper_ids + '|') > 0 )
+    group by  a.uid, a.avatar
+    order by work_name
+  </select>
+</mapper>

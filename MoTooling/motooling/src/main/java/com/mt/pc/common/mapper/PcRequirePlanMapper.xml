@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pc.common.dao.PcRequirePlanMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcRequirePlan">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="create_type" jdbcType="TINYINT" property="createType" />
+    <result column="create_type_name" jdbcType="VARCHAR" property="createTypeName" />
+    <result column="request_id" jdbcType="BIGINT" property="requestId" />
+    <result column="request_sub_id" jdbcType="BIGINT" property="requestSubId" />
+    <result column="bom_id" jdbcType="BIGINT" property="bomId" />
+    <result column="node_pos" jdbcType="BIGINT" property="nodePos" />
+    <result column="project_hw_id" jdbcType="BIGINT" property="projectHwId" />
+    <result column="project_not_hw_id" jdbcType="BIGINT" property="projectNotHwId" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="coin_name" jdbcType="VARCHAR" property="coinName" />
+    <result column="deal_flag" jdbcType="TINYINT" property="dealFlag" />
+    <result column="mat_id" jdbcType="BIGINT" property="matId" />
+    <result column="mat_no" jdbcType="VARCHAR" property="matNo" />
+    <result column="mat_name" jdbcType="VARCHAR" property="matName" />
+    <result column="mat_desc" jdbcType="VARCHAR" property="matDesc" />
+    <result column="mat_type_id" jdbcType="BIGINT" property="matTypeId" />
+    <result column="mat_type_name" jdbcType="VARCHAR" property="matTypeName" />
+    <result column="mat_model" jdbcType="VARCHAR" property="matModel" />
+    <result column="plan_price" jdbcType="DECIMAL" property="planPrice" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="plan_qty" jdbcType="DECIMAL" property="planQty" />
+    <result column="plan_up" jdbcType="DECIMAL" property="planUp" />
+    <result column="plan_weight" jdbcType="DECIMAL" property="planWeight" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate" />
+    <result column="buy_qty" jdbcType="DECIMAL" property="buyQty" />
+    <result column="supply_type" jdbcType="TINYINT" property="supplyType" />
+    <result column="supply_type_name" jdbcType="VARCHAR" property="supplyTypeName" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_id, company_name, create_type, create_type_name, request_id, request_sub_id,
+    bom_id, node_pos, project_hw_id, project_not_hw_id, coin, coin_name, deal_flag, mat_id,
+    mat_no, mat_name, mat_desc, mat_type_id, mat_type_name, mat_model, plan_price, unit,
+    plan_qty, plan_up, plan_weight, total_price, delivery_date, buy_qty, supply_type,
+    supply_type_name, handler_id, created_at, updated_at, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pc_require_plan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pc_require_plan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pc.common.model.PcRequirePlan">
+    insert into pc_require_plan (id, company_id, company_name,
+    create_type, create_type_name, request_id,
+    request_sub_id, bom_id, node_pos,
+    project_hw_id, project_not_hw_id, coin,
+    coin_name, deal_flag, mat_id,
+    mat_no, mat_name, mat_desc,
+    mat_type_id, mat_type_name, mat_model,
+    plan_price, unit, plan_qty,
+    plan_up, plan_weight, total_price,
+    delivery_date, buy_qty, supply_type,
+    supply_type_name, handler_id, created_at,
+    updated_at, status, remark
+    )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR},
+    #{createType,jdbcType=TINYINT}, #{createTypeName,jdbcType=VARCHAR}, #{requestId,jdbcType=BIGINT},
+    #{requestSubId,jdbcType=BIGINT}, #{bomId,jdbcType=BIGINT}, #{nodePos,jdbcType=BIGINT},
+    #{projectHwId,jdbcType=BIGINT}, #{projectNotHwId,jdbcType=BIGINT}, #{coin,jdbcType=VARCHAR},
+    #{coinName,jdbcType=VARCHAR}, #{dealFlag,jdbcType=TINYINT}, #{matId,jdbcType=BIGINT},
+    #{matNo,jdbcType=VARCHAR}, #{matName,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR},
+    #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR},
+    #{planPrice,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, #{planQty,jdbcType=DECIMAL},
+    #{planUp,jdbcType=DECIMAL}, #{planWeight,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL},
+    #{deliveryDate,jdbcType=TIMESTAMP}, #{buyQty,jdbcType=DECIMAL}, #{supplyType,jdbcType=TINYINT},
+    #{supplyTypeName,jdbcType=VARCHAR}, #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pc.common.model.PcRequirePlan">
+    insert into pc_require_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="createType != null">
+        create_type,
+      </if>
+      <if test="createTypeName != null">
+        create_type_name,
+      </if>
+      <if test="requestId != null">
+        request_id,
+      </if>
+      <if test="requestSubId != null">
+        request_sub_id,
+      </if>
+      <if test="bomId != null">
+        bom_id,
+      </if>
+      <if test="nodePos != null">
+        node_pos,
+      </if>
+      <if test="projectHwId != null">
+        project_hw_id,
+      </if>
+      <if test="projectNotHwId != null">
+        project_not_hw_id,
+      </if>
+      <if test="coin != null">
+        coin,
+      </if>
+      <if test="coinName != null">
+        coin_name,
+      </if>
+      <if test="dealFlag != null">
+        deal_flag,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="matNo != null">
+        mat_no,
+      </if>
+      <if test="matName != null">
+        mat_name,
+      </if>
+      <if test="matDesc != null">
+        mat_desc,
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name,
+      </if>
+      <if test="matModel != null">
+        mat_model,
+      </if>
+      <if test="planPrice != null">
+        plan_price,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="planQty != null">
+        plan_qty,
+      </if>
+      <if test="planUp != null">
+        plan_up,
+      </if>
+      <if test="planWeight != null">
+        plan_weight,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="buyQty != null">
+        buy_qty,
+      </if>
+      <if test="supplyType != null">
+        supply_type,
+      </if>
+      <if test="supplyTypeName != null">
+        supply_type_name,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="createType != null">
+        #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="createTypeName != null">
+        #{createTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestId != null">
+        #{requestId,jdbcType=BIGINT},
+      </if>
+      <if test="requestSubId != null">
+        #{requestSubId,jdbcType=BIGINT},
+      </if>
+      <if test="bomId != null">
+        #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="nodePos != null">
+        #{nodePos,jdbcType=BIGINT},
+      </if>
+      <if test="projectHwId != null">
+        #{projectHwId,jdbcType=BIGINT},
+      </if>
+      <if test="projectNotHwId != null">
+        #{projectNotHwId,jdbcType=BIGINT},
+      </if>
+      <if test="coin != null">
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="coinName != null">
+        #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealFlag != null">
+        #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=BIGINT},
+      </if>
+      <if test="matNo != null">
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="planPrice != null">
+        #{planPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="planQty != null">
+        #{planQty,jdbcType=DECIMAL},
+      </if>
+      <if test="planUp != null">
+        #{planUp,jdbcType=DECIMAL},
+      </if>
+      <if test="planWeight != null">
+        #{planWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyQty != null">
+        #{buyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="supplyType != null">
+        #{supplyType,jdbcType=TINYINT},
+      </if>
+      <if test="supplyTypeName != null">
+        #{supplyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcRequirePlan">
+    update pc_require_plan
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="createType != null">
+        create_type = #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="createTypeName != null">
+        create_type_name = #{createTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestId != null">
+        request_id = #{requestId,jdbcType=BIGINT},
+      </if>
+      <if test="requestSubId != null">
+        request_sub_id = #{requestSubId,jdbcType=BIGINT},
+      </if>
+      <if test="bomId != null">
+        bom_id = #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="nodePos != null">
+        node_pos = #{nodePos,jdbcType=BIGINT},
+      </if>
+      <if test="projectHwId != null">
+        project_hw_id = #{projectHwId,jdbcType=BIGINT},
+      </if>
+      <if test="projectNotHwId != null">
+        project_not_hw_id = #{projectNotHwId,jdbcType=BIGINT},
+      </if>
+      <if test="coin != null">
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="coinName != null">
+        coin_name = #{coinName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealFlag != null">
+        deal_flag = #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=BIGINT},
+      </if>
+      <if test="matNo != null">
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        mat_name = #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        mat_desc = #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        mat_model = #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="planPrice != null">
+        plan_price = #{planPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="planQty != null">
+        plan_qty = #{planQty,jdbcType=DECIMAL},
+      </if>
+      <if test="planUp != null">
+        plan_up = #{planUp,jdbcType=DECIMAL},
+      </if>
+      <if test="planWeight != null">
+        plan_weight = #{planWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyQty != null">
+        buy_qty = #{buyQty,jdbcType=DECIMAL},
+      </if>
+      <if test="supplyType != null">
+        supply_type = #{supplyType,jdbcType=TINYINT},
+      </if>
+      <if test="supplyTypeName != null">
+        supply_type_name = #{supplyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcRequirePlan">
+    update pc_require_plan
+    set company_id = #{companyId,jdbcType=INTEGER},
+    company_name = #{companyName,jdbcType=VARCHAR},
+    create_type = #{createType,jdbcType=TINYINT},
+    create_type_name = #{createTypeName,jdbcType=VARCHAR},
+    request_id = #{requestId,jdbcType=BIGINT},
+    request_sub_id = #{requestSubId,jdbcType=BIGINT},
+    bom_id = #{bomId,jdbcType=BIGINT},
+    node_pos = #{nodePos,jdbcType=BIGINT},
+    project_hw_id = #{projectHwId,jdbcType=BIGINT},
+    project_not_hw_id = #{projectNotHwId,jdbcType=BIGINT},
+    coin = #{coin,jdbcType=VARCHAR},
+    coin_name = #{coinName,jdbcType=VARCHAR},
+    deal_flag = #{dealFlag,jdbcType=TINYINT},
+    mat_id = #{matId,jdbcType=BIGINT},
+    mat_no = #{matNo,jdbcType=VARCHAR},
+    mat_name = #{matName,jdbcType=VARCHAR},
+    mat_desc = #{matDesc,jdbcType=VARCHAR},
+    mat_type_id = #{matTypeId,jdbcType=BIGINT},
+    mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+    mat_model = #{matModel,jdbcType=VARCHAR},
+    plan_price = #{planPrice,jdbcType=DECIMAL},
+    unit = #{unit,jdbcType=VARCHAR},
+    plan_qty = #{planQty,jdbcType=DECIMAL},
+    plan_up = #{planUp,jdbcType=DECIMAL},
+    plan_weight = #{planWeight,jdbcType=DECIMAL},
+    total_price = #{totalPrice,jdbcType=DECIMAL},
+    delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+    buy_qty = #{buyQty,jdbcType=DECIMAL},
+    supply_type = #{supplyType,jdbcType=TINYINT},
+    supply_type_name = #{supplyTypeName,jdbcType=VARCHAR},
+    handler_id = #{handlerId,jdbcType=BIGINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT},
+    remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--Alnwick 添加-->
+
+
+  <update id="updateRequirePlanQty" parameterType="map">
+   update pc_require_plan
+    set buy_qty= buy_qty + #{buy_qty}
+    where id=#{require_id}
+  </update>
+
+  <update id="updateRequirePlan"  parameterType="map">
+   update pc_require_plan
+    set status=0
+    where id=#{require_id}
+  </update>
+
+    <select id="selectRequirePlanList" parameterType="map" resultType="map" >
+    SELECT
+    bom_id,buy_qty,coin,create_type,create_type_name,deal_flag,mat_desc,a.mat_id,mat_model,
+    mat_no,mat_type_id,mat_type_name,node_pos,plan_price,plan_qty,plan_weight,project_hw_id, project_not_hw_id,
+    remark,request_id,delivery_date,a.id as require_id,supply_type,supply_type_name,total_price,unit,
+    total_require_qty, on_passage_qty,curr_stock_qty
+    from pc_require_plan a left join iv_mat_require_calc b on a.mat_id = b.mat_id
+    where
+      <if test="create_type != null and mat_desc != ''">
+         create_type REGEXP #{create_type} and
+      </if>
+      <if test="mat_desc != null and mat_desc != ''">
+         mat_desc REGEXP #{mat_desc} and
+      </if>
+       plan_qty-buy_qty>0   and company_id=#{companyId} and status =1 limit #{page},#{page_size}
+  </select>
+
+  <select id="totalCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT COUNT(id)
+    from pc_require_plan
+     where
+      <if test="create_type != null and mat_desc != ''">
+        create_type REGEXP #{create_type} and
+      </if>
+      <if test="mat_desc != null and mat_desc != ''">
+        mat_desc REGEXP #{mat_desc} and
+      </if>
+       plan_qty-buy_qty>0   and company_id=#{companyId} and status =1
+  </select>
+
+  <update id="deleteRequire" parameterType="java.lang.Integer">
+    UPDATE  pc_require_plan set status = 0 WHERE  id =#{requireId}
+  </update>
+
+  <select id="selectRequirePlanDeatil" resultType="map" parameterType="java.lang.Long">
+    SELECT
+          a.id as require_id, company_id, company_name, create_type, create_type_name, request_id,request_no,mold_no, bom_id,
+          node_pos, project_hw_id, project_not_hw_id, coin, deal_flag, a.mat_id, mat_no, mat_desc, mat_type_id,
+          mat_type_name, mat_model, plan_price, unit, plan_qty, plan_weight, total_price, DATE_FORMAT(delivery_date,'%Y-%m-%d') delivery_date,
+          buy_qty, supply_type, supply_type_name, handler_id, remark,
+          total_require_qty, on_passage_qty,curr_stock_qty
+    from pc_require_plan a left join iv_mat_require_calc b on a.mat_id = b.mat_id
+    WHERE a.id = #{requireId}
+  </select>
+
+  <select id="createMatRequirePlanfromRequest" resultType="java.lang.String">
+    SELECT uf_createMatRequirePlanfromRequest(#{requestId}, #{uid}) from dual
+  </select>
+
+  <select id="createMatRequirePlanfromMold" resultType="java.lang.String">
+    SELECT uf_createMatRequirePlanfromMold(#{companyId}, #{moldNo}, #{uid}) from dual
+  </select>
+
+  <select id="getDefaultCoin" resultType="map">
+    select dict_code, dict_name from dictionary where company_id = #{companyId} and dict_type = 'COIN_TYPE' and is_default = '1' limit 1
+
+  </select>
+
+  <select id="selectByNotHwIdAndCreateType" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from pc_require_plan
+    where status = 1
+    and create_type = #{create_type}
+    and project_not_hw_id = #{project_not_hw_id}
+  </select>
+
+</mapper>

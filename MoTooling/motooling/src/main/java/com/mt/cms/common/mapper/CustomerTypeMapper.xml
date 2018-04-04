@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.CustomerTypeMapper">
+  <resultMap id="BaseResultMap" type="com.mt.cms.common.model.CustomerType">
+    <id column="cst_type" jdbcType="INTEGER" property="cstType" />
+    <result column="cst_type_name" jdbcType="VARCHAR" property="cstTypeName" />
+    <result column="cst_type_name_en" jdbcType="VARCHAR" property="cstTypeNameEn" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cst_type, cst_type_name, cst_type_name_en, is_active, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from customer_type
+    where cst_type = #{cstType,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer_type
+    where cst_type = #{cstType,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.cms.common.model.CustomerType">
+    insert into customer_type (cst_type, cst_type_name, cst_type_name_en,
+    is_active, created_at, updated_at,
+    status)
+    values (#{cstType,jdbcType=INTEGER}, #{cstTypeName,jdbcType=VARCHAR}, #{cstTypeNameEn,jdbcType=VARCHAR},
+    #{isActive,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+    #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.cms.common.model.CustomerType">
+    insert into customer_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cstType != null">
+        cst_type,
+      </if>
+      <if test="cstTypeName != null">
+        cst_type_name,
+      </if>
+      <if test="cstTypeNameEn != null">
+        cst_type_name_en,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cstType != null">
+        #{cstType,jdbcType=INTEGER},
+      </if>
+      <if test="cstTypeName != null">
+        #{cstTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstTypeNameEn != null">
+        #{cstTypeNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.CustomerType">
+    update customer_type
+    <set>
+      <if test="cstTypeName != null">
+        cst_type_name = #{cstTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstTypeNameEn != null">
+        cst_type_name_en = #{cstTypeNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where cst_type = #{cstType,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.CustomerType">
+    update customer_type
+    set cst_type_name = #{cstTypeName,jdbcType=VARCHAR},
+    cst_type_name_en = #{cstTypeNameEn,jdbcType=VARCHAR},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where cst_type = #{cstType,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.iv.common.dao.VoucherDirectMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.iv.common.model.VoucherDirect" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="voucher_id" property="voucherId" jdbcType="BIGINT" />
+    <result column="is_voucher_only" property="isVoucherOnly" jdbcType="BIT" />
+    <result column="change_id" property="changeId" jdbcType="BIGINT" />
+    <result column="change_no" property="changeNo" jdbcType="VARCHAR" />
+    <result column="handler_id" property="handlerId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, company_name, voucher_id, is_voucher_only, change_id, change_no, 
+    handler_id, remark, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from voucher_direct
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from voucher_direct
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.iv.common.model.VoucherDirect" >
+    insert into voucher_direct (id, company_id, company_name, 
+      voucher_id, is_voucher_only, change_id, 
+      change_no, handler_id, remark, 
+      created_at, updated_at, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{voucherId,jdbcType=BIGINT}, #{isVoucherOnly,jdbcType=BIT}, #{changeId,jdbcType=BIGINT}, 
+      #{changeNo,jdbcType=VARCHAR}, #{handlerId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.iv.common.model.VoucherDirect" >
+    insert into voucher_direct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="voucherId != null" >
+        voucher_id,
+      </if>
+      <if test="isVoucherOnly != null" >
+        is_voucher_only,
+      </if>
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="changeNo != null" >
+        change_no,
+      </if>
+      <if test="handlerId != null" >
+        handler_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherId != null" >
+        #{voucherId,jdbcType=BIGINT},
+      </if>
+      <if test="isVoucherOnly != null" >
+        #{isVoucherOnly,jdbcType=BIT},
+      </if>
+      <if test="changeId != null" >
+        #{changeId,jdbcType=BIGINT},
+      </if>
+      <if test="changeNo != null" >
+        #{changeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.iv.common.model.VoucherDirect" >
+    update voucher_direct
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherId != null" >
+        voucher_id = #{voucherId,jdbcType=BIGINT},
+      </if>
+      <if test="isVoucherOnly != null" >
+        is_voucher_only = #{isVoucherOnly,jdbcType=BIT},
+      </if>
+      <if test="changeId != null" >
+        change_id = #{changeId,jdbcType=BIGINT},
+      </if>
+      <if test="changeNo != null" >
+        change_no = #{changeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.iv.common.model.VoucherDirect" >
+    update voucher_direct
+    set company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      voucher_id = #{voucherId,jdbcType=BIGINT},
+      is_voucher_only = #{isVoucherOnly,jdbcType=BIT},
+      change_id = #{changeId,jdbcType=BIGINT},
+      change_no = #{changeNo,jdbcType=VARCHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- wendy添加-->
+  <insert id="addVoucherDirect" parameterType="com.mt.iv.common.model.VoucherDirect" >
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into voucher_direct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="company_id != null  and company_id!=''" >
+        company_id,
+      </if>
+      <if test="company_name != null and company_name!=''" >
+        company_name,
+      </if>
+      <if test="id != null and id!=''" >
+        voucher_id,
+      </if>
+      <if test="is_voucher_only != null and is_voucher_only!=''" >
+        is_voucher_only,
+      </if>
+      <if test="change_id != null and change_id!=''" >
+        change_id,
+      </if>
+      <if test="change_no != null and change_no!=''" >
+        change_no,
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        handler_id,
+      </if>
+      <if test="remark != null and remark!=''" >
+        remark,
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        created_at,
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        updated_at,
+      </if>
+      <if test="status != null and status!=''" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="company_id != null  and company_id!=''" >
+        #{company_id,jdbcType=INTEGER},
+      </if>
+      <if test="company_name != null and company_name!=''" >
+        #{company_name,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null and id!=''" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="is_voucher_only != null and is_voucher_only!=''" >
+        #{is_voucher_only,jdbcType=BIT},
+      </if>
+      <if test="change_id != null and change_id!=''" >
+        #{change_id,jdbcType=BIGINT},
+      </if>
+      <if test="change_no != null and change_no!=''" >
+        #{change_no,jdbcType=VARCHAR},
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null and remark!=''" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status!=''" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

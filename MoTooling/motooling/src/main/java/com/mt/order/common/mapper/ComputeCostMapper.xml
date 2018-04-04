@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.order.common.dao.ComputeCostMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.ComputeCost" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="compute_id" property="computeId" jdbcType="BIGINT" />
+    <result column="cst_mold_no" property="cstMoldNo" jdbcType="VARCHAR" />
+    <result column="stuff_cost" property="stuffCost" jdbcType="DECIMAL" />
+    <result column="stuff_ratio" property="stuffRatio" jdbcType="DECIMAL" />
+    <result column="process_cost_template" property="processCostTemplate" jdbcType="VARCHAR" />
+    <result column="process_cost" property="processCost" jdbcType="DECIMAL" />
+    <result column="process_ratio" property="processRatio" jdbcType="DECIMAL" />
+    <result column="process_difficult_ratio" property="processDifficultRatio" jdbcType="DECIMAL" />
+    <result column="design_cost" property="designCost" jdbcType="DECIMAL" />
+    <result column="design_ratio" property="designRatio" jdbcType="DECIMAL" />
+    <result column="design_hour" property="designHour" jdbcType="DECIMAL" />
+    <result column="design_hour_ratio" property="designHourRatio" jdbcType="DECIMAL" />
+    <result column="try_mold_cost" property="tryMoldCost" jdbcType="DECIMAL" />
+    <result column="try_mold_ratio" property="tryMoldRatio" jdbcType="DECIMAL" />
+    <result column="try_mold_times" property="tryMoldTimes" jdbcType="INTEGER" />
+    <result column="try_mold_times_ratio" property="tryMoldTimesRatio" jdbcType="DECIMAL" />
+    <result column="post_box_cost" property="postBoxCost" jdbcType="DECIMAL" />
+    <result column="post_box_ratio" property="postBoxRatio" jdbcType="DECIMAL" />
+    <result column="is_delivery_cost" property="isDeliveryCost" jdbcType="BIT" />
+    <result column="delivery_cost" property="deliveryCost" jdbcType="DECIMAL" />
+    <result column="delivery_cost_local" property="deliveryCostLocal" jdbcType="DECIMAL" />
+    <result column="delivery_ratio" property="deliveryRatio" jdbcType="DECIMAL" />
+    <result column="machine_weight" property="machineWeight" jdbcType="DECIMAL" />
+    <result column="manage_cost" property="manageCost" jdbcType="DECIMAL" />
+    <result column="manage_ratio" property="manageRatio" jdbcType="VARCHAR" />
+    <result column="mold_cost" property="moldCost" jdbcType="DECIMAL" />
+    <result column="mold_cost_local" property="moldCostLocal" jdbcType="DECIMAL" />
+    <result column="mold_up" property="moldUp" jdbcType="DECIMAL" />
+    <result column="mold_up_local" property="moldUpLocal" jdbcType="DECIMAL" />
+    <result column="profit_ratio" property="profitRatio" jdbcType="VARCHAR" />
+    <result column="profit_cost" property="profitCost" jdbcType="DECIMAL" />
+    <result column="profit_cost_local" property="profitCostLocal" jdbcType="DECIMAL" />
+    <result column="fixing_ton" property="fixingTon" jdbcType="DECIMAL" />
+    <result column="tax_ratio" property="taxRatio" jdbcType="DECIMAL" />
+    <result column="tax_cost" property="taxCost" jdbcType="DECIMAL" />
+    <result column="tax_cost_local" property="taxCostLocal" jdbcType="DECIMAL" />
+    <result column="tax_real_ratio" property="taxRealRatio" jdbcType="DECIMAL" />
+    <result column="tax_real" property="taxReal" jdbcType="DECIMAL" />
+    <result column="tax_vat_ratio" property="taxVatRatio" jdbcType="DECIMAL" />
+    <result column="tax_vat" property="taxVat" jdbcType="DECIMAL" />
+    <result column="int_mode" property="intMode" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, compute_id, cst_mold_no, stuff_cost, stuff_ratio, process_cost_template, process_cost, 
+    process_ratio, process_difficult_ratio, design_cost, design_ratio, design_hour, design_hour_ratio, 
+    try_mold_cost, try_mold_ratio, try_mold_times, try_mold_times_ratio, post_box_cost, 
+    post_box_ratio, is_delivery_cost, delivery_cost, delivery_cost_local, delivery_ratio, 
+    machine_weight, manage_cost, manage_ratio, mold_cost, mold_cost_local, mold_up, mold_up_local, 
+    profit_ratio, profit_cost, profit_cost_local, fixing_ton, tax_ratio, tax_cost, tax_cost_local, 
+    tax_real_ratio, tax_real, tax_vat_ratio, tax_vat, int_mode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from compute_cost
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from compute_cost
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.ComputeCost" >
+    insert into compute_cost (id, compute_id, cst_mold_no, 
+      stuff_cost, stuff_ratio, process_cost_template, 
+      process_cost, process_ratio, process_difficult_ratio, 
+      design_cost, design_ratio, design_hour, 
+      design_hour_ratio, try_mold_cost, try_mold_ratio, 
+      try_mold_times, try_mold_times_ratio, post_box_cost, 
+      post_box_ratio, is_delivery_cost, delivery_cost, 
+      delivery_cost_local, delivery_ratio, machine_weight, 
+      manage_cost, manage_ratio, mold_cost, 
+      mold_cost_local, mold_up, mold_up_local, 
+      profit_ratio, profit_cost, profit_cost_local, 
+      fixing_ton, tax_ratio, tax_cost, 
+      tax_cost_local, tax_real_ratio, tax_real, 
+      tax_vat_ratio, tax_vat, int_mode
+      )
+    values (#{id,jdbcType=BIGINT}, #{computeId,jdbcType=BIGINT}, #{cstMoldNo,jdbcType=VARCHAR}, 
+      #{stuffCost,jdbcType=DECIMAL}, #{stuffRatio,jdbcType=DECIMAL}, #{processCostTemplate,jdbcType=VARCHAR}, 
+      #{processCost,jdbcType=DECIMAL}, #{processRatio,jdbcType=DECIMAL}, #{processDifficultRatio,jdbcType=DECIMAL}, 
+      #{designCost,jdbcType=DECIMAL}, #{designRatio,jdbcType=DECIMAL}, #{designHour,jdbcType=DECIMAL}, 
+      #{designHourRatio,jdbcType=DECIMAL}, #{tryMoldCost,jdbcType=DECIMAL}, #{tryMoldRatio,jdbcType=DECIMAL}, 
+      #{tryMoldTimes,jdbcType=INTEGER}, #{tryMoldTimesRatio,jdbcType=DECIMAL}, #{postBoxCost,jdbcType=DECIMAL}, 
+      #{postBoxRatio,jdbcType=DECIMAL}, #{isDeliveryCost,jdbcType=BIT}, #{deliveryCost,jdbcType=DECIMAL}, 
+      #{deliveryCostLocal,jdbcType=DECIMAL}, #{deliveryRatio,jdbcType=DECIMAL}, #{machineWeight,jdbcType=DECIMAL}, 
+      #{manageCost,jdbcType=DECIMAL}, #{manageRatio,jdbcType=DECIMAL}, #{moldCost,jdbcType=DECIMAL}, 
+      #{moldCostLocal,jdbcType=DECIMAL}, #{moldUp,jdbcType=DECIMAL}, #{moldUpLocal,jdbcType=DECIMAL}, 
+      #{profitRatio,jdbcType=DECIMAL}, #{profitCost,jdbcType=DECIMAL}, #{profitCostLocal,jdbcType=DECIMAL}, 
+      #{fixingTon,jdbcType=DECIMAL}, #{taxRatio,jdbcType=DECIMAL}, #{taxCost,jdbcType=DECIMAL}, 
+      #{taxCostLocal,jdbcType=DECIMAL}, #{taxRealRatio,jdbcType=DECIMAL}, #{taxReal,jdbcType=DECIMAL}, 
+      #{taxVatRatio,jdbcType=DECIMAL}, #{taxVat,jdbcType=DECIMAL}, #{intMode,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.ComputeCost" >
+    insert into compute_cost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="computeId != null" >
+        compute_id,
+      </if>
+      <if test="cstMoldNo != null" >
+        cst_mold_no,
+      </if>
+      <if test="stuffCost != null" >
+        stuff_cost,
+      </if>
+      <if test="stuffRatio != null" >
+        stuff_ratio,
+      </if>
+      <if test="processCostTemplate != null" >
+        process_cost_template,
+      </if>
+      <if test="processCost != null" >
+        process_cost,
+      </if>
+      <if test="processRatio != null" >
+        process_ratio,
+      </if>
+      <if test="processDifficultRatio != null" >
+        process_difficult_ratio,
+      </if>
+      <if test="designCost != null" >
+        design_cost,
+      </if>
+      <if test="designRatio != null" >
+        design_ratio,
+      </if>
+      <if test="designHour != null" >
+        design_hour,
+      </if>
+      <if test="designHourRatio != null" >
+        design_hour_ratio,
+      </if>
+      <if test="tryMoldCost != null" >
+        try_mold_cost,
+      </if>
+      <if test="tryMoldRatio != null" >
+        try_mold_ratio,
+      </if>
+      <if test="tryMoldTimes != null" >
+        try_mold_times,
+      </if>
+      <if test="tryMoldTimesRatio != null" >
+        try_mold_times_ratio,
+      </if>
+      <if test="postBoxCost != null" >
+        post_box_cost,
+      </if>
+      <if test="postBoxRatio != null" >
+        post_box_ratio,
+      </if>
+      <if test="isDeliveryCost != null" >
+        is_delivery_cost,
+      </if>
+      <if test="deliveryCost != null" >
+        delivery_cost,
+      </if>
+      <if test="deliveryCostLocal != null" >
+        delivery_cost_local,
+      </if>
+      <if test="deliveryRatio != null" >
+        delivery_ratio,
+      </if>
+      <if test="machineWeight != null" >
+        machine_weight,
+      </if>
+      <if test="manageCost != null" >
+        manage_cost,
+      </if>
+      <if test="manageRatio != null" >
+        manage_ratio,
+      </if>
+      <if test="moldCost != null" >
+        mold_cost,
+      </if>
+      <if test="moldCostLocal != null" >
+        mold_cost_local,
+      </if>
+      <if test="moldUp != null" >
+        mold_up,
+      </if>
+      <if test="moldUpLocal != null" >
+        mold_up_local,
+      </if>
+      <if test="profitRatio != null" >
+        profit_ratio,
+      </if>
+      <if test="profitCost != null" >
+        profit_cost,
+      </if>
+      <if test="profitCostLocal != null" >
+        profit_cost_local,
+      </if>
+      <if test="fixingTon != null" >
+        fixing_ton,
+      </if>
+      <if test="taxRatio != null" >
+        tax_ratio,
+      </if>
+      <if test="taxCost != null" >
+        tax_cost,
+      </if>
+      <if test="taxCostLocal != null" >
+        tax_cost_local,
+      </if>
+      <if test="taxRealRatio != null" >
+        tax_real_ratio,
+      </if>
+      <if test="taxReal != null" >
+        tax_real,
+      </if>
+      <if test="taxVatRatio != null" >
+        tax_vat_ratio,
+      </if>
+      <if test="taxVat != null" >
+        tax_vat,
+      </if>
+      <if test="intMode != null" >
+        int_mode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="computeId != null" >
+        #{computeId,jdbcType=BIGINT},
+      </if>
+      <if test="cstMoldNo != null" >
+        #{cstMoldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffCost != null" >
+        #{stuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="stuffRatio != null" >
+        #{stuffRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="processCostTemplate != null" >
+        #{processCostTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="processCost != null" >
+        #{processCost,jdbcType=DECIMAL},
+      </if>
+      <if test="processRatio != null" >
+        #{processRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="processDifficultRatio != null" >
+        #{processDifficultRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="designCost != null" >
+        #{designCost,jdbcType=DECIMAL},
+      </if>
+      <if test="designRatio != null" >
+        #{designRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="designHour != null" >
+        #{designHour,jdbcType=DECIMAL},
+      </if>
+      <if test="designHourRatio != null" >
+        #{designHourRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldCost != null" >
+        #{tryMoldCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldRatio != null" >
+        #{tryMoldRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldTimes != null" >
+        #{tryMoldTimes,jdbcType=INTEGER},
+      </if>
+      <if test="tryMoldTimesRatio != null" >
+        #{tryMoldTimesRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="postBoxCost != null" >
+        #{postBoxCost,jdbcType=DECIMAL},
+      </if>
+      <if test="postBoxRatio != null" >
+        #{postBoxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeliveryCost != null" >
+        #{isDeliveryCost,jdbcType=BIT},
+      </if>
+      <if test="deliveryCost != null" >
+        #{deliveryCost,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryCostLocal != null" >
+        #{deliveryCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryRatio != null" >
+        #{deliveryRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="machineWeight != null" >
+        #{machineWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="manageCost != null" >
+        #{manageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="manageRatio != null" >
+        #{manageRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="moldCost != null" >
+        #{moldCost,jdbcType=DECIMAL},
+      </if>
+      <if test="moldCostLocal != null" >
+        #{moldCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="moldUp != null" >
+        #{moldUp,jdbcType=DECIMAL},
+      </if>
+      <if test="moldUpLocal != null" >
+        #{moldUpLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="profitRatio != null" >
+        #{profitRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="profitCost != null" >
+        #{profitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="profitCostLocal != null" >
+        #{profitCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="fixingTon != null" >
+        #{fixingTon,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRatio != null" >
+        #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxCost != null" >
+        #{taxCost,jdbcType=DECIMAL},
+      </if>
+      <if test="taxCostLocal != null" >
+        #{taxCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRealRatio != null" >
+        #{taxRealRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxReal != null" >
+        #{taxReal,jdbcType=DECIMAL},
+      </if>
+      <if test="taxVatRatio != null" >
+        #{taxVatRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxVat != null" >
+        #{taxVat,jdbcType=DECIMAL},
+      </if>
+      <if test="intMode != null" >
+        #{intMode,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.ComputeCost" >
+    update compute_cost
+    <set >
+      <if test="cstMoldNo != null and cstMoldNo != ''" >
+        cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffCost != null and stuffCost != ''" >
+        stuff_cost = #{stuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="stuffRatio != null  and stuffRatio != ''" >
+        stuff_ratio = #{stuffRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="processCostTemplate != null and processCostTemplate != ''" >
+        process_cost_template = #{processCostTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="processCost != null and processCost != ''" >
+        process_cost = #{processCost,jdbcType=DECIMAL},
+      </if>
+      <if test="processRatio != null  and processRatio != ''" >
+        process_ratio = #{processRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="processDifficultRatio != null and processDifficultRatio != ''" >
+        process_difficult_ratio = #{processDifficultRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="designCost != null  and designCost != ''" >
+        design_cost = #{designCost,jdbcType=DECIMAL},
+      </if>
+      <if test="designRatio != null and designRatio != ''" >
+        design_ratio = #{designRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="designHour != null  and designHour != ''" >
+        design_hour = #{designHour,jdbcType=DECIMAL},
+      </if>
+      <if test="designHourRatio != null and designHourRatio != ''" >
+        design_hour_ratio = #{designHourRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldCost != null and tryMoldCost != ''" >
+        try_mold_cost = #{tryMoldCost,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldRatio != null  and tryMoldRatio != ''" >
+        try_mold_ratio = #{tryMoldRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="tryMoldTimes != null  and tryMoldTimes != ''" >
+        try_mold_times = #{tryMoldTimes,jdbcType=INTEGER},
+      </if>
+      <if test="tryMoldTimesRatio != null and tryMoldTimesRatio != ''" >
+        try_mold_times_ratio = #{tryMoldTimesRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="postBoxCost != null and postBoxCost != ''" >
+        post_box_cost = #{postBoxCost,jdbcType=DECIMAL},
+      </if>
+      <if test="postBoxRatio != null  and postBoxRatio != ''" >
+        post_box_ratio = #{postBoxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeliveryCost != null  and isDeliveryCost != ''" >
+        is_delivery_cost = #{isDeliveryCost,jdbcType=BIT},
+      </if>
+      <if test="deliveryCost != null  and deliveryCost != ''" >
+        delivery_cost = #{deliveryCost,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryCostLocal != null and deliveryCostLocal != ''" >
+        delivery_cost_local = #{deliveryCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryRatio != null and deliveryRatio != ''" >
+        delivery_ratio = #{deliveryRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="machineWeight != null and machineWeight != ''" >
+        machine_weight = #{machineWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="manageCost != null  and manageCost != ''" >
+        manage_cost = #{manageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="manageRatio != null and manageRatio != ''" >
+        manage_ratio = #{manageRatio},
+      </if>
+      <if test="moldCost != null  and moldCost != ''" >
+        mold_cost = #{moldCost,jdbcType=DECIMAL},
+      </if>
+      <if test="moldCostLocal != null and moldCostLocal != ''" >
+        mold_cost_local = #{moldCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="moldUp != null  and moldUp != ''" >
+        mold_up = #{moldUp,jdbcType=DECIMAL},
+      </if>
+      <if test="moldUpLocal != null and moldUpLocal != ''" >
+        mold_up_local = #{moldUpLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="profitRatio != null and profitRatio != ''" >
+        profit_ratio = #{profitRatio},
+      </if>
+      <if test="profitCost != null  and profitCost != ''" >
+        profit_cost = #{profitCost,jdbcType=DECIMAL},
+      </if>
+      <if test="profitCostLocal != null and profitCostLocal != ''" >
+        profit_cost_local = #{profitCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="fixingTon != null and fixingTon != ''" >
+        fixing_ton = #{fixingTon,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRatio != null  and taxRatio != ''" >
+        tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxCost != null and taxCost != ''" >
+        tax_cost = #{taxCost,jdbcType=DECIMAL},
+      </if>
+      <if test="taxCostLocal != null  and taxCostLocal != ''" >
+        tax_cost_local = #{taxCostLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="taxRealRatio != null  and taxRealRatio != ''" >
+        tax_real_ratio = #{taxRealRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxReal != null and taxReal != ''" >
+        tax_real = #{taxReal,jdbcType=DECIMAL},
+      </if>
+      <if test="taxVatRatio != null and taxVatRatio != ''" >
+        tax_vat_ratio = #{taxVatRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="taxVat != null  and taxVat != ''" >
+        tax_vat = #{taxVat,jdbcType=DECIMAL},
+      </if>
+      <if test="intMode != null and intMode != ''" >
+        int_mode = #{intMode,jdbcType=TINYINT},
+      </if>
+    </set>
+    where compute_id = #{computeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.ComputeCost" >
+    update compute_cost
+    set compute_id = #{computeId,jdbcType=BIGINT},
+      cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+      stuff_cost = #{stuffCost,jdbcType=DECIMAL},
+      stuff_ratio = #{stuffRatio,jdbcType=DECIMAL},
+      process_cost_template = #{processCostTemplate,jdbcType=VARCHAR},
+      process_cost = #{processCost,jdbcType=DECIMAL},
+      process_ratio = #{processRatio,jdbcType=DECIMAL},
+      process_difficult_ratio = #{processDifficultRatio,jdbcType=DECIMAL},
+      design_cost = #{designCost,jdbcType=DECIMAL},
+      design_ratio = #{designRatio,jdbcType=DECIMAL},
+      design_hour = #{designHour,jdbcType=DECIMAL},
+      design_hour_ratio = #{designHourRatio,jdbcType=DECIMAL},
+      try_mold_cost = #{tryMoldCost,jdbcType=DECIMAL},
+      try_mold_ratio = #{tryMoldRatio,jdbcType=DECIMAL},
+      try_mold_times = #{tryMoldTimes,jdbcType=INTEGER},
+      try_mold_times_ratio = #{tryMoldTimesRatio,jdbcType=DECIMAL},
+      post_box_cost = #{postBoxCost,jdbcType=DECIMAL},
+      post_box_ratio = #{postBoxRatio,jdbcType=DECIMAL},
+      is_delivery_cost = #{isDeliveryCost,jdbcType=BIT},
+      delivery_cost = #{deliveryCost,jdbcType=DECIMAL},
+      delivery_cost_local = #{deliveryCostLocal,jdbcType=DECIMAL},
+      delivery_ratio = #{deliveryRatio,jdbcType=DECIMAL},
+      machine_weight = #{machineWeight,jdbcType=DECIMAL},
+      manage_cost = #{manageCost,jdbcType=DECIMAL},
+      manage_ratio = #{manageRatio,jdbcType=DECIMAL},
+      mold_cost = #{moldCost,jdbcType=DECIMAL},
+      mold_cost_local = #{moldCostLocal,jdbcType=DECIMAL},
+      mold_up = #{moldUp,jdbcType=DECIMAL},
+      mold_up_local = #{moldUpLocal,jdbcType=DECIMAL},
+      profit_ratio = #{profitRatio,jdbcType=DECIMAL},
+      profit_cost = #{profitCost,jdbcType=DECIMAL},
+      profit_cost_local = #{profitCostLocal,jdbcType=DECIMAL},
+      fixing_ton = #{fixingTon,jdbcType=DECIMAL},
+      tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      tax_cost = #{taxCost,jdbcType=DECIMAL},
+      tax_cost_local = #{taxCostLocal,jdbcType=DECIMAL},
+      tax_real_ratio = #{taxRealRatio,jdbcType=DECIMAL},
+      tax_real = #{taxReal,jdbcType=DECIMAL},
+      tax_vat_ratio = #{taxVatRatio,jdbcType=DECIMAL},
+      tax_vat = #{taxVat,jdbcType=DECIMAL},
+      int_mode = #{intMode,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- Alnwick 添加-->
+  <insert id="addComputeCost"  useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.Map">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into compute_cost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="compute_id != null and compute_id != ''" >
+        compute_id,
+      </if>
+      <if test="cst_mold_no != null and cst_mold_no !=''" >
+        cst_mold_no,
+      </if>
+      <if test="stuff_cost != null and stuff_cost != ''" >
+        stuff_cost,
+      </if>
+      <if test="stuff_ratio != null and stuff_ratio !=''" >
+        stuff_ratio,
+      </if>
+      <if test="process_cost_template != null and process_cost_template !=''" >
+        process_cost_template,
+      </if>
+      <if test="process_cost != null and process_cost !=''" >
+        process_cost,
+      </if>
+      <if test="process_ratio != null and process_ratio != ''" >
+        process_ratio,
+      </if>
+      <if test="process_difficult_ratio != null and process_difficult_ratio !=''" >
+        process_difficult_ratio,
+      </if>
+      <if test="design_cost != null and design_cost != ''" >
+        design_cost,
+      </if>
+      <if test="design_ratio != null and design_ratio != ''" >
+        design_ratio,
+      </if>
+      <if test="design_hour != null and design_hour != ''" >
+        design_hour,
+      </if>
+      <if test="design_hour_ratio != null and design_hour_ratio != ''" >
+        design_hour_ratio,
+      </if>
+      <if test="try_mold_cost != null and try_mold_cost !=''" >
+        try_mold_cost,
+      </if>
+      <if test="try_mold_ratio != null and try_mold_ratio !=''" >
+        try_mold_ratio,
+      </if>
+      <if test="try_mold_times != null and try_mold_times !=''" >
+        try_mold_times,
+      </if>
+      <if test="try_mold_times_ratio != null and try_mold_times_ratio !=''" >
+        try_mold_times_ratio,
+      </if>
+      <if test="post_box_cost != null and post_box_cost !=''" >
+        post_box_cost,
+      </if>
+      <if test="post_box_ratio != null and post_box_ratio != ''" >
+        post_box_ratio,
+      </if>
+      <if test="is_delivery_cost != null and is_delivery_cost !=''" >
+        is_delivery_cost,
+      </if>
+      <if test="delivery_cost != null and delivery_cost != ''" >
+        delivery_cost,
+      </if>
+      <if test="delivery_cost_local != null and delivery_cost_local !=''" >
+        delivery_cost_local,
+      </if>
+      <if test="delivery_ratio != null and delivery_ratio !=''" >
+        delivery_ratio,
+      </if>
+      <if test="delivery_ratio != null and delivery_ratio !=''" >
+        machine_weight,
+      </if>
+      <if test="manage_cost != null and manage_cost != ''" >
+        manage_cost,
+      </if>
+      <if test="manage_ratio != null and manage_ratio != ''" >
+        manage_ratio,
+      </if>
+      <if test="mold_cost != null and mold_cost != ''" >
+        mold_cost,
+      </if>
+      <if test="mold_cost_local != null and mold_cost_local !=''" >
+        mold_cost_local,
+      </if>
+      <if test="mold_up != null and mold_up != ''" >
+        mold_up,
+      </if>
+      <if test="mold_up_local != null and mold_up_local !=''" >
+        mold_up_local,
+      </if>
+      <if test="profit_ratio != null and profit_ratio != ''"  >
+        profit_ratio,
+      </if>
+      <if test="profit_cost != null and profit_cost !=''" >
+        profit_cost,
+      </if>
+      <if test="profit_cost_local != null and profit_cost_local !=''" >
+        profit_cost_local,
+      </if>
+      <if test="fixing_ton != null and fixing_ton != ''" >
+        fixing_ton,
+      </if>
+      <if test="tax_ratio != null and tax_ratio !=''" >
+        tax_ratio,
+      </if>
+      <if test="tax_cost != null and tax_cost !=''" >
+        tax_cost,
+      </if>
+      <if test="tax_cost_local != null and tax_cost_local != ''" >
+        tax_cost_local,
+      </if>
+      <if test="tax_real_ratio != null and tax_real_ratio !=''" >
+        tax_real_ratio,
+      </if>
+      <if test="tax_real != null and tax_real != ''" >
+        tax_real,
+      </if>
+      <if test="tax_vat_ratio != null and tax_vat_ratio !=''" >
+        tax_vat_ratio,
+      </if>
+      <if test="tax_vat != null and tax_vat != ''" >
+        tax_vat,
+      </if>
+      <if test="int_mode != null and int_mode !=''" >
+        int_mode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="compute_id != null and compute_id != ''" >
+        #{compute_id,jdbcType=BIGINT},
+      </if>
+      <if test="cst_mold_no != null and cst_mold_no !=''" >
+        #{cst_mold_no,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_cost != null and stuff_cost != ''" >
+        #{stuff_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="stuff_ratio != null and stuff_ratio !=''" >
+        #{stuff_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="process_cost_template != null and process_cost_template !=''" >
+        #{process_cost_template,jdbcType=VARCHAR},
+      </if>
+      <if test="process_cost != null and process_cost !=''" >
+        #{process_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="process_ratio != null and process_ratio != ''" >
+        #{process_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="process_difficult_ratio != null and process_difficult_ratio !=''" >
+        #{process_difficult_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="design_cost != null and design_cost != ''" >
+        #{design_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="design_ratio != null and design_ratio != ''" >
+        #{design_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="design_hour != null and design_hour != ''" >
+        #{design_hour,jdbcType=DECIMAL},
+      </if>
+      <if test="design_hour_ratio != null and design_hour_ratio != ''" >
+        #{design_hour_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_cost != null and try_mold_cost !=''" >
+        #{try_mold_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_ratio != null and try_mold_ratio !=''" >
+        #{try_mold_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_times != null and try_mold_times !=''" >
+        #{try_mold_times,jdbcType=INTEGER},
+      </if>
+      <if test="try_mold_times_ratio != null and try_mold_times_ratio !=''" >
+        #{try_mold_times_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="post_box_cost != null and post_box_cost !=''" >
+        #{post_box_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="post_box_ratio != null and post_box_ratio != ''" >
+        #{post_box_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="is_delivery_cost != null and is_delivery_cost !=''" >
+        #{is_delivery_cost,jdbcType=BIT},
+      </if>
+      <if test="delivery_cost != null and delivery_cost != ''" >
+        #{delivery_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_cost_local != null and delivery_cost_local !=''" >
+        #{delivery_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_ratio != null and delivery_ratio !=''" >
+        #{delivery_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_ratio != null and  delivery_ratio !=''" >
+        #{machine_weight,jdbcType=DECIMAL},
+      </if>
+      <if test="manage_cost != null and manage_cost != ''" >
+        #{manage_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="manage_ratio != null and manage_ratio != ''" >
+        #{manage_ratio},
+      </if>
+      <if test="mold_cost != null and mold_cost != ''" >
+        #{mold_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_cost_local != null and mold_cost_local !=''" >
+        #{mold_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_up != null and mold_up != ''" >
+        #{mold_up,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_up_local != null and mold_up_local !=''" >
+        #{mold_up_local,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_ratio != null and profit_ratio != ''"  >
+        #{profit_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_cost != null and profit_cost !=''" >
+        #{profit_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_cost_local != null and profit_cost_local !=''" >
+        #{profit_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="fixing_ton != null and fixing_ton != ''" >
+        #{fixing_ton,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_ratio != null and tax_ratio !=''" >
+        #{tax_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_cost != null and tax_cost !=''" >
+        #{tax_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_cost_local != null and tax_cost_local != ''" >
+        #{tax_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_real_ratio != null and tax_real_ratio !=''" >
+        #{tax_real_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_real != null and tax_real != ''" >
+        #{tax_real,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_vat_ratio != null and tax_vat_ratio !=''" >
+        #{tax_vat_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_vat != null and tax_vat != ''" >
+        #{tax_vat,jdbcType=DECIMAL},
+      </if>
+      <if test="int_mode != null and int_mode !=''" >
+        #{int_mode,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateComputeCost"  parameterType="java.util.Map">
+    update compute_cost
+    <set >
+      <if test="cst_mold_no != null and cst_mold_no !=''" >
+        cst_mold_no=#{cst_mold_no,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_cost != null and stuff_cost != ''" >
+        stuff_cost=  #{stuff_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="stuff_ratio != null and stuff_ratio !=''" >
+        stuff_ratio=  #{stuff_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="process_cost_template != null and process_cost_template !=''" >
+        process_cost_template=  #{process_cost_template,jdbcType=VARCHAR},
+      </if>
+      <if test="process_cost != null and process_cost !=''" >
+        process_cost=  #{process_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="process_ratio != null and process_ratio != ''" >
+        process_ratio=   #{process_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="process_difficult_ratio != null and process_difficult_ratio !=''" >
+        process_difficult_ratio=  #{process_difficult_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="design_cost != null and design_cost != ''" >
+        design_cost=   #{design_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="design_ratio != null and design_ratio != ''" >
+        design_ratio=  #{design_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="design_hour != null and design_hour != ''" >
+        design_hour=  #{design_hour,jdbcType=DECIMAL},
+      </if>
+      <if test="design_hour_ratio != null and design_hour_ratio != ''" >
+        design_hour_ratio= #{design_hour_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_cost != null and try_mold_cost !=''" >
+        try_mold_cost=   #{try_mold_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_ratio != null and try_mold_ratio !=''" >
+        try_mold_ratio=  #{try_mold_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="try_mold_times != null and try_mold_times !=''" >
+        try_mold_times=   #{try_mold_times,jdbcType=INTEGER},
+      </if>
+      <if test="try_mold_times_ratio != null and try_mold_times_ratio !=''" >
+        try_mold_times_ratio= #{try_mold_times_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="post_box_cost != null and post_box_cost !=''" >
+        post_box_cost= #{post_box_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="post_box_ratio != null and post_box_ratio != ''" >
+        post_box_ratio=#{post_box_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="is_delivery_cost != null and is_delivery_cost !=''" >
+        is_delivery_cost= #{is_delivery_cost,jdbcType=BIT},
+      </if>
+      <if test="delivery_cost != null and delivery_cost != ''" >
+        delivery_cost=#{delivery_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_cost_local != null and delivery_cost_local !=''" >
+        delivery_cost_local= #{delivery_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_ratio != null and delivery_ratio !=''" >
+        delivery_ratio=#{delivery_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_ratio != null and  delivery_ratio !=''" >
+        machine_weight=#{machine_weight,jdbcType=DECIMAL},
+      </if>
+      <if test="manage_cost != null and manage_cost != ''" >
+        manage_cost=#{manage_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="manage_ratio != null and manage_ratio != ''" >
+        manage_ratio=#{manage_ratio},
+      </if>
+      <if test="mold_cost != null and mold_cost != ''" >
+        mold_cost=  #{mold_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_cost_local != null and mold_cost_local !=''" >
+        mold_cost_local= #{mold_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_up != null and mold_up != ''" >
+        mold_up= #{mold_up,jdbcType=DECIMAL},
+      </if>
+      <if test="mold_up_local != null and mold_up_local !=''" >
+        mold_up_local= #{mold_up_local,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_ratio != null and profit_ratio != ''"  >
+        profit_ratio=#{profit_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_cost != null and profit_cost !=''" >
+        profit_cost= #{profit_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="profit_cost_local != null and profit_cost_local !=''" >
+        profit_cost_local= #{profit_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="fixing_ton != null and fixing_ton != ''" >
+        fixing_ton= #{fixing_ton,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_ratio != null and tax_ratio !=''" >
+        tax_ratio=  #{tax_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_cost != null and tax_cost !=''" >
+        tax_cost=  #{tax_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_cost_local != null and tax_cost_local != ''" >
+        tax_cost_local=  #{tax_cost_local,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_real_ratio != null and tax_real_ratio !=''" >
+        tax_real_ratio=  #{tax_real_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_real != null and tax_real != ''" >
+        tax_real=#{tax_real,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_vat_ratio != null and tax_vat_ratio !=''" >
+        tax_vat_ratio= #{tax_vat_ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="tax_vat != null and tax_vat != ''" >
+        tax_vat=  #{tax_vat,jdbcType=DECIMAL},
+      </if>
+      <if test="int_mode != null and int_mode !=''" >
+        int_mode= #{int_mode,jdbcType=TINYINT},
+      </if>
+      <if test="compute_id != null and compute_id !=''" >
+        compute_id= #{compute_id},
+    </if>
+    </set>
+    where compute_id = #{compute_id}
+  </update>
+
+  <select id="selectSumStuffCost" parameterType="java.util.Map"  resultType="java.lang.Double">
+      select sum(part_cost) from compute_part_cost where compute_id = #{compute_id} and status= 1
+  </select>
+
+  <update id="updateStuffCost" parameterType="java.util.Map" >
+    UPDATE  compute_cost
+     <set>
+        <if test="stuff_cost != null and stuff_cost != ''">
+          stuff_cost =#{stuff_cost},
+        </if>
+       <if test="process_cost != null and process_cost != ''">
+         process_cost=#{process_cost}
+       </if>
+     </set>
+     where  compute_id = #{compute_id} and status= 1
+  </update>
+  
+  <select id="selectCostDetail" parameterType="int"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from compute_cost
+    where compute_id = #{computeId}
+  </select>
+
+</mapper>

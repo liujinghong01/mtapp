@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.iv.common.dao.IvStoreRoomConfMapper">
+    <resultMap id="BaseResultMap" type="com.mt.iv.common.model.IvStoreRoomConf">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="store_room_name" property="storeRoomName" jdbcType="VARCHAR"/>
+        <result column="store_room_desc" property="storeRoomDesc" jdbcType="VARCHAR"/>
+        <result column="store_house_id" property="storeHouseId" jdbcType="BIGINT"/>
+        <result column="store_house_name" property="storeHouseName" jdbcType="VARCHAR"/>
+        <result column="is_default_room" property="isDefaultRoom" jdbcType="BIT"/>
+        <result column="last_handler_id" property="lastHandlerId" jdbcType="BIGINT"/>
+        <result column="last_handle_time" property="lastHandleTime" jdbcType="TIMESTAMP"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, store_room_name, store_room_desc, store_house_id, store_house_name, is_default_room, 
+    last_handler_id, last_handle_time, created_at, updated_at, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from iv_store_room_conf
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iv_store_room_conf
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.mt.iv.common.model.IvStoreRoomConf">
+    insert into iv_store_room_conf (id, store_room_name, store_room_desc, 
+      store_house_id, store_house_name, is_default_room, 
+      last_handler_id, last_handle_time, created_at, 
+      updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{storeRoomName,jdbcType=VARCHAR}, #{storeRoomDesc,jdbcType=VARCHAR}, 
+      #{storeHouseId,jdbcType=BIGINT}, #{storeHouseName,jdbcType=VARCHAR}, #{isDefaultRoom,jdbcType=BIT}, 
+      #{lastHandlerId,jdbcType=BIGINT}, #{lastHandleTime,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.mt.iv.common.model.IvStoreRoomConf">
+        insert into iv_store_room_conf
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="storeRoomName != null">
+                store_room_name,
+            </if>
+            <if test="storeRoomDesc != null">
+                store_room_desc,
+            </if>
+            <if test="storeHouseId != null">
+                store_house_id,
+            </if>
+            <if test="storeHouseName != null">
+                store_house_name,
+            </if>
+            <if test="isDefaultRoom != null">
+                is_default_room,
+            </if>
+            <if test="lastHandlerId != null">
+                last_handler_id,
+            </if>
+            <if test="lastHandleTime != null">
+                last_handle_time,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="storeRoomName != null">
+                #{storeRoomName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRoomDesc != null">
+                #{storeRoomDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="storeHouseId != null">
+                #{storeHouseId,jdbcType=BIGINT},
+            </if>
+            <if test="storeHouseName != null">
+                #{storeHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefaultRoom != null">
+                #{isDefaultRoom,jdbcType=BIT},
+            </if>
+            <if test="lastHandlerId != null">
+                #{lastHandlerId,jdbcType=BIGINT},
+            </if>
+            <if test="lastHandleTime != null">
+                #{lastHandleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.iv.common.model.IvStoreRoomConf">
+        update iv_store_room_conf
+        <set>
+            <if test="storeRoomName != null">
+                store_room_name = #{storeRoomName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRoomDesc != null">
+                store_room_desc = #{storeRoomDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="storeHouseId != null">
+                store_house_id = #{storeHouseId,jdbcType=BIGINT},
+            </if>
+            <if test="storeHouseName != null">
+                store_house_name = #{storeHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDefaultRoom != null">
+                is_default_room = #{isDefaultRoom,jdbcType=BIT},
+            </if>
+            <if test="lastHandlerId != null">
+                last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+            </if>
+            <if test="lastHandleTime != null">
+                last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.iv.common.model.IvStoreRoomConf">
+    update iv_store_room_conf
+    set store_room_name = #{storeRoomName,jdbcType=VARCHAR},
+      store_room_desc = #{storeRoomDesc,jdbcType=VARCHAR},
+      store_house_id = #{storeHouseId,jdbcType=BIGINT},
+      store_house_name = #{storeHouseName,jdbcType=VARCHAR},
+      is_default_room = #{isDefaultRoom,jdbcType=BIT},
+      last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+      last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <insert id="addStoreRoom" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        INSERT INTO iv_store_room_conf
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="store_room_name != null and store_room_name != ''">
+                store_room_name,
+            </if>
+            <if test="store_room_desc != null and store_room_desc != ''">
+                store_room_desc,
+            </if>
+            <if test="store_house_id != null and store_house_id != ''">
+                store_house_id,
+            </if>
+            <if test="store_house_name != null and store_house_name != ''">
+                store_house_name,
+            </if>
+            <if test="is_default_room != null and is_default_room != ''">
+                is_default_room,
+            </if>
+            <if test="uid != null and uid != ''">
+                last_handler_id,
+            </if>
+            <if test="created_at != null and created_at != ''">
+                last_handle_time,
+            </if>
+            <if test="created_at != null and created_at !=''">
+                created_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="store_room_name != null and store_room_name != ''">
+                #{store_room_name,jdbcType=VARCHAR},
+            </if>
+            <if test="store_room_desc != null and store_room_desc != ''">
+                #{store_room_desc,jdbcType=VARCHAR},
+            </if>
+            <if test="store_house_id != null and store_house_id != ''">
+                #{store_house_id,jdbcType=BIGINT},
+            </if>
+            <if test="store_house_name != null and store_house_name != ''">
+                #{store_house_name,jdbcType=VARCHAR},
+            </if>
+            <if test="is_default_room != null and is_default_room != ''">
+                #{is_default_room,jdbcType=BIT},
+            </if>
+            <if test="uid != null and uid != ''">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="created_at != null and created_at != ''">
+                #{created_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="created_at != null and created_at != ''">
+                #{created_at,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateStoreRoom" parameterType="map">
+        update iv_store_room_conf
+        <set>
+            <if test="store_room_name != null and store_room_name != ''">
+                store_room_name= #{store_room_name,jdbcType=VARCHAR},
+            </if>
+            <if test="store_room_desc != null and store_room_desc != ''">
+                store_room_desc=#{store_room_desc,jdbcType=VARCHAR},
+            </if>
+            <if test="store_house_id != null and store_house_id != ''">
+                store_house_id= #{store_house_id,jdbcType=BIGINT},
+            </if>
+            <if test="store_house_name != null and store_house_name != ''">
+                store_house_name= #{store_house_name,jdbcType=VARCHAR},
+            </if>
+            <if test="is_default_room != null and is_default_room != ''">
+                is_default_room= #{is_default_room,jdbcType=BIT},
+            </if>
+            <if test="uid != null and uid != ''">
+                last_handler_id= #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="created_at != null and created_at != ''">
+                last_handle_time=#{created_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="created_at != null and created_at != ''">
+                created_at= #{created_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        WHERE id= #{store_room_id}
+    </update>
+
+    <select id="selectRoomDetail" resultType="map" parameterType="map">
+    select  store_room_desc, id as store_room_id ,store_room_name
+      FROM  iv_store_room_conf
+      WHERE store_house_id = #{store_house_id} and status = 1
+  </select>
+
+
+    <select id="selectRoomConf" resultType="map" parameterType="map">
+    select store_room_name,store_house_name,store_house_id
+      FROM  iv_store_room_conf
+      WHERE id =#{store_room_id,jdbcType=BIGINT} and status = 1
+  </select>
+
+    <select id="selectStoreRoomName" resultType="int" parameterType="map">
+        SELECT count(*)
+        FROM iv_store_room_conf
+        WHERE
+        <if test="store_room_id != null ">
+            id != #{store_room_id} and
+        </if>
+        store_house_id = #{store_house_id} and store_room_name = #{store_room_name} and status = 1
+    </select>
+
+</mapper>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.iv.common.dao.IvStoreHouseConfMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.iv.common.model.IvStoreHouseConf" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_house_no" property="storeHouseNo" jdbcType="VARCHAR" />
+    <result column="store_house_name" property="storeHouseName" jdbcType="VARCHAR" />
+    <result column="store_house_addr" property="storeHouseAddr" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="last_handler_id" property="lastHandlerId" jdbcType="BIGINT" />
+    <result column="last_handle_time" property="lastHandleTime" jdbcType="TIMESTAMP" />
+    <result column="store_type" property="storeType" jdbcType="TINYINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="manager_id" property="managerId" jdbcType="BIGINT" />
+    <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, store_house_no, store_house_name, store_house_addr, company_id, company_name, 
+    last_handler_id, last_handle_time, store_type, created_at, updated_at, status, manager_id, 
+    manager_name, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from iv_store_house_conf
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from iv_store_house_conf
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.iv.common.model.IvStoreHouseConf" >
+    insert into iv_store_house_conf (id, store_house_no, store_house_name, 
+      store_house_addr, company_id, company_name, 
+      last_handler_id, last_handle_time, store_type, 
+      created_at, updated_at, status, 
+      manager_id, manager_name, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{storeHouseNo,jdbcType=VARCHAR}, #{storeHouseName,jdbcType=VARCHAR}, 
+      #{storeHouseAddr,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{lastHandlerId,jdbcType=BIGINT}, #{lastHandleTime,jdbcType=TIMESTAMP}, #{storeType,jdbcType=TINYINT}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{managerId,jdbcType=BIGINT}, #{managerName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.iv.common.model.IvStoreHouseConf" >
+    insert into iv_store_house_conf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="storeHouseNo != null" >
+        store_house_no,
+      </if>
+      <if test="storeHouseName != null" >
+        store_house_name,
+      </if>
+      <if test="storeHouseAddr != null" >
+        store_house_addr,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="lastHandlerId != null" >
+        last_handler_id,
+      </if>
+      <if test="lastHandleTime != null" >
+        last_handle_time,
+      </if>
+      <if test="storeType != null" >
+        store_type,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="managerId != null" >
+        manager_id,
+      </if>
+      <if test="managerName != null" >
+        manager_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeHouseNo != null" >
+        #{storeHouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHouseName != null" >
+        #{storeHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHouseAddr != null" >
+        #{storeHouseAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastHandlerId != null" >
+        #{lastHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="lastHandleTime != null" >
+        #{lastHandleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeType != null" >
+        #{storeType,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="managerId != null" >
+        #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="managerName != null" >
+        #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.iv.common.model.IvStoreHouseConf" >
+    update iv_store_house_conf
+    <set >
+      <if test="storeHouseNo != null" >
+        store_house_no = #{storeHouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHouseName != null" >
+        store_house_name = #{storeHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeHouseAddr != null" >
+        store_house_addr = #{storeHouseAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastHandlerId != null" >
+        last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="lastHandleTime != null" >
+        last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeType != null" >
+        store_type = #{storeType,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="managerId != null" >
+        manager_id = #{managerId,jdbcType=BIGINT},
+      </if>
+      <if test="managerName != null" >
+        manager_name = #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.iv.common.model.IvStoreHouseConf" >
+    update iv_store_house_conf
+    set store_house_no = #{storeHouseNo,jdbcType=VARCHAR},
+      store_house_name = #{storeHouseName,jdbcType=VARCHAR},
+      store_house_addr = #{storeHouseAddr,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+      last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+      store_type = #{storeType,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      manager_id = #{managerId,jdbcType=BIGINT},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- wendy添加-->
+
+
+  <insert id="addStoreHouse" parameterType="map"  useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+        INSERT INTO   iv_store_house_conf
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="store_house_no != null and store_house_no != ''">
+          store_house_no,
+        </if>
+        <if test="store_house_name != null  and store_house_name != ''" >
+          store_house_name,
+        </if>
+        <if test="store_house_addr != null  and store_house_addr != ''" >
+          store_house_addr,
+        </if>
+        <if test="company_id != null and company_id != ''" >
+          company_id,
+        </if>
+        <if test="company_name != null and company_name != ''" >
+          company_name,
+        </if>
+        <if test="uid != null and uid != ''" >
+          last_handler_id,
+        </if>
+        <if test="created_at != null and created_at != ''" >
+          last_handle_time,
+        </if>
+        <if test="store_type != null and store_type != ''" >
+          store_type,
+        </if>
+        <if test="created_at != null and created_at != ''" >
+          created_at,
+        </if>
+        <if test="status != null and status !=  ''" >
+          status,
+        </if>
+        <if test="manager_id != null and manager_id != ''" >
+          manager_id,
+        </if>
+        <if test="manager_name != null and manager_name != ''" >
+          manager_name,
+        </if>
+        <if test="remark != null and remark != ''" >
+          remark,
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="store_house_no != null and store_house_no != ''">
+          #{store_house_no,jdbcType=VARCHAR},
+        </if>
+        <if test="store_house_name != null  and store_house_name != ''" >
+          #{store_house_name,jdbcType=VARCHAR},
+        </if>
+        <if test="store_house_addr != null  and store_house_addr != ''" >
+          #{store_house_addr,jdbcType=VARCHAR},
+        </if>
+        <if test="company_id != null and company_id != ''" >
+          #{company_id,jdbcType=INTEGER},
+        </if>
+        <if test="company_name != null and company_name != ''" >
+          #{company_name,jdbcType=VARCHAR},
+        </if>
+        <if test="uid != null and uid != ''" >
+          #{uid},
+        </if>
+        <if test="created_at != null and created_at != ''" >
+          #{created_at,jdbcType=TIMESTAMP},
+        </if>
+        <if test="store_type != null and store_type != ''" >
+          #{store_type,jdbcType=TINYINT},
+        </if>
+        <if test="created_at != null and created_at != ''" >
+          #{created_at,jdbcType=TIMESTAMP},
+        </if>
+        <if test="status != null and status !=  ''" >
+          #{status,jdbcType=TINYINT},
+        </if>
+        <if test="manager_id != null and manager_id != ''" >
+          #{manager_id,jdbcType=BIGINT},
+        </if>
+        <if test="manager_name != null and manager_name != ''" >
+          #{manager_name,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null and remark != ''" >
+          #{remark,jdbcType=VARCHAR},
+        </if>
+      </trim>
+  </insert>
+
+  <!-- wendy添加-->
+  <update id="updateStoreHouse" parameterType="map">
+    UPDATE  iv_store_house_conf
+    <set>
+    <if test="store_house_no != null and store_house_no != ''">
+      store_house_no= #{store_house_no,jdbcType=VARCHAR},
+    </if>
+    <if test="store_house_name != null  and store_house_name != ''" >
+      store_house_name=  #{store_house_name,jdbcType=VARCHAR},
+    </if>
+    <if test="store_house_addr != null  and store_house_addr != ''" >
+      store_house_addr=  #{store_house_addr,jdbcType=VARCHAR},
+    </if>
+    <if test="company_id != null and company_id != ''" >
+      company_id= #{company_id,jdbcType=INTEGER},
+    </if>
+    <if test="company_name != null and company_name != ''" >
+      company_name=  #{company_name,jdbcType=VARCHAR},
+    </if>
+    <if test="uid != null and uid != ''" >
+      last_handler_id= #{uid},
+    </if>
+    <if test="updated_at != null and updated_at != ''" >
+      last_handle_time= #{updated_at,jdbcType=TIMESTAMP},
+    </if>
+    <if test="store_type != null and store_type != ''" >
+      store_type=  #{store_type,jdbcType=TINYINT},
+    </if>
+    <if test="updated_at != null and updated_at != ''" >
+      updated_at=  #{updated_at,jdbcType=TIMESTAMP},
+    </if>
+    <if test="manager_id != null and manager_id != ''" >
+      manager_id= #{manager_id,jdbcType=BIGINT},
+    </if>
+    <if test="manager_name != null and manager_name != ''" >
+      manager_name=manager_name= #{manager_name,jdbcType=VARCHAR},
+    </if>
+    <if test="remark != null and remark != ''" >
+      remark=  #{remark,jdbcType=VARCHAR},
+    </if>
+    </set>
+    WHERE  id = #{store_house_id}
+  </update>
+
+  <select id="selectIvStorehouseList" parameterType="map" resultType="map">
+    select  ishc.id as store_house_id ,ishc.store_house_name,
+              SUM(ish.stock_qty) as stock_qty,SUM(ish.total_price) as total_price
+         FROM iv_store_house_conf ishc  left JOIN iv_store_house ish ON ishc.id = ish.store_house_id
+         WHERE ishc.company_id=#{company_id} and ishc.status=1 GROUP BY ishc.id
+                 <if test="is_paging == '1'">
+                      and   limit #{page},#{page_size}
+                </if>
+  </select>
+
+  <select id="totalCount" parameterType="map" resultType="java.lang.Integer">
+        select count(id)
+         FROM iv_store_house_conf
+         WHERE
+          company_id=#{company_id} and status=1
+  </select>
+
+
+  <update id="updateStoreHouseStatus" parameterType="java.lang.Long">
+      UPDATE iv_store_house_conf SET  status = 0 WHERE id = #{storeHouseId}
+  </update>
+
+
+  <!--查询仓库详细信息(含库位)-->
+  <select id="selectDetail" parameterType="map" resultType="map">
+      SELECT  id as store_house_id ,manager_id,manager_name,remark,store_house_addr,
+               store_house_name,  store_house_no
+        FROM  iv_store_house_conf
+        WHERE id = #{store_house_id,jdbcType=BIGINT} and status = 1
+  </select>
+
+  <select id="selectStoreHouseName" resultType="int">
+       SELECT  count(*)
+        FROM  iv_store_house_conf
+        WHERE
+        <if test="store_house_id != null and store_house_id != ''">
+          <![CDATA[     id  != #{store_house_id} and ]]>
+        </if>
+        <![CDATA[   company_id = #{company_id}   and  store_house_name = #{store_house_name}  and    status = 1]]>
+
+  </select>
+
+</mapper>

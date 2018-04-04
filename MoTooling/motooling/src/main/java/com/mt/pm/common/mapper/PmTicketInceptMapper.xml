@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmTicketInceptMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmTicketIncept">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="po_id" jdbcType="BIGINT" property="poId" />
+    <result column="pop_id" jdbcType="BIGINT" property="popId" />
+    <result column="confirm_no" jdbcType="VARCHAR" property="confirmNo" />
+    <result column="incept_time" jdbcType="TIMESTAMP" property="inceptTime" />
+    <result column="incept_uid" jdbcType="BIGINT" property="inceptUid" />
+    <result column="incept_uid_name" jdbcType="VARCHAR" property="inceptUidName" />
+    <result column="incept_remark" jdbcType="VARCHAR" property="inceptRemark" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="cancel_uid" jdbcType="BIGINT" property="cancelUid" />
+    <result column="cancel_uid_name" jdbcType="VARCHAR" property="cancelUidName" />
+    <result column="cancel_remark" jdbcType="VARCHAR" property="cancelRemark" />
+    <result column="incept_flag" jdbcType="CHAR" property="inceptFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, po_id, pop_id, confirm_no, incept_time, incept_uid, incept_uid_name, incept_remark, 
+    cancel_time, cancel_uid, cancel_uid_name, cancel_remark, incept_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pm_ticket_incept
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_ticket_incept
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmTicketIncept">
+    insert into pm_ticket_incept (id, po_id, pop_id, 
+      confirm_no, incept_time, incept_uid, 
+      incept_uid_name, incept_remark, cancel_time, 
+      cancel_uid, cancel_uid_name, cancel_remark, 
+      incept_flag)
+    values (#{id,jdbcType=BIGINT}, #{poId,jdbcType=BIGINT}, #{popId,jdbcType=BIGINT}, 
+      #{confirmNo,jdbcType=VARCHAR}, #{inceptTime,jdbcType=TIMESTAMP}, #{inceptUid,jdbcType=BIGINT}, 
+      #{inceptUidName,jdbcType=VARCHAR}, #{inceptRemark,jdbcType=VARCHAR}, #{cancelTime,jdbcType=TIMESTAMP}, 
+      #{cancelUid,jdbcType=BIGINT}, #{cancelUidName,jdbcType=VARCHAR}, #{cancelRemark,jdbcType=VARCHAR}, 
+      #{inceptFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmTicketIncept">
+    insert into pm_ticket_incept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="poId != null">
+        po_id,
+      </if>
+      <if test="popId != null">
+        pop_id,
+      </if>
+      <if test="confirmNo != null">
+        confirm_no,
+      </if>
+      <if test="inceptTime != null">
+        incept_time,
+      </if>
+      <if test="inceptUid != null">
+        incept_uid,
+      </if>
+      <if test="inceptUidName != null">
+        incept_uid_name,
+      </if>
+      <if test="inceptRemark != null">
+        incept_remark,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+      <if test="cancelUid != null">
+        cancel_uid,
+      </if>
+      <if test="cancelUidName != null">
+        cancel_uid_name,
+      </if>
+      <if test="cancelRemark != null">
+        cancel_remark,
+      </if>
+      <if test="inceptFlag != null">
+        incept_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="poId != null">
+        #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="popId != null">
+        #{popId,jdbcType=BIGINT},
+      </if>
+      <if test="confirmNo != null">
+        #{confirmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptTime != null">
+        #{inceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inceptUid != null">
+        #{inceptUid,jdbcType=BIGINT},
+      </if>
+      <if test="inceptUidName != null">
+        #{inceptUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptRemark != null">
+        #{inceptRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelUid != null">
+        #{cancelUid,jdbcType=BIGINT},
+      </if>
+      <if test="cancelUidName != null">
+        #{cancelUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelRemark != null">
+        #{cancelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptFlag != null">
+        #{inceptFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmTicketIncept">
+    update pm_ticket_incept
+    <set>
+      <if test="poId != null">
+        po_id = #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="popId != null">
+        pop_id = #{popId,jdbcType=BIGINT},
+      </if>
+      <if test="confirmNo != null">
+        confirm_no = #{confirmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptTime != null">
+        incept_time = #{inceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inceptUid != null">
+        incept_uid = #{inceptUid,jdbcType=BIGINT},
+      </if>
+      <if test="inceptUidName != null">
+        incept_uid_name = #{inceptUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptRemark != null">
+        incept_remark = #{inceptRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelUid != null">
+        cancel_uid = #{cancelUid,jdbcType=BIGINT},
+      </if>
+      <if test="cancelUidName != null">
+        cancel_uid_name = #{cancelUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelRemark != null">
+        cancel_remark = #{cancelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="inceptFlag != null">
+        incept_flag = #{inceptFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmTicketIncept">
+    update pm_ticket_incept
+    set po_id = #{poId,jdbcType=BIGINT},
+      pop_id = #{popId,jdbcType=BIGINT},
+      confirm_no = #{confirmNo,jdbcType=VARCHAR},
+      incept_time = #{inceptTime,jdbcType=TIMESTAMP},
+      incept_uid = #{inceptUid,jdbcType=BIGINT},
+      incept_uid_name = #{inceptUidName,jdbcType=VARCHAR},
+      incept_remark = #{inceptRemark,jdbcType=VARCHAR},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      cancel_uid = #{cancelUid,jdbcType=BIGINT},
+      cancel_uid_name = #{cancelUidName,jdbcType=VARCHAR},
+      cancel_remark = #{cancelRemark,jdbcType=VARCHAR},
+      incept_flag = #{inceptFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--  自定义添加  -->
+
+  <select id="selectByPopId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from pm_ticket_incept
+    where status = '1'
+    and incept_flag = 1
+    and  pop_id = #{popId}
+  </select>
+
+</mapper>

@@ -1,0 +1,38 @@
+[
+  {
+    "query": {
+      "device_id": "1"
+    },
+    "client_type": 2,
+    "uid": 19,
+    "company_id": 35,
+    "token": "fcfbca61-42ea-44b0-9949-23ff73da3997"
+  },
+  {
+    "client_type": "",
+    "company_id": "35",
+    "uid": "71",
+    "token": "fcfbca61-42ea-44b0-9949-23ff73da3997",
+    "pg_info": {
+      "assign_to_device": "1",
+      "avail_status": "1",
+      "calendar_id": 1,
+      "calendar_name": "cesneir测试内容",
+      "capa_ratio": 23,
+      "day_hours": 1,
+      "dep_admin": "开心",
+      "dep_admin_id": 1,
+      "labour_ratio": 12,
+      "overload_ratio": "23",
+      "parent_dep_id": "1",
+      "parent_dep_name": "测试内容as",
+      "pg_desc": "asd",
+      "pg_id": "5",
+      "pg_name": "设计组",
+      "pg_type": "2",
+      "queue_length": "20",
+      "std_unit": "1",
+      "trans_length": "1"
+    }
+  }
+]

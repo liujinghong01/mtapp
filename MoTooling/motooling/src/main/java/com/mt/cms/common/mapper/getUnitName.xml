@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.GetUnitNameMapper">
+
+
+  <select id="getUnitName" resultType="map" parameterType="java.lang.String">
+        SELECT  unit_name FROM  dict_process_item_unit
+        WHERE  unit_code = #{code}
+  </select>
+
+
+    <select id="selectCodeAndName" resultType="map">
+        SELECT unit_name,unit_code from dict_process_item_unit
+    </select>
+</mapper>

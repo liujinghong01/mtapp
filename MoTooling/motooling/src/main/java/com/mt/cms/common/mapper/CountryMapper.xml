@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.CountryMapper">
+  <resultMap id="BaseResultMap" type="com.mt.cms.common.model.Country">
+    <id column="country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="iso_code2" jdbcType="VARCHAR" property="isoCode2" />
+    <result column="postcode_required" jdbcType="BIT" property="postcodeRequired" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    country_id, name, name_en, iso_code2, postcode_required, is_active, created_at, updated_at,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from country
+    where country_id = #{countryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from country
+    where country_id = #{countryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.cms.common.model.Country">
+    insert into country (country_id, name, name_en,
+    iso_code2, postcode_required, is_active,
+    created_at, updated_at, status
+    )
+    values (#{countryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR},
+    #{isoCode2,jdbcType=VARCHAR}, #{postcodeRequired,jdbcType=BIT}, #{isActive,jdbcType=BIT},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.cms.common.model.Country">
+    insert into country
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countryId != null">
+        country_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="isoCode2 != null">
+        iso_code2,
+      </if>
+      <if test="postcodeRequired != null">
+        postcode_required,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isoCode2 != null">
+        #{isoCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="postcodeRequired != null">
+        #{postcodeRequired,jdbcType=BIT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.Country">
+    update country
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="isoCode2 != null">
+        iso_code2 = #{isoCode2,jdbcType=VARCHAR},
+      </if>
+      <if test="postcodeRequired != null">
+        postcode_required = #{postcodeRequired,jdbcType=BIT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where country_id = #{countryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.Country">
+    update country
+    set name = #{name,jdbcType=VARCHAR},
+    name_en = #{nameEn,jdbcType=VARCHAR},
+    iso_code2 = #{isoCode2,jdbcType=VARCHAR},
+    postcode_required = #{postcodeRequired,jdbcType=BIT},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where country_id = #{countryId,jdbcType=INTEGER}
+  </update>
+</mapper>

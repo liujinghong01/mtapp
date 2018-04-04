@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.CustomerMapper">
+    <resultMap id="BaseResultMap" type="com.mt.cms.common.model.Customer">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="cst_company_id" jdbcType="BIGINT" property="cstCompanyId" />
+        <result column="company_id" jdbcType="BIGINT" property="companyId" />
+        <result column="contact_man" jdbcType="VARCHAR" property="contactMan" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="weibo" jdbcType="VARCHAR" property="weibo" />
+        <result column="cst_type" jdbcType="INTEGER" property="cstType" />
+        <result column="product" jdbcType="VARCHAR" property="product" />
+        <result column="tax_no" jdbcType="VARCHAR" property="taxNo" />
+        <result column="is_active" jdbcType="BIT" property="isActive" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="cst_company_name" jdbcType="VARCHAR" property="cstCompanyName" />
+        <result column="cst_company_address" jdbcType="VARCHAR" property="cstCompanyAddress" />
+        <result column="cst_type_code" jdbcType="INTEGER" property="cstTypeCode" />
+        <result column="grade" jdbcType="INTEGER" property="grade" />
+        <result column="grade_code" jdbcType="INTEGER" property="gradeCode" />
+        <result column="credit_class" jdbcType="VARCHAR" property="creditClass" />
+        <result column="credit_class_code" jdbcType="VARCHAR" property="creditClassCode" />
+        <result column="important" jdbcType="INTEGER" property="important" />
+        <result column="important_code" jdbcType="INTEGER" property="importantCode" />
+        <result column="invite_status" jdbcType="TINYINT" property="inviteStatus" />
+        <result column="coin" jdbcType="VARCHAR" property="coin" />
+        <result column="coin_name" jdbcType="VARCHAR" property="coinName" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, cst_company_id, company_id, contact_man, phone, wechat, email, weibo, cst_type,
+        product, tax_no, is_active, created_at, updated_at, status, cst_company_name, cst_company_address,
+        cst_type_code, grade, grade_code, credit_class, credit_class_code, important, important_code,
+        invite_status, coin, coin_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from customer
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from customer
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.mt.cms.common.model.Customer">
+        insert into customer (id, cst_company_id, company_id,
+        contact_man, phone, wechat,
+        email, weibo, cst_type,
+        product, tax_no, is_active,
+        created_at, updated_at, status,
+        cst_company_name, cst_company_address, cst_type_code,
+        grade, grade_code, credit_class,
+        credit_class_code, important, important_code,
+        invite_status, coin, coin_name
+        )
+        values (#{id,jdbcType=BIGINT}, #{cstCompanyId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT},
+        #{contactMan,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{cstType,jdbcType=INTEGER},
+        #{product,jdbcType=VARCHAR}, #{taxNo,jdbcType=VARCHAR}, #{isActive,jdbcType=BIT},
+        #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT},
+        #{cstCompanyName,jdbcType=VARCHAR}, #{cstCompanyAddress,jdbcType=VARCHAR}, #{cstTypeCode,jdbcType=INTEGER},
+        #{grade,jdbcType=INTEGER}, #{gradeCode,jdbcType=INTEGER}, #{creditClass,jdbcType=VARCHAR},
+        #{creditClassCode,jdbcType=VARCHAR}, #{important,jdbcType=INTEGER}, #{importantCode,jdbcType=INTEGER},
+        #{inviteStatus,jdbcType=TINYINT}, #{coin,jdbcType=VARCHAR}, #{coinName,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.mt.cms.common.model.Customer">
+        insert into customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="cstCompanyId != null">
+                cst_company_id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="contactMan != null">
+                contact_man,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="wechat != null">
+                wechat,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="weibo != null">
+                weibo,
+            </if>
+            <if test="cstType != null">
+                cst_type,
+            </if>
+            <if test="product != null">
+                product,
+            </if>
+            <if test="taxNo != null">
+                tax_no,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="cstCompanyName != null">
+                cst_company_name,
+            </if>
+            <if test="cstCompanyAddress != null">
+                cst_company_address,
+            </if>
+            <if test="cstTypeCode != null">
+                cst_type_code,
+            </if>
+            <if test="grade != null">
+                grade,
+            </if>
+            <if test="gradeCode != null">
+                grade_code,
+            </if>
+            <if test="creditClass != null">
+                credit_class,
+            </if>
+            <if test="creditClassCode != null">
+                credit_class_code,
+            </if>
+            <if test="important != null">
+                important,
+            </if>
+            <if test="importantCode != null">
+                important_code,
+            </if>
+            <if test="inviteStatus != null">
+                invite_status,
+            </if>
+            <if test="coin != null">
+                coin,
+            </if>
+            <if test="coinName != null">
+                coin_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="cstCompanyId != null">
+                #{cstCompanyId,jdbcType=BIGINT},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="contactMan != null">
+                #{contactMan,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="weibo != null">
+                #{weibo,jdbcType=VARCHAR},
+            </if>
+            <if test="cstType != null">
+                #{cstType,jdbcType=INTEGER},
+            </if>
+            <if test="product != null">
+                #{product,jdbcType=VARCHAR},
+            </if>
+            <if test="taxNo != null">
+                #{taxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="cstCompanyName != null">
+                #{cstCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="cstCompanyAddress != null">
+                #{cstCompanyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="cstTypeCode != null">
+                #{cstTypeCode,jdbcType=INTEGER},
+            </if>
+            <if test="grade != null">
+                #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="gradeCode != null">
+                #{gradeCode,jdbcType=INTEGER},
+            </if>
+            <if test="creditClass != null">
+                #{creditClass,jdbcType=VARCHAR},
+            </if>
+            <if test="creditClassCode != null">
+                #{creditClassCode,jdbcType=VARCHAR},
+            </if>
+            <if test="important != null">
+                #{important,jdbcType=INTEGER},
+            </if>
+            <if test="importantCode != null">
+                #{importantCode,jdbcType=INTEGER},
+            </if>
+            <if test="inviteStatus != null">
+                #{inviteStatus,jdbcType=TINYINT},
+            </if>
+            <if test="coin != null">
+                #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="coinName != null">
+                #{coinName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.Customer">
+        update customer
+        <set>
+            <if test="cstCompanyId != null">
+                cst_company_id = #{cstCompanyId,jdbcType=BIGINT},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="contactMan != null">
+                contact_man = #{contactMan,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="weibo != null">
+                weibo = #{weibo,jdbcType=VARCHAR},
+            </if>
+            <if test="cstType != null">
+                cst_type = #{cstType,jdbcType=INTEGER},
+            </if>
+            <if test="product != null">
+                product = #{product,jdbcType=VARCHAR},
+            </if>
+            <if test="taxNo != null">
+                tax_no = #{taxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="cstCompanyName != null">
+                cst_company_name = #{cstCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="cstCompanyAddress != null">
+                cst_company_address = #{cstCompanyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="cstTypeCode != null">
+                cst_type_code = #{cstTypeCode,jdbcType=INTEGER},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="gradeCode != null">
+                grade_code = #{gradeCode,jdbcType=INTEGER},
+            </if>
+            <if test="creditClass != null">
+                credit_class = #{creditClass,jdbcType=VARCHAR},
+            </if>
+            <if test="creditClassCode != null">
+                credit_class_code = #{creditClassCode,jdbcType=VARCHAR},
+            </if>
+            <if test="important != null">
+                important = #{important,jdbcType=INTEGER},
+            </if>
+            <if test="importantCode != null">
+                important_code = #{importantCode,jdbcType=INTEGER},
+            </if>
+            <if test="inviteStatus != null">
+                invite_status = #{inviteStatus,jdbcType=TINYINT},
+            </if>
+            <if test="coin != null">
+                coin = #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="coinName != null">
+                coin_name = #{coinName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.Customer">
+        update customer
+        set cst_company_id = #{cstCompanyId,jdbcType=BIGINT},
+        company_id = #{companyId,jdbcType=BIGINT},
+        contact_man = #{contactMan,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        wechat = #{wechat,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        weibo = #{weibo,jdbcType=VARCHAR},
+        cst_type = #{cstType,jdbcType=INTEGER},
+        product = #{product,jdbcType=VARCHAR},
+        tax_no = #{taxNo,jdbcType=VARCHAR},
+        is_active = #{isActive,jdbcType=BIT},
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=TINYINT},
+        cst_company_name = #{cstCompanyName,jdbcType=VARCHAR},
+        cst_company_address = #{cstCompanyAddress,jdbcType=VARCHAR},
+        cst_type_code = #{cstTypeCode,jdbcType=INTEGER},
+        grade = #{grade,jdbcType=INTEGER},
+        grade_code = #{gradeCode,jdbcType=INTEGER},
+        credit_class = #{creditClass,jdbcType=VARCHAR},
+        credit_class_code = #{creditClassCode,jdbcType=VARCHAR},
+        important = #{important,jdbcType=INTEGER},
+        important_code = #{importantCode,jdbcType=INTEGER},
+        invite_status = #{inviteStatus,jdbcType=TINYINT},
+        coin = #{coin,jdbcType=VARCHAR},
+        coin_name = #{coinName,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    
+    
+    <!-- ****************自定义************ -->
+
+    <select id="selectCustomerId" resultType="map">
+        select
+        cst_company_id,cst_company_name,credit_class,grade
+        from customer
+        where company_id = #{companyId,jdbcType=INTEGER} and  is_active=1  limit #{page},#{page_size}
+    </select>
+
+    <select id="totalCountIsActive" resultType="java.lang.Integer">
+        select count(1)
+        from customer
+        WHERE  company_id = #{companyId,jdbcType=INTEGER} and  is_active=1
+    </select>
+
+    <select id="getCustome" parameterType="map" resultType="map">
+        select
+        company_id,contact_man,credit_class,cst_company_address,cst_company_id,cst_company_name,cst_type,
+        cst_type_code,email,grade,grade_code,important,important_code,phone,product
+        from customer
+        where cst_company_id = #{cstCompanyId,jdbcType=BIGINT} and company_id = #{companyId}
+    </select>
+
+    <select id="getCustomes" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where cst_company_id = #{cstCompanyId,jdbcType=BIGINT}
+    </select>
+
+    <update id="updateCustomer" parameterType="com.mt.cms.common.model.Customer">
+        update customer
+        <set>
+            <!-- <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if> -->
+            <if test="contactMan != null">
+                contact_man = #{contactMan,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="wechat != null">
+                wechat = #{wechat,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="weibo != null">
+                weibo = #{weibo,jdbcType=VARCHAR},
+            </if>
+            <if test="cstType != null">
+                cst_type = #{cstType,jdbcType=INTEGER},
+            </if>
+            <if test="product != null">
+                product = #{product,jdbcType=VARCHAR},
+            </if>
+            <if test="important != null">
+                important = #{important,jdbcType=INTEGER},
+            </if>
+            <if test="taxNo != null">
+                tax_no = #{taxNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="cstCompanyName != null">
+                cst_company_name = #{cstCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="cstCompanyAddress != null">
+                cst_company_address = #{cstCompanyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="gradeCode != null">
+                grade_code = #{gradeCode,jdbcType=INTEGER},
+            </if>
+            <if test="cstTypeCode != null">
+                cst_type_code = #{cstTypeCode,jdbcType=INTEGER},
+            </if>
+            <if test="creditClass != null">
+                credit_class = #{creditClass,jdbcType=VARCHAR},
+            </if>
+            <if test="creditClassCode != null">
+                credit_class_code = #{creditClassCode,jdbcType=VARCHAR},
+            </if>
+            <if test="importantCode != null">
+                important_code = #{importantCode,jdbcType=INTEGER},
+            </if>
+        </set>
+        where company_id = #{companyId,jdbcType=BIGINT}
+        and cst_company_id = #{cstCompanyId,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteCustomer" parameterType="java.util.List">
+        UPDATE  customer  set is_active = 0 WHERE  cst_company_id IN
+        <foreach collection="list" item="list"  open="(" separator="," close=")" >
+            #{list}
+        </foreach>
+    </update>
+
+
+    <select id="seachCstName" resultType="map">
+        select cst_company_name,cst_company_address,cst_company_id
+        from customer
+        where company_id = #{companyId} and  is_active = 1 and locate(#{cst_company_name},cst_company_name)>0 LIMIT  #{page},#{page_size};
+    </select>
+    <select id="totalCount" resultType="java.lang.Integer">
+        select count(1)
+        from customer
+        <where>
+            <if test=" companyId != null ">
+                company_id = #{companyId}  and  is_active = 1
+            </if>
+            <if test=" cst_company_name != null">
+                and locate(#{cst_company_name},cst_company_name)>0
+            </if>
+        </where>
+    </select>
+
+    <select id="getMaxCustomerId" resultType="java.lang.Integer" >
+        select
+        max(cst_company_id)
+        from customer
+    </select>
+
+    <select id="selectCustomer" resultType="map">
+        select
+        contact_man,credit_class,credit_class_code,cst_company_address,cst_company_id,cst_company_name,
+        cst_type,cst_type_code,email,grade,grade_code,important,important_code,phone,product
+        from customer
+        WHERE company_id = #{companyId} and cst_company_id = #{cstCompanyId}
+    </select>
+
+    <select id="selectByCompanyIdAndCustomerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where company_id = #{companyId}
+        and cst_company_id = #{cstCompanyId}
+    </select>
+
+    <select id="seletComapyId"  resultType="long">
+        select cst_company_id FROM customer  where company_id = #{companyId}
+    </select>
+
+    <!--获取客户下拉框列表-->
+    <select id="customerList" parameterType="map">
+      SELECT cst_company_id , cst_company_name FROM  customer
+        <where>
+            <if test=" companyId != null ">
+                company_id = #{companyId} and
+            </if>
+            <if test=" cstType != null">
+                 cst_type =  #{cstType} and
+            </if>
+        </where>
+        is_active = 1  order by important_code ASC
+    </select>
+
+    <select id="selectCstCompanyByCstName" resultType="map">
+     SELECT
+        contact_man as connect_man,
+        cst_company_id,
+        cst_company_name as cst_name,
+        email,
+        phone,
+        coin,
+        coin_name,
+        cst_company_address
+        from customer
+        where company_id = #{companyId}
+        and ifnull(cst_company_name,'') like concat(#{cstName}, '%')
+		and is_active = 1
+        ORDER by cst_company_name
+    </select>
+
+    <select id="selectContactorByCustomerId">
+      SELECT contact_man as connect_man, duty, email, phone, '0' is_default
+      from customer_contactor
+      where cst_company_id = #{customerId}
+    </select>
+</mapper>

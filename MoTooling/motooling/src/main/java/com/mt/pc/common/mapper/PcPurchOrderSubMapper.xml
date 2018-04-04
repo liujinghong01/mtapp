@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pc.common.dao.PcPurchOrderSubMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcPurchOrderSub">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="purch_id" jdbcType="BIGINT" property="purchId" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="mat_no" jdbcType="VARCHAR" property="matNo" />
+    <result column="mat_desc" jdbcType="VARCHAR" property="matDesc" />
+    <result column="mat_type_id" jdbcType="BIGINT" property="matTypeId" />
+    <result column="mat_type_name" jdbcType="VARCHAR" property="matTypeName" />
+    <result column="mat_model" jdbcType="VARCHAR" property="matModel" />
+    <result column="up" jdbcType="DECIMAL" property="up" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="super_price_reason" jdbcType="VARCHAR" property="superPriceReason" />
+    <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="process_up" jdbcType="DECIMAL" property="processUp" />
+    <result column="process_cost" jdbcType="DECIMAL" property="processCost" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="order_flag" jdbcType="TINYINT" property="orderFlag" />
+    <result column="received_qty" jdbcType="DECIMAL" property="receivedQty" />
+    <result column="require_id" jdbcType="BIGINT" property="requireId" />
+    <result column="inquiry_sub_id" jdbcType="BIGINT" property="inquirySubId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, purch_id, mat_id, mat_no, mat_desc, mat_type_id, mat_type_name, mat_model, up,
+    unit, super_price_reason, quantity, weight, process_up, process_cost, total_price,
+    order_flag, received_qty, require_id, inquiry_sub_id, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pc_purch_order_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pc_purch_order_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pc.common.model.PcPurchOrderSub">
+    insert into pc_purch_order_sub (id, purch_id, mat_id,
+    mat_no, mat_desc, mat_type_id,
+    mat_type_name, mat_model, up,
+    unit, super_price_reason, quantity,
+    weight, process_up, process_cost,
+    total_price, order_flag, received_qty,
+    require_id, inquiry_sub_id, created_at,
+    updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{purchId,jdbcType=BIGINT}, #{matId,jdbcType=VARCHAR},
+    #{matNo,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR}, #{matTypeId,jdbcType=BIGINT},
+    #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR}, #{up,jdbcType=DECIMAL},
+    #{unit,jdbcType=VARCHAR}, #{superPriceReason,jdbcType=VARCHAR}, #{quantity,jdbcType=DECIMAL},
+    #{weight,jdbcType=DECIMAL}, #{processUp,jdbcType=DECIMAL}, #{processCost,jdbcType=DECIMAL},
+    #{totalPrice,jdbcType=DECIMAL}, #{orderFlag,jdbcType=TINYINT}, #{receivedQty,jdbcType=DECIMAL},
+    #{requireId,jdbcType=BIGINT}, #{inquirySubId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pc.common.model.PcPurchOrderSub">
+    insert into pc_purch_order_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="purchId != null">
+        purch_id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="matNo != null">
+        mat_no,
+      </if>
+      <if test="matDesc != null">
+        mat_desc,
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name,
+      </if>
+      <if test="matModel != null">
+        mat_model,
+      </if>
+      <if test="up != null">
+        up,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="superPriceReason != null">
+        super_price_reason,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="processUp != null">
+        process_up,
+      </if>
+      <if test="processCost != null">
+        process_cost,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="orderFlag != null">
+        order_flag,
+      </if>
+      <if test="receivedQty != null">
+        received_qty,
+      </if>
+      <if test="requireId != null">
+        require_id,
+      </if>
+      <if test="inquirySubId != null">
+        inquiry_sub_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="purchId != null">
+        #{purchId,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matNo != null">
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="superPriceReason != null">
+        #{superPriceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="processUp != null">
+        #{processUp,jdbcType=DECIMAL},
+      </if>
+      <if test="processCost != null">
+        #{processCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFlag != null">
+        #{orderFlag,jdbcType=TINYINT},
+      </if>
+      <if test="receivedQty != null">
+        #{receivedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="requireId != null">
+        #{requireId,jdbcType=BIGINT},
+      </if>
+      <if test="inquirySubId != null">
+        #{inquirySubId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcPurchOrderSub">
+    update pc_purch_order_sub
+    <set>
+      <if test="purchId != null">
+        purch_id = #{purchId,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matNo != null">
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        mat_desc = #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        mat_model = #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null">
+        up = #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="superPriceReason != null">
+        super_price_reason = #{superPriceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="processUp != null">
+        process_up = #{processUp,jdbcType=DECIMAL},
+      </if>
+      <if test="processCost != null">
+        process_cost = #{processCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderFlag != null">
+        order_flag = #{orderFlag,jdbcType=TINYINT},
+      </if>
+      <if test="receivedQty != null">
+        received_qty = #{receivedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="requireId != null">
+        require_id = #{requireId,jdbcType=BIGINT},
+      </if>
+      <if test="inquirySubId != null">
+        inquiry_sub_id = #{inquirySubId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcPurchOrderSub">
+    update pc_purch_order_sub
+    set purch_id = #{purchId,jdbcType=BIGINT},
+    mat_id = #{matId,jdbcType=VARCHAR},
+    mat_no = #{matNo,jdbcType=VARCHAR},
+    mat_desc = #{matDesc,jdbcType=VARCHAR},
+    mat_type_id = #{matTypeId,jdbcType=BIGINT},
+    mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+    mat_model = #{matModel,jdbcType=VARCHAR},
+    up = #{up,jdbcType=DECIMAL},
+    unit = #{unit,jdbcType=VARCHAR},
+    super_price_reason = #{superPriceReason,jdbcType=VARCHAR},
+    quantity = #{quantity,jdbcType=DECIMAL},
+    weight = #{weight,jdbcType=DECIMAL},
+    process_up = #{processUp,jdbcType=DECIMAL},
+    process_cost = #{processCost,jdbcType=DECIMAL},
+    total_price = #{totalPrice,jdbcType=DECIMAL},
+    order_flag = #{orderFlag,jdbcType=TINYINT},
+    received_qty = #{receivedQty,jdbcType=DECIMAL},
+    require_id = #{requireId,jdbcType=BIGINT},
+    inquiry_sub_id = #{inquirySubId,jdbcType=BIGINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--Alnwick 添加-->
+
+  <select id="selectPurchOrderSubDetail" parameterType="map" resultType="map">
+      SELECT
+            id as detail_id,mat_desc,mat_id,mat_model,mat_no,mat_type_id,mat_type_name,process_cost,
+            process_up,quantity,super_price_reason,total_price,up,weight
+      FROM pc_purch_order_sub
+      where purch_id= #{purchId} and status = 1
+  </select>
+
+  <update id="updatePurchOrderSub" parameterType="java.lang.Integer">
+      UPDATE pc_purch_order_sub
+      SET status = 0
+      WHERE purch_id = #{purchId}
+  </update>
+
+
+  <insert id="addPurchOrderSub" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into pc_purch_order_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="purch_id != null and purch_id != ''" >
+        purch_id,
+      </if>
+      <if test="mat_id != null and mat_id != ''" >
+        mat_id,
+      </if>
+      <if test="mat_no != null and mat_no != ''">
+        mat_no,
+      </if>
+      <if test="mat_desc != null and mat_desc != ''" >
+        mat_desc,
+      </if>
+      <if test="mat_type_id != null and mat_type_id != ''" >
+        mat_type_id,
+      </if>
+      <if test="mat_type_name != null and mat_type_name != ''" >
+        mat_type_name,
+      </if>
+      <if test="mat_model != null and  mat_model != ''" >
+        mat_model,
+      </if>
+      <if test="up != null and up != ''" >
+        up,
+      </if>
+      <if test="super_price_reason != null and super_price_reason != ''" >
+        super_price_reason,
+      </if>
+      <if test="quantity != null  and quantity != ''" >
+        quantity,
+      </if>
+      <if test="weight != null and weight != ''" >
+        weight,
+      </if>
+      <if test="process_up != null and process_up != ''" >
+        process_up,
+      </if>
+      <if test="process_cost != null and process_cost != ''" >
+        process_cost,
+      </if>
+      <if test="total_price != null and total_price != ''" >
+        total_price,
+      </if>
+      <if test="created_at != null and created_at != ''" >
+        created_at,
+      </if>
+      <if test="status != null and status != ''" >
+        status,
+      </if>
+      <if test="require_id != null and require_id != ''" >
+        require_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="purch_id != null and purch_id != ''" >
+         #{purch_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_id != null and mat_id != ''" >
+         #{mat_id,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_no != null and mat_no != ''">
+        #{mat_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_desc != null and mat_desc != ''" >
+         #{mat_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_type_id != null and mat_type_id != ''" >
+        #{mat_type_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_type_name != null and mat_type_name != ''" >
+        #{mat_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_model != null and  mat_model != ''" >
+         #{mat_model,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null and up != ''" >
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="super_price_reason != null and super_price_reason != ''" >
+         #{super_price_reason,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null  and quantity != ''" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null and weight != ''" >
+         #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="process_up != null and process_up != ''" >
+        #{process_up,jdbcType=DECIMAL},
+      </if>
+      <if test="process_cost != null and process_cost != ''" >
+        #{process_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="total_price != null and total_price != ''" >
+         #{total_price,jdbcType=DECIMAL},
+      </if>
+      <if test="created_at != null and created_at != ''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status != ''" >
+         #{status,jdbcType=TINYINT},
+      </if>
+      <if test="require_id != null and require_id != ''" >
+         #{require_id,jdbcType=TINYINT},
+      </if>
+    </trim>
+   </insert>
+
+
+
+  <update id="updateOrderSub" parameterType="map" >
+    update pc_purch_order_sub
+    <set >
+      <if test="purch_id != null and purch_id != ''" >
+        purch_id = #{purch_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_id != null and mat_id != ''" >
+        mat_id = #{mat_id,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_no != null and mat_no != ''">
+        mat_no = #{mat_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_desc != null and mat_desc != ''" >
+        mat_desc = #{mat_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_type_id != null and mat_type_id != ''" >
+        mat_type_id = #{mat_type_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_type_name != null and mat_type_name != ''" >
+        mat_type_name = #{mat_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_model != null and  mat_model != ''" >
+        mat_model = #{mat_model,jdbcType=VARCHAR},
+      </if>
+      <if test="up != null and up != ''" >
+        up = #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="super_price_reason != null and super_price_reason != ''" >
+        super_price_reason = #{super_price_reason,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null  and quantity != ''" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null and weight != ''" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="process_up != null and process_up != ''" >
+        process_up = #{process_up,jdbcType=DECIMAL},
+      </if>
+      <if test="process_cost != null and process_cost != ''" >
+        process_cost = #{process_cost,jdbcType=DECIMAL},
+      </if>
+      <if test="total_price != null and total_price != ''" >
+        total_price = #{total_price,jdbcType=DECIMAL},
+      </if>
+      <if test="updated_at != null and updated_at != ''" >
+        updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="qc_bill_qty !=null and qc_bill_qty !=''">
+        qc_bill_qty=#{qc_bill_qty,jdbcType=DECIMAL},
+      </if>
+     </set>
+      where id = #{detail_id,jdbcType=BIGINT}
+     </update>
+
+  <update id="updateOrderSubQty" parameterType="map" >
+    update pc_purch_order_sub
+    <set>
+        qc_bill_qty = #{qc_bill_qty,jdbcType=DECIMAL},
+    </set>
+    where id = #{detail_id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="getTotalPrice" resultType="java.lang.Long" parameterType="java.lang.Long">
+      SELECT sum(total_price)
+      FROM   pc_purch_order_sub
+      WHERE
+            purch_id = #{purchId} and status = 1
+    </select>
+  
+
+</mapper>

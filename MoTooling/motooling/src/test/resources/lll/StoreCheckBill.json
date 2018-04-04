@@ -1,0 +1,74 @@
+[
+  {
+    "curr_page": 1,
+    "page_size": 20,
+    "query": {
+      "approve_step": [
+        "step12",
+        "step11"
+      ],
+      "liquidate_flag": [
+        2,
+        1
+      ]
+    },
+    "client_type": 2,
+    "uid": 19,
+    "company_id": 35,
+    "token": "4331e6bd-b116-4348-a8d9-e199ba8db505"
+  },
+
+  {
+    "client_type": "2",
+    "uid": "19",
+    "curr_page": 1,
+    "page_size": 20,
+    "token": "4331e6bd-b116-4348-a8d9-e199ba8db505",
+    "query": {
+      "check_bill_id": "8",
+      "liquidate_flag": "2",
+      "mat_desc": "a",
+      "mat_no": "1",
+      "mat_type_ids": [
+        2
+      ]
+    }
+  },
+
+  {
+    "company_id": "35",
+    "company_name": "asd",
+    "uid": "2",
+    "client_type": "",
+    "token": "4331e6bd-b116-4348-a8d9-e199ba8db505",
+    "check_info": {
+      "operator_id": "1",
+      "store_house_id": "11",
+      "store_house_name": "dsn8",
+      "mat_type_list": [
+        {
+          "mat_type_id": 41348,
+          "mat_type_name": "测试内容xo8i"
+        }
+      ]
+    }
+  },
+
+  {
+    "token": "4331e6bd-b116-4348-a8d9-e199ba8db505",
+    "company_id": "35",
+    "uid": "19",
+    "client_type": "2",
+    "check_info": {
+      "check_bill_id": "8",
+      "check_bill_no": "A004",
+      "check_profit_loss_price": "100",
+      "check_profit_loss_qty": "10",
+      "check_profit_loss_reason": "物料缺少了",
+      "check_real_price": "300",
+      "check_real_qty": "30",
+      "liquidate_flag": "2",
+      "mat_id": "1"
+    }
+  }
+]

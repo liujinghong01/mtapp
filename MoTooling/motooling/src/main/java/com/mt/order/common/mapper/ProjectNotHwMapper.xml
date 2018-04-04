@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.ProjectNotHwMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.ProjectNotHw">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="project_no" jdbcType="VARCHAR" property="projectNo" />
+    <result column="cst_mold_no" jdbcType="VARCHAR" property="cstMoldNo" />
+    <result column="material" jdbcType="VARCHAR" property="material" />
+    <result column="cst_prod_name" jdbcType="VARCHAR" property="cstProdName" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="cavity_material" jdbcType="VARCHAR" property="cavityMaterial" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="first_try_date" jdbcType="TIMESTAMP" property="firstTryDate" />
+    <result column="delivery_date" jdbcType="TIMESTAMP" property="deliveryDate" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="up_not_tax" jdbcType="DECIMAL" property="upNotTax" />
+    <result column="price_not_tax" jdbcType="DECIMAL" property="priceNotTax" />
+    <result column="up" jdbcType="DECIMAL" property="up" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="quote_no" jdbcType="VARCHAR" property="quoteNo" />
+    <result column="quote_id" jdbcType="BIGINT" property="quoteId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="startup_step" jdbcType="VARCHAR" property="startupStep" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="is_batch_process" jdbcType="TINYINT" property="isBatchProcess" />
+    <result column="sup_type" jdbcType="VARCHAR" property="supType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project_id, project_no, cst_mold_no, material, cst_prod_name, type, type_name,
+    cavity_material, start_date, first_try_date, delivery_date, unit, count, up_not_tax,
+    price_not_tax, up, price, remark, quote_no, quote_id, status, startup_step, reason,
+    is_batch_process, sup_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project_not_hw
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from project_not_hw
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.ProjectNotHw">
+    insert into project_not_hw (id, project_id, project_no,
+    cst_mold_no, material, cst_prod_name,
+    type, type_name, cavity_material,
+    start_date, first_try_date, delivery_date,
+    unit, count, up_not_tax,
+    price_not_tax, up, price,
+    remark, quote_no, quote_id,
+    status, startup_step, reason,
+    is_batch_process, sup_type)
+    values (#{id,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{projectNo,jdbcType=VARCHAR},
+    #{cstMoldNo,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}, #{cstProdName,jdbcType=VARCHAR},
+    #{type,jdbcType=TINYINT}, #{typeName,jdbcType=VARCHAR}, #{cavityMaterial,jdbcType=VARCHAR},
+    #{startDate,jdbcType=TIMESTAMP}, #{firstTryDate,jdbcType=TIMESTAMP}, #{deliveryDate,jdbcType=TIMESTAMP},
+    #{unit,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{upNotTax,jdbcType=DECIMAL},
+    #{priceNotTax,jdbcType=DECIMAL}, #{up,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL},
+    #{remark,jdbcType=VARCHAR}, #{quoteNo,jdbcType=VARCHAR}, #{quoteId,jdbcType=BIGINT},
+    #{status,jdbcType=TINYINT}, #{startupStep,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR},
+    #{isBatchProcess,jdbcType=TINYINT}, #{supType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.ProjectNotHw">
+    insert into project_not_hw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectNo != null">
+        project_no,
+      </if>
+      <if test="cstMoldNo != null">
+        cst_mold_no,
+      </if>
+      <if test="material != null">
+        material,
+      </if>
+      <if test="cstProdName != null">
+        cst_prod_name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="cavityMaterial != null">
+        cavity_material,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date,
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="upNotTax != null">
+        up_not_tax,
+      </if>
+      <if test="priceNotTax != null">
+        price_not_tax,
+      </if>
+      <if test="up != null">
+        up,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="quoteNo != null">
+        quote_no,
+      </if>
+      <if test="quoteId != null">
+        quote_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startupStep != null">
+        startup_step,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="isBatchProcess != null">
+        is_batch_process,
+      </if>
+      <if test="supType != null">
+        sup_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectNo != null">
+        #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cstMoldNo != null">
+        #{cstMoldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdName != null">
+        #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityMaterial != null">
+        #{cavityMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstTryDate != null">
+        #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryDate != null">
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="upNotTax != null">
+        #{upNotTax,jdbcType=DECIMAL},
+      </if>
+      <if test="priceNotTax != null">
+        #{priceNotTax,jdbcType=DECIMAL},
+      </if>
+      <if test="up != null">
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteNo != null">
+        #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteId != null">
+        #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="startupStep != null">
+        #{startupStep,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="isBatchProcess != null">
+        #{isBatchProcess,jdbcType=TINYINT},
+      </if>
+      <if test="supType != null">
+        #{supType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.ProjectNotHw">
+    update project_not_hw
+    <set>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectNo != null">
+        project_no = #{projectNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cstMoldNo != null">
+        cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdName != null">
+        cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityMaterial != null">
+        cavity_material = #{cavityMaterial,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryDate != null">
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="upNotTax != null">
+        up_not_tax = #{upNotTax,jdbcType=DECIMAL},
+      </if>
+      <if test="priceNotTax != null">
+        price_not_tax = #{priceNotTax,jdbcType=DECIMAL},
+      </if>
+      <if test="up != null">
+        up = #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteNo != null">
+        quote_no = #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteId != null">
+        quote_id = #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="startupStep != null">
+        startup_step = #{startupStep,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="isBatchProcess != null">
+        is_batch_process = #{isBatchProcess,jdbcType=TINYINT},
+      </if>
+      <if test="supType != null">
+        sup_type = #{supType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.ProjectNotHw">
+    update project_not_hw
+    set project_id = #{projectId,jdbcType=BIGINT},
+    project_no = #{projectNo,jdbcType=VARCHAR},
+    cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+    material = #{material,jdbcType=VARCHAR},
+    cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+    type = #{type,jdbcType=TINYINT},
+    type_name = #{typeName,jdbcType=VARCHAR},
+    cavity_material = #{cavityMaterial,jdbcType=VARCHAR},
+    start_date = #{startDate,jdbcType=TIMESTAMP},
+    first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+    delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+    unit = #{unit,jdbcType=VARCHAR},
+    count = #{count,jdbcType=INTEGER},
+    up_not_tax = #{upNotTax,jdbcType=DECIMAL},
+    price_not_tax = #{priceNotTax,jdbcType=DECIMAL},
+    up = #{up,jdbcType=DECIMAL},
+    price = #{price,jdbcType=DECIMAL},
+    remark = #{remark,jdbcType=VARCHAR},
+    quote_no = #{quoteNo,jdbcType=VARCHAR},
+    quote_id = #{quoteId,jdbcType=BIGINT},
+    status = #{status,jdbcType=TINYINT},
+    startup_step = #{startupStep,jdbcType=VARCHAR},
+    reason = #{reason,jdbcType=VARCHAR},
+    is_batch_process = #{isBatchProcess,jdbcType=TINYINT},
+    sup_type = #{supType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 以下为自定义 -->
+  
+  <select id="selectQuote" parameterType="map" resultType="map">
+      SELECT quote_id,cst_mold_no,material,quote_no,size_unit as unit ,count,up,price_local as prod_price,remark FROM quote_mold WHERE  quote_id =#{quote_id} and status = 1
+  </select>
+
+  <select id="queryNotHwLineDetail" parameterType="java.lang.Integer" resultType="map">
+      SELECT id as order_line_id ,project_id,cavity_material,count,cst_mold_no,DATE_FORMAT(delivery_date,'%Y-%m-%d') delivery_date,DATE_FORMAT(start_date,'%Y-%m-%d') start_date,cst_prod_name,
+      DATE_FORMAT(first_try_date,'%Y-%m-%d') first_try_date,material,price,remark,type,type_name,unit,up FROM  project_not_hw WHERE id = #{order_line_id}
+  </select>
+
+  <insert id="addNotHw" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into project_not_hw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="type_name != null" >
+        type_name,
+      </if>
+      <if test="up != null" >
+        up,
+      </if>
+      <if test="project_id != null" >
+        project_id,
+      </if>
+      <if test="project_no != null" >
+        project_no,
+      </if>
+      <if test="cst_mold_no != null" >
+        cst_mold_no,
+      </if>
+      <if test="material != null" >
+        material,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="cavity_material != null" >
+        cavity_material,
+      </if>
+      <if test="start_date != null" >
+        start_date,
+      </if>
+      <if test="first_try_date != null" >
+        first_try_date,
+      </if>
+      <if test="delivery_date != null" >
+        delivery_date,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test=" count != null" >
+        count,
+      </if>
+      <if test="up_not_tax != null" >
+        up_not_tax,
+      </if>
+      <if test="price_not_tax != null" >
+        price_not_tax,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="quote_no != null" >
+        quote_no,
+      </if>
+      <if test="quote_id != null" >
+        quote_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="up != null" >
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="type_name != null" >
+        #{type_name},
+      </if>
+      <if test="project_id != null" >
+        #{project_id,jdbcType=BIGINT},
+      </if>
+      <if test="project_no != null" >
+        #{project_no,jdbcType=VARCHAR},
+      </if>
+      <if test="cst_mold_no != null" >
+        #{cst_mold_no,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null" >
+        #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="cavity_material != null" >
+        #{cavity_material,jdbcType=VARCHAR},
+      </if>
+      <if test="start_date != null" >
+        #{start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="first_try_date != null" >
+        #{first_try_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delivery_date != null" >
+        #{delivery_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="up_not_tax != null" >
+        #{up_not_tax,jdbcType=DECIMAL},
+      </if>
+      <if test="price_not_tax != null" >
+        #{price_not_tax,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quote_no != null" >
+        #{quote_no,jdbcType=VARCHAR},
+      </if>
+      <if test="quote_id != null" >
+        #{quote_id,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryNotHwLineListMap" parameterType="map" resultType="map">
+    SELECT  cst_prod_name , id as order_line_id ,type ,type_name FROM project_not_hw where project_id = #{project_id} and status = 1
+  </select>
+  <select id="queryNotHwLineList" parameterType="java.lang.Integer" resultType="map">
+    SELECT   id as order_line_id FROM project_not_hw where project_id = #{projectId} and status = 1
+  </select>
+
+  <select id="projectNotHwMapper" parameterType="map" resultType="map">
+     SELECT  cavity_material , cst_mold_no,delivery_date , DATE_FORMAT(first_try_date,'%Y-%m-%d') first_try_date,  DATE_FORMAT(start_date,'%Y-%m-%d') start_date,material,project_id as order_line_id,price,remark,
+      type,type_name,unit,up FROM project_not_hw where id = #{order_line_id}
+  </select>
+
+<insert id="insterNotHw" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id"  >
+  <selectKey resultType="int" order="AFTER" keyProperty="id">
+  SELECT LAST_INSERT_ID() as id
+</selectKey>
+    insert into project_not_hw
+  <trim prefix="(" suffix=")" suffixOverrides="," >
+    <if test="cst_prod_name != null and cst_prod_name != '' " >
+      cst_prod_name,
+    </if>
+    <if test="type_name != null and type_name != '' " >
+      type_name,
+    </if>
+    <if test="up != null and up != '' " >
+      up,
+    </if>
+    <if test="project_id != null and project_id !=''" >
+      project_id,
+    </if>
+    <if test="project_no != null and project_no != '' " >
+      project_no,
+    </if>
+    <if test="cst_mold_no != null and cst_mold_no != '' " >
+      cst_mold_no,
+    </if>
+    <if test="material != null and material != '' " >
+      material,
+    </if>
+    <if test="type != null and type != ''" >
+      type,
+    </if>
+    <if test="cavity_material != null and cavity_material != ''" >
+      cavity_material,
+    </if>
+    <if test="start_date != null and start_date != ''" >
+      start_date,
+    </if>
+    <if test="first_try_date != null and first_try_date != ''" >
+      first_try_date,
+    </if>
+    <if test="delivery_date != null and delivery_date !=''" >
+      delivery_date,
+    </if>
+    <if test="unit != null and unit != ''" >
+      unit,
+    </if>
+    <if test=" count != null and count != ''" >
+      count,
+    </if>
+    <if test="up_not_tax != null and up_not_tax != ''" >
+      up_not_tax,
+    </if>
+    <if test="price_not_tax != null and price_not_tax !=''" >
+      price_not_tax,
+    </if>
+    <if test="price != null and price != ''" >
+      price,
+    </if>
+    <if test="remark != null and remark != ''" >
+      remark,
+    </if>
+    <if test="quote_no != null and quote_no !=''" >
+      quote_no,
+    </if>
+    <if test="quote_id != null and quote_id != ''" >
+      quote_id,
+    </if>
+    <if test="startup_step != null and startup_step != ''">
+      startup_step,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="cst_prod_name != null and cst_prod_name != '' " >
+      #{cst_prod_name},
+    </if>
+    <if test="type_name != null and type_name != '' " >
+      #{type_name},
+    </if>
+    <if test="up != null and up != '' " >
+      #{up,jdbcType=DECIMAL},
+    </if>
+    <if test="project_id != null and project_id !=''" >
+      #{project_id,jdbcType=BIGINT},
+    </if>
+    <if test="project_no != null and project_no != '' " >
+      #{project_no,jdbcType=VARCHAR},
+    </if>
+    <if test="cst_mold_no != null and cst_mold_no != '' " >
+      #{cst_mold_no,jdbcType=VARCHAR},
+    </if>
+    <if test="material != null and material != '' " >
+      #{material,jdbcType=VARCHAR},
+    </if>
+    <if test="type != null and type != ''" >
+      #{type,jdbcType=TINYINT},
+    </if>
+    <if test="cavity_material != null and cavity_material != ''" >
+      #{cavity_material,jdbcType=VARCHAR},
+    </if>
+    <if test="start_date != null and start_date != ''" >
+      #{start_date,jdbcType=TIMESTAMP},
+    </if>
+    <if test="first_try_date != null and first_try_date != ''" >
+      #{first_try_date,jdbcType=TIMESTAMP},
+    </if>
+    <if test="delivery_date != null and delivery_date !=''" >
+      #{delivery_date,jdbcType=TIMESTAMP},
+    </if>
+    <if test="unit != null and unit != ''" >
+      #{unit,jdbcType=VARCHAR},
+    </if>
+    <if test=" count != null and count != ''" >
+      #{count,jdbcType=INTEGER},
+    </if>
+    <if test="up_not_tax != null and up_not_tax != ''" >
+      #{up_not_tax,jdbcType=DECIMAL},
+    </if>
+    <if test="price_not_tax != null and price_not_tax !=''" >
+      #{price_not_tax,jdbcType=DECIMAL},
+    </if>
+    <if test="price != null and price != ''" >
+      #{price},
+    </if>
+    <if test="remark != null and remark != ''" >
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="quote_no != null and quote_no !=''" >
+      #{quote_no,jdbcType=VARCHAR},
+    </if>
+    <if test="quote_id != null and quote_id != ''" >
+      #{quote_id,jdbcType=BIGINT},
+    </if>
+    <if test="startup_step != null and startup_step != ''">
+      #{startup_step},
+    </if>
+  </trim>
+</insert>
+
+  <update id="updateNotHw" parameterType="map">
+    update project_not_hw
+    <set>
+      <if test="cst_prod_name != null and cst_prod_name !=''">
+        cst_prod_name = #{cst_prod_name},
+      </if>
+      <if test="up != null">
+        up = #{up},
+      </if>
+      <if test="cst_mold_no != null">
+        cst_mold_no = #{cst_mold_no,jdbcType=VARCHAR},
+      </if>
+      <if test="material != null">
+        material = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="type_name !=null and type_name !=''">
+        type_name = #{type_name},
+      </if>
+      <if test="cavity_material != null">
+        cavity_material = #{cavity_material,jdbcType=VARCHAR},
+      </if>
+      <if test="start_date != null">
+        start_date = #{start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="first_try_date != null">
+        first_try_date = #{first_try_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delivery_date != null">
+        delivery_date = #{delivery_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="up_not_tax != null">
+        up_not_tax = #{up_not_tax,jdbcType=DECIMAL},
+      </if>
+      <if test="price_not_tax != null">
+        price_not_tax = #{price_not_tax,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quote_no != null">
+        quote_no = #{quote_no,jdbcType=VARCHAR},
+      </if>
+      <if test="quote_id != null">
+        quote_id = #{quote_id,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{order_line_id}
+  </update>
+
+  <update id="deleteLine" parameterType="java.lang.Integer">
+    UPDATE   project_not_hw set status=0 WHERE id =#{orderLineId}
+  </update>
+
+  <select id="orderStartupList" parameterType="map" resultType="map">
+    SELECT p.id as order_line_id,pp.cst_company_id, p.reason,p.count,p.cst_prod_name as prod_name, p.cst_mold_no, pp.cst_name,p.project_id,p.startup_step,p.type,p.type_name,pp.project_no,
+    p.sup_type
+    FROM project_not_hw p,project pp
+    WHERE
+      <if test="startup_step != null and startup_step!= ''">
+         p.startup_step =#{startup_step}and
+      </if>
+      pp.id = p.project_id  and pp.company_id = #{company_id} and p.status = 1 and pp.approve_step='step0'  ORDER BY p.id DESC  limit #{page},#{page_size}
+  </select>
+
+  <select id="totalCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT count(p.id)
+    FROM project_not_hw p,project pp
+    WHERE
+    <if test="startup_step != null and startup_step!= ''">
+      p.startup_step =#{startup_step}and
+    </if>
+    pp.id = p.project_id  and pp.company_id = #{company_id} and p.status = 1 and pp.approve_step='step0'
+  </select>
+
+  <update id="orderStartup" parameterType="java.lang.Integer">
+    UPDATE project_not_hw  SET   startup_step='step200'   WHERE  id=#{orderLineId} and startup_step='step300' and status=1
+  </update>
+
+  <update id="orderNotEnd" parameterType="java.lang.Integer">
+    UPDATE  project_not_hw set  startup_step='step200' WHERE   id=#{orderLineId} and startup_step='step00' and status=1
+  </update>
+
+  <update id="orderStartupStop" parameterType="map">
+     UPDATE  project_not_hw set  reason=#{reason},startup_step=#{startup_step} WHERE   id=#{order_line_id} and startup_step='step200' and status=1
+  </update>
+
+  <select id="selectProject" parameterType="map" resultType="map">
+    select project_id ,project_no from project_not_hw where id=#{id}
+  </select>
+
+  <select id="getCompanyIdByProjectNotHwId" resultType="java.lang.Integer">
+    select b.company_id from project_not_hw a
+    INNER JOIN project b on a.project_id = b.id
+    where a.id = #{id}
+  </select>
+
+</mapper>

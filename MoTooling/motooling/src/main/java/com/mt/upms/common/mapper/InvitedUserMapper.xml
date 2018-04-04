@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.InvitedUserMapper">
+  <resultMap id="BaseResultMap" type="com.mt.upms.common.model.InvitedUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="host_uid" jdbcType="BIGINT" property="hostUid" />
+    <result column="host_company" jdbcType="INTEGER" property="hostCompany" />
+    <result column="guest_uid" jdbcType="BIGINT" property="guestUid" />
+    <result column="guest_company" jdbcType="INTEGER" property="guestCompany" />
+    <result column="type_code" jdbcType="VARCHAR" property="typeCode" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="invite_status" jdbcType="TINYINT" property="inviteStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, host_uid, host_company, guest_uid, guest_company, type_code, created_at, updated_at,
+    invite_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from invited_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from invited_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.upms.common.model.InvitedUser">
+    insert into invited_user (id, host_uid, host_company,
+    guest_uid, guest_company, type_code,
+    created_at, updated_at, invite_status
+    )
+    values (#{id,jdbcType=INTEGER}, #{hostUid,jdbcType=BIGINT}, #{hostCompany,jdbcType=INTEGER},
+    #{guestUid,jdbcType=BIGINT}, #{guestCompany,jdbcType=INTEGER}, #{typeCode,jdbcType=VARCHAR},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{inviteStatus,jdbcType=TINYINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.upms.common.model.InvitedUser">
+    insert into invited_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hostUid != null">
+        host_uid,
+      </if>
+      <if test="hostCompany != null">
+        host_company,
+      </if>
+      <if test="guestUid != null">
+        guest_uid,
+      </if>
+      <if test="guestCompany != null">
+        guest_company,
+      </if>
+      <if test="typeCode != null">
+        type_code,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="inviteStatus != null">
+        invite_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="hostUid != null">
+        #{hostUid,jdbcType=BIGINT},
+      </if>
+      <if test="hostCompany != null">
+        #{hostCompany,jdbcType=INTEGER},
+      </if>
+      <if test="guestUid != null">
+        #{guestUid,jdbcType=BIGINT},
+      </if>
+      <if test="guestCompany != null">
+        #{guestCompany,jdbcType=INTEGER},
+      </if>
+      <if test="typeCode != null">
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteStatus != null">
+        #{inviteStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.upms.common.model.InvitedUser">
+    update invited_user
+    <set>
+      <if test="hostUid != null">
+        host_uid = #{hostUid,jdbcType=BIGINT},
+      </if>
+      <if test="hostCompany != null">
+        host_company = #{hostCompany,jdbcType=INTEGER},
+      </if>
+      <if test="guestUid != null">
+        guest_uid = #{guestUid,jdbcType=BIGINT},
+      </if>
+      <if test="guestCompany != null">
+        guest_company = #{guestCompany,jdbcType=INTEGER},
+      </if>
+      <if test="typeCode != null">
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteStatus != null">
+        invite_status = #{inviteStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.InvitedUser">
+    update invited_user
+    set host_uid = #{hostUid,jdbcType=BIGINT},
+      host_company = #{hostCompany,jdbcType=INTEGER},
+      guest_uid = #{guestUid,jdbcType=BIGINT},
+      guest_company = #{guestCompany,jdbcType=INTEGER},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      invite_status = #{inviteStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

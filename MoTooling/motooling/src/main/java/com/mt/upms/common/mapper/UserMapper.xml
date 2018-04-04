@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.mt.upms.common.model.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="usercode" jdbcType="VARCHAR" property="usercode" />
+    <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="mobile_validated" jdbcType="BIT" property="mobileValidated" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="email_validated" jdbcType="BIT" property="emailValidated" />
+    <result column="banded_email" jdbcType="TINYINT" property="bandedEmail" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="wechat_validated" jdbcType="BIT" property="wechatValidated" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="weibo" jdbcType="VARCHAR" property="weibo" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="birthdate" jdbcType="DATE" property="birthdate" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country_id" jdbcType="SMALLINT" property="countryId" />
+    <result column="province_id" jdbcType="SMALLINT" property="provinceId" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="referee" jdbcType="BIGINT" property="referee" />
+    <result column="initial" jdbcType="VARCHAR" property="initial" />
+    <result column="attached_company" jdbcType="INTEGER" property="attachedCompany" />
+    <result column="stickness" jdbcType="TINYINT" property="stickness" />
+    <result column="group_user" jdbcType="CHAR" property="groupUser" />
+    <result column="prefer_language" jdbcType="INTEGER" property="preferLanguage" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="api_token" jdbcType="VARCHAR" property="apiToken" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="invite_status" jdbcType="TINYINT" property="inviteStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, usercode, fullname, username, password, mobile, mobile_validated, email,
+    email_validated, banded_email, wechat,open_id, wechat_validated, avatar, qq, weibo, gender,
+    birthdate, address, country, province, city, country_id, province_id, postcode, referee,
+    initial, attached_company, stickness, group_user, prefer_language, ip_address, api_token,
+    last_login_time, status, is_active, created_at, updated_at, invite_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.upms.common.model.User">
+    insert into user (id, uid, usercode,
+    fullname, username, password,
+    mobile, mobile_validated, email,
+    email_validated, banded_email, wechat,
+    wechat_validated, avatar, qq,
+    weibo, gender, birthdate,
+    address, country, province,
+    city, country_id, province_id,
+    postcode, referee, initial,
+    attached_company, stickness, group_user,
+    prefer_language, ip_address, api_token,
+    last_login_time, status, is_active,
+    created_at, updated_at, invite_status
+    )
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{usercode,jdbcType=VARCHAR},
+    #{fullname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    #{mobile,jdbcType=VARCHAR}, #{mobileValidated,jdbcType=BIT}, #{email,jdbcType=VARCHAR},
+    #{emailValidated,jdbcType=BIT}, #{bandedEmail,jdbcType=TINYINT}, #{wechat,jdbcType=VARCHAR},
+    #{wechatValidated,jdbcType=BIT}, #{avatar,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
+    #{weibo,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, #{birthdate,jdbcType=DATE},
+    #{address,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+    #{city,jdbcType=VARCHAR}, #{countryId,jdbcType=SMALLINT}, #{provinceId,jdbcType=SMALLINT},
+    #{postcode,jdbcType=VARCHAR}, #{referee,jdbcType=BIGINT}, #{initial,jdbcType=VARCHAR},
+    #{attachedCompany,jdbcType=INTEGER}, #{stickness,jdbcType=TINYINT}, #{groupUser,jdbcType=CHAR},
+    #{preferLanguage,jdbcType=INTEGER}, #{ipAddress,jdbcType=VARCHAR}, #{apiToken,jdbcType=VARCHAR},
+    #{lastLoginTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{isActive,jdbcType=BIT},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{inviteStatus,jdbcType=TINYINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.upms.common.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="usercode != null">
+        usercode,
+      </if>
+      <if test="fullname != null">
+        fullname,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="mobileValidated != null">
+        mobile_validated,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="emailValidated != null">
+        email_validated,
+      </if>
+      <if test="bandedEmail != null">
+        banded_email,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="wechatValidated != null">
+        wechat_validated,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="weibo != null">
+        weibo,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthdate != null">
+        birthdate,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="countryId != null">
+        country_id,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+      <if test="referee != null">
+        referee,
+      </if>
+      <if test="initial != null">
+        initial,
+      </if>
+      <if test="attachedCompany != null">
+        attached_company,
+      </if>
+      <if test="stickness != null">
+        stickness,
+      </if>
+      <if test="groupUser != null">
+        group_user,
+      </if>
+      <if test="preferLanguage != null">
+        prefer_language,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="apiToken != null">
+        api_token,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="inviteStatus != null">
+        invite_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="usercode != null">
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileValidated != null">
+        #{mobileValidated,jdbcType=BIT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailValidated != null">
+        #{emailValidated,jdbcType=BIT},
+      </if>
+      <if test="bandedEmail != null">
+        #{bandedEmail,jdbcType=TINYINT},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+       #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatValidated != null">
+        #{wechatValidated,jdbcType=BIT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null">
+        #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null">
+        #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="initial != null">
+        #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedCompany != null">
+        #{attachedCompany,jdbcType=INTEGER},
+      </if>
+      <if test="stickness != null">
+        #{stickness,jdbcType=TINYINT},
+      </if>
+      <if test="groupUser != null">
+        #{groupUser,jdbcType=CHAR},
+      </if>
+      <if test="preferLanguage != null">
+        #{preferLanguage,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="apiToken != null">
+        #{apiToken,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteStatus != null">
+        #{inviteStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.upms.common.model.User">
+    update user
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="usercode != null">
+        usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null">
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileValidated != null">
+        mobile_validated = #{mobileValidated,jdbcType=BIT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailValidated != null">
+        email_validated = #{emailValidated,jdbcType=BIT},
+      </if>
+      <if test="bandedEmail != null">
+        banded_email = #{bandedEmail,jdbcType=TINYINT},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id=#{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatValidated != null">
+        wechat_validated = #{wechatValidated,jdbcType=BIT},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weibo != null">
+        weibo = #{weibo,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthdate != null">
+        birthdate = #{birthdate,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        country_id = #{countryId,jdbcType=SMALLINT},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=SMALLINT},
+      </if>
+      <if test="postcode != null">
+        postcode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null">
+        referee = #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="initial != null">
+        initial = #{initial,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedCompany != null">
+        attached_company = #{attachedCompany,jdbcType=INTEGER},
+      </if>
+      <if test="stickness != null">
+        stickness = #{stickness,jdbcType=TINYINT},
+      </if>
+      <if test="groupUser != null">
+        group_user = #{groupUser,jdbcType=CHAR},
+      </if>
+      <if test="preferLanguage != null">
+        prefer_language = #{preferLanguage,jdbcType=INTEGER},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="apiToken != null">
+        api_token = #{apiToken,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteStatus != null">
+        invite_status = #{inviteStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.User">
+    update user
+    set uid = #{uid,jdbcType=BIGINT},
+    usercode = #{usercode,jdbcType=VARCHAR},
+    fullname = #{fullname,jdbcType=VARCHAR},
+    username = #{username,jdbcType=VARCHAR},
+    password = #{password,jdbcType=VARCHAR},
+    mobile = #{mobile,jdbcType=VARCHAR},
+    mobile_validated = #{mobileValidated,jdbcType=BIT},
+    email = #{email,jdbcType=VARCHAR},
+    email_validated = #{emailValidated,jdbcType=BIT},
+    banded_email = #{bandedEmail,jdbcType=TINYINT},
+    wechat = #{wechat,jdbcType=VARCHAR},
+    wechat_validated = #{wechatValidated,jdbcType=BIT},
+    avatar = #{avatar,jdbcType=VARCHAR},
+    qq = #{qq,jdbcType=VARCHAR},
+    weibo = #{weibo,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=TINYINT},
+    birthdate = #{birthdate,jdbcType=DATE},
+    address = #{address,jdbcType=VARCHAR},
+    country = #{country,jdbcType=VARCHAR},
+    province = #{province,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    country_id = #{countryId,jdbcType=SMALLINT},
+    province_id = #{provinceId,jdbcType=SMALLINT},
+    postcode = #{postcode,jdbcType=VARCHAR},
+    referee = #{referee,jdbcType=BIGINT},
+    initial = #{initial,jdbcType=VARCHAR},
+    attached_company = #{attachedCompany,jdbcType=INTEGER},
+    stickness = #{stickness,jdbcType=TINYINT},
+    group_user = #{groupUser,jdbcType=CHAR},
+    prefer_language = #{preferLanguage,jdbcType=INTEGER},
+    ip_address = #{ipAddress,jdbcType=VARCHAR},
+    api_token = #{apiToken,jdbcType=VARCHAR},
+    last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    invite_status = #{inviteStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- ********自定义********* -->
+    <select id="selectByUid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Thu Sep 07 16:18:27 CST 2017.
+    -->
+    select <include refid="Base_Column_List" />
+    from user
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <select id="selectByMobile" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Thu Sep 07 16:18:27 CST 2017.
+    -->
+    select <include refid="Base_Column_List" />
+    from user
+    where mobile = #{mobile,jdbcType=VARCHAR}
+  </select>
+  <!-- 登录 -->
+  <select id="login" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where email = #{email,jdbcType=VARCHAR} and  password = #{password,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据邮箱|帐号查询 -->
+  <select id="findUserByEmail" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="register" parameterType="com.mt.upms.common.model.User">
+    <!--
+      WARNING - @mbg.generated
+      This element is automatically generated by MyBatis Generator, do not modify.
+      This element was generated on Thu Sep 07 16:18:27 CST 2017.
+    -->
+    INSERT into user(uid, fullname, username, password, mobile, email)
+    values(#{uid,jdbcType=BIGINT}, #{fullname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},  #{email,jdbcType=VARCHAR} )
+
+  </insert>
+
+  <select id="getMaxUid" resultType="java.lang.Long" >
+    select MAX(uid) from user
+  </select>
+  <select id="selectByWechat" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where wechat = #{wechat,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.upms.common.model.User" >
+    update user
+    <set >
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByDepId" resultMap="BaseResultMap">
+    select
+    a.*
+    from user a, user_company b
+    where a.uid = b.uid
+    and b.company_id = #{companyId,jdbcType=INTEGER}
+    and (
+
+    (#{depId,jdbcType=INTEGER} is null or #{depId,jdbcType=INTEGER} = 0) and (b.dep_id is null or b.dep_id = 0)
+     or
+     b.dep_id = #{depId,jdbcType=INTEGER}
+     )
+  </select>
+
+  <select id="getDeptMemeberByDepId" resultType="map">
+    select
+    a.avatar as icon, b.dep_id, b.uid as member_id, b.work_name, b.work_email, b.work_phone, b.work_state
+    from user a, user_company b
+    where a.uid = b.uid
+    and b.company_id = #{companyId,jdbcType=INTEGER}
+    and (
+
+    (#{depId,jdbcType=INTEGER} is null or #{depId,jdbcType=INTEGER} = 0) and (b.dep_id is null or b.dep_id = 0)
+    or
+    b.dep_id = #{depId,jdbcType=INTEGER}
+    )
+  </select>
+
+  <select id="getNewUid" resultType="java.lang.Long">
+   SELECT IFNULL(max(uid),0)+1 FROM user
+  </select>
+
+  <select id="searchUser"  resultType="map">
+  select uid,username,avatar
+  from  user
+  WHERE locate(#{companyName},username)>0 limit 0,10
+</select>
+
+  <select id="selectSalesmanListByCompanyId" resultType="map">
+   select DISTINCT uid, work_name
+    from user_company
+    where company_id = #{company_id}  and dep_id in (select dep_id from department WHERE company_id = #{company_id} and dep_code in ('Production_Dept','Office_Manager'))
+    ORDER by work_name
+  </select>
+
+  <select id="getDepIdAndNameByUid" resultType="map">
+    SELECT b.dep_id, b.name as dep_name, a.position_code, a.position_name, a.work_name, a.work_email, a.work_state, a.work_phone
+      from user_company a
+      INNER JOIN department b on a.dep_id = b.dep_id
+      where a.company_id = #{companyId}
+      and a.uid = #{uid}
+      order by b.name
+  </select>
+
+  <update id="updateAvatar" parameterType="map" >
+    UPDATE user set avatar = #{avatar_url} where uid = #{uid}
+  </update>
+
+</mapper>

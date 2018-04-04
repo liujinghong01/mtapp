@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.RolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.mt.upms.common.model.RolePermission">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="perm_id" jdbcType="INTEGER" property="permId" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.upms.common.model.RolePermission">
+    insert into role_permission (id, role_id, perm_id, 
+      is_active, created_at, updated_at
+      )
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=INTEGER}, #{permId,jdbcType=INTEGER}, 
+      #{isActive,jdbcType=BIT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.RolePermission">
+    update role_permission
+    set role_id = #{roleId,jdbcType=INTEGER},
+      perm_id = #{permId,jdbcType=INTEGER},
+      is_active = #{isActive,jdbcType=BIT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, role_id, perm_id, is_active, created_at, updated_at
+    from role_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, role_id, perm_id, is_active, created_at, updated_at
+    from role_permission
+  </select>
+</mapper>

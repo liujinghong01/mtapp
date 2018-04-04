@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.bm.common.dao.CascadeMatMapper">
+    <resultMap id="BaseResultMap" type="com.mt.bm.common.model.CascadeMat">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="prod_type" jdbcType="VARCHAR" property="prodType" />
+        <result column="mat_type" jdbcType="VARCHAR" property="matType" />
+        <result column="mat_cascade_name" jdbcType="VARCHAR" property="matCascadeName" />
+        <result column="mat_cascade_no" jdbcType="VARCHAR" property="matCascadeNo" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="handler_id" jdbcType="VARCHAR" property="handlerId" />
+        <result column="handled_time" jdbcType="TIMESTAMP" property="handledTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, prod_type, mat_type,mat_cascade_name, mat_cascade_no, remark,handler_id, handled_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bm_cascade_mat
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByMatType" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bm_cascade_mat
+        where mat_type = #{mat_type,jdbcType=VARCHAR}
+        and  company_id = #{company_id}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from bm_cascade_mat
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.mt.bm.common.model.CascadeMat">
+        insert into bm_cascade_mat (prod_type, mat_type,
+        mat_cascade_name, mat_cascade_no, remark,
+        handler_id, handled_time)
+        values (#{prodType,jdbcType=VARCHAR}, #{matType,jdbcType=VARCHAR},
+        #{matCascadeName,jdbcType=VARCHAR}, #{matCascadeNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+        #{handlerId,jdbcType=VARCHAR}, #{handledTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.mt.bm.common.model.CascadeMat">
+        update bm_cascade_mat
+        set prod_type = #{prodType,jdbcType=INTEGER},
+        mat_type = #{matType,jdbcType=VARCHAR},
+        mat_cascade_name = #{matCascadeName,jdbcType=VARCHAR},
+        mat_cascade_no = #{matCascadeNo,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        handler_id = #{handlerId,jdbcType=VARCHAR},
+        handled_time = #{handledTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectCascadeMatTypeList"  resultType="java.lang.String"  parameterType="Map">
+        select
+        DISTINCT mat_type
+        from bm_cascade_mat
+        where company_id = #{company_id,jdbcType=BIGINT}
+    </select>
+</mapper>

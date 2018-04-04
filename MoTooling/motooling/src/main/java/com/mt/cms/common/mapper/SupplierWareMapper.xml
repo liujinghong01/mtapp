@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.SupplierWareMapper">
+  <resultMap id="BaseResultMap" type="com.mt.cms.common.model.SupplierWare">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="sup_id" jdbcType="BIGINT" property="supId" />
+    <result column="sup_name" jdbcType="VARCHAR" property="supName" />
+    <result column="mat_type_id" jdbcType="BIGINT" property="matTypeId" />
+    <result column="mat_type" jdbcType="VARCHAR" property="matType" />
+    <result column="mat_type_name" jdbcType="VARCHAR" property="matTypeName" />
+    <result column="length" jdbcType="VARCHAR" property="length" />
+    <result column="width" jdbcType="VARCHAR" property="width" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="diameter" jdbcType="VARCHAR" property="diameter" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="produce" jdbcType="VARCHAR" property="produce" />
+    <result column="purvey_term" jdbcType="VARCHAR" property="purveyTerm" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_id, sup_id, sup_name, mat_type_id, mat_type, mat_type_name, length, width,
+    height, diameter, unit, price, produce, purvey_term, is_active, handler_id, created_at,
+    updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from supplier_ware
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from supplier_ware
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.cms.common.model.SupplierWare">
+    insert into supplier_ware (id, company_id, sup_id,
+    sup_name, mat_type_id, mat_type,
+    mat_type_name, length, width,
+    height, diameter, unit,
+    price, produce, purvey_term,
+    is_active, handler_id, created_at,
+    updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{supId,jdbcType=BIGINT},
+    #{supName,jdbcType=VARCHAR}, #{matTypeId,jdbcType=BIGINT}, #{matType,jdbcType=VARCHAR},
+    #{matTypeName,jdbcType=VARCHAR}, #{length,jdbcType=VARCHAR}, #{width,jdbcType=VARCHAR},
+    #{height,jdbcType=VARCHAR}, #{diameter,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR},
+    #{price,jdbcType=DECIMAL}, #{produce,jdbcType=VARCHAR}, #{purveyTerm,jdbcType=VARCHAR},
+    #{isActive,jdbcType=BIT}, #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.cms.common.model.SupplierWare">
+    insert into supplier_ware
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="supId != null">
+        sup_id,
+      </if>
+      <if test="supName != null">
+        sup_name,
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id,
+      </if>
+      <if test="matType != null">
+        mat_type,
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="diameter != null">
+        diameter,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="produce != null">
+        produce,
+      </if>
+      <if test="purveyTerm != null">
+        purvey_term,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="supId != null">
+        #{supId,jdbcType=BIGINT},
+      </if>
+      <if test="supName != null">
+        #{supName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matType != null">
+        #{matType,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeName != null">
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="diameter != null">
+        #{diameter,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produce != null">
+        #{produce,jdbcType=VARCHAR},
+      </if>
+      <if test="purveyTerm != null">
+        #{purveyTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.SupplierWare">
+    update supplier_ware
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="supId != null">
+        sup_id = #{supId,jdbcType=BIGINT},
+      </if>
+      <if test="supName != null">
+        sup_name = #{supName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matType != null">
+        mat_type = #{matType,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="diameter != null">
+        diameter = #{diameter,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="produce != null">
+        produce = #{produce,jdbcType=VARCHAR},
+      </if>
+      <if test="purveyTerm != null">
+        purvey_term = #{purveyTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.SupplierWare">
+    update supplier_ware
+    set company_id = #{companyId,jdbcType=INTEGER},
+    sup_id = #{supId,jdbcType=BIGINT},
+    sup_name = #{supName,jdbcType=VARCHAR},
+    mat_type_id = #{matTypeId,jdbcType=BIGINT},
+    mat_type = #{matType,jdbcType=VARCHAR},
+    mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+    length = #{length,jdbcType=VARCHAR},
+    width = #{width,jdbcType=VARCHAR},
+    height = #{height,jdbcType=VARCHAR},
+    diameter = #{diameter,jdbcType=VARCHAR},
+    unit = #{unit,jdbcType=VARCHAR},
+    price = #{price,jdbcType=DECIMAL},
+    produce = #{produce,jdbcType=VARCHAR},
+    purvey_term = #{purveyTerm,jdbcType=VARCHAR},
+    is_active = #{isActive,jdbcType=BIT},
+    handler_id = #{handlerId,jdbcType=BIGINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 以下为自定义 -->
+  <select id="selectBySupCompanyId" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from supplier_ware
+    where status = 1
+    and company_id = #{company_id}
+    and sup_id = #{sup_company_id}
+  </select>
+
+</mapper>

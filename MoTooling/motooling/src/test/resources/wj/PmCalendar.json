@@ -1,0 +1,48 @@
+[
+  {
+    "client_type": "",
+    "company_id": "1",
+    "curr_page": 1,
+    "page_size": 5,
+    "uid": "97",
+    "query": {
+      "calendar_name": "工作日历1"
+    },
+    "token": "b98e32c2-23a3-415e-9c92-6b778a0410d4"
+  },
+
+  {
+    "client_type": "",
+    "uid": "137",
+    "query": {
+      "calendar_id": "1",
+      "end_date": "2017-12-19",
+      "start_date": "2017-12-17"
+    },
+    "token": "b98e32c2-23a3-415e-9c92-6b778a0410d4"
+  },
+
+  {
+    "client_type": "",
+    "company_id": "1",
+    "uid": "97",
+    "token": "b98e32c2-23a3-415e-9c92-6b778a0410d4",
+    "calendar_info": {
+      "calendar_id": "1",
+      "calendar_name": "日历",
+      "date_list": [
+        {
+          "shift_id": "5",
+          "the_date": ""
+        }
+      ]
+    }
+  },
+
+  {
+    "token": "b98e32c2-23a3-415e-9c92-6b778a0410d4",
+    "calendar_id": "1",
+    "client_type": "",
+    "uid": "1"
+  }
+]

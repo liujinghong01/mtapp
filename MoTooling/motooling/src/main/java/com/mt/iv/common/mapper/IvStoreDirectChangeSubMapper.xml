@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.iv.common.dao.IvStoreDirectChangeSubMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.iv.common.model.IvStoreDirectChangeSub" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="change_id" property="changeId" jdbcType="BIGINT" />
+    <result column="deal_flag" property="dealFlag" jdbcType="TINYINT" />
+    <result column="mat_id" property="matId" jdbcType="BIGINT" />
+    <result column="mat_no" property="matNo" jdbcType="VARCHAR" />
+    <result column="mat_desc" property="matDesc" jdbcType="VARCHAR" />
+    <result column="mat_type_id" property="matTypeId" jdbcType="BIGINT" />
+    <result column="mat_type_name" property="matTypeName" jdbcType="VARCHAR" />
+    <result column="mat_model" property="matModel" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="in_store_room_id" property="inStoreRoomId" jdbcType="BIGINT" />
+    <result column="in_store_room_name" property="inStoreRoomName" jdbcType="VARCHAR" />
+    <result column="out_store_room_id" property="outStoreRoomId" jdbcType="BIGINT" />
+    <result column="out_store_room_name" property="outStoreRoomName" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, change_id, deal_flag, mat_id, mat_no, mat_desc, mat_type_id, mat_type_name, mat_model, 
+    unit, quantity, weight, in_store_room_id, in_store_room_name, out_store_room_id, 
+    out_store_room_name, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from iv_store_direct_change_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from iv_store_direct_change_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.iv.common.model.IvStoreDirectChangeSub" >
+    insert into iv_store_direct_change_sub (id, change_id, deal_flag, 
+      mat_id, mat_no, mat_desc, 
+      mat_type_id, mat_type_name, mat_model, 
+      unit, quantity, weight, 
+      in_store_room_id, in_store_room_name, out_store_room_id, 
+      out_store_room_name, created_at, updated_at, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{changeId,jdbcType=BIGINT}, #{dealFlag,jdbcType=TINYINT}, 
+      #{matId,jdbcType=BIGINT}, #{matNo,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR}, 
+      #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{quantity,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, 
+      #{inStoreRoomId,jdbcType=BIGINT}, #{inStoreRoomName,jdbcType=VARCHAR}, #{outStoreRoomId,jdbcType=BIGINT}, 
+      #{outStoreRoomName,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.iv.common.model.IvStoreDirectChangeSub" >
+    insert into iv_store_direct_change_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag,
+      </if>
+      <if test="matId != null" >
+        mat_id,
+      </if>
+      <if test="matNo != null" >
+        mat_no,
+      </if>
+      <if test="matDesc != null" >
+        mat_desc,
+      </if>
+      <if test="matTypeId != null" >
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null" >
+        mat_type_name,
+      </if>
+      <if test="matModel != null" >
+        mat_model,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="inStoreRoomId != null" >
+        in_store_room_id,
+      </if>
+      <if test="inStoreRoomName != null" >
+        in_store_room_name,
+      </if>
+      <if test="outStoreRoomId != null" >
+        out_store_room_id,
+      </if>
+      <if test="outStoreRoomName != null" >
+        out_store_room_name,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="changeId != null" >
+        #{changeId,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null" >
+        #{matId,jdbcType=BIGINT},
+      </if>
+      <if test="matNo != null" >
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null" >
+        #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null" >
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null" >
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null" >
+        #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="inStoreRoomId != null" >
+        #{inStoreRoomId,jdbcType=BIGINT},
+      </if>
+      <if test="inStoreRoomName != null" >
+        #{inStoreRoomName,jdbcType=VARCHAR},
+      </if>
+      <if test="outStoreRoomId != null" >
+        #{outStoreRoomId,jdbcType=BIGINT},
+      </if>
+      <if test="outStoreRoomName != null" >
+        #{outStoreRoomName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.iv.common.model.IvStoreDirectChangeSub" >
+    update iv_store_direct_change_sub
+    <set >
+      <if test="changeId != null" >
+        change_id = #{changeId,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag = #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null" >
+        mat_id = #{matId,jdbcType=BIGINT},
+      </if>
+      <if test="matNo != null" >
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null" >
+        mat_desc = #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null" >
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null" >
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null" >
+        mat_model = #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="inStoreRoomId != null" >
+        in_store_room_id = #{inStoreRoomId,jdbcType=BIGINT},
+      </if>
+      <if test="inStoreRoomName != null" >
+        in_store_room_name = #{inStoreRoomName,jdbcType=VARCHAR},
+      </if>
+      <if test="outStoreRoomId != null" >
+        out_store_room_id = #{outStoreRoomId,jdbcType=BIGINT},
+      </if>
+      <if test="outStoreRoomName != null" >
+        out_store_room_name = #{outStoreRoomName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.iv.common.model.IvStoreDirectChangeSub" >
+    update iv_store_direct_change_sub
+    set change_id = #{changeId,jdbcType=BIGINT},
+      deal_flag = #{dealFlag,jdbcType=TINYINT},
+      mat_id = #{matId,jdbcType=BIGINT},
+      mat_no = #{matNo,jdbcType=VARCHAR},
+      mat_desc = #{matDesc,jdbcType=VARCHAR},
+      mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      mat_model = #{matModel,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DECIMAL},
+      in_store_room_id = #{inStoreRoomId,jdbcType=BIGINT},
+      in_store_room_name = #{inStoreRoomName,jdbcType=VARCHAR},
+      out_store_room_id = #{outStoreRoomId,jdbcType=BIGINT},
+      out_store_room_name = #{outStoreRoomName,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- wendy添加-->
+
+  <select id="selectStoreDirectChangeSubDetail" resultType="map">
+    SELECT id AS change_id
+    FROM   iv_store_direct_change
+    WHERE  id = #{id}
+       AND status = 1
+  </select>
+
+  <insert id="addStoreDirectChangeSub" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  <selectKey resultType="int" order="AFTER" keyProperty="id">
+    SELECT LAST_INSERT_ID() as id
+  </selectKey>
+    insert into iv_store_direct_change_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="change_id != null and change_id!=''" >
+        change_id,
+      </if>
+      <if test="deal_flag != null and deal_flag!=''" >
+        deal_flag,
+      </if>
+      <if test="mat_id != null and mat_id!=''" >
+        mat_id,
+      </if>
+      <if test="mat_no != null and mat_no!=''" >
+        mat_no,
+      </if>
+      <if test="mat_desc != null and mat_desc!=''" >
+        mat_desc,
+      </if>
+      <if test="mat_type_id != null and mat_type_id!=''" >
+        mat_type_id,
+      </if>
+      <if test="mat_type_name != null and mat_type_name!=''" >
+        mat_type_name,
+      </if>
+      <if test="mat_model != null and mat_model!=''" >
+        mat_model,
+      </if>
+      <if test="unit != null and unit!=''" >
+        unit,
+      </if>
+      <if test="quantity != null and quantity!=''" >
+        quantity,
+      </if>
+      <if test="weight != null and weight!=''" >
+        weight,
+      </if>
+      <if test="price != null and price!=''" >
+        price,
+      </if>
+      <if test="in_store_room_id != null and in_store_room_id!=''" >
+        in_store_room_id,
+      </if>
+      <if test="in_store_room_name != null and in_store_room_name!=''" >
+        in_store_room_name,
+      </if>
+      <if test="out_store_room_id != null and out_store_room_id!=''" >
+        out_store_room_id,
+      </if>
+      <if test="out_store_room_name != null and out_store_room_name!=''" >
+        out_store_room_name,
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        created_at,
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        updated_at,
+      </if>
+      <if test="status != null and status!=''" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="change_id != null and change_id!=''" >
+        #{change_id,jdbcType=BIGINT},
+      </if>
+      <if test="deal_flag != null and deal_flag!=''" >
+        #{deal_flag,jdbcType=TINYINT},
+      </if>
+      <if test="mat_id != null and mat_id!=''" >
+        #{mat_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_no != null and mat_no!=''" >
+        #{mat_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_desc != null and mat_desc!=''" >
+        #{mat_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_type_id != null and mat_type_id!=''" >
+        #{mat_type_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_type_name != null and mat_type_name!=''" >
+        #{mat_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_model != null and mat_model!=''" >
+        #{mat_model,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null and unit!=''" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null and quantity!=''" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null and weight!=''" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null and price!=''" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="in_store_room_id != null and in_store_room_id!=''" >
+        #{in_store_room_id,jdbcType=BIGINT},
+      </if>
+      <if test="in_store_room_name != null and in_store_room_name!=''" >
+        #{in_store_room_name,jdbcType=VARCHAR},
+      </if>
+      <if test="out_store_room_id != null and out_store_room_id!=''" >
+        #{out_store_room_id,jdbcType=BIGINT},
+      </if>
+      <if test="out_store_room_name != null and out_store_room_name!=''" >
+        #{out_store_room_name,jdbcType=VARCHAR},
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status!=''" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.bm.common.dao.BomNodeLogMapper">
+  <resultMap id="BaseResultMap" type="com.mt.bm.common.model.BomNodeLog">
+    <result column="bom_log_id" jdbcType="BIGINT" property="bomLogId" />
+    <result column="bom_id" jdbcType="BIGINT" property="bomId" />
+    <result column="node_id" jdbcType="BIGINT" property="nodeId" />
+    <result column="is_unused" jdbcType="CHAR" property="isUnused" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="parent_path" jdbcType="VARCHAR" property="parentPath" />
+    <result column="node_pos" jdbcType="INTEGER" property="nodePos" />
+    <result column="depth" jdbcType="INTEGER" property="depth" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="mat_no" jdbcType="VARCHAR" property="matNo" />
+    <result column="unit_no" jdbcType="VARCHAR" property="unitNo" />
+    <result column="total_qty" jdbcType="DECIMAL" property="totalQty" />
+    <result column="IsPurchase" jdbcType="CHAR" property="ispurchase" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sort_order" jdbcType="INTEGER" property="sortOrder" />
+  </resultMap>
+  <insert id="insert" parameterType="com.mt.bm.common.model.BomNodeLog">
+    insert into bm_bom_node_log (bom_log_id, bom_id, node_id, 
+      is_unused, path, parent_path, 
+      node_pos, depth, mat_id, 
+      mat_no, unit_no, total_qty, 
+      IsPurchase, remark, sort_order
+      )
+    values (#{bomLogId,jdbcType=BIGINT}, #{bomId,jdbcType=BIGINT}, #{nodeId,jdbcType=BIGINT}, 
+      #{isUnused,jdbcType=CHAR}, #{path,jdbcType=VARCHAR}, #{parentPath,jdbcType=VARCHAR}, 
+      #{nodePos,jdbcType=INTEGER}, #{depth,jdbcType=INTEGER}, #{matId,jdbcType=VARCHAR},
+      #{matNo,jdbcType=VARCHAR}, #{unitNo,jdbcType=VARCHAR}, #{totalQty,jdbcType=DECIMAL}, 
+      #{ispurchase,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.bm.common.model.BomNodeLog">
+    insert into bm_bom_node_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bomLogId != null">
+        bom_log_id,
+      </if>
+      <if test="bomId != null">
+        bom_id,
+      </if>
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="isUnused != null">
+        is_unused,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="parentPath != null">
+        parent_path,
+      </if>
+      <if test="nodePos != null">
+        node_pos,
+      </if>
+      <if test="depth != null">
+        depth,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="matNo != null">
+        mat_no,
+      </if>
+      <if test="unitNo != null">
+        unit_no,
+      </if>
+      <if test="totalQty != null">
+        total_qty,
+      </if>
+      <if test="ispurchase != null">
+        IsPurchase,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bomLogId != null">
+        #{bomLogId,jdbcType=BIGINT},
+      </if>
+      <if test="bomId != null">
+        #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="isUnused != null">
+        #{isUnused,jdbcType=CHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPath != null">
+        #{parentPath,jdbcType=VARCHAR},
+      </if>
+      <if test="nodePos != null">
+        #{nodePos,jdbcType=INTEGER},
+      </if>
+      <if test="depth != null">
+        #{depth,jdbcType=INTEGER},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matNo != null">
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNo != null">
+        #{unitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalQty != null">
+        #{totalQty,jdbcType=DECIMAL},
+      </if>
+      <if test="ispurchase != null">
+        #{ispurchase,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

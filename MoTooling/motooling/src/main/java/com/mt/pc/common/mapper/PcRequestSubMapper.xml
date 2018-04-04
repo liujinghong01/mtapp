@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pc.common.dao.PcRequestSubMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcRequestSub" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="request_id" property="requestId" jdbcType="BIGINT" />
+    <result column="deal_flag" property="dealFlag" jdbcType="TINYINT" />
+    <result column="mat_id" property="matId" jdbcType="VARCHAR" />
+    <result column="mat_no" property="matNo" jdbcType="VARCHAR" />
+    <result column="mat_desc" property="matDesc" jdbcType="VARCHAR" />
+    <result column="mat_type_id" property="matTypeId" jdbcType="BIGINT" />
+    <result column="mat_type_name" property="matTypeName" jdbcType="VARCHAR" />
+    <result column="mat_model" property="matModel" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="DECIMAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="up" property="up" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, request_id, deal_flag, mat_id, mat_no, mat_desc, mat_type_id, mat_type_name, 
+    mat_model, quantity, unit, weight, up, price, delivery_date, created_at, updated_at, 
+    status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pc_request_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pc_request_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pc.common.model.PcRequestSub" >
+    insert into pc_request_sub (id, request_id, deal_flag, 
+      mat_id, mat_no, mat_desc, 
+      mat_type_id, mat_type_name, mat_model, 
+      quantity, unit, weight, 
+      up, price, delivery_date, 
+      created_at, updated_at, status, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{requestId,jdbcType=BIGINT}, #{dealFlag,jdbcType=TINYINT}, 
+      #{matId,jdbcType=VARCHAR}, #{matNo,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR}, 
+      #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, 
+      #{up,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, #{deliveryDate,jdbcType=TIMESTAMP}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pc.common.model.PcRequestSub" >
+    insert into pc_request_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestId != null" >
+        request_id,
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag,
+      </if>
+      <if test="matId != null" >
+        mat_id,
+      </if>
+      <if test="matNo != null" >
+        mat_no,
+      </if>
+      <if test="matDesc != null" >
+        mat_desc,
+      </if>
+      <if test="matTypeId != null" >
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null" >
+        mat_type_name,
+      </if>
+      <if test="matModel != null" >
+        mat_model,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="up != null" >
+        up,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="requestId != null" >
+        #{requestId,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null" >
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matNo != null" >
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null" >
+        #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null" >
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null" >
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null" >
+        #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="up != null" >
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcRequestSub" >
+    update pc_request_sub
+    <set >
+      <if test="requestId != null" >
+        request_id = #{requestId,jdbcType=BIGINT},
+      </if>
+      <if test="dealFlag != null" >
+        deal_flag = #{dealFlag,jdbcType=TINYINT},
+      </if>
+      <if test="matId != null" >
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="matNo != null" >
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null" >
+        mat_desc = #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null" >
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null" >
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null" >
+        mat_model = #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="up != null" >
+        up = #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcRequestSub" >
+    update pc_request_sub
+    set request_id = #{requestId,jdbcType=BIGINT},
+      deal_flag = #{dealFlag,jdbcType=TINYINT},
+      mat_id = #{matId,jdbcType=VARCHAR},
+      mat_no = #{matNo,jdbcType=VARCHAR},
+      mat_desc = #{matDesc,jdbcType=VARCHAR},
+      mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      mat_model = #{matModel,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DECIMAL},
+      up = #{up,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--Alnwick 添加-->
+
+
+  <insert id="addRequestSsubModify"  parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into pc_request_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="request_id != null and request_id != ''" >
+        request_id,
+      </if>
+      <if test="mat_id != null and mat_id != ''" >
+        mat_id,
+      </if>
+      <if test="mat_no != null and mat_no != ''" >
+        mat_no,
+      </if>
+      <if test="mat_desc != null and mat_desc != ''" >
+        mat_desc,
+      </if>
+      <if test="mat_type_id != null and mat_type_id != ''" >
+        mat_type_id,
+      </if>
+      <if test="mat_type_name != null and mat_type_name != ''" >
+        mat_type_name,
+      </if>
+      <if test="mat_model != null and mat_model != ''" >
+        mat_model,
+      </if>
+      <if test="quantity != null and quantity != ''" >
+        quantity,
+      </if>
+      <if test="unit != null and unit !=  ''" >
+        unit,
+      </if>
+      <if test="weight != null and weight != ''" >
+        weight,
+      </if>
+      <if test="up != null and up != ''" >
+        up,
+      </if>
+      <if test="price != null and price != ''" >
+        price,
+      </if>
+      <if test="delivery_date != null and delivery_date != ''" >
+        delivery_date,
+      </if>
+      <if test="created_at != null and created_at != ''" >
+        created_at,
+      </if>
+      <if test="remark != null and remark != ''" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="request_id != null and request_id != ''" >
+        #{request_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_id != null and mat_id != ''" >
+        #{mat_id,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_no != null and mat_no != ''" >
+        #{mat_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_desc != null and mat_desc != ''" >
+        #{mat_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_type_id != null and mat_type_id != ''" >
+        #{mat_type_id,jdbcType=BIGINT},
+      </if>
+      <if test="mat_type_name != null and mat_type_name != ''" >
+        #{mat_type_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mat_model != null and mat_model != ''" >
+        #{mat_model,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null and quantity != ''" >
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null and unit !=  ''" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null and weight != ''" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="up != null and up != ''" >
+        #{up,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null and price != ''" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="delivery_date != null and delivery_date != ''" >
+        #{delivery_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created_at != null and created_at != ''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null and remark != ''" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+
+  </insert>
+
+
+  <update id="updeteRequestSubModify" parameterType="map">
+    update pc_request_sub
+          <set >
+                <if test="mat_id != null and mat_id != ''" >
+                  mat_id=  #{mat_id,jdbcType=VARCHAR},
+                </if>
+                <if test="mat_no != null and mat_no != ''" >
+                  mat_no= #{mat_no,jdbcType=VARCHAR},
+                </if>
+                <if test="mat_desc != null and mat_desc != ''" >
+                  mat_desc= #{mat_desc,jdbcType=VARCHAR},
+                </if>
+                <if test="mat_type_id != null and mat_type_id != ''" >
+                  mat_type_id = #{mat_type_id,jdbcType=BIGINT},
+                </if>
+                <if test="mat_type_name != null and mat_type_name != ''" >
+                  mat_type_name = #{mat_type_name,jdbcType=VARCHAR},
+                </if>
+                <if test="mat_model != null and mat_model != ''" >
+                  mat_model =  #{mat_model,jdbcType=VARCHAR},
+                </if>
+                <if test="quantity != null and quantity != ''" >
+                  quantity=  #{quantity,jdbcType=DECIMAL},
+                </if>
+                <if test="unit != null and unit !=  ''" >
+                  unit = #{unit,jdbcType=VARCHAR},
+                </if>
+                <if test="weight != null and weight != ''" >
+                  weight = #{weight,jdbcType=DECIMAL},
+                </if>
+                <if test="up != null and up != ''" >
+                  up= #{up,jdbcType=DECIMAL},
+                </if>
+                <if test="price != null and price != ''" >
+                  price = #{price,jdbcType=DECIMAL},
+                </if>
+                <if test="delivery_date != null and delivery_date != ''" >
+                  delivery_date=  #{delivery_date,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updated_at != null and updated_at != ''" >
+                  updated_at =  #{updated_at,jdbcType=TIMESTAMP},
+                </if>
+                <if test="remark != null and remark != ''" >
+                  remark=  #{remark,jdbcType=VARCHAR},
+                </if>
+          </set>
+          WHERE
+                id = #{line_id}
+  </update>
+
+
+  <update id="deleteRequest" parameterType="java.lang.Long">
+       UPDATE pc_request_sub
+          SET  status = 0
+          WHERE  request_id = #{requestId}
+  </update>
+
+
+  <update id="deleteRequestLine" parameterType="list">
+        UPDATE pc_request_sub
+         SET  status = 0
+          WHERE id IN
+                <foreach collection="list" item="item" open="(" separator="," close=")">
+                     #{item}
+                </foreach>
+  </update>
+
+  <select id="queryRequestSub" resultType="map" parameterType="java.lang.Long">
+    SELECT
+          DATE_FORMAT(delivery_date,'%Y-%m-%d') delivery_date,id as line_id,mat_desc,up,
+          mat_id,mat_model,mat_no,mat_type_id,mat_type_name,price,quantity,remark,unit,weight
+      FROM  pc_request_sub
+      WHERE request_id = #{requestId} and status = 1
+  </select>
+
+  <select id="selectCurrStockQty"  resultType="map"  parameterType="map">
+    SELECT
+          curr_stock_qty
+          FROM  iv_mat_require_calc
+          WHERE mat_id=#{mat_id}
+  </select>
+</mapper>

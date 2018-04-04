@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.qm.common.dao.QmProcQcMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.qm.common.model.QmProcQc" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="pop_qc_no" property="popQcNo" jdbcType="VARCHAR" />
+    <result column="qc_date" property="qcDate" jdbcType="TIMESTAMP" />
+    <result column="approve_step" property="approveStep" jdbcType="VARCHAR" />
+    <result column="approve_sugg" property="approveSugg" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+    <result column="handler_id" property="handlerId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, company_name, pop_qc_no, qc_date, approve_step, approve_sugg, creator_id,
+    creator_name, handler_id, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from qm_proc_qc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qm_proc_qc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.qm.common.model.QmProcQc" >
+    insert into qm_proc_qc (id, company_id, company_name,
+    pop_qc_no, qc_date, approve_step,
+    approve_sugg, creator_id, creator_name,
+    handler_id, created_at, updated_at,
+    status)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR},
+    #{popQcNo,jdbcType=VARCHAR}, #{qcDate,jdbcType=TIMESTAMP}, #{approveStep,jdbcType=VARCHAR},
+    #{approveSugg,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR},
+    #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+    #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.qm.common.model.QmProcQc" >
+    insert into qm_proc_qc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="popQcNo != null" >
+        pop_qc_no,
+      </if>
+      <if test="qcDate != null" >
+        qc_date,
+      </if>
+      <if test="approveStep != null" >
+        approve_step,
+      </if>
+      <if test="approveSugg != null" >
+        approve_sugg,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="creatorName != null" >
+        creator_name,
+      </if>
+      <if test="handlerId != null" >
+        handler_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="popQcNo != null" >
+        #{popQcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="qcDate != null" >
+        #{qcDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveStep != null" >
+        #{approveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approveSugg != null" >
+        #{approveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.qm.common.model.QmProcQc" >
+    update qm_proc_qc
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="popQcNo != null" >
+        pop_qc_no = #{popQcNo,jdbcType=VARCHAR},
+      </if>
+      <if test="qcDate != null" >
+        qc_date = #{qcDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveStep != null" >
+        approve_step = #{approveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approveSugg != null" >
+        approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null" >
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.qm.common.model.QmProcQc" >
+    update qm_proc_qc
+    set company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      pop_qc_no = #{popQcNo,jdbcType=VARCHAR},
+      qc_date = #{qcDate,jdbcType=TIMESTAMP},
+      approve_step = #{approveStep,jdbcType=VARCHAR},
+      approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 查询质工序质检单列表总条数 -->
+  <select id="selectTotalCount" parameterType="Map" resultType="java.lang.Integer">
+    select count(qpq.id)
+    from qm_proc_qc as qpq INNER JOIN qm_proc_qc_sub as qpqs INNER JOIN pm_prod_order_sub as ppos
+    on qpq.id = qpqs.pop_qc_id and qpqs.pop_id = ppos.id
+    where qpq.status = 1 and qpq.company_id = #{company_id}
+    <if test="approveStepArray != null and approveStepArray.size > 0">
+      and approve_step in
+      <foreach collection="approveStepArray" item="approve_step"
+               index = "index" open="(" close=")" separator=",">
+        #{approve_step}
+      </foreach>
+    </if>
+  </select>
+
+  <!-- 查询工序质检单列表 -->
+  <select id="selectProcQcList" resultType="Map" parameterType="Map">
+    select qpq.id as pop_qc_id, qpq.creator_name, ppos.pg_name, qpq.pop_qc_no, ppos.proc_name, DATE_FORMAT(qc_date,'%Y-%m-%d')qc_date
+    from qm_proc_qc as qpq INNER JOIN qm_proc_qc_sub as qpqs INNER JOIN pm_prod_order_sub as ppos
+    on qpq.id = qpqs.pop_qc_id and qpqs.pop_id = ppos.id
+    where qpq.status = 1 and company_id = #{company_id}
+    <if test="approveStepArray != null and approveStepArray.size > 0">
+      and approve_step in
+      <foreach collection="approveStepArray" item="approve_step"
+               index="index" open="(" separator="," close=")">
+      #{approve_step}
+      </foreach>
+    </if>
+    limit #{page},#{page_size}
+  </select>
+  
+  <!-- 查询工序质检单详情 -->
+  <select id="selectProcQcDetail" resultType="Map" parameterType="java.lang.Integer">
+    select id as pop_qc_id, creator_name, DATE_FORMAT(qc_date,'%Y-%m-%d')qc_date, pop_qc_no
+    from qm_proc_qc
+    where id = #{pop_qc_id} and status = 1
+  </select>
+
+  <select id="selectProcQcAndProdOrderDetail" resultType="Map" parameterType="java.lang.Integer">
+    select qpqs.id as pop_qc_sub_id, qpqs.confirm_no, qpqs.is_submit_fault, ppo.mat_id, ppo.mat_name, ppo.mat_no,
+        qpqs.no_qualified_qty, ppos.pg_id, ppos.pg_name, qpqs.po_id, qpqs.po_no, qpqs.pop_id, ppos.pop_status,
+        ppos.proc_name, qpqs.qc_qty, qpqs.qualified_qty, qpqs.quality_loss, ppos.real_end_time, qpqs.scrap_qty,
+        qpqs.special_qty, qpqs.unusual_pic, qpqs.unusual_reason, ppos.worker_id
+    from qm_proc_qc as qpq INNER JOIN qm_proc_qc_sub as qpqs INNER JOIN pm_prod_order as ppo INNER JOIN pm_prod_order_sub as ppos
+    on qpq.id = qpqs.pop_qc_id and qpqs.pop_id = ppos.id and ppos.po_id = ppo.id
+    where qpq.id = #{pop_qc_id} and qpq.status = 1
+  </select>
+
+  <!-- 查询待质检的工序信息 -->
+  <select id="selectProcQcPqiList" resultType="Map" parameterType="Map">
+    select qpqs.confirm_no, qpqs.is_submit_fault, ppo.mat_id, ppo.mat_name, ppo.mat_no, qpqs.no_qualified_qty,
+    ppos.pg_id, ppos.pg_name, qpqs.po_id, qpqs.po_no, qpqs.pop_id, ppos.pop_status, ppos.proc_name,
+    qpqs.qc_qty, qpqs.qualified_qty, qpqs.quality_loss, ppos.real_end_time, qpqs.scrap_qty, qpqs.special_qty,
+    qpqs.special_qty, qpqs.unusual_pic, qpqs.unusual_reason, ppos.worker_id, ppos.qc_bill_qty, ppos.done_qty
+    from qm_proc_qc as qpq INNER JOIN qm_proc_qc_sub as qpqs INNER JOIN pm_prod_order as ppo INNER JOIN pm_prod_order_sub as ppos
+    on qpq.id = qpqs.pop_qc_id and qpqs.pop_id = ppos.id and ppos.po_id = ppo.id
+    where ppos.is_need_qc = 1 and ppo.status = 1 and ppos.pop_status = 6 and ppos.done_qty > ppos.qc_bill_qty
+    <if test="proc_name != null and proc_name != ''">
+      and proc_name LIKE "%"#{proc_name}"%"
+    </if>
+    <if test="confirm_no != null and confirm_no != ''">
+      and confirm_no LIKE "%"#{confirm_no}"%"
+    </if>
+    <if test="mat_no != null and mat_no != ''">
+      and mat_no LIKE "%"#{mat_no}"%"
+    </if>
+    <if test="po_no != null and po_no != ''">
+      and po_no LIKE "%"#{po_no}"%"
+    </if>
+  </select>
+
+  <!-- 新增工序质检单 -->
+  <insert id="addProcQc" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.Map">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    INSERT INTO qm_proc_qc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="company_id != null and company_id != ''">
+        company_id,
+      </if>
+      <if test="company_name != null and company_name != ''">
+        company_name,
+      </if>
+      <if test="pop_qc_no != null and pop_qc_no != ''">
+        pop_qc_no,
+      </if>
+      <if test="creator_name != null and creator_name != ''">
+        creator_name,
+      </if>
+      <if test="qc_date != null and qc_date != ''">
+        qc_date,
+      </if>
+      <if test="approve_step != null and approve_step != ''">
+        approve_step,
+      </if>
+      <if test="approve_sugg != null and approve_sugg != ''">
+        approve_sugg,
+      </if>
+      <if test="creator_id != null and creator_id != ''">
+        creator_id,
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        handler_id,
+      </if>
+      <if test="created_at != null and created_at != ''">
+        created_at,
+      </if>
+      <if test="updated_at != null and updated_at != ''">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="company_id != null and company_id != ''">
+        #{company_id},
+      </if>
+      <if test="company_name != null and company_name != ''">
+        #{company_name},
+      </if>
+      <if test="pop_qc_no != null and pop_qc_no != ''">
+        #{pop_qc_no},
+      </if>
+      <if test="creator_name != null and creator_name != ''">
+        #{creator_name},
+      </if>
+      <if test="qc_date != null and qc_date != ''">
+        #{qc_date},
+      </if>
+      <if test="approve_step != null and approve_step != ''">
+        #{approve_step},
+      </if>
+      <if test="approve_sugg != null and approve_sugg != ''">
+        #{approve_sugg},
+      </if>
+      <if test="creator_id != null and creator_id != ''">
+        #{creator_id},
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        #{handler_id},
+      </if>
+      <if test="created_at != null and created_at != ''">
+        #{created_at},
+      </if>
+      <if test="updated_at != null and updated_at != ''">
+        #{updated_at},
+      </if>
+    </trim>
+  </insert>
+
+  <!-- 修改工序质检单 -->
+  <update id="updateProcQc" parameterType="Map">
+    update qm_proc_qc
+    <set>
+      <if test="company_id != null and company_id != ''">
+        company_id = #{company_id},
+      </if>
+      <if test="company_name != null and company_name != ''">
+        company_name = #{company_name},
+      </if>
+      <if test="pop_qc_no != null and pop_qc_no != ''">
+        pop_qc_no = #{pop_qc_no},
+      </if>
+      <if test="creator_name != null and creator_name != ''">
+        creator_name = #{creator_name},
+      </if>
+      <if test="qc_date != null and qc_date != ''">
+        qc_date = #{qc_date},
+      </if>
+      <if test="approve_step != null and approve_step != ''">
+        approve_step = #{approve_step},
+      </if>
+      <if test="approve_sugg != null and approve_sugg != ''">
+        approve_sugg = #{approve_sugg},
+      </if>
+      <if test="creator_id != null and creator_id != ''">
+        creator_id = #{creator_id},
+      </if>
+      <if test="handler_id != null and handler_id != ''">
+        handler_id = #{handler_id},
+      </if>
+      <if test="created_at != null and created_at != ''">
+        created_at = #{created_at},
+      </if>
+      <if test="updated_at != null and updated_at != ''">
+        updated_at = #{updated_at},
+      </if>
+    </set>
+  </update>
+
+  <!-- 删除工序质检单 -->
+  <update id="deleteProcQc" parameterType="Map">
+    update qm_proc_qc
+    set status = 0, updated_at = #{updated_at}
+    where id = #{pop_qc_id}
+  </update>
+
+  <!-- 新增修改成功之后返回质检单id和质检单号 -->
+  <select id="selectPopQcIdAndPopQcNo" resultType="Map" parameterType="java.lang.Integer">
+    select distinct id as pop_qc_id, pop_qc_no from qm_proc_qc
+    where id = #{pop_qc_id} and status = 1
+  </select>
+
+  <!-- 根据订单工序id查询订单工序已完成数量和已建质检单数量 -->
+  <select id="selectProcQtyByPopId" resultType="Map" parameterType="java.lang.Integer">
+    select done_qty, qc_bill_qty
+    from  pm_prod_order_sub
+    where id = #{pop_id} and status = 1 and pop_status = 6
+  </select>
+
+  <!-- 根据质检单子表id查询质检数量,订单工序已完成数量,已建质检单数量 -->
+  <select id="selectProcQtyByPopQcSubId" resultType="Map" parameterType="java.lang.Integer">
+    select qpqs.qc_qty, ppos.done_qty, ppos.qc_bill_qty
+    from qm_proc_qc_sub as qpqs INNER JOIN pm_prod_order_sub as ppos
+    on qpqs.pop_id = ppos.id
+    where qpqs.id = #{pop_qc_sub_id} and qpqs.status = 1 and ppos.pop_status = 6
+  </select>
+  
+  <!-- 新增工序质检单成功后修改已建质检单数量 -->
+  <update id="updateQcBillQty" parameterType="Map">
+    update pm_prod_order_sub
+    set qc_bill_qty = #{qc_bill_qty}
+    where id = #{pop_id} and status = 1 and pop_status = 6
+  </update>
+
+</mapper>

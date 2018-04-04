@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmProdOrderSubMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmProdOrderSub">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="confirm_no" jdbcType="VARCHAR" property="confirmNo" />
+    <result column="po_id" jdbcType="BIGINT" property="poId" />
+    <result column="proc_id" jdbcType="BIGINT" property="procId" />
+    <result column="proc_name" jdbcType="VARCHAR" property="procName" />
+    <result column="proc_seq" jdbcType="INTEGER" property="procSeq" />
+    <result column="proc_desc" jdbcType="VARCHAR" property="procDesc" />
+    <result column="proc_type" jdbcType="TINYINT" property="procType" />
+    <result column="proc_qty" jdbcType="INTEGER" property="procQty" />
+    <result column="done_qty" jdbcType="INTEGER" property="doneQty" />
+    <result column="is_in_terminal" jdbcType="CHAR" property="isInTerminal" />
+    <result column="pg_id" jdbcType="BIGINT" property="pgId" />
+    <result column="pg_name" jdbcType="VARCHAR" property="pgName" />
+    <result column="pg_type" jdbcType="CHAR" property="pgType" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="machine_time" jdbcType="DECIMAL" property="machineTime" />
+    <result column="labor_time" jdbcType="DECIMAL" property="laborTime" />
+    <result column="other_time" jdbcType="DECIMAL" property="otherTime" />
+    <result column="real_machine_time" jdbcType="DECIMAL" property="realMachineTime" />
+    <result column="real_labor_time" jdbcType="DECIMAL" property="realLaborTime" />
+    <result column="real_other_time" jdbcType="DECIMAL" property="realOtherTime" />
+    <result column="time_unit" jdbcType="TINYINT" property="timeUnit" />
+    <result column="task_part_qty" jdbcType="INTEGER" property="taskPartQty" />
+    <result column="ass_unit" jdbcType="VARCHAR" property="assUnit" />
+    <result column="ass_calc_qty" jdbcType="DECIMAL" property="assCalcQty" />
+    <result column="ass_qty" jdbcType="INTEGER" property="assQty" />
+    <result column="ass_time" jdbcType="DECIMAL" property="assTime" />
+    <result column="ass_up" jdbcType="DECIMAL" property="assUp" />
+    <result column="ass_tp" jdbcType="DECIMAL" property="assTp" />
+    <result column="ass_reason" jdbcType="VARCHAR" property="assReason" />
+    <result column="ass_approve_step" jdbcType="VARCHAR" property="assApproveStep" />
+    <result column="ass_approve_sugg" jdbcType="VARCHAR" property="assApproveSugg" />
+    <result column="ass_received_flag" jdbcType="TINYINT" property="assReceivedFlag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="plan_start_time" jdbcType="TIMESTAMP" property="planStartTime" />
+    <result column="plan_end_time" jdbcType="TIMESTAMP" property="planEndTime" />
+    <result column="plan_work_time" jdbcType="DECIMAL" property="planWorkTime" />
+    <result column="plan_region_load" jdbcType="DECIMAL" property="planRegionLoad" />
+    <result column="real_start_time" jdbcType="TIMESTAMP" property="realStartTime" />
+    <result column="real_end_time" jdbcType="TIMESTAMP" property="realEndTime" />
+    <result column="last_start_time" jdbcType="TIMESTAMP" property="lastStartTime" />
+    <result column="last_end_time" jdbcType="TIMESTAMP" property="lastEndTime" />
+    <result column="is_need_qc" jdbcType="CHAR" property="isNeedQc" />
+    <result column="qc_flag" jdbcType="TINYINT" property="qcFlag" />
+    <result column="qced_qty" jdbcType="INTEGER" property="qcedQty" />
+    <result column="is_auto_assign" jdbcType="CHAR" property="isAutoAssign" />
+    <result column="is_auto_accept" jdbcType="CHAR" property="isAutoAccept" />
+    <result column="is_start_warn" jdbcType="CHAR" property="isStartWarn" />
+    <result column="is_end_warn" jdbcType="CHAR" property="isEndWarn" />
+    <result column="is_rework" jdbcType="CHAR" property="isRework" />
+    <result column="is_repair" jdbcType="CHAR" property="isRepair" />
+    <result column="pop_status" jdbcType="CHAR" property="popStatus" />
+    <result column="work_type" jdbcType="TINYINT" property="workType" />
+    <result column="worker_id" jdbcType="BIGINT" property="workerId" />
+    <result column="is_can_ass" jdbcType="CHAR" property="isCanAss" />
+    <result column="is_vote_ass" jdbcType="CHAR" property="isVoteAss" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <resultMap id="WorkProcedureResultMap" type="com.mt.pm.production.bo.PmWorkProcedureBo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="BIGINT" property="procId" />
+    <result column="po_id" jdbcType="BIGINT" property="poId" />
+    <result column="proc_name" jdbcType="VARCHAR" property="procName" />
+    <result column="proc_seq" jdbcType="INTEGER" property="procSeq" />
+    <result column="pg_id" jdbcType="BIGINT" property="pgId" />
+    <result column="pg_type" jdbcType="CHAR" property="pgType" />
+    <result column="proc_type" jdbcType="TINYINT" property="procType" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="pg_name" jdbcType="VARCHAR" property="pgName" />
+    <!--todo proc_qty等于proc_qty减去don_qty -->
+    <result column="proc_qty" jdbcType="INTEGER" property="procQty" />
+    <result column="plan_start_time" jdbcType="TIMESTAMP" property="planStartTime" />
+    <result column="plan_end_time" jdbcType="TIMESTAMP" property="planEndTime" />
+    <result column="plan_work_time" jdbcType="DECIMAL" property="taskHours" />
+    <result column="plan_region_load" jdbcType="DECIMAL" property="planRegionLoad" />
+    <result column="machine_time" jdbcType="DECIMAL" property="machineWorkHours" />
+    <result column="labor_time" jdbcType="DECIMAL" property="laborWorkHours" />
+    <result column="other_time" jdbcType="DECIMAL" property="auxiliaryHours" />
+    <result column="ass_time" jdbcType="DECIMAL" property="outsourcingHours" />
+    <result column="company_id" jdbcType="BIGINT" property="compId" />
+    <result column="company_name" jdbcType="VARCHAR" property="compName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,id as proc_id, confirm_no, po_id,  proc_name, proc_seq, proc_desc, proc_type, proc_qty,
+    done_qty, is_in_terminal, pg_id, pg_name,pg_type, device_id, device_name, machine_time, labor_time, other_time,
+    real_machine_time, real_labor_time, real_other_time, time_unit, task_part_qty, ass_unit,
+    ass_calc_qty, ass_qty, ass_time, ass_up, ass_tp, ass_reason, ass_approve_step, ass_approve_sugg,
+    ass_received_flag, remark, plan_start_time, plan_end_time, plan_work_time, plan_region_load,
+    real_start_time, real_end_time, last_start_time, last_end_time, is_need_qc, qc_flag,
+    qced_qty, is_auto_assign, is_auto_accept, is_start_warn, is_end_warn, is_rework, is_repair,
+    pop_status, work_type, worker_id, is_can_ass, is_vote_ass, created_at, updated_at,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pm_prod_order_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_prod_order_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmProdOrderSub">
+    insert into pm_prod_order_sub (id, confirm_no, po_id,
+    proc_id, proc_name, proc_seq,
+    proc_desc, proc_type, proc_qty,
+    done_qty, is_in_terminal, pg_id, pg_name,pg_type,
+    device_id, device_name, machine_time, labor_time,
+    other_time, real_machine_time, real_labor_time,
+    real_other_time, time_unit, task_part_qty,
+    ass_unit, ass_calc_qty, ass_qty,
+    ass_time, ass_up, ass_tp,
+    ass_reason, ass_approve_step, ass_approve_sugg,
+    ass_received_flag, remark, plan_start_time,
+    plan_end_time, plan_work_time, plan_region_load,
+    real_start_time, real_end_time, last_start_time,
+    last_end_time, is_need_qc, qc_flag,
+    qced_qty, is_auto_assign, is_auto_accept,
+    is_start_warn, is_end_warn, is_rework,
+    is_repair, pop_status, work_type,
+    worker_id, is_can_ass, is_vote_ass,
+    created_at, updated_at, status
+    )
+    values (#{id,jdbcType=BIGINT}, #{confirmNo,jdbcType=VARCHAR}, #{poId,jdbcType=BIGINT},
+    #{procId,jdbcType=BIGINT}, #{procName,jdbcType=VARCHAR}, #{procSeq,jdbcType=INTEGER},
+    #{procDesc,jdbcType=VARCHAR}, #{procType,jdbcType=TINYINT}, #{procQty,jdbcType=INTEGER},
+    #{doneQty,jdbcType=INTEGER}, #{isInTerminal,jdbcType=CHAR}, #{pgId,jdbcType=BIGINT},#{pgName,jdbcType=VARCHAR},#{pgType,jdbcType=CHAR},
+    #{deviceId,jdbcType=BIGINT},#{deviceName,jdbcType=VARCHAR}, #{machineTime,jdbcType=DECIMAL}, #{laborTime,jdbcType=DECIMAL},
+    #{otherTime,jdbcType=DECIMAL}, #{realMachineTime,jdbcType=DECIMAL}, #{realLaborTime,jdbcType=DECIMAL},
+    #{realOtherTime,jdbcType=DECIMAL}, #{timeUnit,jdbcType=TINYINT}, #{taskPartQty,jdbcType=INTEGER},
+    #{assUnit,jdbcType=VARCHAR}, #{assCalcQty,jdbcType=DECIMAL}, #{assQty,jdbcType=INTEGER},
+    #{assTime,jdbcType=DECIMAL}, #{assUp,jdbcType=DECIMAL}, #{assTp,jdbcType=DECIMAL},
+    #{assReason,jdbcType=VARCHAR}, #{assApproveStep,jdbcType=VARCHAR}, #{assApproveSugg,jdbcType=VARCHAR},
+    #{assReceivedFlag,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{planStartTime,jdbcType=TIMESTAMP},
+    #{planEndTime,jdbcType=TIMESTAMP}, #{planWorkTime,jdbcType=DECIMAL}, #{planRegionLoad,jdbcType=DECIMAL},
+    #{realStartTime,jdbcType=TIMESTAMP}, #{realEndTime,jdbcType=TIMESTAMP}, #{lastStartTime,jdbcType=TIMESTAMP},
+    #{lastEndTime,jdbcType=TIMESTAMP}, #{isNeedQc,jdbcType=CHAR}, #{qcFlag,jdbcType=TINYINT},
+    #{qcedQty,jdbcType=INTEGER}, #{isAutoAssign,jdbcType=CHAR}, #{isAutoAccept,jdbcType=CHAR},
+    #{isStartWarn,jdbcType=CHAR}, #{isEndWarn,jdbcType=CHAR}, #{isRework,jdbcType=CHAR},
+    #{isRepair,jdbcType=CHAR}, #{popStatus,jdbcType=CHAR}, #{workType,jdbcType=TINYINT},
+    #{workerId,jdbcType=BIGINT}, #{isCanAss,jdbcType=CHAR}, #{isVoteAss,jdbcType=CHAR},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmProdOrderSub">
+    insert into pm_prod_order_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="confirmNo != null">
+        confirm_no,
+      </if>
+      <if test="poId != null">
+        po_id,
+      </if>
+      <if test="procId != null">
+        proc_id,
+      </if>
+      <if test="procName != null">
+        proc_name,
+      </if>
+      <if test="procSeq != null">
+        proc_seq,
+      </if>
+      <if test="procDesc != null">
+        proc_desc,
+      </if>
+      <if test="procType != null">
+        proc_type,
+      </if>
+      <if test="procQty != null">
+        proc_qty,
+      </if>
+      <if test="doneQty != null">
+        done_qty,
+      </if>
+      <if test="isInTerminal != null">
+        is_in_terminal,
+      </if>
+      <if test="pgId != null">
+        pg_id,
+      </if>
+      <if test="pgName != null">
+        pg_name,
+      </if>
+      <if test="pgType != null">
+        pg_type,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="deviceName != null">
+        device_name,
+      </if>
+      <if test="machineTime != null">
+        machine_time,
+      </if>
+      <if test="laborTime != null">
+        labor_time,
+      </if>
+      <if test="otherTime != null">
+        other_time,
+      </if>
+      <if test="realMachineTime != null">
+        real_machine_time,
+      </if>
+      <if test="realLaborTime != null">
+        real_labor_time,
+      </if>
+      <if test="realOtherTime != null">
+        real_other_time,
+      </if>
+      <if test="timeUnit != null">
+        time_unit,
+      </if>
+      <if test="taskPartQty != null">
+        task_part_qty,
+      </if>
+      <if test="assUnit != null">
+        ass_unit,
+      </if>
+      <if test="assCalcQty != null">
+        ass_calc_qty,
+      </if>
+      <if test="assQty != null">
+        ass_qty,
+      </if>
+      <if test="assTime != null">
+        ass_time,
+      </if>
+      <if test="assUp != null">
+        ass_up,
+      </if>
+      <if test="assTp != null">
+        ass_tp,
+      </if>
+      <if test="assReason != null">
+        ass_reason,
+      </if>
+      <if test="assApproveStep != null">
+        ass_approve_step,
+      </if>
+      <if test="assApproveSugg != null">
+        ass_approve_sugg,
+      </if>
+      <if test="assReceivedFlag != null">
+        ass_received_flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="planStartTime != null">
+        plan_start_time,
+      </if>
+      <if test="planEndTime != null">
+        plan_end_time,
+      </if>
+      <if test="planWorkTime != null">
+        plan_work_time,
+      </if>
+      <if test="planRegionLoad != null">
+        plan_region_load,
+      </if>
+      <if test="realStartTime != null">
+        real_start_time,
+      </if>
+      <if test="realEndTime != null">
+        real_end_time,
+      </if>
+      <if test="lastStartTime != null">
+        last_start_time,
+      </if>
+      <if test="lastEndTime != null">
+        last_end_time,
+      </if>
+      <if test="isNeedQc != null">
+        is_need_qc,
+      </if>
+      <if test="qcFlag != null">
+        qc_flag,
+      </if>
+      <if test="qcedQty != null">
+        qced_qty,
+      </if>
+      <if test="isAutoAssign != null">
+        is_auto_assign,
+      </if>
+      <if test="isAutoAccept != null">
+        is_auto_accept,
+      </if>
+      <if test="isStartWarn != null">
+        is_start_warn,
+      </if>
+      <if test="isEndWarn != null">
+        is_end_warn,
+      </if>
+      <if test="isRework != null">
+        is_rework,
+      </if>
+      <if test="isRepair != null">
+        is_repair,
+      </if>
+      <if test="popStatus != null">
+        pop_status,
+      </if>
+      <if test="workType != null">
+        work_type,
+      </if>
+      <if test="workerId != null">
+        worker_id,
+      </if>
+      <if test="isCanAss != null">
+        is_can_ass,
+      </if>
+      <if test="isVoteAss != null">
+        is_vote_ass,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="confirmNo != null">
+        #{confirmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="poId != null">
+        #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="procId != null">
+        #{procId,jdbcType=BIGINT},
+      </if>
+      <if test="procName != null">
+        #{procName,jdbcType=VARCHAR},
+      </if>
+      <if test="procSeq != null">
+        #{procSeq,jdbcType=INTEGER},
+      </if>
+      <if test="procDesc != null">
+        #{procDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null">
+        #{procType,jdbcType=TINYINT},
+      </if>
+      <if test="procQty != null">
+        #{procQty,jdbcType=INTEGER},
+      </if>
+      <if test="doneQty != null">
+        #{doneQty,jdbcType=INTEGER},
+      </if>
+      <if test="isInTerminal != null">
+        #{isInTerminal,jdbcType=CHAR},
+      </if>
+      <if test="pgId != null">
+        #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="pgName != null">
+        #{pgName,jdbcType=VARCHAR},
+      </if>
+      <if test="pgType != null">
+        #{pgType,jdbcType=CHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="machineTime != null">
+        #{machineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborTime != null">
+        #{laborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="otherTime != null">
+        #{otherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realMachineTime != null">
+        #{realMachineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realLaborTime != null">
+        #{realLaborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realOtherTime != null">
+        #{realOtherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=TINYINT},
+      </if>
+      <if test="taskPartQty != null">
+        #{taskPartQty,jdbcType=INTEGER},
+      </if>
+      <if test="assUnit != null">
+        #{assUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="assCalcQty != null">
+        #{assCalcQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assQty != null">
+        #{assQty,jdbcType=INTEGER},
+      </if>
+      <if test="assTime != null">
+        #{assTime,jdbcType=DECIMAL},
+      </if>
+      <if test="assUp != null">
+        #{assUp,jdbcType=DECIMAL},
+      </if>
+      <if test="assTp != null">
+        #{assTp,jdbcType=DECIMAL},
+      </if>
+      <if test="assReason != null">
+        #{assReason,jdbcType=VARCHAR},
+      </if>
+      <if test="assApproveStep != null">
+        #{assApproveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="assApproveSugg != null">
+        #{assApproveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="assReceivedFlag != null">
+        #{assReceivedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="planStartTime != null">
+        #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null">
+        #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkTime != null">
+        #{planWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="planRegionLoad != null">
+        #{planRegionLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="realStartTime != null">
+        #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastStartTime != null">
+        #{lastStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastEndTime != null">
+        #{lastEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNeedQc != null">
+        #{isNeedQc,jdbcType=CHAR},
+      </if>
+      <if test="qcFlag != null">
+        #{qcFlag,jdbcType=TINYINT},
+      </if>
+      <if test="qcedQty != null">
+        #{qcedQty,jdbcType=INTEGER},
+      </if>
+      <if test="isAutoAssign != null">
+        #{isAutoAssign,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAccept != null">
+        #{isAutoAccept,jdbcType=CHAR},
+      </if>
+      <if test="isStartWarn != null">
+        #{isStartWarn,jdbcType=CHAR},
+      </if>
+      <if test="isEndWarn != null">
+        #{isEndWarn,jdbcType=CHAR},
+      </if>
+      <if test="isRework != null">
+        #{isRework,jdbcType=CHAR},
+      </if>
+      <if test="isRepair != null">
+        #{isRepair,jdbcType=CHAR},
+      </if>
+      <if test="popStatus != null">
+        #{popStatus,jdbcType=CHAR},
+      </if>
+      <if test="workType != null">
+        #{workType,jdbcType=TINYINT},
+      </if>
+      <if test="workerId != null">
+        #{workerId,jdbcType=BIGINT},
+      </if>
+      <if test="isCanAss != null">
+        #{isCanAss,jdbcType=CHAR},
+      </if>
+      <if test="isVoteAss != null">
+        #{isVoteAss,jdbcType=CHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmProdOrderSub">
+    update pm_prod_order_sub
+    <set>
+      <if test="confirmNo != null">
+        confirm_no = #{confirmNo,jdbcType=VARCHAR},
+      </if>
+      <if test="poId != null">
+        po_id = #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="procId != null">
+        proc_id = #{procId,jdbcType=BIGINT},
+      </if>
+      <if test="procName != null">
+        proc_name = #{procName,jdbcType=VARCHAR},
+      </if>
+      <if test="procSeq != null">
+        proc_seq = #{procSeq,jdbcType=INTEGER},
+      </if>
+      <if test="procDesc != null">
+        proc_desc = #{procDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null">
+        proc_type = #{procType,jdbcType=TINYINT},
+      </if>
+      <if test="procQty != null">
+        proc_qty = #{procQty,jdbcType=INTEGER},
+      </if>
+      <if test="doneQty != null">
+        done_qty = #{doneQty,jdbcType=INTEGER},
+      </if>
+      <if test="isInTerminal != null">
+        is_in_terminal = #{isInTerminal,jdbcType=CHAR},
+      </if>
+      <if test="pgId != null">
+        pg_id = #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="pgName != null">
+        pg_name = #{pgName,jdbcType=VARCHAR},
+      </if>
+      <if test="pgType != null">
+        pg_type = #{pgType,jdbcType=CHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="machineTime != null">
+        machine_time = #{machineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborTime != null">
+        labor_time = #{laborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="otherTime != null">
+        other_time = #{otherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realMachineTime != null">
+        real_machine_time = #{realMachineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realLaborTime != null">
+        real_labor_time = #{realLaborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="realOtherTime != null">
+        real_other_time = #{realOtherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=TINYINT},
+      </if>
+      <if test="taskPartQty != null">
+        task_part_qty = #{taskPartQty,jdbcType=INTEGER},
+      </if>
+      <if test="assUnit != null">
+        ass_unit = #{assUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="assCalcQty != null">
+        ass_calc_qty = #{assCalcQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assQty != null">
+        ass_qty = #{assQty,jdbcType=INTEGER},
+      </if>
+      <if test="assTime != null">
+        ass_time = #{assTime,jdbcType=DECIMAL},
+      </if>
+      <if test="assUp != null">
+        ass_up = #{assUp,jdbcType=DECIMAL},
+      </if>
+      <if test="assTp != null">
+        ass_tp = #{assTp,jdbcType=DECIMAL},
+      </if>
+      <if test="assReason != null">
+        ass_reason = #{assReason,jdbcType=VARCHAR},
+      </if>
+      <if test="assApproveStep != null">
+        ass_approve_step = #{assApproveStep,jdbcType=VARCHAR},
+      </if>
+      <if test="assApproveSugg != null">
+        ass_approve_sugg = #{assApproveSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="assReceivedFlag != null">
+        ass_received_flag = #{assReceivedFlag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="planStartTime != null">
+        plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null">
+        plan_end_time = #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkTime != null">
+        plan_work_time = #{planWorkTime,jdbcType=DECIMAL},
+      </if>
+      <if test="planRegionLoad != null">
+        plan_region_load = #{planRegionLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="realStartTime != null">
+        real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastStartTime != null">
+        last_start_time = #{lastStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastEndTime != null">
+        last_end_time = #{lastEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNeedQc != null">
+        is_need_qc = #{isNeedQc,jdbcType=CHAR},
+      </if>
+      <if test="qcFlag != null">
+        qc_flag = #{qcFlag,jdbcType=TINYINT},
+      </if>
+      <if test="qcedQty != null">
+        qced_qty = #{qcedQty,jdbcType=INTEGER},
+      </if>
+      <if test="isAutoAssign != null">
+        is_auto_assign = #{isAutoAssign,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAccept != null">
+        is_auto_accept = #{isAutoAccept,jdbcType=CHAR},
+      </if>
+      <if test="isStartWarn != null">
+        is_start_warn = #{isStartWarn,jdbcType=CHAR},
+      </if>
+      <if test="isEndWarn != null">
+        is_end_warn = #{isEndWarn,jdbcType=CHAR},
+      </if>
+      <if test="isRework != null">
+        is_rework = #{isRework,jdbcType=CHAR},
+      </if>
+      <if test="isRepair != null">
+        is_repair = #{isRepair,jdbcType=CHAR},
+      </if>
+      <if test="popStatus != null">
+        pop_status = #{popStatus,jdbcType=CHAR},
+      </if>
+      <if test="workType != null">
+        work_type = #{workType,jdbcType=TINYINT},
+      </if>
+      <if test="workerId != null">
+        worker_id = #{workerId,jdbcType=BIGINT},
+      </if>
+      <if test="isCanAss != null">
+        is_can_ass = #{isCanAss,jdbcType=CHAR},
+      </if>
+      <if test="isVoteAss != null">
+        is_vote_ass = #{isVoteAss,jdbcType=CHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmProdOrderSub">
+    update pm_prod_order_sub
+    set confirm_no = #{confirmNo,jdbcType=VARCHAR},
+    po_id = #{poId,jdbcType=BIGINT},
+    proc_id = #{procId,jdbcType=BIGINT},
+    proc_name = #{procName,jdbcType=VARCHAR},
+    proc_seq = #{procSeq,jdbcType=INTEGER},
+    proc_desc = #{procDesc,jdbcType=VARCHAR},
+    proc_type = #{procType,jdbcType=TINYINT},
+    proc_qty = #{procQty,jdbcType=INTEGER},
+    done_qty = #{doneQty,jdbcType=INTEGER},
+    is_in_terminal = #{isInTerminal,jdbcType=CHAR},
+    pg_id = #{pgId,jdbcType=BIGINT},
+    pg_name = #{pgName,jdbcType=VARCHAR},
+    pg_type = #{pgType,jdbcType=CHAR},
+    device_id = #{deviceId,jdbcType=BIGINT},
+    device_name = #{deviceName,jdbcType=VARCHAR},
+    machine_time = #{machineTime,jdbcType=DECIMAL},
+    labor_time = #{laborTime,jdbcType=DECIMAL},
+    other_time = #{otherTime,jdbcType=DECIMAL},
+    real_machine_time = #{realMachineTime,jdbcType=DECIMAL},
+    real_labor_time = #{realLaborTime,jdbcType=DECIMAL},
+    real_other_time = #{realOtherTime,jdbcType=DECIMAL},
+    time_unit = #{timeUnit,jdbcType=TINYINT},
+    task_part_qty = #{taskPartQty,jdbcType=INTEGER},
+    ass_unit = #{assUnit,jdbcType=VARCHAR},
+    ass_calc_qty = #{assCalcQty,jdbcType=DECIMAL},
+    ass_qty = #{assQty,jdbcType=INTEGER},
+    ass_time = #{assTime,jdbcType=DECIMAL},
+    ass_up = #{assUp,jdbcType=DECIMAL},
+    ass_tp = #{assTp,jdbcType=DECIMAL},
+    ass_reason = #{assReason,jdbcType=VARCHAR},
+    ass_approve_step = #{assApproveStep,jdbcType=VARCHAR},
+    ass_approve_sugg = #{assApproveSugg,jdbcType=VARCHAR},
+    ass_received_flag = #{assReceivedFlag,jdbcType=TINYINT},
+    remark = #{remark,jdbcType=VARCHAR},
+    plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+    plan_end_time = #{planEndTime,jdbcType=TIMESTAMP},
+    plan_work_time = #{planWorkTime,jdbcType=DECIMAL},
+    plan_region_load = #{planRegionLoad,jdbcType=DECIMAL},
+    real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+    real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+    last_start_time = #{lastStartTime,jdbcType=TIMESTAMP},
+    last_end_time = #{lastEndTime,jdbcType=TIMESTAMP},
+    is_need_qc = #{isNeedQc,jdbcType=CHAR},
+    qc_flag = #{qcFlag,jdbcType=TINYINT},
+    qced_qty = #{qcedQty,jdbcType=INTEGER},
+    is_auto_assign = #{isAutoAssign,jdbcType=CHAR},
+    is_auto_accept = #{isAutoAccept,jdbcType=CHAR},
+    is_start_warn = #{isStartWarn,jdbcType=CHAR},
+    is_end_warn = #{isEndWarn,jdbcType=CHAR},
+    is_rework = #{isRework,jdbcType=CHAR},
+    is_repair = #{isRepair,jdbcType=CHAR},
+    pop_status = #{popStatus,jdbcType=CHAR},
+    work_type = #{workType,jdbcType=TINYINT},
+    worker_id = #{workerId,jdbcType=BIGINT},
+    is_can_ass = #{isCanAss,jdbcType=CHAR},
+    is_vote_ass = #{isVoteAss,jdbcType=CHAR},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <update id="deleteProdOrderSub"  parameterType="Map">
+    update pm_prod_order_sub
+    set
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = '0'
+      where 1=1
+      <if test="poId != null">
+      and   po_id = #{poId,jdbcType=BIGINT}
+      </if>
+      <if test="procId != null">
+      and  id in (${procId})
+      </if>
+  </update>
+
+  <delete id="deleteByProdId" parameterType="java.lang.Long">
+    delete from pm_prod_order_sub
+    where po_id = #{po_id,jdbcType=BIGINT}
+  </delete>
+
+
+  <select id="selectByProdOrderId"  parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pm_prod_order_sub
+    WHERE po_id = #{po_id}
+    and status = '1'
+    order by proc_seq
+  </select>
+
+
+  <!-- todo 根据物料号获取工艺路线工序列表集 还有根据查询工序状态条件过滤不需要的工序  ？？？？-->
+  <select id="selectByPoId" parameterType="java.lang.String" resultMap="WorkProcedureResultMap">
+    select
+    a.id,a.po_id,a.proc_id,a.proc_name,a.proc_seq,a.pg_id,a.device_name,a.pg_name,a.pg_type,a.proc_type,a.proc_qty,a.plan_start_time,
+    a.plan_end_time,a.plan_work_time,a.plan_region_load,a.machine_time,a.labor_time,a.other_time,a.ass_time,b.company_id,b.company_name
+    from pm_prod_order_sub as a,pm_prod_order as b
+    where a.po_id = b.id and a.po_id = #{poId} and a.status = 1  order by a.proc_seq ASC
+  </select>
+
+  <!-- todo 根据公司部门信息和时间段，查询这个部门下这个时间段内的所有未加工、待处理的工序列表集-->
+  <select id="selectByPgInfo" parameterType="map" resultMap="WorkProcedureResultMap">
+    select * from pm_prod_order as a , pm_prod_order_sub as b
+    where a.id = b.po_id and a.company_id = 35 and b.pg_id = 707
+    and (b.plan_start_time BETWEEN '2018-02-01 00:00:00' and '2018-02-10 00:00:00'
+    or b.plan_end_time BETWEEN '2018-02-01 14:00:00' and '2018-02-10 00:00:00' )
+    and b.status = 1 and b.pop_status in (2,3,4)
+  </select>
+
+</mapper>

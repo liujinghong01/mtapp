@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.QuoteRemarkLogMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.QuoteRemarkLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="version" jdbcType="INTEGER" property="version" />
+    <result column="quote_id" jdbcType="BIGINT" property="quoteId" />
+    <result column="quote_no" jdbcType="VARCHAR" property="quoteNo" />
+    <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, version, quote_id, quote_no, seq_no, remark, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from quote_remark_log
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from quote_remark_log
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.QuoteRemarkLog">
+    insert into quote_remark_log (id, version, quote_id, 
+      quote_no, seq_no, remark, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{quoteId,jdbcType=BIGINT}, 
+      #{quoteNo,jdbcType=VARCHAR}, #{seqNo,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.QuoteRemarkLog">
+    insert into quote_remark_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="quoteId != null">
+        quote_id,
+      </if>
+      <if test="quoteNo != null">
+        quote_no,
+      </if>
+      <if test="seqNo != null">
+        seq_no,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="quoteId != null">
+        #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="quoteNo != null">
+        #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.QuoteRemarkLog">
+    update quote_remark_log
+    <set>
+      <if test="quoteId != null">
+        quote_id = #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="quoteNo != null">
+        quote_no = #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        seq_no = #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.QuoteRemarkLog">
+    update quote_remark_log
+    set quote_id = #{quoteId,jdbcType=BIGINT},
+      quote_no = #{quoteNo,jdbcType=VARCHAR},
+      seq_no = #{seqNo,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+      and version = #{version,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.bm.common.dao.MtMatMapper">
+  <resultMap id="BaseResultMap" type="com.mt.bm.common.model.MtMat">
+    <id column="mat_id" jdbcType="BIGINT" property="matId" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="mat_no" jdbcType="VARCHAR" property="matNo" />
+    <result column="mat_name" jdbcType="VARCHAR" property="matName" />
+    <result column="mat_type_id" jdbcType="BIGINT" property="matTypeId" />
+    <result column="mat_type_name" jdbcType="VARCHAR" property="matTypeName" />
+    <result column="rawnature_id" jdbcType="BIGINT" property="rawnatureId" />
+    <result column="rawnature_name" jdbcType="VARCHAR" property="rawnatureName" />
+    <result column="mat_desc" jdbcType="VARCHAR" property="matDesc" />
+    <result column="min_stock_qty" jdbcType="DECIMAL" property="minStockQty" />
+    <result column="batch_qty" jdbcType="DECIMAL" property="batchQty" />
+    <result column="procure_style" jdbcType="CHAR" property="procureStyle" />
+    <result column="is_qc" jdbcType="CHAR" property="isQc" />
+    <result column="unit_no" jdbcType="VARCHAR" property="unitNo" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="shape" jdbcType="CHAR" property="shape" />
+    <result column="length" jdbcType="DECIMAL" property="length" />
+    <result column="width" jdbcType="DECIMAL" property="width" />
+    <result column="height" jdbcType="DECIMAL" property="height" />
+    <result column="processes_type" jdbcType="CHAR" property="processesType" />
+    <result column="plan_price" jdbcType="DECIMAL" property="planPrice" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+    <result column="bin_no" jdbcType="VARCHAR" property="binNo" />
+    <result column="is_unused" jdbcType="CHAR" property="isUnused" />
+    <result column="handler_id" jdbcType="VARCHAR" property="handlerId" />
+    <result column="handled_time" jdbcType="TIMESTAMP" property="handledTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mat_id, version, mat_no, mat_name, mat_type_id, mat_type_name, rawnature_id, rawnature_name, 
+    mat_desc, min_stock_qty, batch_qty, procure_style, is_qc, unit_no, weight, shape, 
+    length, width, height, processes_type, plan_price, pic_path, bin_no, is_unused, handler_id, 
+    handled_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_mt_mat
+    where mat_id = #{matId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bm_mt_mat
+    where mat_id = #{matId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.bm.common.model.MtMat">
+    insert into bm_mt_mat (mat_id, version, mat_no, 
+      mat_name, mat_type_id, mat_type_name, 
+      rawnature_id, rawnature_name, mat_desc, 
+      min_stock_qty, batch_qty, procure_style, 
+      is_qc, unit_no, weight, 
+      shape, length, width, 
+      height, processes_type, plan_price, 
+      pic_path, bin_no, is_unused, 
+      handler_id, handled_time)
+    values (#{matId,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{matNo,jdbcType=VARCHAR}, 
+      #{matName,jdbcType=VARCHAR}, #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, 
+      #{rawnatureId,jdbcType=BIGINT}, #{rawnatureName,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR}, 
+      #{minStockQty,jdbcType=DECIMAL}, #{batchQty,jdbcType=DECIMAL}, #{procureStyle,jdbcType=CHAR}, 
+      #{isQc,jdbcType=CHAR}, #{unitNo,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, 
+      #{shape,jdbcType=CHAR}, #{length,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}, 
+      #{height,jdbcType=DECIMAL}, #{processesType,jdbcType=CHAR}, #{planPrice,jdbcType=DECIMAL}, 
+      #{picPath,jdbcType=VARCHAR}, #{binNo,jdbcType=VARCHAR}, #{isUnused,jdbcType=CHAR}, 
+      #{handlerId,jdbcType=VARCHAR}, #{handledTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.bm.common.model.MtMat">
+    insert into bm_mt_mat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="matNo != null">
+        mat_no,
+      </if>
+      <if test="matName != null">
+        mat_name,
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name,
+      </if>
+      <if test="rawnatureId != null">
+        rawnature_id,
+      </if>
+      <if test="rawnatureName != null">
+        rawnature_name,
+      </if>
+      <if test="matDesc != null">
+        mat_desc,
+      </if>
+      <if test="minStockQty != null">
+        min_stock_qty,
+      </if>
+      <if test="batchQty != null">
+        batch_qty,
+      </if>
+      <if test="procureStyle != null">
+        procure_style,
+      </if>
+      <if test="isQc != null">
+        is_qc,
+      </if>
+      <if test="unitNo != null">
+        unit_no,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="shape != null">
+        shape,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="processesType != null">
+        processes_type,
+      </if>
+      <if test="planPrice != null">
+        plan_price,
+      </if>
+      <if test="picPath != null">
+        pic_path,
+      </if>
+      <if test="binNo != null">
+        bin_no,
+      </if>
+      <if test="isUnused != null">
+        is_unused,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="handledTime != null">
+        handled_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="matId != null">
+        #{matId,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="matNo != null">
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawnatureId != null">
+        #{rawnatureId,jdbcType=BIGINT},
+      </if>
+      <if test="rawnatureName != null">
+        #{rawnatureName,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="minStockQty != null">
+        #{minStockQty,jdbcType=DECIMAL},
+      </if>
+      <if test="batchQty != null">
+        #{batchQty,jdbcType=DECIMAL},
+      </if>
+      <if test="procureStyle != null">
+        #{procureStyle,jdbcType=CHAR},
+      </if>
+      <if test="isQc != null">
+        #{isQc,jdbcType=CHAR},
+      </if>
+      <if test="unitNo != null">
+        #{unitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="shape != null">
+        #{shape,jdbcType=CHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="processesType != null">
+        #{processesType,jdbcType=CHAR},
+      </if>
+      <if test="planPrice != null">
+        #{planPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="picPath != null">
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="binNo != null">
+        #{binNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnused != null">
+        #{isUnused,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.bm.common.model.MtMat">
+    update bm_mt_mat
+    <set>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="matNo != null">
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        mat_name = #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawnatureId != null">
+        rawnature_id = #{rawnatureId,jdbcType=BIGINT},
+      </if>
+      <if test="rawnatureName != null">
+        rawnature_name = #{rawnatureName,jdbcType=VARCHAR},
+      </if>
+      <if test="matDesc != null">
+        mat_desc = #{matDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="minStockQty != null">
+        min_stock_qty = #{minStockQty,jdbcType=DECIMAL},
+      </if>
+      <if test="batchQty != null">
+        batch_qty = #{batchQty,jdbcType=DECIMAL},
+      </if>
+      <if test="procureStyle != null">
+        procure_style = #{procureStyle,jdbcType=CHAR},
+      </if>
+      <if test="isQc != null">
+        is_qc = #{isQc,jdbcType=CHAR},
+      </if>
+      <if test="unitNo != null">
+        unit_no = #{unitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="shape != null">
+        shape = #{shape,jdbcType=CHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="processesType != null">
+        processes_type = #{processesType,jdbcType=CHAR},
+      </if>
+      <if test="planPrice != null">
+        plan_price = #{planPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="picPath != null">
+        pic_path = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="binNo != null">
+        bin_no = #{binNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnused != null">
+        is_unused = #{isUnused,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        handled_time = #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mat_id = #{matId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.bm.common.model.MtMat">
+    update bm_mt_mat
+    set version = #{version,jdbcType=INTEGER},
+      mat_no = #{matNo,jdbcType=VARCHAR},
+      mat_name = #{matName,jdbcType=VARCHAR},
+      mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      rawnature_id = #{rawnatureId,jdbcType=BIGINT},
+      rawnature_name = #{rawnatureName,jdbcType=VARCHAR},
+      mat_desc = #{matDesc,jdbcType=VARCHAR},
+      min_stock_qty = #{minStockQty,jdbcType=DECIMAL},
+      batch_qty = #{batchQty,jdbcType=DECIMAL},
+      procure_style = #{procureStyle,jdbcType=CHAR},
+      is_qc = #{isQc,jdbcType=CHAR},
+      unit_no = #{unitNo,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DECIMAL},
+      shape = #{shape,jdbcType=CHAR},
+      length = #{length,jdbcType=DECIMAL},
+      width = #{width,jdbcType=DECIMAL},
+      height = #{height,jdbcType=DECIMAL},
+      processes_type = #{processesType,jdbcType=CHAR},
+      plan_price = #{planPrice,jdbcType=DECIMAL},
+      pic_path = #{picPath,jdbcType=VARCHAR},
+      bin_no = #{binNo,jdbcType=VARCHAR},
+      is_unused = #{isUnused,jdbcType=CHAR},
+      handler_id = #{handlerId,jdbcType=VARCHAR},
+      handled_time = #{handledTime,jdbcType=TIMESTAMP}
+    where mat_id = #{matId,jdbcType=BIGINT}
+  </update>
+</mapper>

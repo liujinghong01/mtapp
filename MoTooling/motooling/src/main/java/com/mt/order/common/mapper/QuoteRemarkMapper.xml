@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.QuoteRemarkMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.QuoteRemark">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="quote_id" jdbcType="BIGINT" property="quoteId" />
+    <result column="quote_no" jdbcType="VARCHAR" property="quoteNo" />
+    <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, version, quote_id, quote_no, seq_no, remark, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from quote_remark
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from quote_remark
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.QuoteRemark">
+    insert into quote_remark (id, version, quote_id,
+    quote_no, seq_no, remark,
+    status)
+    values (#{id,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{quoteId,jdbcType=BIGINT},
+    #{quoteNo,jdbcType=VARCHAR}, #{seqNo,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
+    #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.QuoteRemark">
+    insert into quote_remark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="quoteId != null">
+        quote_id,
+      </if>
+      <if test="quoteNo != null">
+        quote_no,
+      </if>
+      <if test="seqNo != null">
+        seq_no,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="quoteId != null">
+        #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="quoteNo != null">
+        #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.QuoteRemark">
+    update quote_remark
+    <set>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="quoteId != null">
+        quote_id = #{quoteId,jdbcType=BIGINT},
+      </if>
+      <if test="quoteNo != null">
+        quote_no = #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNo != null">
+        seq_no = #{seqNo,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.QuoteRemark">
+    update quote_remark
+    set version = #{version,jdbcType=INTEGER},
+    quote_id = #{quoteId,jdbcType=BIGINT},
+    quote_no = #{quoteNo,jdbcType=VARCHAR},
+    seq_no = #{seqNo,jdbcType=INTEGER},
+    remark = #{remark,jdbcType=VARCHAR},
+    status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!-- 以下为自定义 -->
+  <select id="getMaxRemarkId" resultType="java.lang.Long">
+    select max(id) from quote_remark
+  </select>
+
+  <select id="selectQuoteRemarksByQuoteId" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"/>
+    from quote_remark
+    where status = 1
+    and quote_id = #{quoteId}
+    ORDER by seq_no
+  </select>
+
+  <update id="deleteQuoteRemarksByQuoteId">
+    update quote_remark set status = 0
+    where quote_id = #{quoteId}
+  </update>
+
+  <select id="selectQuoteRemarksByQuoteIdAndVer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from quote_remark_log
+    where status = 1
+    and quote_id = #{quoteId}
+    and version = #{version}
+    ORDER by seq_no
+  </select>
+
+</mapper>

@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pc.common.dao.PcPurchOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcPurchOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="purch_no" property="purchNo" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="sup_company_id" property="supCompanyId" jdbcType="BIGINT" />
+    <result column="sup_name" property="supName" jdbcType="VARCHAR" />
+    <result column="approve_grade1_step" property="approveGrade1Step" jdbcType="VARCHAR" />
+    <result column="approve_grade1_sugg" property="approveGrade1Sugg" jdbcType="VARCHAR" />
+    <result column="approve_grade2_step" property="approveGrade2Step" jdbcType="VARCHAR" />
+    <result column="approve_grade2_sugg" property="approveGrade2Sugg" jdbcType="VARCHAR" />
+    <result column="approve_price_step" property="approvePriceStep" jdbcType="VARCHAR" />
+    <result column="approve_price_sugg" property="approvePriceSugg" jdbcType="VARCHAR" />
+    <result column="order_flag" property="orderFlag" jdbcType="TINYINT" />
+    <result column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="send_date" property="sendDate" jdbcType="TIMESTAMP" />
+    <result column="create_type" property="createType" jdbcType="TINYINT" />
+    <result column="sup_linkman" property="supLinkman" jdbcType="BIGINT" />
+    <result column="sup_linkman_name" property="supLinkmanName" jdbcType="VARCHAR" />
+    <result column="sup_linkman_phone" property="supLinkmanPhone" jdbcType="VARCHAR" />
+    <result column="sup_linkman_email" property="supLinkmanEmail" jdbcType="VARCHAR" />
+    <result column="purchman" property="purchman" jdbcType="BIGINT" />
+    <result column="purchman_name" property="purchmanName" jdbcType="VARCHAR" />
+    <result column="purchman_phone" property="purchmanPhone" jdbcType="VARCHAR" />
+    <result column="purchman_email" property="purchmanEmail" jdbcType="VARCHAR" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="delivery_place" property="deliveryPlace" jdbcType="VARCHAR" />
+    <result column="coin" property="coin" jdbcType="VARCHAR" />
+    <result column="invoice_type" property="invoiceType" jdbcType="TINYINT" />
+    <result column="tax_ratio" property="taxRatio" jdbcType="DECIMAL" />
+    <result column="rebate" property="rebate" jdbcType="DECIMAL" />
+    <result column="total_qty" property="totalQty" jdbcType="DECIMAL" />
+    <result column="total_weight" property="totalWeight" jdbcType="DECIMAL" />
+    <result column="total_process_cost" property="totalProcessCost" jdbcType="DECIMAL" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="creator_id" property="creatorId" jdbcType="BIGINT" />
+    <result column="handler_id" property="handlerId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, purch_no, company_id, company_name, sup_company_id, sup_name, approve_grade1_step, 
+    approve_grade1_sugg, approve_grade2_step, approve_grade2_sugg, approve_price_step, 
+    approve_price_sugg, order_flag, order_date, send_date, create_type, sup_linkman, 
+    sup_linkman_name, sup_linkman_phone, sup_linkman_email, purchman, purchman_name, 
+    purchman_phone, purchman_email, delivery_date, delivery_place, coin, invoice_type, 
+    tax_ratio, rebate, total_qty, total_weight, total_process_cost, total_price, creator_id, 
+    handler_id, created_at, updated_at, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pc_purch_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pc_purch_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pc.common.model.PcPurchOrder" >
+    insert into pc_purch_order (id, purch_no, company_id, 
+      company_name, sup_company_id, sup_name, 
+      approve_grade1_step, approve_grade1_sugg, approve_grade2_step, 
+      approve_grade2_sugg, approve_price_step, approve_price_sugg, 
+      order_flag, order_date, send_date, 
+      create_type, sup_linkman, sup_linkman_name, 
+      sup_linkman_phone, sup_linkman_email, purchman, 
+      purchman_name, purchman_phone, purchman_email, 
+      delivery_date, delivery_place, coin, 
+      invoice_type, tax_ratio, rebate, 
+      total_qty, total_weight, total_process_cost, 
+      total_price, creator_id, handler_id, 
+      created_at, updated_at, status, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{purchNo,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{supCompanyId,jdbcType=BIGINT}, #{supName,jdbcType=VARCHAR}, 
+      #{approveGrade1Step,jdbcType=VARCHAR}, #{approveGrade1Sugg,jdbcType=VARCHAR}, #{approveGrade2Step,jdbcType=VARCHAR}, 
+      #{approveGrade2Sugg,jdbcType=VARCHAR}, #{approvePriceStep,jdbcType=VARCHAR}, #{approvePriceSugg,jdbcType=VARCHAR}, 
+      #{orderFlag,jdbcType=TINYINT}, #{orderDate,jdbcType=TIMESTAMP}, #{sendDate,jdbcType=TIMESTAMP}, 
+      #{createType,jdbcType=TINYINT}, #{supLinkman,jdbcType=BIGINT}, #{supLinkmanName,jdbcType=VARCHAR}, 
+      #{supLinkmanPhone,jdbcType=VARCHAR}, #{supLinkmanEmail,jdbcType=VARCHAR}, #{purchman,jdbcType=BIGINT}, 
+      #{purchmanName,jdbcType=VARCHAR}, #{purchmanPhone,jdbcType=VARCHAR}, #{purchmanEmail,jdbcType=VARCHAR}, 
+      #{deliveryDate,jdbcType=TIMESTAMP}, #{deliveryPlace,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, 
+      #{invoiceType,jdbcType=TINYINT}, #{taxRatio,jdbcType=DECIMAL}, #{rebate,jdbcType=DECIMAL}, 
+      #{totalQty,jdbcType=DECIMAL}, #{totalWeight,jdbcType=DECIMAL}, #{totalProcessCost,jdbcType=DECIMAL}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{creatorId,jdbcType=BIGINT}, #{handlerId,jdbcType=BIGINT}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pc.common.model.PcPurchOrder" >
+    insert into pc_purch_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="purchNo != null" >
+        purch_no,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="supCompanyId != null" >
+        sup_company_id,
+      </if>
+      <if test="supName != null" >
+        sup_name,
+      </if>
+      <if test="approveGrade1Step != null" >
+        approve_grade1_step,
+      </if>
+      <if test="approveGrade1Sugg != null" >
+        approve_grade1_sugg,
+      </if>
+      <if test="approveGrade2Step != null" >
+        approve_grade2_step,
+      </if>
+      <if test="approveGrade2Sugg != null" >
+        approve_grade2_sugg,
+      </if>
+      <if test="approvePriceStep != null" >
+        approve_price_step,
+      </if>
+      <if test="approvePriceSugg != null" >
+        approve_price_sugg,
+      </if>
+      <if test="orderFlag != null" >
+        order_flag,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="sendDate != null" >
+        send_date,
+      </if>
+      <if test="createType != null" >
+        create_type,
+      </if>
+      <if test="supLinkman != null" >
+        sup_linkman,
+      </if>
+      <if test="supLinkmanName != null" >
+        sup_linkman_name,
+      </if>
+      <if test="supLinkmanPhone != null" >
+        sup_linkman_phone,
+      </if>
+      <if test="supLinkmanEmail != null" >
+        sup_linkman_email,
+      </if>
+      <if test="purchman != null" >
+        purchman,
+      </if>
+      <if test="purchmanName != null" >
+        purchman_name,
+      </if>
+      <if test="purchmanPhone != null" >
+        purchman_phone,
+      </if>
+      <if test="purchmanEmail != null" >
+        purchman_email,
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date,
+      </if>
+      <if test="deliveryPlace != null" >
+        delivery_place,
+      </if>
+      <if test="coin != null" >
+        coin,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="taxRatio != null" >
+        tax_ratio,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="totalQty != null" >
+        total_qty,
+      </if>
+      <if test="totalWeight != null" >
+        total_weight,
+      </if>
+      <if test="totalProcessCost != null" >
+        total_process_cost,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="handlerId != null" >
+        handler_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="purchNo != null" >
+        #{purchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="supCompanyId != null" >
+        #{supCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="supName != null" >
+        #{supName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade1Step != null" >
+        #{approveGrade1Step,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade1Sugg != null" >
+        #{approveGrade1Sugg,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade2Step != null" >
+        #{approveGrade2Step,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade2Sugg != null" >
+        #{approveGrade2Sugg,jdbcType=VARCHAR},
+      </if>
+      <if test="approvePriceStep != null" >
+        #{approvePriceStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approvePriceSugg != null" >
+        #{approvePriceSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFlag != null" >
+        #{orderFlag,jdbcType=TINYINT},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null" >
+        #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="supLinkman != null" >
+        #{supLinkman,jdbcType=BIGINT},
+      </if>
+      <if test="supLinkmanName != null" >
+        #{supLinkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="supLinkmanPhone != null" >
+        #{supLinkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supLinkmanEmail != null" >
+        #{supLinkmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="purchman != null" >
+        #{purchman,jdbcType=BIGINT},
+      </if>
+      <if test="purchmanName != null" >
+        #{purchmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchmanPhone != null" >
+        #{purchmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="purchmanEmail != null" >
+        #{purchmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPlace != null" >
+        #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="coin != null" >
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=TINYINT},
+      </if>
+      <if test="taxRatio != null" >
+        #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalQty != null" >
+        #{totalQty,jdbcType=DECIMAL},
+      </if>
+      <if test="totalWeight != null" >
+        #{totalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProcessCost != null" >
+        #{totalProcessCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null" >
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcPurchOrder" >
+    update pc_purch_order
+    <set >
+      <if test="purchNo != null" >
+        purch_no = #{purchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="supCompanyId != null" >
+        sup_company_id = #{supCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="supName != null" >
+        sup_name = #{supName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade1Step != null" >
+        approve_grade1_step = #{approveGrade1Step,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade1Sugg != null" >
+        approve_grade1_sugg = #{approveGrade1Sugg,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade2Step != null" >
+        approve_grade2_step = #{approveGrade2Step,jdbcType=VARCHAR},
+      </if>
+      <if test="approveGrade2Sugg != null" >
+        approve_grade2_sugg = #{approveGrade2Sugg,jdbcType=VARCHAR},
+      </if>
+      <if test="approvePriceStep != null" >
+        approve_price_step = #{approvePriceStep,jdbcType=VARCHAR},
+      </if>
+      <if test="approvePriceSugg != null" >
+        approve_price_sugg = #{approvePriceSugg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderFlag != null" >
+        order_flag = #{orderFlag,jdbcType=TINYINT},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendDate != null" >
+        send_date = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createType != null" >
+        create_type = #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="supLinkman != null" >
+        sup_linkman = #{supLinkman,jdbcType=BIGINT},
+      </if>
+      <if test="supLinkmanName != null" >
+        sup_linkman_name = #{supLinkmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="supLinkmanPhone != null" >
+        sup_linkman_phone = #{supLinkmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="supLinkmanEmail != null" >
+        sup_linkman_email = #{supLinkmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="purchman != null" >
+        purchman = #{purchman,jdbcType=BIGINT},
+      </if>
+      <if test="purchmanName != null" >
+        purchman_name = #{purchmanName,jdbcType=VARCHAR},
+      </if>
+      <if test="purchmanPhone != null" >
+        purchman_phone = #{purchmanPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="purchmanEmail != null" >
+        purchman_email = #{purchmanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryPlace != null" >
+        delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="coin != null" >
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=TINYINT},
+      </if>
+      <if test="taxRatio != null" >
+        tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalQty != null" >
+        total_qty = #{totalQty,jdbcType=DECIMAL},
+      </if>
+      <if test="totalWeight != null" >
+        total_weight = #{totalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProcessCost != null" >
+        total_process_cost = #{totalProcessCost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null" >
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcPurchOrder" >
+    update pc_purch_order
+    set purch_no = #{purchNo,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      sup_company_id = #{supCompanyId,jdbcType=BIGINT},
+      sup_name = #{supName,jdbcType=VARCHAR},
+      approve_grade1_step = #{approveGrade1Step,jdbcType=VARCHAR},
+      approve_grade1_sugg = #{approveGrade1Sugg,jdbcType=VARCHAR},
+      approve_grade2_step = #{approveGrade2Step,jdbcType=VARCHAR},
+      approve_grade2_sugg = #{approveGrade2Sugg,jdbcType=VARCHAR},
+      approve_price_step = #{approvePriceStep,jdbcType=VARCHAR},
+      approve_price_sugg = #{approvePriceSugg,jdbcType=VARCHAR},
+      order_flag = #{orderFlag,jdbcType=TINYINT},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      create_type = #{createType,jdbcType=TINYINT},
+      sup_linkman = #{supLinkman,jdbcType=BIGINT},
+      sup_linkman_name = #{supLinkmanName,jdbcType=VARCHAR},
+      sup_linkman_phone = #{supLinkmanPhone,jdbcType=VARCHAR},
+      sup_linkman_email = #{supLinkmanEmail,jdbcType=VARCHAR},
+      purchman = #{purchman,jdbcType=BIGINT},
+      purchman_name = #{purchmanName,jdbcType=VARCHAR},
+      purchman_phone = #{purchmanPhone,jdbcType=VARCHAR},
+      purchman_email = #{purchmanEmail,jdbcType=VARCHAR},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=TINYINT},
+      tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      total_qty = #{totalQty,jdbcType=DECIMAL},
+      total_weight = #{totalWeight,jdbcType=DECIMAL},
+      total_process_cost = #{totalProcessCost,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--Alnwick 添加-->
+
+  <!--为空所有，否则：0价格审批，1一级审批，2二级审批，3全部已审批-->
+  <select id="selectPucchOrderList" resultType="map" parameterType="map">
+  SELECT
+    approve_grade1_step,approve_grade1_sugg,approve_grade2_step,approve_grade2_sugg,
+    approve_price_step,approve_price_sugg,id as purch_id,purch_no
+   FROM pc_purch_order
+   WHERE
+        company_id = #{companyId} and  status = 1
+    <choose>
+      <when  test="query.approve_type== '0'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size()  &gt; 0  ">
+          and  approve_price_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0 ">
+          and  approve_price_step  REGEXP 'step'
+        </if>
+      </when >
+      <when  test="query.approve_type== '1'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size() &gt; 0">
+          and approve_price_step in ('step0','step00') and approve_grade1_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0">
+          and  approve_grade1_step  REGEXP 'step'
+        </if>
+      </when >
+      <when  test="query.approve_type== '2'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size() &gt; 0">
+          and approve_grade1_step in ('step0','step00')  and  approve_grade2_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0">
+          and  approve_grade2_step  REGEXP 'step'
+        </if>
+      </when >
+      <when test="query.approve_type==null and query.approve_type ==''">
+         and approve_grade2_step in ('step00','step0') OR  approve_grade1_step in ('step0','step00') or approve_price_step in ('step0','step00')
+      </when>
+    </choose>
+        limit #{page},#{page_size}
+  </select>
+
+
+  <select id="totalCount"  parameterType="map" resultType="java.lang.Integer">
+    SELECT
+          count(id)
+    FROM pc_purch_order
+    WHERE
+    company_id = #{companyId} and  status = 1
+    <choose>
+      <when  test="query.approve_type== '0'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size()  &gt; 0  ">
+          and  approve_price_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0 ">
+          and  approve_price_step  REGEXP 'step'
+        </if>
+      </when >
+      <when  test="query.approve_type== '1'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size() &gt; 0">
+          and approve_price_step in ('step0','step00') and approve_grade1_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0">
+          and  approve_grade1_step  REGEXP 'step'
+        </if>
+      </when >
+      <when  test="query.approve_type== '2'.toString()">
+        <if test="query.approve_step!= null and query.approve_step.size() &gt; 0">
+          and approve_grade1_step in ('step0','step00')  and  approve_grade2_step in
+          <foreach collection="query.approve_step" item="step"  open="(" close=")" separator="," >
+            #{step}
+          </foreach>
+        </if>
+        <if test="query.approve_step== null or query.approve_step.size() &lt; 0">
+          and  approve_grade2_step  REGEXP 'step'
+        </if>
+      </when >
+      <when test="query.approve_type==null and query.approve_type ==''">
+        and approve_grade2_step in ('step00','step0') OR  approve_grade1_step in ('step0','step00') or approve_price_step in ('step0','step00')
+      </when>
+    </choose>
+  </select>
+
+
+  <select id="selectPurchOrderDetail" resultType="map" parameterType="map">
+      SELECT
+       approve_grade1_step,approve_grade1_sugg,approve_grade2_step,approve_grade2_sugg,approve_price_step,
+       approve_price_sugg,coin,company_id,company_name,create_type,creator_id,DATE_FORMAT(delivery_date,'%Y-%m-%d') delivery_date,delivery_place,
+       handler_id,invoice_type,invoice_type_name,DATE_FORMAT(order_date,'%Y-%m-%d') order_date ,order_flag,id as purch_id,purch_no,purchman,
+       purchman_email,purchman_name,purchman_phone,rebate,remark,DATE_FORMAT(send_date,'%Y-%m-%d') send_date,sup_company_id,
+       sup_linkman,sup_linkman_email,sup_linkman_name,sup_linkman_phone,sup_name,tax_ratio,total_price,total_process_cost,total_qty,total_weight
+       from pc_purch_order
+       where
+       id = #{purchId}  and  status = 1
+  </select>
+
+
+  <update id="updatePurchOrder" parameterType="java.lang.Integer">
+      UPDATE pc_purch_order
+      SET status = 0
+      WHERE id = #{purchId}
+  </update>
+
+
+  <insert id="addPurchOreder" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    INSERT  INTO pc_purch_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="purch_no != null and purch_no != ''" >
+        purch_no,
+      </if>
+      <if test="company_id != null and company_id !=''" >
+        company_id,
+      </if>
+      <if test="company_name != null and company_name !=''" >
+        company_name,
+      </if>
+      <if test="sup_company_id != null and sup_company_id !=''" >
+        sup_company_id,
+      </if>
+      <if test="sup_name != null and sup_name!= ''" >
+        sup_name,
+      </if>
+      <if test="approve_grade1_step != null and approve_grade1_step != ''" >
+        approve_grade1_step,
+      </if>
+      <if test="approve_grade1_sugg != null and approve_grade1_sugg != ''" >
+        approve_grade1_sugg,
+      </if>
+      <if test="approve_grade2_step != null and approve_grade2_step != ''" >
+        approve_grade2_step,
+      </if>
+      <if test="approve_grade2_sugg != null and approve_grade2_sugg != ''" >
+        approve_grade2_sugg,
+      </if>
+      <if test="approve_price_step != null and approve_price_step != ''" >
+        approve_price_step,
+      </if>
+      <if test="approve_price_sugg != null and approve_price_sugg != ''" >
+        approve_price_sugg,
+      </if>
+      <if test="order_flag != null and order_flag != ''" >
+        order_flag,
+      </if>
+      <if test="order_date != null and order_date != ''" >
+        order_date,
+      </if>
+      <if test="send_date != null and send_date != ''" >
+        send_date,
+      </if>
+      <if test="create_type != null and create_type != ''" >
+        create_type,
+      </if>
+      <if test="sup_linkman != null and sup_linkman != ''" >
+        sup_linkman,
+      </if>
+      <if test="sup_linkman_name != null and sup_linkman_name != ''" >
+        sup_linkman_name,
+      </if>
+      <if test="sup_linkman_phone != null and sup_linkman_phone != ''" >
+        sup_linkman_phone,
+      </if>
+      <if test="sup_linkman_email != null and sup_linkman_email != ''" >
+        sup_linkman_email,
+      </if>
+      <if test="purchman != null and purchman != ''" >
+        purchman,
+      </if>
+      <if test="purchman_name != null and purchman_name != ''" >
+        purchman_name,
+      </if>
+      <if test="purchman_phone != null and purchman_phone != ''" >
+        purchman_phone,
+      </if>
+      <if test="purchman_email != null and purchman_email != ''" >
+        purchman_email,
+      </if>
+      <if test="delivery_date != null and delivery_date != ''" >
+        delivery_date,
+      </if>
+      <if test="delivery_place != null and delivery_place != ''" >
+        delivery_place,
+      </if>
+      <if test="coin != null and coin != ''" >
+        coin,
+      </if>
+      <if test="invoice_type != null and invoice_type != ''" >
+        invoice_type,
+      </if>
+      <if test="tax_ratio != null and tax_ratio != ''" >
+        tax_ratio,
+      </if>
+      <if test="rebate != null and rebate != ''" >
+        rebate,
+      </if>
+      <if test="total_qty != null and total_qty != ''" >
+        total_qty,
+      </if>
+      <if test="total_weight != null and total_weight != ''" >
+        total_weight,
+      </if>
+      <if test="total_process_cost != null and total_process_cost != ''" >
+        total_process_cost,
+      </if>
+      <if test="total_price != null and total_price != ''" >
+        total_price,
+      </if>
+      <if test="creator_id != null and creator_id != ''" >
+        creator_id,
+      </if>
+      <if test="handler_id != null and handler_id != ''" >
+        handler_id,
+      </if>
+      <if test="created_at != null and created_at != ''" >
+        created_at,
+      </if>
+      <if test="remark != null and remark != ''" >
+        remark,
+      </if>
+      <if test="coin_name != null and coin_name != ''">
+        coin_name,
+      </if>
+      <if test="invoice_type_name != null and invoice_type_name != ''">
+        invoice_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="purch_no != null and purch_no != ''" >
+         #{purch_no},
+      </if>
+      <if test="company_id != null and company_id !=''" >
+         #{company_id},
+      </if>
+      <if test="company_name != null and company_name !=''" >
+        #{company_name},
+      </if>
+      <if test="sup_company_id != null and sup_company_id !=''" >
+        #{sup_company_id},
+      </if>
+      <if test="sup_name != null and sup_name!= ''" >
+        #{sup_name},
+      </if>
+      <if test="approve_grade1_step != null and approve_grade1_step != ''" >
+      #{approve_grade1_step},
+      </if>
+      <if test="approve_grade1_sugg != null and approve_grade1_sugg != ''" >
+        #{approve_grade1_sugg},
+      </if>
+      <if test="approve_grade2_step != null and approve_grade2_step != ''" >
+         #{approve_grade2_step},
+      </if>
+      <if test="approve_grade2_sugg != null and approve_grade2_sugg != ''" >
+       #{approve_grade2_sugg},
+      </if>
+      <if test="approve_price_step != null and approve_price_step != ''" >
+        #{approve_price_step},
+      </if>
+      <if test="approve_price_sugg != null and approve_price_sugg != ''" >
+         #{approve_price_sugg},
+      </if>
+      <if test="order_flag != null and order_flag != ''" >
+       #{order_flag},
+      </if>
+      <if test="order_date != null and order_date != ''" >
+         #{order_date},
+      </if>
+      <if test="send_date != null and send_date != ''" >
+        #{send_date},
+      </if>
+      <if test="create_type != null and create_type != ''" >
+       = #{create_type},
+      </if>
+      <if test="sup_linkman != null and sup_linkman != ''" >
+         #{sup_linkman},
+      </if>
+      <if test="sup_linkman_name != null and sup_linkman_name != ''" >
+         #{sup_linkman_name},
+      </if>
+      <if test="sup_linkman_phone != null and sup_linkman_phone != ''" >
+         #{sup_linkman_phone},
+      </if>
+      <if test="sup_linkman_email != null and sup_linkman_email != ''" >
+         #{sup_linkman_email},
+      </if>
+      <if test="purchman != null and purchman != ''" >
+       #{purchman},
+      </if>
+      <if test="purchman_name != null and purchman_name != ''" >
+         #{purchman_name},
+      </if>
+      <if test="purchman_phone != null and purchman_phone != ''" >
+       #{purchman_phone},
+      </if>
+      <if test="purchman_email != null and purchman_email != ''" >
+       #{purchman_email},
+      </if>
+      <if test="delivery_date != null and delivery_date != ''" >
+        #{delivery_date},
+      </if>
+      <if test="delivery_place != null and delivery_place != ''" >
+         #{delivery_place},
+      </if>
+      <if test="coin != null and coin != ''" >
+         #{coin},
+      </if>
+      <if test="invoice_type != null and invoice_type != ''" >
+        #{invoice_type},
+      </if>
+      <if test="tax_ratio != null and tax_ratio != ''" >
+       #{tax_ratio},
+      </if>
+      <if test="rebate != null and rebate != ''" >
+        #{rebate},
+      </if>
+      <if test="total_qty != null and total_qty != ''" >
+       #{total_qty},
+      </if>
+      <if test="total_weight != null and total_weight != ''" >
+       #{total_weight},
+      </if>
+      <if test="total_process_cost != null and total_process_cost != ''" >
+       #{total_process_cost},
+      </if>
+      <if test="total_price != null and total_price != ''" >
+        #{total_price},
+      </if>
+      <if test="creator_id != null and creator_id != ''" >
+       #{creator_id},
+      </if>
+      <if test="handler_id != null and handler_id != ''" >
+       #{handler_id},
+      </if>
+      <if test="created_at != null and created_at != ''" >
+         #{created_at},
+      </if>
+      <if test="remark != null and remark != ''" >
+       #{remark},
+      </if>
+      <if test="coin_name != null and coin_name != ''" >
+        #{coin_name},
+      </if>
+      <if test="invoice_type_name != null and invoice_type_name != ''" >
+        #{invoice_type_name},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updatePurch0reder" parameterType="map">
+       UPDATE pc_purch_order
+       <set>
+         <if test="company_id != null and company_id !=''" >
+           company_id = #{company_id},
+         </if>
+         <if test="company_name != null and company_name !=''" >
+           company_name = #{company_name},
+         </if>
+         <if test="sup_company_id != null and sup_company_id !=''" >
+           sup_company_id = #{sup_company_id},
+         </if>
+         <if test="sup_name != null and sup_name!= ''" >
+           sup_name = #{sup_name},
+         </if>
+         <if test="approve_grade1_step != null and approve_grade1_step != ''" >
+           approve_grade1_step = #{approve_grade1_step},
+         </if>
+         <if test="approve_grade1_sugg != null and approve_grade1_sugg != ''" >
+           approve_grade1_sugg = #{approve_grade1_sugg},
+         </if>
+         <if test="approve_grade2_step != null and approve_grade2_step != ''" >
+           approve_grade2_step = #{approve_grade2_step},
+         </if>
+         <if test="approve_grade2_sugg != null and approve_grade2_sugg != ''" >
+           approve_grade2_sugg = #{approve_grade2_sugg},
+         </if>
+         <if test="approve_price_step != null and approve_price_step != ''" >
+           approve_price_step = #{approve_price_step},
+         </if>
+         <if test="approve_price_sugg != null and approve_price_sugg != ''" >
+           approve_price_sugg = #{approve_price_sugg},
+         </if>
+         <if test="order_flag != null and order_flag != ''" >
+           order_flag = #{order_flag},
+         </if>
+         <if test="order_date != null and order_date != ''" >
+           order_date = #{order_date},
+         </if>
+         <if test="send_date != null and send_date != ''" >
+           send_date = #{send_date},
+         </if>
+         <if test="create_type != null and create_type != ''" >
+           create_type = #{create_type},
+         </if>
+         <if test="sup_linkman != null and sup_linkman != ''" >
+           sup_linkman = #{sup_linkman},
+         </if>
+         <if test="sup_linkman_name != null and sup_linkman_name != ''" >
+           sup_linkman_name = #{sup_linkman_name},
+         </if>
+         <if test="sup_linkman_phone != null and sup_linkman_phone != ''" >
+           sup_linkman_phone = #{sup_linkman_phone},
+         </if>
+         <if test="sup_linkman_email != null and sup_linkman_email != ''" >
+           sup_linkman_email = #{sup_linkman_email},
+         </if>
+         <if test="purchman != null and purchman != ''" >
+           purchman = #{purchman},
+         </if>
+         <if test="purchman_name != null and purchman_name != ''" >
+           purchman_name = #{purchman_name},
+         </if>
+         <if test="purchman_phone != null and purchman_phone != ''" >
+           purchman_phone =#{purchman_phone},
+         </if>
+         <if test="purchman_email != null and purchman_email != ''" >
+           purchman_email = #{purchman_email},
+         </if>
+         <if test="delivery_date != null and delivery_date != ''" >
+           delivery_date = #{delivery_date},
+         </if>
+         <if test="delivery_place != null and delivery_place != ''" >
+           delivery_place = #{delivery_place},
+         </if>
+         <if test="coin != null and coin != ''" >
+           coin = #{coin},
+         </if>
+         <if test="invoice_type != null and invoice_type != ''" >
+           invoice_type = #{invoice_type},
+         </if>
+         <if test="tax_ratio != null and tax_ratio != ''" >
+           tax_ratio = #{tax_ratio},
+         </if>
+         <if test="rebate != null and rebate != ''" >
+           rebate = #{rebate},
+         </if>
+         <if test="total_qty != null and total_qty != ''" >
+           total_qty = #{total_qty},
+         </if>
+         <if test="total_weight != null and total_weight != ''" >
+           total_weight = #{total_weight},
+         </if>
+         <if test="total_process_cost != null and total_process_cost != ''" >
+           total_process_cost = #{total_process_cost},
+         </if>
+         <if test="total_price != null and total_price != ''" >
+           total_price = #{total_price},
+         </if>
+         <if test="creator_id != null and creator_id != ''" >
+           creator_id =#{creator_id},
+         </if>
+         <if test="handler_id != null and handler_id != ''" >
+           handler_id = #{handler_id},
+         </if>
+         <if test="updated_at != null and updated_at != ''" >
+           updated_at = #{updated_at},
+         </if>
+         <if test="remark != null and remark != ''" >
+           remark = #{remark},
+         </if>
+         <if test="coin_name != null and coin_name != ''" >
+           coin_name = #{coin_name},
+         </if>
+         <if test="invoice_type_name != null and invoice_type_name != ''" >
+           invoice_type_name = #{invoice_type_name},
+         </if>
+       </set>
+       WHERE   id = #{purch_id}
+  </update>
+
+  <update id="updatePurchOrderTotalPrice" parameterType="map">
+    UPDATE pc_purch_order
+    SET total_price = #{totalPrice}
+    WHERE
+          id = #{id}
+  </update>
+
+  <select id="selectPurch" resultType="map" parameterType="java.lang.Long">
+    SELECT
+          id as purch_id,purch_no
+    FROM pc_purch_order
+    WHERE
+           id = #{id} and status = 1
+  </select>
+
+  <select id="salesOrderList" parameterType="map" resultType="map">
+      SELECT
+              company_id,company_name,delivery_count,id as purch_id ,purch_no,
+              received_qty,total_qty
+        FROM pc_purch_order
+        WHERE
+              <if test="query.order_flag ==1 ">
+                order_flag in (1,2) and
+              </if>
+              <if test="query.order_flag ==2">
+                order_flag = 3 and
+              </if>
+              sup_company_id = #{companyId}
+              and status =1  limit #{page},#{page_size}
+  </select>
+
+  <select id="totalCountOrderList" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+                count(id)
+        FROM pc_purch_order
+        WHERE
+              <if test="query.order_flag ==1 ">
+                 order_flag in (1,2) and
+              </if>
+              <if test="query.order_flag ==2">
+                 order_flag = 3 and
+              </if>
+              sup_company_id = #{companyId} and status =1
+  </select>
+
+  <select id="isNeedPriceApp" resultType="java.lang.Integer">
+    select count(1) from pc_purch_order_sub a
+    INNER JOIN pc_purch_order b on a.purch_id = b.id
+    INNER JOIN bm_mat c on b.company_id = c.company_id
+    where a.total_price > IFNULL(c.plan_price,0)
+    and a.purch_id = #{billId}
+  </select>
+
+  <select id="isNeedGrade1App" resultType="java.lang.Integer">
+    select count(1) from pc_purch_order a
+    INNER JOIN sys_param_conf b on a.company_id = b.company_id and b.param_code = 'PurchOrderGrade1App'
+    where a.total_price > cast(IFNULL(b.param_value, '0') as DECIMAL)
+    and a.id = #{billId}
+  </select>
+
+  <select id="isNeedGrade2App" resultType="java.lang.Integer">
+    select count(1) from pc_purch_order a
+      INNER JOIN sys_param_conf b on a.company_id = b.company_id and b.param_code = 'PurchOrderGrade2App'
+      where a.total_price > cast(IFNULL(b.param_value, '0') as DECIMAL)
+      and a.id = #{billId}
+
+  </select>
+
+
+
+</mapper>

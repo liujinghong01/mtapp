@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.SmsSendMapper">
+  <resultMap id="BaseResultMap" type="com.mt.upms.common.model.SmsSend">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_send
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.upms.common.model.SmsSend">
+    insert into sms_send (id, phone, message,
+    type, status, created_at,
+    updated_at)
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR},
+    #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.SmsSend">
+    update sms_send
+    set phone = #{phone,jdbcType=VARCHAR},
+    message = #{message,jdbcType=VARCHAR},
+    type = #{type,jdbcType=TINYINT},
+    status = #{status,jdbcType=TINYINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, phone, message, type, status, created_at, updated_at
+    from sms_send
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, phone, message, type, status, created_at, updated_at
+    from sms_send
+  </select>
+
+  <!-- added by fhk on 2017.9.13-->
+  <sql id="Base_Column_List" >
+    id, phone, message, type, status, created_at, updated_at
+  </sql>
+
+  <insert id="createLoginSMS" parameterType="com.mt.upms.common.model.SmsSend">
+    insert into sms_send (phone, message, status)
+    values ( #{phone,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR},
+    #{status,jdbcType=TINYINT}
+    )
+  </insert>
+
+  <select id="selectByPhone" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from sms_send
+    where is_active = 1 and phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+  <update id="deleteByPhone" >
+    update sms_send
+    set is_active = 0
+    where phone = #{phone,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

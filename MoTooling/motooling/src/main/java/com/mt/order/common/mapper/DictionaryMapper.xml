@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.order.common.dao.DictionaryMapper">
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.Dictionary">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dict_type" jdbcType="VARCHAR" property="dictType" />
+    <result column="dict_type_sub" jdbcType="VARCHAR" property="dictTypeSub" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
+    <result column="dict_name_en" jdbcType="VARCHAR" property="dictNameEn" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sort" jdbcType="REAL" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dict_type, dict_type_sub, dict_code, dict_name, dict_name_en, description, sort
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dictionary
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.Dictionary">
+    insert into dictionary (id, dict_type, dict_type_sub, 
+      dict_code, dict_name, dict_name_en, 
+      description, sort)
+    values (#{id,jdbcType=BIGINT}, #{dictType,jdbcType=VARCHAR}, #{dictTypeSub,jdbcType=VARCHAR}, 
+      #{dictCode,jdbcType=VARCHAR}, #{dictName,jdbcType=VARCHAR}, #{dictNameEn,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{sort,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.Dictionary">
+    insert into dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictType != null">
+        dict_type,
+      </if>
+      <if test="dictTypeSub != null">
+        dict_type_sub,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictName != null">
+        dict_name,
+      </if>
+      <if test="dictNameEn != null">
+        dict_name_en,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictType != null">
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictTypeSub != null">
+        #{dictTypeSub,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictNameEn != null">
+        #{dictNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.Dictionary">
+    update dictionary
+    <set>
+      <if test="dictType != null">
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictTypeSub != null">
+        dict_type_sub = #{dictTypeSub,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null">
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictNameEn != null">
+        dict_name_en = #{dictNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.Dictionary">
+    update dictionary
+    set dict_type = #{dictType,jdbcType=VARCHAR},
+      dict_type_sub = #{dictTypeSub,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      dict_name_en = #{dictNameEn,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=REAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 以下为自定义 -->
+  <select id="selectDictList" resultType="map">
+    SELECT dict_code as code, dict_name as name
+      from dictionary
+      where company_id = #{companyId}
+       and dict_type = #{dictType}
+      order by dict_name ASC
+  </select>
+
+  <select id="getDictNameByCode" resultType="java.lang.String">
+    SELECT dict_name
+    from dictionary
+    where dict_code = #{dictCode}
+    limit 1
+  </select>
+
+  <select id="defaultPartList" resultType="map">
+      SELECT part_name from dictionary WHERE dict_type='PART'
+  </select>
+
+  <select id="defaultSubPartList" resultType="map" parameterType="map">
+    SELECT part_name as sub_part_name   from dictionary
+    <where>
+      <if test=" partName == '模胚' ">
+        and  dict_type='PART_61'
+      </if>
+      <if test=" partName != '模胚' ">
+        and  id=0
+      </if>
+
+    </where>
+  </select>
+
+  <!--发票种类字典-->
+  <select id="selectInvoiceType" resultType="map" parameterType="map">
+      SELECT  dict_code as code ,dict_name as name FROM dictionary where dict_type='INVOICE_TYPE' and company_id = #{companyId}
+  </select>
+
+  <!--物料规格型号列表-->
+  <select id="selectMatModel" resultType="map" parameterType="map">
+     SELECT  dict_code as code ,dict_name as name FROM dictionary where dict_type='MAT_MODEL' and company_id = #{companyId}
+  </select>
+
+  <!--物料需求来源列表-->
+  <select id="selectMatRequreFrom"  resultType="map" parameterType="map">
+    SELECT  dict_code as code ,dict_name as name FROM dictionary where dict_type='REQUIRE_FROM' and company_id = #{companyId}
+  </select>
+
+  <select id="selectRequireFrom" resultType="map">
+    SELECT  dict_code as code ,dict_name as name FROM  dictionary_mt where dict_type='REQUIRE_FROM'
+  </select>
+
+  <select id="selectInvoiceList" resultType="map">
+    SELECT DISTINCT
+      dict_code as code,
+      dict_name as name,
+      case when trim(ifnull(remark,''))='' then 0 else remark + 0 END as tax_ratio
+    FROM dictionary
+    where dict_type = 'INVOICE_TYPE'
+    and company_id = #{companyId}
+  </select>
+</mapper>

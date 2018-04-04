@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmRoutingTmplSubMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmRoutingTmplSub">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tmpl_id" jdbcType="INTEGER" property="tmplId" />
+    <result column="proc_seq" jdbcType="INTEGER" property="procSeq" />
+    <result column="proc_id" jdbcType="INTEGER" property="procId" />
+    <result column="proc_name" jdbcType="VARCHAR" property="procName" />
+    <result column="proc_type" jdbcType="TINYINT" property="procType" />
+    <result column="proc_desc" jdbcType="VARCHAR" property="procDesc" />
+    <result column="pg_id" jdbcType="INTEGER" property="pgId" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="machine_time" jdbcType="DECIMAL" property="machineTime" />
+    <result column="labor_time" jdbcType="DECIMAL" property="laborTime" />
+    <result column="other_time" jdbcType="DECIMAL" property="otherTime" />
+    <result column="time_unit" jdbcType="TINYINT" property="timeUnit" />
+    <result column="ass_unit" jdbcType="VARCHAR" property="assUnit" />
+    <result column="ass_calc_qty" jdbcType="DECIMAL" property="assCalcQty" />
+    <result column="ass_up" jdbcType="DECIMAL" property="assUp" />
+    <result column="ass_time" jdbcType="DECIMAL" property="assTime" />
+    <result column="proc_qty" jdbcType="DECIMAL" property="procQty" />
+    <result column="ass_price" jdbcType="DECIMAL" property="assPrice" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pic_path" jdbcType="VARCHAR" property="picPath" />
+    <result column="is_need_qc" jdbcType="CHAR" property="isNeedQc" />
+    <result column="is_auto_assign" jdbcType="CHAR" property="isAutoAssign" />
+    <result column="is_auto_accept" jdbcType="CHAR" property="isAutoAccept" />
+    <result column="is_start_warn" jdbcType="CHAR" property="isStartWarn" />
+    <result column="is_end_warn" jdbcType="CHAR" property="isEndWarn" />
+    <result column="is_can_ass" jdbcType="CHAR" property="isCanAss" />
+    <result column="task_part_qty" jdbcType="INTEGER" property="taskPartQty" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, tmpl_id, proc_seq, proc_id, proc_name, proc_type, proc_desc, pg_id, device_id, 
+    machine_time, labor_time, other_time, time_unit, ass_unit, ass_calc_qty, ass_up, 
+    ass_time, proc_qty, ass_price, remark, pic_path, is_need_qc, is_auto_assign, is_auto_accept, is_start_warn, is_end_warn,
+    is_can_ass, task_part_qty, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pm_routing_tmpl_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_routing_tmpl_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmRoutingTmplSub">
+    insert into pm_routing_tmpl_sub (id, tmpl_id, proc_seq,
+      proc_id, proc_name, proc_type, 
+      proc_desc, pg_id, device_id, 
+      machine_time, labor_time, other_time, 
+      time_unit, ass_unit, ass_calc_qty, 
+      ass_up, ass_time, proc_qty, ass_price, remark, pic_path,
+      is_need_qc, is_auto_assign, is_auto_accept, 
+      is_start_warn, is_end_warn, is_can_ass, 
+      task_part_qty, created_at, updated_at, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{tmplId,jdbcType=BIGINT}, #{procSeq,jdbcType=INTEGER},
+      #{procId,jdbcType=BIGINT}, #{procName,jdbcType=VARCHAR}, #{procType,jdbcType=TINYINT},
+      #{procDesc,jdbcType=VARCHAR}, #{pgId,jdbcType=BIGINT}, #{deviceId,jdbcType=INTEGER},
+      #{machineTime,jdbcType=DECIMAL}, #{laborTime,jdbcType=DECIMAL}, #{otherTime,jdbcType=DECIMAL}, 
+      #{timeUnit,jdbcType=TINYINT}, #{assUnit,jdbcType=VARCHAR}, #{assCalcQty,jdbcType=DECIMAL}, 
+      #{assUp,jdbcType=DECIMAL}, #{assTime,jdbcType=DECIMAL}, #{procQty,jdbcType=DECIMAL},
+      #{assPrice,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{picPath,jdbcType=VARCHAR},
+      #{isNeedQc,jdbcType=CHAR}, #{isAutoAssign,jdbcType=CHAR}, #{isAutoAccept,jdbcType=CHAR}, 
+      #{isStartWarn,jdbcType=CHAR}, #{isEndWarn,jdbcType=CHAR}, #{isCanAss,jdbcType=CHAR}, 
+      #{taskPartQty,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmRoutingTmplSub">
+    insert into pm_routing_tmpl_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tmplId != null">
+        tmpl_id,
+      </if>
+      <if test="procSeq != null">
+        proc_seq,
+      </if>
+      <if test="procId != null">
+        proc_id,
+      </if>
+      <if test="procName != null">
+        proc_name,
+      </if>
+      <if test="procType != null">
+        proc_type,
+      </if>
+      <if test="procDesc != null">
+        proc_desc,
+      </if>
+      <if test="pgId != null">
+        pg_id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="machineTime != null">
+        machine_time,
+      </if>
+      <if test="laborTime != null">
+        labor_time,
+      </if>
+      <if test="otherTime != null">
+        other_time,
+      </if>
+      <if test="timeUnit != null">
+        time_unit,
+      </if>
+      <if test="assUnit != null">
+        ass_unit,
+      </if>
+      <if test="assCalcQty != null">
+        ass_calc_qty,
+      </if>
+      <if test="assUp != null">
+        ass_up,
+      </if>
+      <if test="assTime != null">
+        ass_time,
+      </if>
+      <if test="procQty != null">
+        proc_qty,
+      </if>
+      <if test="assPrice != null">
+        ass_price,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="picPath != null">
+        pic_path,
+      </if>
+      <if test="isNeedQc != null">
+        is_need_qc,
+      </if>
+      <if test="isAutoAssign != null">
+        is_auto_assign,
+      </if>
+      <if test="isAutoAccept != null">
+        is_auto_accept,
+      </if>
+      <if test="isStartWarn != null">
+        is_start_warn,
+      </if>
+      <if test="isEndWarn != null">
+        is_end_warn,
+      </if>
+      <if test="isCanAss != null">
+        is_can_ass,
+      </if>
+      <if test="taskPartQty != null">
+        task_part_qty,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tmplId != null">
+        #{tmplId,jdbcType=BIGINT},
+      </if>
+      <if test="procSeq != null">
+        #{procSeq,jdbcType=INTEGER},
+      </if>
+      <if test="procId != null">
+        #{procId,jdbcType=BIGINT},
+      </if>
+      <if test="procName != null">
+        #{procName,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null">
+        #{procType,jdbcType=TINYINT},
+      </if>
+      <if test="procDesc != null">
+        #{procDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pgId != null">
+        #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="machineTime != null">
+        #{machineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborTime != null">
+        #{laborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="otherTime != null">
+        #{otherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=TINYINT},
+      </if>
+      <if test="assUnit != null">
+        #{assUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="assCalcQty != null">
+        #{assCalcQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assUp != null">
+        #{assUp,jdbcType=DECIMAL},
+      </if>
+      <if test="assTime != null">
+        #{assTime,jdbcType=DECIMAL},
+      </if>
+      <if test="procQty != null">
+        #{procQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assPrice != null">
+        #{assPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null">
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedQc != null">
+        #{isNeedQc,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAssign != null">
+        #{isAutoAssign,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAccept != null">
+        #{isAutoAccept,jdbcType=CHAR},
+      </if>
+      <if test="isStartWarn != null">
+        #{isStartWarn,jdbcType=CHAR},
+      </if>
+      <if test="isEndWarn != null">
+        #{isEndWarn,jdbcType=CHAR},
+      </if>
+      <if test="isCanAss != null">
+        #{isCanAss,jdbcType=CHAR},
+      </if>
+      <if test="taskPartQty != null">
+        #{taskPartQty,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmRoutingTmplSub">
+    update pm_routing_tmpl_sub
+    <set>
+      <if test="tmplId != null">
+        tmpl_id = #{tmplId,jdbcType=BIGINT},
+      </if>
+      <if test="procSeq != null">
+        proc_seq = #{procSeq,jdbcType=INTEGER},
+      </if>
+      <if test="procId != null">
+        proc_id = #{procId,jdbcType=BIGINT},
+      </if>
+      <if test="procName != null">
+        proc_name = #{procName,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null">
+        proc_type = #{procType,jdbcType=TINYINT},
+      </if>
+      <if test="procDesc != null">
+        proc_desc = #{procDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pgId != null">
+        pg_id = #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="machineTime != null">
+        machine_time = #{machineTime,jdbcType=DECIMAL},
+      </if>
+      <if test="laborTime != null">
+        labor_time = #{laborTime,jdbcType=DECIMAL},
+      </if>
+      <if test="otherTime != null">
+        other_time = #{otherTime,jdbcType=DECIMAL},
+      </if>
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=TINYINT},
+      </if>
+      <if test="assUnit != null">
+        ass_unit = #{assUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="assCalcQty != null">
+        ass_calc_qty = #{assCalcQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assUp != null">
+        ass_up = #{assUp,jdbcType=DECIMAL},
+      </if>
+      <if test="assTime != null">
+        ass_time = #{assTime,jdbcType=DECIMAL},
+      </if>
+      <if test="procQty != null">
+        proc_qty = #{procQty,jdbcType=DECIMAL},
+      </if>
+      <if test="assPrice != null">
+        ass_price = #{assPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null">
+        pic_path = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedQc != null">
+        is_need_qc = #{isNeedQc,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAssign != null">
+        is_auto_assign = #{isAutoAssign,jdbcType=CHAR},
+      </if>
+      <if test="isAutoAccept != null">
+        is_auto_accept = #{isAutoAccept,jdbcType=CHAR},
+      </if>
+      <if test="isStartWarn != null">
+        is_start_warn = #{isStartWarn,jdbcType=CHAR},
+      </if>
+      <if test="isEndWarn != null">
+        is_end_warn = #{isEndWarn,jdbcType=CHAR},
+      </if>
+      <if test="isCanAss != null">
+        is_can_ass = #{isCanAss,jdbcType=CHAR},
+      </if>
+      <if test="taskPartQty != null">
+        task_part_qty = #{taskPartQty,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmRoutingTmplSub">
+    update pm_routing_tmpl_sub
+    set tmpl_id = #{tmplId,jdbcType=BIGINT},
+      proc_seq = #{procSeq,jdbcType=INTEGER},
+      proc_id = #{procId,jdbcType=BIGINT},
+      proc_name = #{procName,jdbcType=VARCHAR},
+      proc_type = #{procType,jdbcType=TINYINT},
+      proc_desc = #{procDesc,jdbcType=VARCHAR},
+      pg_id = #{pgId,jdbcType=BIGINT},
+      device_id = #{deviceId,jdbcType=INTEGER},
+      machine_time = #{machineTime,jdbcType=DECIMAL},
+      labor_time = #{laborTime,jdbcType=DECIMAL},
+      other_time = #{otherTime,jdbcType=DECIMAL},
+      time_unit = #{timeUnit,jdbcType=TINYINT},
+      ass_unit = #{assUnit,jdbcType=VARCHAR},
+      ass_calc_qty = #{assCalcQty,jdbcType=DECIMAL},
+      ass_up = #{assUp,jdbcType=DECIMAL},
+      ass_time = #{assTime,jdbcType=DECIMAL},
+      proc_qty = #{procQty,jdbcType=DECIMAL},
+      ass_price = #{assPrice,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      pic_path = #{picPath,jdbcType=VARCHAR},
+      is_need_qc = #{isNeedQc,jdbcType=CHAR},
+      is_auto_assign = #{isAutoAssign,jdbcType=CHAR},
+      is_auto_accept = #{isAutoAccept,jdbcType=CHAR},
+      is_start_warn = #{isStartWarn,jdbcType=CHAR},
+      is_end_warn = #{isEndWarn,jdbcType=CHAR},
+      is_can_ass = #{isCanAss,jdbcType=CHAR},
+      task_part_qty = #{taskPartQty,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <delete id="deleteByTmplId" parameterType="java.lang.Long">
+    delete from pm_routing_tmpl_sub
+    where tmpl_id = #{tmpl_id,jdbcType=BIGINT}
+  </delete>
+
+
+  <select id="selectByTmplId"  parameterType="java.lang.Long" resultType="Map">
+    select
+    pm_routing_tmpl_sub.*,pg_name,pg_type,device_name
+    from pm_routing_tmpl_sub  left JOIN  pm_pg
+    on pm_pg.pg_id=pm_routing_tmpl_sub.pg_id LEFT JOIN
+		pm_pg_device on pm_pg_device.id=pm_routing_tmpl_sub.device_id
+    WHERE tmpl_id = #{tmpl_id}
+    and pm_routing_tmpl_sub.status = '1'
+    order by proc_seq
+  </select>
+</mapper>

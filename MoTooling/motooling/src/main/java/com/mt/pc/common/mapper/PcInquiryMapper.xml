@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pc.common.dao.PcInquiryMapper">
+    <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcInquiry">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="inquiry_no" property="inquiryNo" jdbcType="VARCHAR"/>
+        <result column="deal_flag" property="dealFlag" jdbcType="TINYINT"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="purch_man" property="purchMan" jdbcType="BIGINT"/>
+        <result column="purch_man_name" property="purchManName" jdbcType="VARCHAR"/>
+        <result column="purch_man_phone" property="purchManPhone" jdbcType="VARCHAR"/>
+        <result column="purch_man_email" property="purchManEmail" jdbcType="VARCHAR"/>
+        <result column="inquiry_date" property="inquiryDate" jdbcType="TIMESTAMP"/>
+        <result column="quote_date" property="quoteDate" jdbcType="TIMESTAMP"/>
+        <result column="quote_end_date" property="quoteEndDate" jdbcType="TIMESTAMP"/>
+        <result column="delivery_date" property="deliveryDate" jdbcType="TIMESTAMP"/>
+        <result column="delivery_place" property="deliveryPlace" jdbcType="VARCHAR"/>
+        <result column="coin" property="coin" jdbcType="VARCHAR"/>
+        <result column="invoice_type" property="invoiceType" jdbcType="TINYINT"/>
+        <result column="tax_ratio" property="taxRatio" jdbcType="DECIMAL"/>
+        <result column="creator_id" property="creatorId" jdbcType="BIGINT"/>
+        <result column="handler_id" property="handlerId" jdbcType="BIGINT"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, inquiry_no, deal_flag, company_id, company_name, purch_man, purch_man_name, purch_man_phone, 
+    purch_man_email, inquiry_date, quote_date, quote_end_date, delivery_date, delivery_place, 
+    coin, invoice_type, tax_ratio, creator_id, handler_id, created_at, updated_at, total_price, 
+    status, remark
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pc_inquiry
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pc_inquiry
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+    <insert id="insert" parameterType="com.mt.pc.common.model.PcInquiry">
+    insert into pc_inquiry (id, inquiry_no, deal_flag, 
+      company_id, company_name, purch_man, 
+      purch_man_name, purch_man_phone, purch_man_email, 
+      inquiry_date, quote_date, quote_end_date, 
+      delivery_date, delivery_place, coin, 
+      invoice_type, tax_ratio, creator_id, 
+      handler_id, created_at, updated_at, 
+      total_price, status, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{inquiryNo,jdbcType=VARCHAR}, #{dealFlag,jdbcType=TINYINT}, 
+      #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{purchMan,jdbcType=BIGINT}, 
+      #{purchManName,jdbcType=VARCHAR}, #{purchManPhone,jdbcType=VARCHAR}, #{purchManEmail,jdbcType=VARCHAR}, 
+      #{inquiryDate,jdbcType=TIMESTAMP}, #{quoteDate,jdbcType=TIMESTAMP}, #{quoteEndDate,jdbcType=TIMESTAMP}, 
+      #{deliveryDate,jdbcType=TIMESTAMP}, #{deliveryPlace,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, 
+      #{invoiceType,jdbcType=TINYINT}, #{taxRatio,jdbcType=DECIMAL}, #{creatorId,jdbcType=BIGINT}, 
+      #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcInquiry">
+        update pc_inquiry
+        <set>
+            <if test="inquiryNo != null">
+                inquiry_no = #{inquiryNo,jdbcType=VARCHAR},
+            </if>
+            <if test="dealFlag != null">
+                deal_flag = #{dealFlag,jdbcType=TINYINT},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="purchMan != null">
+                purch_man = #{purchMan,jdbcType=BIGINT},
+            </if>
+            <if test="purchManName != null">
+                purch_man_name = #{purchManName,jdbcType=VARCHAR},
+            </if>
+            <if test="purchManPhone != null">
+                purch_man_phone = #{purchManPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="purchManEmail != null">
+                purch_man_email = #{purchManEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="inquiryDate != null">
+                inquiry_date = #{inquiryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quoteDate != null">
+                quote_date = #{quoteDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quoteEndDate != null">
+                quote_end_date = #{quoteEndDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryDate != null">
+                delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryPlace != null">
+                delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="coin != null">
+                coin = #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceType != null">
+                invoice_type = #{invoiceType,jdbcType=TINYINT},
+            </if>
+            <if test="taxRatio != null">
+                tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="handlerId != null">
+                handler_id = #{handlerId,jdbcType=BIGINT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcInquiry">
+    update pc_inquiry
+    set inquiry_no = #{inquiryNo,jdbcType=VARCHAR},
+      deal_flag = #{dealFlag,jdbcType=TINYINT},
+      company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      purch_man = #{purchMan,jdbcType=BIGINT},
+      purch_man_name = #{purchManName,jdbcType=VARCHAR},
+      purch_man_phone = #{purchManPhone,jdbcType=VARCHAR},
+      purch_man_email = #{purchManEmail,jdbcType=VARCHAR},
+      inquiry_date = #{inquiryDate,jdbcType=TIMESTAMP},
+      quote_date = #{quoteDate,jdbcType=TIMESTAMP},
+      quote_end_date = #{quoteEndDate,jdbcType=TIMESTAMP},
+      delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+      delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+      coin = #{coin,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=TINYINT},
+      tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!-- wendy添加-->
+    <select id="totalSupCount" resultType="map">
+     SELECT COUNT(inquiry_id) AS inquiry_id
+  FROM pc_inquiry_sup
+  WHERE inquiry_id = #{inquiry_id}
+      AND company_id = #{company_id}
+  </select>
+
+    <select id="totalDealFlagCount" resultType="map">
+     SELECT COUNT(deal_flag) AS deal_flag
+  FROM pc_inquiry_sup
+  WHERE inquiry_id = #{inquiry_id}
+      AND deal_flag = 2
+  </select>
+
+
+    <select id="selectInquiryList" resultType="map">
+        SELECT py.inquiry_no, py.id AS inquiry_id, py.deal_flag,py.inquiry_date,py.purch_man_name
+        FROM pc_inquiry py
+        <where>
+            <if test="company_id != null and company_id != ''">
+                And company_id =#{company_id}
+            </if>
+            And status =1 order  by  py.inquiry_date DESC Limit #{page},#{page_size}
+        </where>
+    </select>
+
+    <select id="totalCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(id)
+        FROM pc_inquiry
+        <where>
+            <if test="company_id != null and company_id != ''">
+                And company_id =#{company_id}
+            </if>
+            And status =1
+        </where>
+    </select>
+
+    <select id="selectInquiry" resultType="map">
+        SELECT coin, coin_name, deal_flag,company_name
+        , DATE_FORMAT(delivery_date, '%Y-%m-%d') AS delivery_date, delivery_place
+        , DATE_FORMAT(inquiry_date, '%Y-%m-%d') AS inquiry_date, id AS inquiry_id
+        , invoice_type, invoice_type_name, invoice_type, purch_man, purch_man_email
+        , purch_man_name, DATE_FORMAT(quote_date, '%Y-%m-%d') AS quote_date
+        , DATE_FORMAT(quote_end_date, '%Y-%m-%d') AS quote_end_date, remark
+        , tax_ratio, total_price
+        FROM pc_inquiry py
+        <where>
+            <if test="inquiry_id!=null and inquiry_id!=''">
+                And py.id=#{inquiry_id}
+            </if>
+            And py.status=1
+        </where>
+    </select>
+
+    <select id="selectInquiryFeedBack" resultType="map">
+        SELECT py.coin, py.coin_name, py.deal_flag,py.company_name
+        , DATE_FORMAT(py.delivery_date, '%Y-%m-%d') AS delivery_date, py.delivery_place
+        , DATE_FORMAT(py.inquiry_date, '%Y-%m-%d') AS inquiry_date, py.id AS inquiry_id
+        , py.invoice_type, py.invoice_type_name, py.invoice_type, py.purch_man, py.purch_man_email
+        , py.purch_man_name, DATE_FORMAT(py.quote_date, '%Y-%m-%d') AS quote_date
+        , DATE_FORMAT(py.quote_end_date, '%Y-%m-%d') AS quote_end_date, py.remark
+        , py.tax_ratio, py.total_price
+        FROM pc_inquiry py
+        <where>
+            <if test="inquiry_id!=null and inquiry_id!=''">
+                And py.id=#{inquiry_id}
+            </if>
+            <if test="company_id!=null and company_id!=''">
+                And py.company_id=#{company_id}
+            </if>
+            And py.status=1
+        </where>
+    </select>
+
+
+    <select id="selectInquiryId" resultType="map" parameterType="java.lang.Long">
+     SELECT id AS inquiry_id, inquiry_no
+  FROM pc_inquiry
+  WHERE id = #{id}
+      AND status = 1
+  </select>
+
+    <insert id="addInquiry" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="map">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into pc_inquiry
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="inquiry_no != null  and inquiry_no!=''">
+                inquiry_no,
+            </if>
+            <if test="deal_flag != null and deal_flag !=''">
+                deal_flag,
+            </if>
+            <if test="company_id != null  and company_id !=''">
+                company_id,
+            </if>
+            <if test="company_name != null  and company_name !=''">
+                company_name,
+            </if>
+            <if test="purch_man != null  and purch_man !=''">
+                purch_man,
+            </if>
+            <if test="purch_man_name != null  and purch_man_name !=''">
+                purch_man_name,
+            </if>
+            <if test="purch_man_phone != null  and purch_man_phone !=''">
+                purch_man_phone,
+            </if>
+            <if test="purch_man_email != null  and purch_man_email !=''">
+                purch_man_email,
+            </if>
+            <if test="inquiry_date != null  and inquiry_date !=''">
+                inquiry_date,
+            </if>
+            <if test="quote_date != null  and quote_date !=''">
+                quote_date,
+            </if>
+            <if test="quote_end_date != null  and quote_end_date !=''">
+                quote_end_date,
+            </if>
+            <if test="delivery_date != null  and delivery_date !=''">
+                delivery_date,
+            </if>
+            <if test="delivery_place != null  and delivery_place !=''">
+                delivery_place,
+            </if>
+            <if test="coin != null  and coin !=''">
+                coin,
+            </if>
+            <if test="coin_name != null  and coin_name !=''">
+                coin_name,
+            </if>
+            <if test="invoice_type != null  and invoice_type !=''">
+                invoice_type,
+            </if>
+            <if test="invoice_type_name != null  and invoice_type_name !=''">
+                invoice_type_name,
+            </if>
+            <if test="remark != null  and remark !=''">
+                remark,
+            </if>
+            <if test="tax_ratio != null  and tax_ratio !=''">
+                tax_ratio,
+            </if>
+            <if test="total_price != null  and total_price !=''">
+                total_price,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="inquiry_no !=null  and inquiry_no !=''">
+                #{inquiry_no,jdbcType=VARCHAR},
+            </if>
+            <if test="deal_flag != null  and deal_flag !=''">
+                #{deal_flag,jdbcType=TINYINT},
+            </if>
+            <if test="company_id != null  and company_id !=''">
+                #{company_id,jdbcType=INTEGER},
+            </if>
+             <if test="company_name != null  and company_name !=''">
+                #{company_name,jdbcType=VARCHAR},
+            </if>
+
+            <if test="purch_man != null  and purch_man !=''">
+                #{purch_man,jdbcType=BIGINT},
+            </if>
+            <if test="purch_man_name != null  and purch_man_name !=''">
+                #{purch_man_name,jdbcType=VARCHAR},
+            </if>
+            <if test="purch_man_phone != null  and purch_man_phone !=''">
+                #{purch_man_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="purch_man_email != null  and purch_man_email !=''">
+                #{purch_man_email,jdbcType=VARCHAR},
+            </if>
+            <if test="inquiry_date != null  and inquiry_date !=''">
+                #{inquiry_date,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="quote_date != null  and quote_date !=''">
+                #{quote_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quote_end_date != null  and quote_end_date !=''">
+                #{quote_end_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delivery_date != null  and delivery_date !=''">
+                #{delivery_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delivery_place != null  and delivery_place !=''">
+                #{delivery_place,jdbcType=VARCHAR},
+            </if>
+            <if test="coin != null  and coin !=''">
+                #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="coin_name != null  and coin_name !=''">
+                #{coin_name,jdbcType=VARCHAR},
+            </if>
+            <if test="invoice_type != null  and invoice_type !=''">
+                #{invoice_type,jdbcType=TINYINT},
+            </if>
+            <if test="invoice_type_name != null  and invoice_type_name !=''">
+                #{invoice_type_name,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null  and remark !=''">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="tax_ratio != null  and tax_ratio !=''">
+                #{tax_ratio,jdbcType=DECIMAL},
+            </if>
+            <if test="total_price != null  and total_price !=''">
+                #{total_price,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateInquiry" parameterType="map">
+        update pc_inquiry
+        <set>
+            <if test="inquiry_no != null">
+                inquiry_no = #{inquiry_no,jdbcType=VARCHAR},
+            </if>
+            <if test="dealFlag != null">
+                deal_flag = #{dealFlag,jdbcType=TINYINT},
+            </if>
+            <if test="company_id != null">
+                company_id = #{company_id,jdbcType=INTEGER},
+            </if>
+            <if test="company_name != null">
+                company_name = #{company_name,jdbcType=VARCHAR},
+            </if>
+            <if test="purch_man != null">
+                purch_man = #{purch_man,jdbcType=BIGINT},
+            </if>
+            <if test="purch_man_name != null">
+                purch_man_name = #{purch_man_name,jdbcType=VARCHAR},
+            </if>
+            <if test="purch_man_phone != null">
+                purch_man_phone = #{purch_man_phone,jdbcType=VARCHAR},
+            </if>
+            <if test="purch_man_email != null">
+                purch_man_email = #{purch_man_email,jdbcType=VARCHAR},
+            </if>
+            <if test="inquiry_date != null">
+                inquiry_date = #{inquiry_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quote_date != null">
+                quote_date = #{quote_date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="quoteEndDate != null">
+                quote_end_date = #{quoteEndDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryDate != null">
+                delivery_date = #{deliveryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryPlace != null">
+                delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="coin != null">
+                coin = #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceType != null">
+                invoice_type = #{invoiceType,jdbcType=TINYINT},
+            </if>
+            <if test="taxRatio != null">
+                tax_ratio = #{taxRatio,jdbcType=DECIMAL},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="handlerId != null">
+                handler_id = #{handlerId,jdbcType=BIGINT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="total_price != null">
+                total_price = #{total_price,jdbcType=DECIMAL},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

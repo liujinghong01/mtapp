@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmTicketAllocateMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmTicketAllocate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="incept_id" jdbcType="BIGINT" property="inceptId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="allocate_flag" jdbcType="CHAR" property="allocateFlag" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, incept_id, member_id, device_id, allocate_flag, handler_id, created_at, updated_at,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pm_ticket_allocate
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_ticket_allocate
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmTicketAllocate">
+    insert into pm_ticket_allocate (id, incept_id, member_id, 
+      device_id, allocate_flag, handler_id,
+      created_at, updated_at, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{inceptId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, 
+      #{deviceId,jdbcType=BIGINT}, #{allocateFlag,jdbcType=CHAR}, #{handlerId,jdbcType=BIGINT},
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmTicketAllocate">
+    insert into pm_ticket_allocate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="inceptId != null">
+        incept_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="allocateFlag != null">
+        allocate_flag,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="inceptId != null">
+        #{inceptId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="allocateFlag != null">
+        #{allocateFlag,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmTicketAllocate">
+    update pm_ticket_allocate
+    <set>
+      <if test="inceptId != null">
+        incept_id = #{inceptId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="allocateFlag != null">
+        allocate_flag = #{allocateFlag,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmTicketAllocate">
+    update pm_ticket_allocate
+    set incept_id = #{inceptId,jdbcType=BIGINT},
+      member_id = #{memberId,jdbcType=BIGINT},
+      device_id = #{deviceId,jdbcType=BIGINT},
+      allocate_flag = #{allocateFlag,jdbcType=CHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 以下为自定义添加 by fhk  -->
+
+  <select id="selectAllDeviceByPopId"  resultType="Map">
+    SELECT   a.id as device_id,
+                    a.device_name,
+                    a.device_no,
+                    a.device_pic,
+                    a.device_status,
+                    case when c.device_id is null then '0' else '1' end as is_allocated,
+                    DATE_FORMAT(a.prod_date,'%Y-%m-%d %H:%i:%s') as prod_date,
+                    a.work_life
+    from pm_pg_device a
+    INNER JOIN pm_prod_order_sub b on a.pg_id = b.pg_id and b.id = #{popId}
+    left join pm_ticket_allocate c on a.id = c.device_id and c.allocate_flag = '1'
+    INNER JOIN pm_ticket_incept d on c.incept_id = d.id and d.pop_id = #{popId} and d.incept_flag = '1'
+  </select>
+
+  <select id="selectAllMemberByPopId"  resultType="Map">
+    SELECT
+    case when c.member_id is null then '0' else '1' end as is_allocated,
+                    a.is_leader,
+                    a.member_id,
+                    a.member_name,
+                    a.member_status
+    from pm_pg_member a
+    INNER JOIN pm_prod_order_sub b on a.pg_id = b.pg_id and b.id = #{popId}
+    left join pm_ticket_allocate c on a.id = c.member_id and c.allocate_flag = '1'
+    INNER JOIN pm_ticket_incept d on c.incept_id = d.id and d.pop_id = #{popId} and d.incept_flag = '1'
+  </select>
+
+  <update id="setDeleteStatusByPopId">
+    update pm_ticket_allocate set status = '0', handler_id = #{uid}, updated_at = now()
+	where status <![CDATA[ <> ]]> '0'
+    and incept_id in (select id from pm_ticket_incept where pop_id = #{popId})
+  </update>
+
+  <select id="selectAllocatedResByPopId" resultType="Map">
+    select
+    a.member_id,
+    d.member_name,
+    a.device_id,
+    c.device_name
+    from pm_ticket_allocate a
+    INNER JOIN pm_ticket_incept b on b.id = a.incept_id
+    left JOIN pm_pg_device c on a.device_id = c.id
+    left join pm_pg_member d on a.member_id = d.member_id
+    inner join pm_prod_order_sub e on b.pop_id = e.id
+    where a.`status` = 1
+    and b.`status` = 1
+    and b.incept_flag = 1
+    and a.allocate_flag = 1
+    and (c.pg_id = e.pg_id or d.pg_id = e.pg_id)
+    and b.pop_id = #{popId}
+  </select>
+
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.order.common.dao.ProjectNotHwProdMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.ProjectNotHwProd" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="project_not_hw_id" property="projectNotHwId" jdbcType="BIGINT" />
+    <result column="cst_prod_name" property="cstProdName" jdbcType="VARCHAR" />
+    <result column="cst_prod_no" property="cstProdNo" jdbcType="VARCHAR" />
+    <result column="cavity_total" property="cavityTotal" jdbcType="INTEGER" />
+    <result column="prod_model_pic" property="prodModelPic" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, project_not_hw_id, cst_prod_name, cst_prod_no, cavity_total, prod_model_pic, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from project_not_hw_prod
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from project_not_hw_prod
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.ProjectNotHwProd" >
+    insert into project_not_hw_prod (id, project_not_hw_id, cst_prod_name, 
+      cst_prod_no, cavity_total, prod_model_pic, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{projectNotHwId,jdbcType=BIGINT}, #{cstProdName,jdbcType=VARCHAR}, 
+      #{cstProdNo,jdbcType=VARCHAR}, #{cavityTotal,jdbcType=INTEGER}, #{prodModelPic,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.ProjectNotHwProd" >
+    insert into project_not_hw_prod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="projectNotHwId != null" >
+        project_not_hw_id,
+      </if>
+      <if test="cstProdName != null" >
+        cst_prod_name,
+      </if>
+      <if test="cstProdNo != null" >
+        cst_prod_no,
+      </if>
+      <if test="cavityTotal != null" >
+        cavity_total,
+      </if>
+      <if test="prodModelPic != null" >
+        prod_model_pic,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="projectNotHwId != null" >
+        #{projectNotHwId,jdbcType=BIGINT},
+      </if>
+      <if test="cstProdName != null" >
+        #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdNo != null" >
+        #{cstProdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityTotal != null" >
+        #{cavityTotal,jdbcType=INTEGER},
+      </if>
+      <if test="prodModelPic != null" >
+        #{prodModelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.ProjectNotHwProd" >
+    update project_not_hw_prod
+    <set >
+      <if test="projectNotHwId != null" >
+        project_not_hw_id = #{projectNotHwId,jdbcType=BIGINT},
+      </if>
+      <if test="cstProdName != null" >
+        cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstProdNo != null" >
+        cst_prod_no = #{cstProdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cavityTotal != null" >
+        cavity_total = #{cavityTotal,jdbcType=INTEGER},
+      </if>
+      <if test="prodModelPic != null" >
+        prod_model_pic = #{prodModelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.ProjectNotHwProd" >
+    update project_not_hw_prod
+    set project_not_hw_id = #{projectNotHwId,jdbcType=BIGINT},
+      cst_prod_name = #{cstProdName,jdbcType=VARCHAR},
+      cst_prod_no = #{cstProdNo,jdbcType=VARCHAR},
+      cavity_total = #{cavityTotal,jdbcType=INTEGER},
+      prod_model_pic = #{prodModelPic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--Alnwick 添加-->
+  <select id="selectProdList" parameterType="java.lang.Integer"  resultType="map">
+      select cavity_total,cst_prod_name,cst_prod_no,prod_model_pic,id as prod_id ,project_not_hw_id FROM project_not_hw_prod
+      WHERE  project_not_hw_id = #{order_line_id}
+  </select>
+
+  <insert id="addProd" parameterType="map"   useGeneratedKeys="true" keyProperty="id" keyColumn="id"  >
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into project_not_hw_prod
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="project_not_hw_id != null" >
+        project_not_hw_id,
+      </if>
+      <if test="cst_prod_name != null" >
+        cst_prod_name,
+      </if>
+      <if test="cst_prod_no != null" >
+        cst_prod_no,
+      </if>
+      <if test="cavity_total != null" >
+        cavity_total,
+      </if>
+      <if test="prod_model_pic != null" >
+        prod_model_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="project_not_hw_id != null" >
+        #{project_not_hw_id,jdbcType=BIGINT},
+      </if>
+      <if test="cst_prod_name != null" >
+        #{cst_prod_name,jdbcType=VARCHAR},
+      </if>
+      <if test="cst_prod_no != null" >
+        #{cst_prod_no,jdbcType=VARCHAR},
+      </if>
+      <if test="cavity_total != null" >
+        #{cavity_total,jdbcType=INTEGER},
+      </if>
+      <if test="prod_model_pic != null" >
+        #{prod_model_pic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateProd" parameterType="map">
+    update project_not_hw_prod
+    <set >
+      <if test="cst_prod_name != null" >
+        cst_prod_name = #{cst_prod_name,jdbcType=VARCHAR},
+      </if>
+      <if test="cst_prod_no != null" >
+        cst_prod_no = #{cst_prod_no,jdbcType=VARCHAR},
+      </if>
+      <if test="cavity_total != null" >
+        cavity_total = #{cavity_total,jdbcType=INTEGER},
+      </if>
+      <if test="prod_model_pic != null" >
+        prod_model_pic = #{prod_model_pic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{prod_id}
+
+  </update>
+
+  <update id="updateStauts" parameterType="java.util.List">
+        UPDATE  project_not_hw_prod set  status = 0 WHERE  id  in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >
+      #{item}
+    </foreach>
+  </update>
+
+</mapper>

@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.iv.common.dao.IvStoreMapper">
+    <resultMap id="BaseResultMap" type="com.mt.iv.common.model.IvStore">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="mat_id" property="matId" jdbcType="BIGINT"/>
+        <result column="mat_no" property="matNo" jdbcType="VARCHAR"/>
+        <result column="mat_desc" property="matDesc" jdbcType="VARCHAR"/>
+        <result column="mat_type_id" property="matTypeId" jdbcType="BIGINT"/>
+        <result column="mat_type_name" property="matTypeName" jdbcType="VARCHAR"/>
+        <result column="mat_model" property="matModel" jdbcType="VARCHAR"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="stock_qty" property="stockQty" jdbcType="DECIMAL"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="last_store_house_id" property="lastStoreHouseId" jdbcType="BIGINT"/>
+        <result column="last_store_house_name" property="lastStoreHouseName" jdbcType="VARCHAR"/>
+        <result column="last_store_room_id" property="lastStoreRoomId" jdbcType="BIGINT"/>
+        <result column="last_store_room_name" property="lastStoreRoomName" jdbcType="VARCHAR"/>
+        <result column="last_handler_id" property="lastHandlerId" jdbcType="BIGINT"/>
+        <result column="last_handle_time" property="lastHandleTime" jdbcType="TIMESTAMP"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, company_id, company_name, mat_id, mat_no, mat_desc, mat_type_id, mat_type_name, 
+    mat_model, unit, stock_qty, total_price, last_store_house_id, last_store_house_name, 
+    last_store_room_id, last_store_room_name, last_handler_id, last_handle_time, created_at, 
+    updated_at, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from iv_store
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iv_store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.mt.iv.common.model.IvStore">
+    insert into iv_store (id, company_id, company_name, 
+      mat_id, mat_no, mat_desc, 
+      mat_type_id, mat_type_name, mat_model, 
+      unit, stock_qty, total_price, 
+      last_store_house_id, last_store_house_name, last_store_room_id, 
+      last_store_room_name, last_handler_id, last_handle_time, 
+      created_at, updated_at, status
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{matId,jdbcType=BIGINT}, #{matNo,jdbcType=VARCHAR}, #{matDesc,jdbcType=VARCHAR}, 
+      #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{stockQty,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{lastStoreHouseId,jdbcType=BIGINT}, #{lastStoreHouseName,jdbcType=VARCHAR}, #{lastStoreRoomId,jdbcType=BIGINT}, 
+      #{lastStoreRoomName,jdbcType=VARCHAR}, #{lastHandlerId,jdbcType=BIGINT}, #{lastHandleTime,jdbcType=TIMESTAMP}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.mt.iv.common.model.IvStore">
+        insert into iv_store
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="matId != null">
+                mat_id,
+            </if>
+            <if test="matNo != null">
+                mat_no,
+            </if>
+            <if test="matDesc != null">
+                mat_desc,
+            </if>
+            <if test="matTypeId != null">
+                mat_type_id,
+            </if>
+            <if test="matTypeName != null">
+                mat_type_name,
+            </if>
+            <if test="matModel != null">
+                mat_model,
+            </if>
+            <if test="unit != null">
+                unit,
+            </if>
+            <if test="stockQty != null">
+                stock_qty,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="lastStoreHouseId != null">
+                last_store_house_id,
+            </if>
+            <if test="lastStoreHouseName != null">
+                last_store_house_name,
+            </if>
+            <if test="lastStoreRoomId != null">
+                last_store_room_id,
+            </if>
+            <if test="lastStoreRoomName != null">
+                last_store_room_name,
+            </if>
+            <if test="lastHandlerId != null">
+                last_handler_id,
+            </if>
+            <if test="lastHandleTime != null">
+                last_handle_time,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="matId != null">
+                #{matId,jdbcType=BIGINT},
+            </if>
+            <if test="matNo != null">
+                #{matNo,jdbcType=VARCHAR},
+            </if>
+            <if test="matDesc != null">
+                #{matDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="matTypeId != null">
+                #{matTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="matTypeName != null">
+                #{matTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="matModel != null">
+                #{matModel,jdbcType=VARCHAR},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="stockQty != null">
+                #{stockQty,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastStoreHouseId != null">
+                #{lastStoreHouseId,jdbcType=BIGINT},
+            </if>
+            <if test="lastStoreHouseName != null">
+                #{lastStoreHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastStoreRoomId != null">
+                #{lastStoreRoomId,jdbcType=BIGINT},
+            </if>
+            <if test="lastStoreRoomName != null">
+                #{lastStoreRoomName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastHandlerId != null">
+                #{lastHandlerId,jdbcType=BIGINT},
+            </if>
+            <if test="lastHandleTime != null">
+                #{lastHandleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.iv.common.model.IvStore">
+        update iv_store
+        <set>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="matId != null">
+                mat_id = #{matId,jdbcType=BIGINT},
+            </if>
+            <if test="matNo != null">
+                mat_no = #{matNo,jdbcType=VARCHAR},
+            </if>
+            <if test="matDesc != null">
+                mat_desc = #{matDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="matTypeId != null">
+                mat_type_id = #{matTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="matTypeName != null">
+                mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="matModel != null">
+                mat_model = #{matModel,jdbcType=VARCHAR},
+            </if>
+            <if test="unit != null">
+                unit = #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="stockQty != null">
+                stock_qty = #{stockQty,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="lastStoreHouseId != null">
+                last_store_house_id = #{lastStoreHouseId,jdbcType=BIGINT},
+            </if>
+            <if test="lastStoreHouseName != null">
+                last_store_house_name = #{lastStoreHouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastStoreRoomId != null">
+                last_store_room_id = #{lastStoreRoomId,jdbcType=BIGINT},
+            </if>
+            <if test="lastStoreRoomName != null">
+                last_store_room_name = #{lastStoreRoomName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastHandlerId != null">
+                last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+            </if>
+            <if test="lastHandleTime != null">
+                last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.iv.common.model.IvStore">
+    update iv_store
+    set company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      mat_id = #{matId,jdbcType=BIGINT},
+      mat_no = #{matNo,jdbcType=VARCHAR},
+      mat_desc = #{matDesc,jdbcType=VARCHAR},
+      mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      mat_model = #{matModel,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      stock_qty = #{stockQty,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      last_store_house_id = #{lastStoreHouseId,jdbcType=BIGINT},
+      last_store_house_name = #{lastStoreHouseName,jdbcType=VARCHAR},
+      last_store_room_id = #{lastStoreRoomId,jdbcType=BIGINT},
+      last_store_room_name = #{lastStoreRoomName,jdbcType=VARCHAR},
+      last_handler_id = #{lastHandlerId,jdbcType=BIGINT},
+      last_handle_time = #{lastHandleTime,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!--wendy添加-->
+    <select id="selectBasicMatList" parameterType="map" resultType="map">
+        SELECT batch_qty, bin_no, handler_id, handled_time, height
+        , is_qc, is_unused, length, mat_desc, mat_id
+        , mat_name, mat_no, mat_type_id, mat_type_name, min_stock_qty
+        , pic_path, plan_price, processes_type, procure_style, rawnature_id
+        , rawnature_name, shape, spec, unit_no, version
+        , weight, width
+        FROM bm_mat
+        WHERE company_id = #{company_id}
+        <if test="query.mat_desc != null and query.mat_desc!=''">
+            AND mat_desc=#{query.mat_desc}
+        </if>
+        <if test="query.mat_id != null and query.mat_id!=''">
+            AND mat_id=#{query.mat_id}
+        </if>
+        <if test="query.mat_no != null and  query.mat_no !=''">
+            AND mat_no=#{query.mat_no}
+        </if>
+        <if test="query.spec != null and query.spec!=''">
+            AND spec=#{query.spec}
+        </if>
+        <if test="query.mat_name != null and query.mat_name!=''">
+            AND mat_name=#{query.mat_name}
+        </if>
+        <if test="is_paging == '1'">
+            AND limit #{page},#{page_size}
+        </if>
+    </select>
+
+
+    <select id="totalCountMat" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(mat_id)
+        FROM bm_mat
+        WHERE company_id = #{company_id}
+        <if test="query.mat_desc != null and query.mat_desc!=''">
+            AND mat_desc=#{query.mat_desc}
+        </if>
+        <if test="query.mat_id != null and query.mat_id!=''">
+            AND mat_id=#{query.mat_id}
+        </if>
+        <if test="query.mat_no != null and  query.mat_no!=''">
+            AND mat_no=#{query.mat_no}
+        </if>
+        <if test="query.spec != null and query.spec!=''">
+            AND spec=#{query.spec}
+        </if>
+        <if test="query.mat_name != null and query.mat_name!=''">
+            AND mat_name=#{query.mat_name}
+        </if>
+    </select>
+
+    <!--Alnwick 添加-->
+
+    <select id="selectStoreSearchMat" parameterType="map" resultType="map">
+        select last_store_house_id ,last_store_house_name,last_store_room_id,last_store_room_name,mat_desc,
+        mat_id,mat_model,mat_no,mat_type_id,mat_type_name,stock_qty,total_price,unit
+        FROM iv_store
+        WHERE
+            company_id=#{company_id} and status =1
+
+            <if test="mat_id != null and mat_id != ''">
+                and mat_id REGEXP#{mat_id}
+            </if>
+            <if test="mat_no != null and mat_no != ''">
+                and mat_no REGEXP #{mat_no}
+            </if>
+            <if test="mat_model != null and mat_model != ''">
+                and mat_model REGEXP #{mat_model}
+            </if>
+            <if test="mat_desc != null and mat_desc != ''">
+                and mat_desc REGEXP #{mat_desc}
+            </if>
+            <if test="is_paging == '1'.toString">
+                limit #{page},#{page_size}
+            </if>
+    </select>
+
+    <select id="totalCountStore" parameterType="map" resultType="java.lang.Integer">
+    select count(id)
+      FROM iv_store
+      WHERE
+            company_id=#{company_id} and status =1
+  </select>
+
+    <select id="selectStoreMatDesc" resultType="map" parameterType="map">
+    select stock_qty,total_price,mat_id,stock_qty
+    from iv_store
+    where mat_id = #{mat_id} and company_id = #{company_id}
+</select>
+
+    <update id="updateStoreMatDesc" parameterType="map">
+        update iv_store
+        <set>
+            <if test="stock_qty != null">
+                stock_qty=#{stock_qty} ,
+            </if>
+            <if test="total_price != null">
+                total_price=#{total_price},
+            </if>
+        </set>
+        where mat_id =#{mat_id}
+    </update>
+
+    <insert id="addStore" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into iv_store
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="company_id != null">
+                company_id,
+            </if>
+            <if test="company_name != null">
+                company_name,
+            </if>
+            <if test="mat_id != null">
+                mat_id,
+            </if>
+            <if test="mat_no != null">
+                mat_no,
+            </if>
+            <if test="mat_desc != null">
+                mat_desc,
+            </if>
+            <if test="mat_type_id != null">
+                mat_type_id,
+            </if>
+            <if test="mat_type_name != null">
+                mat_type_name,
+            </if>
+            <if test="mat_model != null">
+                mat_model,
+            </if>
+            <if test="unit != null">
+                unit,
+            </if>
+            <if test="quantity != null">
+                stock_qty,
+            </if>
+            <if test="total_price != null">
+                total_price,
+            </if>
+            <if test="store_house_id != null">
+                last_store_house_id,
+            </if>
+            <if test="store_house_name != null">
+                last_store_house_name,
+            </if>
+            <if test="store_room_id != null">
+                last_store_room_id,
+            </if>
+            <if test="store_room_name != null">
+                last_store_room_name,
+            </if>
+            <if test="uid != null">
+                last_handler_id,
+            </if>
+            <if test="created_at != null">
+                last_handle_time,
+            </if>
+            <if test="created_at != null">
+                created_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="company_id != null">
+                #{company_id,jdbcType=INTEGER},
+            </if>
+            <if test="company_name != null">
+                #{company_name,jdbcType=VARCHAR},
+            </if>
+            <if test="mat_id != null">
+                #{mat_id,jdbcType=BIGINT},
+            </if>
+            <if test="mat_no != null">
+                #{mat_no,jdbcType=VARCHAR},
+            </if>
+            <if test="mat_desc != null">
+                #{mat_desc,jdbcType=VARCHAR},
+            </if>
+            <if test="mat_type_id != null">
+                #{mat_type_id,jdbcType=BIGINT},
+            </if>
+            <if test="mat_type_name != null">
+                #{mat_type_name,jdbcType=VARCHAR},
+            </if>
+            <if test="mat_model != null">
+                #{mat_model,jdbcType=VARCHAR},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="quantity != null">
+                #{quantity,jdbcType=DECIMAL},
+            </if>
+            <if test="total_price != null">
+                #{total_price,jdbcType=DECIMAL},
+            </if>
+            <if test="store_house_id != null">
+                #{store_house_id,jdbcType=BIGINT},
+            </if>
+            <if test="store_house_name != null">
+                #{store_house_name,jdbcType=VARCHAR},
+            </if>
+            <if test="store_room_id != null">
+                #{store_room_id,jdbcType=BIGINT},
+            </if>
+            <if test="store_room_name != null">
+                #{store_room_name,jdbcType=VARCHAR},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="created_at != null">
+                #{created_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="created_at != null">
+                #{created_at,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据物料id查询库存数量 -->
+    <select id="selectStockQtyByMatId" parameterType="java.lang.Long" resultType="map">
+     SELECT stock_qty
+  FROM iv_store
+  WHERE mat_id = #{mat_id}
+      AND status = 1
+  </select>
+
+    <!-- 根据物料id查询库存金额 -->
+    <select id="selectTotalPriceByMatId" parameterType="java.lang.Long" resultType="map">
+      SELECT total_price
+  FROM iv_store
+  WHERE mat_id = #{mat_id}
+      AND status = 1
+  </select>
+</mapper>

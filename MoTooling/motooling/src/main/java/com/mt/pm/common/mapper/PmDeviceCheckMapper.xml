@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pm.common.dao.PmDeviceCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmDeviceCheck" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="plan_check_date" property="planCheckDate" jdbcType="TIMESTAMP" />
+    <result column="real_check_date" property="realCheckDate" jdbcType="TIMESTAMP" />
+    <result column="plan_handler_id" property="planHandlerId" jdbcType="BIGINT" />
+    <result column="real_handler_id" property="realHandlerId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_checked" property="isChecked" jdbcType="CHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, plan_check_date, real_check_date, plan_handler_id, real_handler_id, 
+    remark, is_checked, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pm_device_check
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pm_device_check
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmDeviceCheck" >
+    insert into pm_device_check (id, device_id, plan_check_date, 
+      real_check_date, plan_handler_id, real_handler_id, 
+      remark, is_checked, created_at, 
+      updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{planCheckDate,jdbcType=TIMESTAMP}, 
+      #{realCheckDate,jdbcType=TIMESTAMP}, #{planHandlerId,jdbcType=BIGINT}, #{realHandlerId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR}, #{isChecked,jdbcType=CHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmDeviceCheck" >
+    insert into pm_device_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="planCheckDate != null" >
+        plan_check_date,
+      </if>
+      <if test="realCheckDate != null" >
+        real_check_date,
+      </if>
+      <if test="planHandlerId != null" >
+        plan_handler_id,
+      </if>
+      <if test="realHandlerId != null" >
+        real_handler_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isChecked != null" >
+        is_checked,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="planCheckDate != null" >
+        #{planCheckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realCheckDate != null" >
+        #{realCheckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planHandlerId != null" >
+        #{planHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="realHandlerId != null" >
+        #{realHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isChecked != null" >
+        #{isChecked,jdbcType=CHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmDeviceCheck" >
+    update pm_device_check
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="planCheckDate != null" >
+        plan_check_date = #{planCheckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realCheckDate != null" >
+        real_check_date = #{realCheckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planHandlerId != null" >
+        plan_handler_id = #{planHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="realHandlerId != null" >
+        real_handler_id = #{realHandlerId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isChecked != null" >
+        is_checked = #{isChecked,jdbcType=CHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmDeviceCheck" >
+    update pm_device_check
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      plan_check_date = #{planCheckDate,jdbcType=TIMESTAMP},
+      real_check_date = #{realCheckDate,jdbcType=TIMESTAMP},
+      plan_handler_id = #{planHandlerId,jdbcType=BIGINT},
+      real_handler_id = #{realHandlerId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_checked = #{isChecked,jdbcType=CHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--wendy添加-->
+  <update id="updateDeviceCheck"  parameterType="Map">
+    update pm_device_check
+    <set >
+      <if test="device_id != null" >
+        device_id = #{device_id,jdbcType=BIGINT},
+      </if>
+      <if test="plan_check_date != null" >
+        plan_check_date = #{plan_check_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="real_check_date != null" >
+        real_check_date = #{real_check_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plan_handler_id != null" >
+        plan_handler_id = #{plan_handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="real_handler_id != null" >
+        real_handler_id = #{real_handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="is_checked != null" >
+        is_checked = #{is_checked,jdbcType=CHAR},
+      </if>
+      <if test="created_at != null" >
+        created_at = #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null" >
+        updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <insert id="addDeviceCheck" parameterType="Map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into pm_device_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="device_id != null" >
+        device_id,
+      </if>
+      <if test="plan_check_date != null" >
+        plan_check_date,
+      </if>
+      <if test="real_check_date != null" >
+        real_check_date,
+      </if>
+      <if test="plan_handler_id != null" >
+        plan_handler_id,
+      </if>
+      <if test="real_handler_id != null" >
+        real_handler_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="is_checked != null" >
+        is_checked,
+      </if>
+      <if test="created_at != null" >
+        created_at,
+      </if>
+      <if test="updated_at != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="device_id != null" >
+        #{device_id,jdbcType=BIGINT},
+      </if>
+      <if test="plan_check_date != null" >
+        #{plan_check_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="real_check_date != null" >
+        #{real_check_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plan_handler_id != null" >
+        #{plan_handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="real_handler_id != null" >
+        #{real_handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="is_checked != null" >
+        #{is_checked,jdbcType=CHAR},
+      </if>
+      <if test="created_at != null" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectDeviceCheckMaxId" resultType="map"  parameterType="map">
+     SELECT *, MAX(id)
+  FROM pm_device_check
+  WHERE device_id = #{device_id}
+      AND status = 1
+  </select>
+</mapper>

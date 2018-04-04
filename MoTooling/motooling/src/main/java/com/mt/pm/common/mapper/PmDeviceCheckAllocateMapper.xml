@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pm.common.dao.PmDeviceCheckAllocateMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmDeviceCheckAllocate" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="check_uid" property="checkUid" jdbcType="BIGINT" />
+    <result column="check_uid_name" property="checkUidName" jdbcType="VARCHAR" />
+    <result column="handler_id" property="handlerId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, check_uid, check_uid_name, handler_id, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pm_device_check_allocate
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pm_device_check_allocate
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmDeviceCheckAllocate" >
+    insert into pm_device_check_allocate (id, device_id, check_uid, 
+      check_uid_name, handler_id, created_at, 
+      updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{checkUid,jdbcType=BIGINT}, 
+      #{checkUidName,jdbcType=VARCHAR}, #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmDeviceCheckAllocate" >
+    insert into pm_device_check_allocate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="checkUid != null" >
+        check_uid,
+      </if>
+      <if test="checkUidName != null" >
+        check_uid_name,
+      </if>
+      <if test="handlerId != null" >
+        handler_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="checkUid != null" >
+        #{checkUid,jdbcType=BIGINT},
+      </if>
+      <if test="checkUidName != null" >
+        #{checkUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmDeviceCheckAllocate" >
+    update pm_device_check_allocate
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="checkUid != null" >
+        check_uid = #{checkUid,jdbcType=BIGINT},
+      </if>
+      <if test="checkUidName != null" >
+        check_uid_name = #{checkUidName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlerId != null" >
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmDeviceCheckAllocate" >
+    update pm_device_check_allocate
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      check_uid = #{checkUid,jdbcType=BIGINT},
+      check_uid_name = #{checkUidName,jdbcType=VARCHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--wendy添加-->
+
+  <select  id="selectDeviceCheckAllocate" resultType="map"  parameterType="map">
+      SELECT check_uid, check_uid_name
+  FROM pm_device_check_allocate
+  WHERE id = #{device_id}
+      AND status = 1
+  </select>
+
+
+  <select id="selectDeviceCheckAllocateInfo" parameterType="map" resultType="map">
+    SELECT pe.allocate_id, pe.check_uid, pe.check_uid_name, pk.id AS device_id, device_name
+    FROM pm_device_check_allocate pe
+    JOIN pm_pg_device pk ON pe.device_id = pk.id
+    <where>
+      <if test="check_uid != null and check_uid != ''">
+       And  pe.check_uid=#{check_uid}
+      </if>
+      <if test="pg_id != null and pg_id != ''">
+       And  pk.pg_id=#{pg_id}
+      </if>
+      And  pe.status=1
+    </where>
+  </select>
+
+  <select id="selectDeviceCheckDetail"  parameterType="map"  resultType="map">
+    SELECT pe.allocate_id, pe.check_uid, pe.check_uid_name, pk.device_addr, pk.device_brand
+    , pk.id AS device_id, pk.device_model, pk.device_name, pk.device_no, device_pic
+    , device_status, pk.pg_id, DATE_FORMAT(pk.prod_date, '%Y-%m-%d') AS prod_date
+    , pk.work_life
+    FROM pm_device_check_allocate pe
+    JOIN pm_pg_device pk ON pe.device_id = pk.id
+    <where>
+      <if test="allocate_id != null and allocate_id != ''">
+        pe.allocate_id=#{allocate_id}
+      </if>
+      And  pe.status=1
+    </where>
+  </select>
+
+
+  <select id="selectAllocateIdCheckById" resultType="map"  parameterType="java.lang.Long">
+      SELECT *
+  FROM pm_device_check_allocate
+  WHERE allocate_id = #{allocate_id}
+      AND status = 1
+  </select>
+
+  <select id="selectMaxAllocateId" resultType="java.lang.Integer">
+      SELECT MAX(allocate_id + 1)
+  FROM pm_device_check_allocate
+  </select>
+
+  <update  id="updateCheckAllocateByAllocateId"  parameterType="java.lang.Long">
+     DELETE  FROM pm_device_check_allocate
+  WHERE allocate_id=#{allocate_id}
+  </update>
+
+  <update id="updateDeviceCheckAllocate" parameterType="map">
+    update pm_device_check_allocate
+    <set >
+      <if test="device_id != null  and device_id!=''" >
+        device_id = #{device_id,jdbcType=BIGINT},
+      </if>
+     <if test="check_uid != null   and check_uid!=''" >
+       check_uid=#{check_uid,jdbcType=BIGINT},
+      </if>
+      <if test="check_uid_name != null   and check_uid_name!=''" >
+        check_uid_name = #{check_uid_name,jdbcType=VARCHAR},
+      </if>
+      <if test="allocate_id != null   and allocate_id!=''" >
+        allocate_id = #{allocate_id,jdbcType=BIGINT},
+      </if>
+      <if test="handler_id != null   and handler_id!=''" >
+        handler_id = #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="created_at != null  and created_at!=''" >
+        created_at = #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null   and updated_at!=''" >
+        updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null   and status!=''" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where allocate_id = #{allocateId,jdbcType=BIGINT}
+  </update>
+  <insert id="addDeviceCheckAllocate" parameterType="Map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into pm_device_check_allocate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="device_id != null and device_id!=''" >
+        device_id,
+      </if>
+      <if test="check_uid != null and check_uid!=''" >
+        check_uid,
+      </if>
+      <if test="check_uid_name != null and check_uid_name!=''" >
+        check_uid_name,
+      </if>
+      <if test="allocate_id != null and allocate_id!=''" >
+        allocate_id,
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        handler_id,
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        created_at,
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        updated_at,
+      </if>
+      <if test="status != null and status!=''" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="device_id != null and device_id!=''" >
+        #{device_id,jdbcType=BIGINT},
+      </if>
+      <if test="check_uid != null and check_uid!=''" >
+        #{check_uid,jdbcType=BIGINT},
+      </if>
+      <if test="check_uid_name != null and check_uid_name!=''" >
+        #{check_uid_name,jdbcType=VARCHAR},
+      </if>
+      <if test="allocate_id != null and allocate_id!=''" >
+        #{allocate_id,jdbcType=BIGINT},
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status!=''" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pc.common.dao.SysBillNoConfMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pc.common.model.SysBillNoConf">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="bill_type_code" jdbcType="VARCHAR" property="billTypeCode" />
+    <result column="bill_type_name" jdbcType="VARCHAR" property="billTypeName" />
+    <result column="newest_bill_no" jdbcType="VARCHAR" property="newestBillNo" />
+    <result column="newest_bill_id" jdbcType="BIGINT" property="newestBillId" />
+    <result column="newest_bill_num" jdbcType="VARCHAR" property="newestBillNum" />
+    <result column="num_cycle" jdbcType="CHAR" property="numCycle" />
+    <result column="num_length" jdbcType="INTEGER" property="numLength" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_id, company_name, bill_type_code, bill_type_name, newest_bill_no, newest_bill_id, 
+    newest_bill_num, num_cycle, num_length, handler_id, created_at, updated_at, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_bill_no_conf
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_bill_no_conf
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pc.common.model.SysBillNoConf">
+    insert into sys_bill_no_conf (id, company_id, company_name, 
+      bill_type_code, bill_type_name, newest_bill_no, 
+      newest_bill_id, newest_bill_num, num_cycle, 
+      num_length, handler_id, created_at, 
+      updated_at, remark)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{billTypeCode,jdbcType=VARCHAR}, #{billTypeName,jdbcType=VARCHAR}, #{newestBillNo,jdbcType=VARCHAR}, 
+      #{newestBillId,jdbcType=BIGINT}, #{newestBillNum,jdbcType=VARCHAR}, #{numCycle,jdbcType=CHAR}, 
+      #{numLength,jdbcType=INTEGER}, #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pc.common.model.SysBillNoConf">
+    insert into sys_bill_no_conf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code,
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name,
+      </if>
+      <if test="newestBillNo != null">
+        newest_bill_no,
+      </if>
+      <if test="newestBillId != null">
+        newest_bill_id,
+      </if>
+      <if test="newestBillNum != null">
+        newest_bill_num,
+      </if>
+      <if test="numCycle != null">
+        num_cycle,
+      </if>
+      <if test="numLength != null">
+        num_length,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="billTypeCode != null">
+        #{billTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billTypeName != null">
+        #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="newestBillNo != null">
+        #{newestBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="newestBillId != null">
+        #{newestBillId,jdbcType=BIGINT},
+      </if>
+      <if test="newestBillNum != null">
+        #{newestBillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="numCycle != null">
+        #{numCycle,jdbcType=CHAR},
+      </if>
+      <if test="numLength != null">
+        #{numLength,jdbcType=INTEGER},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.SysBillNoConf">
+    update sys_bill_no_conf
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="billTypeCode != null">
+        bill_type_code = #{billTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billTypeName != null">
+        bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="newestBillNo != null">
+        newest_bill_no = #{newestBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="newestBillId != null">
+        newest_bill_id = #{newestBillId,jdbcType=BIGINT},
+      </if>
+      <if test="newestBillNum != null">
+        newest_bill_num = #{newestBillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="numCycle != null">
+        num_cycle = #{numCycle,jdbcType=CHAR},
+      </if>
+      <if test="numLength != null">
+        num_length = #{numLength,jdbcType=INTEGER},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.SysBillNoConf">
+    update sys_bill_no_conf
+    set company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      bill_type_code = #{billTypeCode,jdbcType=VARCHAR},
+      bill_type_name = #{billTypeName,jdbcType=VARCHAR},
+      newest_bill_no = #{newestBillNo,jdbcType=VARCHAR},
+      newest_bill_id = #{newestBillId,jdbcType=BIGINT},
+      newest_bill_num = #{newestBillNum,jdbcType=VARCHAR},
+      num_cycle = #{numCycle,jdbcType=CHAR},
+      num_length = #{numLength,jdbcType=INTEGER},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 以下为自定  -->
+
+
+  <select id="createBillNo"  resultType="java.lang.String">
+    SELECT uf_createBillNo(#{companyId}, #{billTypeCode}, #{uid}) FROM dual
+  </select>
+
+</mapper>

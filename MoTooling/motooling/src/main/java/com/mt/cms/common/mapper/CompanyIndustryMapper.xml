@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.cms.common.dao.CompanyIndustryMapper">
+  <resultMap id="BaseResultMap" type="com.mt.cms.common.model.CompanyIndustry">
+    <id column="industry_id" jdbcType="INTEGER" property="industryId" />
+    <result column="industry_code" jdbcType="VARCHAR" property="industryCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="code_level" jdbcType="SMALLINT" property="codeLevel" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    industry_id, industry_code, name, name_en, code_level, is_active, created_at, updated_at,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from company_industry
+    where industry_id = #{industryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company_industry
+    where industry_id = #{industryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mt.cms.common.model.CompanyIndustry">
+    insert into company_industry (industry_id, industry_code, name,
+    name_en, code_level, is_active,
+    created_at, updated_at, status
+    )
+    values (#{industryId,jdbcType=INTEGER}, #{industryCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+    #{nameEn,jdbcType=VARCHAR}, #{codeLevel,jdbcType=SMALLINT}, #{isActive,jdbcType=BIT},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.cms.common.model.CompanyIndustry">
+    insert into company_industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="industryId != null">
+        industry_id,
+      </if>
+      <if test="industryCode != null">
+        industry_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="codeLevel != null">
+        code_level,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="industryId != null">
+        #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="industryCode != null">
+        #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLevel != null">
+        #{codeLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.cms.common.model.CompanyIndustry">
+    update company_industry
+    <set>
+      <if test="industryCode != null">
+        industry_code = #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="codeLevel != null">
+        code_level = #{codeLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where industry_id = #{industryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.cms.common.model.CompanyIndustry">
+    update company_industry
+    set industry_code = #{industryCode,jdbcType=VARCHAR},
+    name = #{name,jdbcType=VARCHAR},
+    name_en = #{nameEn,jdbcType=VARCHAR},
+    code_level = #{codeLevel,jdbcType=SMALLINT},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=TINYINT}
+    where industry_id = #{industryId,jdbcType=INTEGER}
+  </update>
+</mapper>

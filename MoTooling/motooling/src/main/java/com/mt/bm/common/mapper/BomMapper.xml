@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.bm.common.dao.BomMapper">
+  <resultMap id="BaseResultMap" type="com.mt.bm.common.model.Bom">
+    <id column="bom_id" jdbcType="BIGINT" property="bomId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="mold_no" jdbcType="VARCHAR" property="moldNo" />
+    <result column="first_try_date" jdbcType="TIMESTAMP" property="firstTryDate" />
+    <result column="bom_type" jdbcType="CHAR" property="bomType" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="app_time" jdbcType="TIMESTAMP" property="appTime" />
+    <result column="app_flag" jdbcType="VARCHAR" property="appFlag" />
+    <result column="app_remark" jdbcType="VARCHAR" property="appRemark" />
+    <result column="edition" jdbcType="INTEGER" property="edition" />
+    <result column="max_nodepos" jdbcType="INTEGER" property="maxNodepos" />
+    <result column="plan_stuff_cost" jdbcType="DECIMAL" property="planStuffCost" />
+    <result column="handler_id" jdbcType="VARCHAR" property="handlerId" />
+    <result column="handled_time" jdbcType="TIMESTAMP" property="handledTime" />
+    <collection property="bomNodeList" column="node_id" select="com.mt.bm.common.dao.BomNodeMapper.selectByBomId"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    bom_id, company_id, company_name, mold_no,first_try_date, bom_type, app_id, app_time, app_flag,
+    app_remark, edition, max_nodepos, plan_stuff_cost, handler_id, handled_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_bom
+    where bom_id = #{bomId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bm_bom
+    where bom_id = #{bomId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.bm.common.model.Bom">
+    insert into bm_bom (bom_id, company_id, company_name, 
+      mold_no,first_try_date, bom_type, app_id,
+      app_time, app_flag, app_remark, 
+      edition, max_nodepos, plan_stuff_cost, 
+      handler_id, handled_time)
+    values (#{bomId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR},
+      #{moldNo,jdbcType=VARCHAR}, #{firstTryDate,jdbcType=TIMESTAMP}, #{bomType,jdbcType=CHAR}, #{appId,jdbcType=VARCHAR},
+      #{appTime,jdbcType=TIMESTAMP}, #{appFlag,jdbcType=VARCHAR}, #{appRemark,jdbcType=VARCHAR},
+      #{edition,jdbcType=INTEGER}, #{maxNodepos,jdbcType=INTEGER}, #{planStuffCost,jdbcType=DECIMAL},
+      #{handlerId,jdbcType=VARCHAR}, #{handledTime,jdbcType=TIMESTAMP})
+    <selectKey resultType="java.lang.Long" keyProperty="bomId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.bm.common.model.Bom">
+    insert into bm_bom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bomId != null">
+        bom_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="moldNo != null">
+        mold_no,
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date,
+      </if>
+      <if test="bomType != null">
+        bom_type,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="appTime != null">
+        app_time,
+      </if>
+      <if test="appFlag != null">
+        app_flag,
+      </if>
+      <if test="appRemark != null">
+        app_remark,
+      </if>
+      <if test="edition != null">
+        edition,
+      </if>
+      <if test="maxNodepos != null">
+        max_nodepos,
+      </if>
+      <if test="planStuffCost != null">
+        plan_stuff_cost,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="handledTime != null">
+        handled_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bomId != null">
+        #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTryDate != null">
+        #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bomType != null">
+        #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTime != null">
+        #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appFlag != null">
+        #{appFlag,jdbcType=CHAR},
+      </if>
+      <if test="appRemark != null">
+        #{appRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="edition != null">
+        #{edition,jdbcType=INTEGER},
+      </if>
+      <if test="maxNodepos != null">
+        #{maxNodepos,jdbcType=INTEGER},
+      </if>
+      <if test="planStuffCost != null">
+        #{planStuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.bm.common.model.Bom">
+    update bm_bom
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        mold_no = #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bomType != null">
+        bom_type = #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTime != null">
+        app_time = #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appFlag != null">
+        app_flag = #{appFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="appRemark != null">
+        app_remark = #{appRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="edition != null">
+        edition = #{edition,jdbcType=INTEGER},
+      </if>
+      <if test="maxNodepos != null">
+        max_nodepos = #{maxNodepos,jdbcType=INTEGER},
+      </if>
+      <if test="planStuffCost != null">
+        plan_stuff_cost = #{planStuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        handled_time = #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bom_id = #{bomId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.bm.common.model.Bom">
+    update bm_bom
+    set company_id = #{companyId,jdbcType=BIGINT},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      mold_no = #{moldNo,jdbcType=VARCHAR},
+      first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+      bom_type = #{bomType,jdbcType=CHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      app_time = #{appTime,jdbcType=TIMESTAMP},
+      app_flag = #{appFlag,jdbcType=VARCHAR},
+      app_remark = #{appRemark,jdbcType=VARCHAR},
+      edition = #{edition,jdbcType=INTEGER},
+      max_nodepos = #{maxNodepos,jdbcType=INTEGER},
+      plan_stuff_cost = #{planStuffCost,jdbcType=DECIMAL},
+      handler_id = #{handlerId,jdbcType=VARCHAR},
+      handled_time = #{handledTime,jdbcType=TIMESTAMP}
+    where bom_id = #{bomId,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 以下为自定义 -->
+
+  <select id="selectBomByConditions" resultType="Map" parameterType="Map">
+    SELECT
+    bm_bom.bom_id,
+    bm_bom.company_name,
+    node_id,
+    mat_id,
+    mat_no,
+    bm_bom.mold_no,bm_bom.first_try_date,
+    mold_type as prod_type,
+    cst_prod_name,
+    cst_company_id,
+    cst_name,
+    bom_type,
+    app_id,
+    app_time,
+    app_flag,
+    app_remark,
+    edition,
+    project_no
+    from bm_bom left join bm_bom_node on bm_bom.bom_id=bm_bom_node.bom_id
+    left join mold on mold.mold_no=bm_bom.mold_no and mold.company_id=bm_bom.company_id
+    WHERE
+    <if test="app_flag != null and app_flag !=''">
+       app_flag = #{app_flag} and
+    </if>
+    <if test="prod_name != null and prod_name !=''">
+       cst_prod_name LIKE  CONCAT('%','${prod_name}','%' ) and
+    </if>
+    <if test="cst_name != null and cst_name !=''">
+       cst_name LIKE  CONCAT('%','${cst_name}','%' ) and
+    </if>
+    <if test="company_id != null and company_id !=''">
+      bm_bom.company_id = #{company_id} and
+    </if>
+      is_Show = 1 and bm_bom_node.path='0'
+      ORDER  by handled_time DESC
+      limit #{page}, #{page_size}
+  </select>
+
+
+  <select id="selectBomByConditionsCount" resultType="java.lang.Integer" parameterType="Map">
+    SELECT count(1)
+    from bm_bom left join bm_bom_node on bm_bom.bom_id=bm_bom_node.bom_id
+    left join mold on mold.mold_no=bm_bom.mold_no and mold.company_id=bm_bom.company_id
+    WHERE
+    <if test="app_flag != null and app_flag !=''">
+      app_flag = #{app_flag} and
+    </if>
+    <if test="prod_name != null and prod_name !=''">
+      cst_prod_name LIKE  CONCAT('%','${prod_name}','%' ) and
+    </if>
+    <if test="cst_name != null and cst_name !=''">
+      cst_name LIKE  CONCAT('%','${cst_name}','%' ) and
+    </if>
+    <if test="company_id != null and company_id !=''">
+      bm_bom.company_id = #{company_id} and
+    </if>
+    is_Show = 1 and bm_bom_node.path='0'
+  </select>
+
+  <select id="selectBomIdByMoldNo" resultType="java.lang.Long" parameterType="Map">
+    SELECT
+    bom_id
+    from bm_bom
+    WHERE is_Show = 1
+    <if test="appFlag != null and appFlag !=''">
+      and app_flag = #{appFlag}
+    </if>
+    <if test="company_id != null and company_id !=''">
+      and company_id = #{company_id}
+    </if>
+    <if test="moldNo != null and moldNo !=''">
+      and mold_no= #{moldNo}
+    </if>
+    ORDER  by handled_time DESC
+    limit 1
+  </select>
+
+  <select id="selectMatByBomId" resultType="Map" parameterType="java.lang.Long">
+    SELECT node_id,vw.mat_id as matId, vw.mat_no as matNo,total_qty as planQty,mat_name as matName,
+    rawnature_id as rawnatureId,rawnature_name as rawnatureName,mat_type_id as matTypeId,min_stock_qty as minStockQty,
+    batch_qty as batchQty,weight,plan_price as planUp,procure_style as procureStyle,
+    mat_type_name as matTypeName ,spec as matModel,unit_no as unit ,bm_bom.bom_id as bomId,
+    total_qty as reqQty,mat_desc as matDesc,total_qty * plan_price as planPrice,
+    mold_no as moldNo,edition as version,path,first_try_date as firstTryDate,node_pos as nodePos,
+    bm_bom.company_id as companyId ,bm_bom.company_name as companyname
+    FROM
+    (SELECT node_id,mat_id, mat_no,total_qty,bom_id,path,node_pos from bm_bom_node WHERE bom_id=#{bomId} AND node_id not IN
+    (SELECT node_id from bm_bom_node WHERE  bom_id=#{bomId} and  (parent_path='0' and mat_type='电极'))) as vw
+    LEFT JOIN bm_mat on vw.mat_id=bm_mat.mat_id
+    LEFT JOIN bm_bom on bm_bom.bom_id=vw.bom_id
+    order by  length(path) ,path
+  </select>
+
+
+
+</mapper>

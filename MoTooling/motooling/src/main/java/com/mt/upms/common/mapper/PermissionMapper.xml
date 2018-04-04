@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.mt.upms.common.model.Permission">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="perm_id" jdbcType="INTEGER" property="permId" />
+    <result column="perm_name" jdbcType="VARCHAR" property="permName" />
+    <result column="perm_description" jdbcType="VARCHAR" property="permDescription" />
+    <result column="sort_value" jdbcType="DECIMAL" property="sortValue" />
+    <result column="is_active" jdbcType="BIT" property="isActive" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.upms.common.model.Permission">
+    insert into permission (id, perm_id, perm_name, 
+      perm_description, sort_value, is_active, 
+      created_at, updated_at)
+    values (#{id,jdbcType=BIGINT}, #{permId,jdbcType=INTEGER}, #{permName,jdbcType=VARCHAR}, 
+      #{permDescription,jdbcType=VARCHAR}, #{sortValue,jdbcType=DECIMAL}, #{isActive,jdbcType=BIT}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.Permission">
+    update permission
+    set perm_id = #{permId,jdbcType=INTEGER},
+      perm_name = #{permName,jdbcType=VARCHAR},
+      perm_description = #{permDescription,jdbcType=VARCHAR},
+      sort_value = #{sortValue,jdbcType=DECIMAL},
+      is_active = #{isActive,jdbcType=BIT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, perm_id, perm_name, perm_description, sort_value, is_active, created_at, 
+    updated_at
+    from permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, perm_id, perm_name, perm_description, sort_value, is_active, created_at, 
+    updated_at
+    from permission
+  </select>
+
+
+  <select id="findPermissionByUserId" resultType="java.util.Map" parameterType="com.mt.upms.common.model.User">
+ <!--   select DISTINCT
+    ur.company_id,ur.role_id ,rr.resource_id,rr.permission_ids,
+    r.identity,r.name,r.parent_id,r.parent_ids,r.id ,ur.dep_id
+    from    user_role ur,role_resource rr,resource  r
+    WHERE   ur.uid= #{uid} and  ur.role_id=rr.role_id and r.id=rr.resource_id and ur.status=1 and rr.status=1
+              and ur.company_id = rr.company_id AND ur.company_id = #{companyId} and r.parent_id = dr.resource_id -->
+    select DISTINCT
+                    ur.company_id,ur.role_id ,rr.resource_id,rr.permission_ids,
+                    r.identity,r.name,r.parent_id,r.parent_ids
+    from
+                    user_role ur,role_resource rr,resource  r  ,department_resource dr
+    WHERE
+                    ur.uid= #{uid} and  ur.role_id=rr.role_id and r.id=rr.resource_id and ur.status=1 and rr.status=1
+                    and ur.company_id = rr.company_id AND ur.company_id =#{companyId} and dr.dep_id  = ur.dep_id and  r.status = 1
+  </select>
+
+
+   <select id="findDepartmentResource"  resultType="java.util.Map" parameterType="com.mt.upms.common.model.User">
+    SELECT DISTINCT
+                      ur.company_id,ur.role_id ,rr.resource_id,rr.permission_ids,
+                      r.identity,r.name,r.parent_id,r.parent_ids
+    FROM
+                      department_resource dr ,user_role ur, resource r ,role_resource rr
+    where
+                      dr.company_id = #{companyId} and ur.uid = #{uid} and dr.company_id = ur.company_id and dr.dep_id = ur.dep_id
+                      and r.parent_id = dr.resource_id and rr.resource_id = r.id  and rr.role_id = ur.role_id
+   </select>
+
+  <select id="selectParentIdentity" resultType="java.util.Map" parameterType="java.lang.Long">
+    select  r.identity,r.parent_id,r.parent_ids  FROM  resource r WHERE  r.id = #{parentId}  and r.status=1
+  </select>
+
+  <select id="selectParentIdsIdentity" resultType="java.util.Map" >
+    select  r.identity,r.parent_id,r.parent_ids  FROM  resource r
+    WHERE   r.parent_id <![CDATA[!= ]]> 0  and
+    r.id in
+    <foreach collection="array" item="parentIds" index="index"
+             open="(" close=")" separator=",">
+      #{parentIds}
+    </foreach>
+    GROUP BY r.id DESC
+  </select>
+
+  <select id="getChildren" parameterType="java.lang.Long" resultType="java.util.Map">
+    select r.id , r.identity,r.parent_id,r.parent_ids  FROM  resource r where r.parent_id = #{id}
+  </select>
+
+
+  <resultMap id="ChildResultMap" type="com.mt.upms.common.model.ChildModuleBeans">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+  </resultMap>
+
+    <sql id="resource_sql">
+        id,name,identity,parent_id
+    </sql>
+
+  <select id="queryTreeNode"  parameterType="java.lang.Integer" resultMap="ChildResultMap">
+    SELECT
+          <include refid="resource_sql" />
+     FROM  resource WHERE parent_id = #{id}
+  </select>
+
+  <select id="getreeNode"  parameterType="java.lang.Integer" resultMap="ChildResultMap">
+      SELECT
+            <include refid="resource_sql" />
+      FROM  resource WHERE id = #{id}
+  </select>
+
+    <insert id="addRoleResource" parameterType="java.util.Map" >
+      insert into motooling.role_resource
+       (role_id,company_id,company_name,permission_ids,resource_id,created_at)
+        values
+       <foreach collection="resources" item="item" index="index"  separator=",">
+           (#{role_id},#{company_id},#{company_name},#{item.permission_ids},#{item.resource_id},#{created_at})
+       </foreach>
+    </insert>
+
+    <insert id="addDepResource" parameterType="map" >
+          INSERT ignore INTO  department_resource
+            (company_name, company_id, dep_id, permission_ids,  resource_id, created_at) VALUES
+        <foreach collection="resource_ids" item="item" index="index"  separator=",">
+            (#{company_name},#{company_id},#{dep_id},#{permission_ids},#{item},now())
+        </foreach>
+    </insert>
+
+
+</mapper>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmPgMemberMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmPgMember">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pg_id" jdbcType="BIGINT" property="pgId" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="is_leader" jdbcType="CHAR" property="isLeader" />
+    <result column="pri" jdbcType="INTEGER" property="pri" />
+    <result column="is_schedule" jdbcType="CHAR" property="isSchedule" />
+    <result column="skill_level_id" jdbcType="INTEGER" property="skillLevelId" />
+    <result column="skill_level_name" jdbcType="VARCHAR" property="skillLevelName" />
+    <result column="furlough_start_date" jdbcType="TIMESTAMP" property="furloughStartDate" />
+    <result column="furlough_end_date" jdbcType="TIMESTAMP" property="furloughEndDate" />
+    <result column="is_show_effic" jdbcType="CHAR" property="isShowEffic" />
+    <result column="member_status" jdbcType="CHAR" property="memberStatus" />
+    <result column="last_pop_id" jdbcType="BIGINT" property="lastPopId" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pg_id, member_id, member_name, is_leader, pri, is_schedule, skill_level_id, skill_level_name,
+    furlough_start_date, furlough_end_date, is_show_effic, member_status, last_pop_id,
+    handler_id, created_at, updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pm_pg_member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_pg_member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmPgMember">
+    insert into pm_pg_member (id, pg_id, member_id,
+    member_name, is_leader, pri,
+    is_schedule, skill_level_id, skill_level_name,
+    furlough_start_date, furlough_end_date,
+    is_show_effic, member_status, last_pop_id,
+    handler_id, created_at, updated_at,
+    status)
+    values (#{id,jdbcType=BIGINT}, #{pgId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT},
+    #{memberName,jdbcType=VARCHAR}, #{isLeader,jdbcType=CHAR}, #{pri,jdbcType=INTEGER},
+    #{isSchedule,jdbcType=CHAR}, #{skillLevelId,jdbcType=INTEGER}, #{skillLevelName,jdbcType=VARCHAR},
+    #{furloughStartDate,jdbcType=TIMESTAMP}, #{furloughEndDate,jdbcType=TIMESTAMP},
+    #{isShowEffic,jdbcType=CHAR}, #{memberStatus,jdbcType=CHAR}, #{lastPopId,jdbcType=BIGINT},
+    #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+    #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmPgMember">
+    insert into pm_pg_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pgId != null">
+        pg_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="isLeader != null">
+        is_leader,
+      </if>
+      <if test="pri != null">
+        pri,
+      </if>
+      <if test="isSchedule != null">
+        is_schedule,
+      </if>
+      <if test="skillLevelId != null">
+        skill_level_id,
+      </if>
+      <if test="skillLevelName != null">
+        skill_level_name,
+      </if>
+      <if test="furloughStartDate != null">
+        furlough_start_date,
+      </if>
+      <if test="furloughEndDate != null">
+        furlough_end_date,
+      </if>
+      <if test="isShowEffic != null">
+        is_show_effic,
+      </if>
+      <if test="memberStatus != null">
+        member_status,
+      </if>
+      <if test="lastPopId != null">
+        last_pop_id,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pgId != null">
+        #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeader != null">
+        #{isLeader,jdbcType=CHAR},
+      </if>
+      <if test="pri != null">
+        #{pri,jdbcType=INTEGER},
+      </if>
+      <if test="isSchedule != null">
+        #{isSchedule,jdbcType=CHAR},
+      </if>
+      <if test="skillLevelId != null">
+        #{skillLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="skillLevelName != null">
+        #{skillLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="furloughStartDate != null">
+        #{furloughStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="furloughEndDate != null">
+        #{furloughEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShowEffic != null">
+        #{isShowEffic,jdbcType=CHAR},
+      </if>
+      <if test="memberStatus != null">
+        #{memberStatus,jdbcType=CHAR},
+      </if>
+      <if test="lastPopId != null">
+        #{lastPopId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmPgMember">
+    update pm_pg_member
+    <set>
+      <if test="pgId != null">
+        pg_id = #{pgId,jdbcType=BIGINT},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeader != null">
+        is_leader = #{isLeader,jdbcType=CHAR},
+      </if>
+      <if test="pri != null">
+        pri = #{pri,jdbcType=INTEGER},
+      </if>
+      <if test="isSchedule != null">
+        is_schedule = #{isSchedule,jdbcType=CHAR},
+      </if>
+      <if test="skillLevelId != null">
+        skill_level_id = #{skillLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="skillLevelName != null">
+        skill_level_name = #{skillLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="furloughStartDate != null">
+        furlough_start_date = #{furloughStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="furloughEndDate != null">
+        furlough_end_date = #{furloughEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShowEffic != null">
+        is_show_effic = #{isShowEffic,jdbcType=CHAR},
+      </if>
+      <if test="memberStatus != null">
+        member_status = #{memberStatus,jdbcType=CHAR},
+      </if>
+      <if test="lastPopId != null">
+        last_pop_id = #{lastPopId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmPgMember">
+    update pm_pg_member
+    set pg_id = #{pgId,jdbcType=BIGINT},
+    member_id = #{memberId,jdbcType=BIGINT},
+    member_name = #{memberName,jdbcType=VARCHAR},
+    is_leader = #{isLeader,jdbcType=CHAR},
+    pri = #{pri,jdbcType=INTEGER},
+    is_schedule = #{isSchedule,jdbcType=CHAR},
+    skill_level_id = #{skillLevelId,jdbcType=INTEGER},
+    skill_level_name = #{skillLevelName,jdbcType=VARCHAR},
+    furlough_start_date = #{furloughStartDate,jdbcType=TIMESTAMP},
+    furlough_end_date = #{furloughEndDate,jdbcType=TIMESTAMP},
+    is_show_effic = #{isShowEffic,jdbcType=CHAR},
+    member_status = #{memberStatus,jdbcType=CHAR},
+    last_pop_id = #{lastPopId,jdbcType=BIGINT},
+    handler_id = #{handlerId,jdbcType=BIGINT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!--wendy添加-->
+  <select id="selectProductionGroupInfo"  resultType="map"   parameterType="java.lang.Long">
+      SELECT DISTINCT pm.is_leader, pm.member_id, uy.work_name
+  FROM pm_pg_member pm
+      INNER JOIN user_company uy ON pm.member_id = uy.uid
+  WHERE pm.pg_id = #{pg_id}
+      AND uy.dep_id = #{pg_id}
+      AND pm.`status` = 1
+  </select>
+
+
+
+  <select id="selectMemberSaveInfo" resultType="map">
+    SELECT pm.pg_id, pm.member_id, uy.work_name
+    FROM user_company uy
+    INNER JOIN pm_pg_member pm
+    ON pm.pg_id = uy.dep_id
+    AND pm.member_id = uy.uid
+    <where>
+      <if test="member_id!=null and member_id!=''">
+          And pm.member_id=#{member_id}
+      </if>
+      <if test="pg_id!=null and pg_id!=''">
+          And pm.pg_id=#{pg_id}
+      </if>
+      And pm.status=1  LIMIT 1
+    </where>
+  </select>
+
+
+  <select id="selectMemberInfo" resultType="map">
+    SELECT *
+    FROM user_company pm
+    <where>
+      <if test="company_id!=null and company_id!=''">
+        And pm.company_id=#{company_id}
+      </if>
+      <if test="pg_id!=null and pg_id!=''">
+        And pm.dep_id=#{pg_id}
+      </if>
+      <if test="uid!=null and uid!=''">
+        And pm.uid=#{uid}
+      </if>
+      And pm.status=1  LIMIT 1
+    </where>
+  </select>
+
+
+  <update id="updateMember" parameterType="map">
+    UPDATE pm_pg_member
+    SET status = 0
+   <where>
+     <if test="member_id!=null and member_id !=''">
+        And  member_id=#{member_id}
+     </if>
+     <if test="pg_id!=null and pg_id !=''">
+        And  pg_id=#{pg_id}
+     </if>
+    </where>
+  </update>
+
+
+
+  <insert id="addMemberInfo" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  <selectKey resultType="int" order="AFTER" keyProperty="id">
+    SELECT LAST_INSERT_ID() as id
+  </selectKey>
+    insert into pm_pg_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pg_id != null and pg_id!=''" >
+        pg_id,
+      </if>
+      <if test="member_id != null and member_id!=''" >
+        member_id,
+      </if>
+      <if test="is_leader != null and is_leader!=''" >
+        is_leader,
+      </if>
+      <if test="pri != null and pri!=''" >
+        pri,
+      </if>
+      <if test="is_schedule != null and is_schedule!=''" >
+        is_schedule,
+      </if>
+      <if test="skill_level_id != null and skill_level_id!=''" >
+        skill_level_id,
+      </if>
+      <if test="skill_level_name != null and skill_level_name!=''" >
+        skill_level_name,
+      </if>
+      <if test="furlough_start_date != null and furlough_start_date!=''" >
+        furlough_start_date,
+      </if>
+      <if test="furlough_end_date != null and furlough_end_date!=''" >
+        furlough_end_date,
+      </if>
+      <if test="is_show_effic != null and is_show_effic!=''" >
+        is_show_effic,
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        handler_id,
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        created_at,
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        updated_at,
+      </if>
+      <if test="status != null and status!=''" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pg_id != null and pg_id!=''" >
+        #{pg_id,jdbcType=BIGINT},
+      </if>
+      <if test="member_id != null and member_id!=''" >
+        #{member_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_leader != null and is_leader!=''" >
+        #{is_leader,jdbcType=CHAR},
+      </if>
+      <if test="pri != null and pri!=''" >
+        #{pri,jdbcType=INTEGER},
+      </if>
+      <if test="is_schedule != null and is_schedule!=''" >
+        #{is_schedule,jdbcType=CHAR},
+      </if>
+      <if test="skill_level_id != null and skill_level_id!=''" >
+        #{skill_level_id,jdbcType=INTEGER},
+      </if>
+      <if test="skill_level_name != null and skill_level_name!=''" >
+        #{skill_level_name,jdbcType=VARCHAR},
+      </if>
+      <if test="furlough_start_date != null and furlough_start_date!=''" >
+        #{furlough_start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="furlough_end_date != null and furlough_end_date!=''" >
+        #{furlough_end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_show_effic != null and is_show_effic!=''" >
+        #{is_show_effic,jdbcType=CHAR},
+      </if>
+      <if test="handler_id != null and handler_id!=''" >
+        #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="created_at != null and created_at!=''" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null and updated_at!=''" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status!=''" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+</insert>
+
+  <!--
+  <update id="updateMemberInfo" parameterType="Map" >
+   update  pm_pg_member pr ,user_company  uy
+    set
+        pr.is_leader=#{is_leader},
+        pr.furlough_start_date=#{furlough_start_date},
+        pr.furlough_end_date=#{furlough_end_date},
+        pr.member_id=#{member_id},
+        pr.pg_id=#{pg_id},
+        uy.position_code=#{position_code},
+        uy.position_name=#{position_name},
+        uy.work_name=#{work_name},
+        uy.work_email=#{work_email},
+        uy.work_phone=#{work_phone},
+        uy.work_state=#{work_state}
+     where  pr.member_id=#{member_id}
+  </update>
+-->
+  <update id="updateMemberInfo" parameterType="Map" >
+    update pm_pg_member
+    <set >
+      <if test="member_id != null and member_id!=''" >
+        member_id=#{member_id,jdbcType=BIGINT},
+      </if>
+      <if test="is_leader != null and is_leader!=''" >
+        is_leader=#{is_leader,jdbcType=CHAR},
+      </if>
+      <if test="pri != null and pri!=''" >
+        pri=#{pri,jdbcType=INTEGER},
+      </if>
+      <if test="is_schedule != null and is_schedule!=''" >
+        is_schedule=#{is_schedule,jdbcType=CHAR},
+      </if>
+      <if test="skill_level_id != null and skill_level_id!=''" >
+        skill_level_id=#{skill_level_id,jdbcType=INTEGER},
+      </if>
+      <if test="skill_level_name != null and skill_level_name!=''" >
+        skill_level_name= #{skill_level_name,jdbcType=VARCHAR},
+      </if>
+      <if test="furlough_start_date != null and furlough_start_date!=''" >
+        furlough_start_date = #{furlough_start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="furlough_end_date != null and furlough_end_date!=''" >
+        furlough_end_date = #{furlough_end_date,jdbcType=TIMESTAMP},
+      </if>
+
+    </set>
+    where member_id = #{member_id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByPgIdAndMemberId" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"/>
+    from pm_pg_member
+    where status = 1
+    and pg_id = #{pgId}
+    and member_id = #{memberId}
+    limit 1
+  </select>
+
+  <update id="updateIsLeader">
+    update pm_pg_member set is_leader = #{isLeader}
+    where pg_id = #{pgId}
+    and (#{memberId} is null or #{memberId} = member_id)
+  </update>
+
+</mapper>

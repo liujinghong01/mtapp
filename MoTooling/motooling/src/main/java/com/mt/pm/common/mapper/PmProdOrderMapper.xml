@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.pm.common.dao.PmProdOrderMapper">
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmProdOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="po_no" jdbcType="VARCHAR" property="poNo" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="mold_no" jdbcType="VARCHAR" property="moldNo" />
+    <result column="bom_id" jdbcType="BIGINT" property="bomId" />
+    <result column="bom_type" jdbcType="CHAR" property="bomType" />
+    <result column="node_pos" jdbcType="INTEGER" property="nodePos" />
+    <result column="req_id" jdbcType="BIGINT" property="reqId" />
+    <result column="mat_id" jdbcType="VARCHAR" property="matId" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="mat_no" jdbcType="VARCHAR" property="matNo" />
+    <result column="mat_name" jdbcType="VARCHAR" property="matName" />
+    <result column="mat_type_id" jdbcType="BIGINT" property="matTypeId" />
+    <result column="mat_type_name" jdbcType="VARCHAR" property="matTypeName" />
+    <result column="mat_model" jdbcType="VARCHAR" property="matModel" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    <result column="first_try_date" jdbcType="TIMESTAMP" property="firstTryDate" />
+    <result column="relate_pic" jdbcType="VARCHAR" property="relatePic" />
+    <result column="rawnature_id" jdbcType="BIGINT" property="rawnatureId" />
+    <result column="rawnature_name" jdbcType="VARCHAR" property="rawnatureName" />
+    <result column="bom_qty" jdbcType="INTEGER" property="bomQty" />
+    <result column="project_pic" jdbcType="VARCHAR" property="projectPic" />
+    <result column="prod_qty" jdbcType="INTEGER" property="prodQty" />
+    <result column="confirm_qty" jdbcType="INTEGER" property="confirmQty" />
+    <result column="scrap_qty" jdbcType="INTEGER" property="scrapQty" />
+    <result column="received_qty" jdbcType="DECIMAL" property="receivedQty" />
+    <result column="po_status" jdbcType="CHAR" property="poStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="schedule_mode" jdbcType="TINYINT" property="scheduleMode" />
+    <result column="plan_start_time" jdbcType="TIMESTAMP" property="planStartTime" />
+    <result column="plan_end_time" jdbcType="TIMESTAMP" property="planEndTime" />
+    <result column="real_start_time" jdbcType="TIMESTAMP" property="realStartTime" />
+    <result column="real_end_time" jdbcType="TIMESTAMP" property="realEndTime" />
+    <result column="pri" jdbcType="CHAR" property="pri" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="handler_id" jdbcType="BIGINT" property="handlerId" />
+    <result column="is_scheduled" jdbcType="CHAR" property="isScheduled" />
+    <result column="urgency_level" jdbcType="DECIMAL" property="urgencyLevel" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <association property="prodDetailList" column="id" select="com.mt.pm.common.dao.PmProdOrderSubMapper.selectByProdOrderId"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,id as po_id, po_no, company_id, company_name, mold_no, bom_id,bom_type, node_pos, req_id, mat_id,
+    version, mat_no, mat_name, mat_type_id, mat_type_name, mat_model, unit, unit_name,
+    first_try_date,  relate_pic, rawnature_id,
+    rawnature_name, bom_qty, project_pic, prod_qty, confirm_qty, scrap_qty, received_qty,
+    po_status, remark, schedule_mode, plan_start_time, plan_end_time, real_start_time,
+    real_end_time, pri, creator_id, handler_id, is_scheduled,urgency_level, created_at, updated_at,
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pm_prod_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pm_prod_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmProdOrder">
+    insert into pm_prod_order (id, po_no, company_id,
+    company_name, mold_no,bom_id, bom_type,
+    node_pos, req_id, mat_id,
+    version, mat_no, mat_name,
+    mat_type_id, mat_type_name, mat_model,
+    unit, unit_name, first_try_date,
+    relate_pic, rawnature_id, rawnature_name,
+    bom_qty, project_pic, prod_qty,
+    confirm_qty, scrap_qty, received_qty,
+    po_status, remark, schedule_mode,
+    plan_start_time, plan_end_time, real_start_time,
+    real_end_time, pri, creator_id,
+    handler_id, is_scheduled,urgency_level, created_at,
+    updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{poNo,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT},
+    #{companyName,jdbcType=VARCHAR}, #{moldNo,jdbcType=VARCHAR},#{bomId,jdbcType=BIGINT}, #{bomType,jdbcType=CHAR},
+    #{nodePos,jdbcType=INTEGER}, #{reqId,jdbcType=BIGINT}, #{matId,jdbcType=VARCHAR},
+    #{version,jdbcType=INTEGER}, #{matNo,jdbcType=VARCHAR}, #{matName,jdbcType=VARCHAR},
+    #{matTypeId,jdbcType=BIGINT}, #{matTypeName,jdbcType=VARCHAR}, #{matModel,jdbcType=VARCHAR},
+    #{unit,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, #{firstTryDate,jdbcType=TIMESTAMP},
+    #{relatePic,jdbcType=VARCHAR}, #{rawnatureId,jdbcType=BIGINT}, #{rawnatureName,jdbcType=VARCHAR},
+    #{bomQty,jdbcType=INTEGER}, #{projectPic,jdbcType=VARCHAR}, #{prodQty,jdbcType=INTEGER},
+    #{confirmQty,jdbcType=INTEGER}, #{scrapQty,jdbcType=INTEGER}, #{receivedQty,jdbcType=DECIMAL},
+    #{poStatus,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, #{scheduleMode,jdbcType=TINYINT},
+    #{planStartTime,jdbcType=TIMESTAMP}, #{planEndTime,jdbcType=TIMESTAMP}, #{realStartTime,jdbcType=TIMESTAMP},
+    #{realEndTime,jdbcType=TIMESTAMP}, #{pri,jdbcType=CHAR}, #{creatorId,jdbcType=BIGINT},
+    #{handlerId,jdbcType=BIGINT}, #{isScheduled,jdbcType=CHAR}, #{urgencyLevel,jdbcType=DECIMAL},#{createdAt,jdbcType=TIMESTAMP},
+    #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR})
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmProdOrder">
+    insert into pm_prod_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="poNo != null">
+        po_no,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="moldNo != null">
+        mold_no,
+      </if>
+      <if test="bomId != null">
+        bom_id,
+      </if>
+      <if test="bomType != null">
+        bom_type,
+      </if>
+      <if test="nodePos != null">
+        node_pos,
+      </if>
+      <if test="reqId != null">
+        req_id,
+      </if>
+      <if test="matId != null">
+        mat_id,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="matNo != null">
+        mat_no,
+      </if>
+      <if test="matName != null">
+        mat_name,
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id,
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name,
+      </if>
+      <if test="matModel != null">
+        mat_model,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="unitName != null">
+        unit_name,
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date,
+      </if>
+      <if test="relatePic != null">
+        relate_pic,
+      </if>
+      <if test="rawnatureId != null">
+        rawnature_id,
+      </if>
+      <if test="rawnatureName != null">
+        rawnature_name,
+      </if>
+      <if test="bomQty != null">
+        bom_qty,
+      </if>
+      <if test="projectPic != null">
+        project_pic,
+      </if>
+      <if test="prodQty != null">
+        prod_qty,
+      </if>
+      <if test="confirmQty != null">
+        confirm_qty,
+      </if>
+      <if test="scrapQty != null">
+        scrap_qty,
+      </if>
+      <if test="receivedQty != null">
+        received_qty,
+      </if>
+      <if test="poStatus != null">
+        po_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="scheduleMode != null">
+        schedule_mode,
+      </if>
+      <if test="planStartTime != null">
+        plan_start_time,
+      </if>
+      <if test="planEndTime != null">
+        plan_end_time,
+      </if>
+      <if test="realStartTime != null">
+        real_start_time,
+      </if>
+      <if test="realEndTime != null">
+        real_end_time,
+      </if>
+      <if test="pri != null">
+        pri,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="isScheduled != null">
+        is_scheduled,
+      </if>
+      <if test="urgencyLevel != null">
+        urgency_level,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="poNo != null">
+        #{poNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bomId != null">
+        #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="bomType != null">
+        #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="nodePos != null">
+        #{nodePos,jdbcType=INTEGER},
+      </if>
+      <if test="reqId != null">
+        #{reqId,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="matNo != null">
+        #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTryDate != null">
+        #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relatePic != null">
+        #{relatePic,jdbcType=VARCHAR},
+      </if>
+      <if test="rawnatureId != null">
+        #{rawnatureId,jdbcType=BIGINT},
+      </if>
+      <if test="rawnatureName != null">
+        #{rawnatureName,jdbcType=VARCHAR},
+      </if>
+      <if test="bomQty != null">
+        #{bomQty,jdbcType=INTEGER},
+      </if>
+      <if test="projectPic != null">
+        #{projectPic,jdbcType=VARCHAR},
+      </if>
+      <if test="prodQty != null">
+        #{prodQty,jdbcType=INTEGER},
+      </if>
+      <if test="confirmQty != null">
+        #{confirmQty,jdbcType=INTEGER},
+      </if>
+      <if test="scrapQty != null">
+        #{scrapQty,jdbcType=INTEGER},
+      </if>
+      <if test="receivedQty != null">
+        #{receivedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="poStatus != null">
+        #{poStatus,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleMode != null">
+        #{scheduleMode,jdbcType=TINYINT},
+      </if>
+      <if test="planStartTime != null">
+        #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null">
+        #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realStartTime != null">
+        #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pri != null">
+        #{pri,jdbcType=CHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="isScheduled != null">
+        #{isScheduled,jdbcType=CHAR},
+      </if>
+      <if test="urgencyLevel != null">
+        #{urgencyLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmProdOrder">
+    update pm_prod_order
+    <set>
+      <if test="poNo != null">
+        po_no = #{poNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        mold_no = #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bomId != null">
+        bom_id = #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="bomType != null">
+        bom_type = #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="nodePos != null">
+        node_pos = #{nodePos,jdbcType=INTEGER},
+      </if>
+      <if test="reqId != null">
+        req_id = #{reqId,jdbcType=BIGINT},
+      </if>
+      <if test="matId != null">
+        mat_id = #{matId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="matNo != null">
+        mat_no = #{matNo,jdbcType=VARCHAR},
+      </if>
+      <if test="matName != null">
+        mat_name = #{matName,jdbcType=VARCHAR},
+      </if>
+      <if test="matTypeId != null">
+        mat_type_id = #{matTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="matTypeName != null">
+        mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="matModel != null">
+        mat_model = #{matModel,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTryDate != null">
+        first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relatePic != null">
+        relate_pic = #{relatePic,jdbcType=VARCHAR},
+      </if>
+      <if test="rawnatureId != null">
+        rawnature_id = #{rawnatureId,jdbcType=BIGINT},
+      </if>
+      <if test="rawnatureName != null">
+        rawnature_name = #{rawnatureName,jdbcType=VARCHAR},
+      </if>
+      <if test="bomQty != null">
+        bom_qty = #{bomQty,jdbcType=INTEGER},
+      </if>
+      <if test="projectPic != null">
+        project_pic = #{projectPic,jdbcType=VARCHAR},
+      </if>
+      <if test="prodQty != null">
+        prod_qty = #{prodQty,jdbcType=INTEGER},
+      </if>
+      <if test="confirmQty != null">
+        confirm_qty = #{confirmQty,jdbcType=INTEGER},
+      </if>
+      <if test="scrapQty != null">
+        scrap_qty = #{scrapQty,jdbcType=INTEGER},
+      </if>
+      <if test="receivedQty != null">
+        received_qty = #{receivedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="poStatus != null">
+        po_status = #{poStatus,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleMode != null">
+        schedule_mode = #{scheduleMode,jdbcType=TINYINT},
+      </if>
+      <if test="planStartTime != null">
+        plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndTime != null">
+        plan_end_time = #{planEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realStartTime != null">
+        real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realEndTime != null">
+        real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pri != null">
+        pri = #{pri,jdbcType=CHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="isScheduled != null">
+        is_scheduled = #{isScheduled,jdbcType=CHAR},
+      </if>
+      <if test="urgencyLevel != null">
+        urgency_level = #{urgencyLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmProdOrder">
+    update pm_prod_order
+    set po_no = #{poNo,jdbcType=VARCHAR},
+    company_id = #{companyId,jdbcType=BIGINT},
+    company_name = #{companyName,jdbcType=VARCHAR},
+    mold_no = #{moldNo,jdbcType=VARCHAR},
+    bom_id = #{bomId,jdbcType=BIGINT},
+    bom_type = #{bomType,jdbcType=CHAR},
+    node_pos = #{nodePos,jdbcType=INTEGER},
+    req_id = #{reqId,jdbcType=BIGINT},
+    mat_id = #{matId,jdbcType=VARCHAR},
+    version = #{version,jdbcType=INTEGER},
+    mat_no = #{matNo,jdbcType=VARCHAR},
+    mat_name = #{matName,jdbcType=VARCHAR},
+    mat_type_id = #{matTypeId,jdbcType=BIGINT},
+    mat_type_name = #{matTypeName,jdbcType=VARCHAR},
+    mat_model = #{matModel,jdbcType=VARCHAR},
+    unit = #{unit,jdbcType=VARCHAR},
+    unit_name = #{unitName,jdbcType=VARCHAR},
+    first_try_date = #{firstTryDate,jdbcType=TIMESTAMP},
+    relate_pic = #{relatePic,jdbcType=VARCHAR},
+    rawnature_id = #{rawnatureId,jdbcType=BIGINT},
+    rawnature_name = #{rawnatureName,jdbcType=VARCHAR},
+    bom_qty = #{bomQty,jdbcType=INTEGER},
+    project_pic = #{projectPic,jdbcType=VARCHAR},
+    prod_qty = #{prodQty,jdbcType=INTEGER},
+    confirm_qty = #{confirmQty,jdbcType=INTEGER},
+    scrap_qty = #{scrapQty,jdbcType=INTEGER},
+    received_qty = #{receivedQty,jdbcType=DECIMAL},
+    po_status = #{poStatus,jdbcType=CHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    schedule_mode = #{scheduleMode,jdbcType=TINYINT},
+    plan_start_time = #{planStartTime,jdbcType=TIMESTAMP},
+    plan_end_time = #{planEndTime,jdbcType=TIMESTAMP},
+    real_start_time = #{realStartTime,jdbcType=TIMESTAMP},
+    real_end_time = #{realEndTime,jdbcType=TIMESTAMP},
+    pri = #{pri,jdbcType=CHAR},
+    creator_id = #{creatorId,jdbcType=BIGINT},
+    handler_id = #{handlerId,jdbcType=BIGINT},
+    is_scheduled = #{isScheduled,jdbcType=DECIMAL},
+    urgency_level = #{urgencyLevel,jdbcType=CHAR},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+
+  <select id="selectProdOrderByCondition" parameterType="Map" resultType="Map">
+    select
+    <include refid="Base_Column_List" />
+    from pm_prod_order
+    WHERE status = '1'
+    <if test="company_id != null and company_id !=''">
+      and company_id = #{company_id}
+    </if>
+    <if test="mat_type != null and mat_type !=''">
+      and mat_type = #{mat_type}
+    </if>
+    <if test="mat_id != null and mat_id !=''">
+      and mat_id = #{mat_id}
+    </if>
+    <if test="mat_no != null and mat_no !=''">
+      and mat_no LIKE  CONCAT('%','${mat_no}','%' )
+    </if>
+    <if test="mat_name != null and mat_name !=''">
+      and mat_name LIKE  CONCAT('%','${mat_name}','%' )
+    </if>
+    <if test="mold_no != null and mold_no !=''">
+      and mold_no LIKE  CONCAT('%','${mold_no}','%' )
+    </if>
+    <if test="po_id != null and po_id !=''">
+      and po_id = #{po_id}
+    </if>
+    <if test="po_no != null and po_no !=''">
+      and po_no LIKE  CONCAT('%','${po_no}','%' )
+    </if>
+    <if test="po_status != null and po_status !=''">
+      and po_status = #{po_status}
+    </if>
+    limit #{page}, #{page_size}
+  </select>
+
+  <select id="selectProdOrderByConditionCount" resultType="java.lang.Integer" parameterType="Map">
+    SELECT count(1)
+    from pm_prod_order
+    WHERE status = '1'
+    <if test="company_id != null and company_id !=''">
+      and company_id = #{company_id}
+    </if>
+    <if test="mat_type != null and mat_type !=''">
+      and mat_type = #{mat_type}
+    </if>
+    <if test="mat_id != null and mat_id !=''">
+      and mat_id = #{mat_id}
+    </if>
+    <if test="mat_no != null and mat_no !=''">
+      and mat_no LIKE  CONCAT('%','${mat_no}','%' )
+    </if>
+    <if test="mat_name != null and mat_name !=''">
+      and mat_name LIKE  CONCAT('%','${mat_name}','%' )
+    </if>
+    <if test="mold_no != null and mold_no !=''">
+      and mold_no LIKE  CONCAT('%','${mold_no}','%' )
+    </if>
+    <if test="po_id != null and po_id !=''">
+      and po_id = #{po_id}
+    </if>
+    <if test="po_no != null and po_no !=''">
+      and po_no LIKE  CONCAT('%','${po_no}','%' )
+    </if>
+    <if test="po_status != null and po_status !=''">
+      and po_status = #{po_status}
+    </if>
+  </select>
+
+
+
+  <select id="selectProdOrderByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pm_prod_order
+    where status = '1' and id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectProdOrderByPBomNode" parameterType="Map" resultType="Map">
+    select
+     bm_bom_node.bom_id, bm_bom_node.node_pos, bm_bom_node.mat_id,po_no,pm_prod_order.id as po_id,urgency_level
+    from bm_bom_node left JOIN pm_prod_order on bm_bom_node.bom_id=pm_prod_order.bom_id and bm_bom_node.mat_id=pm_prod_order.mat_id
+    and bm_bom_node.node_pos=pm_prod_order.node_pos
+    where is_unused !=1 and po_no !=''
+    <if test="bom_id != null">
+      and bm_bom_node.bom_id = #{bom_id,jdbcType=BIGINT}
+    </if>
+    <if test="node_id != null and node_id != ''">
+      and parent_path=(select path from bm_bom_node where  node_id=#{node_id,jdbcType=BIGINT})
+    </if>
+    order by  length(path) ,path,po_no
+  </select>
+
+    <update id="batchUpdate" parameterType="java.util.Map">
+        <foreach collection="list" separator=";" item="prodOrder">
+            UPDATE pm_prod_order
+            SET urgency_level = #{prodOrder.urgency_level}
+            WHERE  id = #{prodOrder.po_id}
+        </foreach>
+    </update>
+
+</mapper>

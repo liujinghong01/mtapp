@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.order.common.dao.ComputePartCostMapper">
+    <resultMap id="BaseResultMap" type="com.mt.order.common.model.ComputePartCost">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="compute_id" property="computeId" jdbcType="BIGINT"/>
+        <result column="cst_mold_no" property="cstMoldNo" jdbcType="VARCHAR"/>
+        <result column="is_detail_calc" property="isDetailCalc" jdbcType="BIT"/>
+        <result column="part_name" property="partName" jdbcType="VARCHAR"/>
+        <result column="part_type" property="partType" jdbcType="VARCHAR"/>
+        <result column="part_weight" property="partWeight" jdbcType="DECIMAL"/>
+        <result column="part_length" property="partLeng" jdbcType="VARCHAR"/>
+        <result column="part_width" property="partWidth" jdbcType="VARCHAR"/>
+        <result column="part_height" property="partHeight" jdbcType="VARCHAR"/>
+        <result column="part_hardness" property="partHardness" jdbcType="VARCHAR"/>
+        <result column="part_supplier" property="partSupplier" jdbcType="VARCHAR"/>
+        <result column="part_cost" property="partCost" jdbcType="DECIMAL"/>
+        <result column="is_in_cost" property="isInCost" jdbcType="BIT"/>
+        <result column="part_count" property="partCount" jdbcType="INTEGER"/>
+        <result column="rebate" property="rebate" jdbcType="DECIMAL"/>
+        <result column="rebate_ratio" property="rebateRatio" jdbcType="DECIMAL"/>
+        <result column="quench" property="quench" jdbcType="BIT"/>
+        <result column="nitrogen" property="nitrogen" jdbcType="BIT"/>
+        <result column="is_spoilage" property="isSpoilage" jdbcType="BIT"/>
+        <result column="spoilage" property="spoilage" jdbcType="DECIMAL"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, compute_id, cst_mold_no, is_detail_calc, part_name, part_type, part_weight, part_length, 
+    part_width, part_height, part_hardness, part_supplier, part_cost, is_in_cost, part_count, 
+    rebate, rebate_ratio, quench, nitrogen, is_spoilage, spoilage
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from compute_part_cost
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from compute_part_cost
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.mt.order.common.model.ComputePartCost">
+    insert into compute_part_cost (id, compute_id, cst_mold_no, 
+      is_detail_calc, part_name, part_type, 
+      part_weight, part_length, part_width, 
+      part_height, part_hardness, part_supplier, 
+      part_cost, is_in_cost, part_count, 
+      rebate, rebate_ratio, quench, 
+      nitrogen, is_spoilage, spoilage
+      )
+    values (#{id,jdbcType=BIGINT}, #{computeId,jdbcType=BIGINT}, #{cstMoldNo,jdbcType=VARCHAR}, 
+      #{isDetailCalc,jdbcType=BIT}, #{partName,jdbcType=VARCHAR}, #{partType,jdbcType=VARCHAR}, 
+      #{partWeight,jdbcType=DECIMAL}, #{partLength,jdbcType=VARCHAR}, #{partWidth,jdbcType=VARCHAR}, 
+      #{partHeight,jdbcType=VARCHAR}, #{partHardness,jdbcType=VARCHAR}, #{partSupplier,jdbcType=VARCHAR}, 
+      #{partCost,jdbcType=DECIMAL}, #{isInCost,jdbcType=BIT}, #{partCount,jdbcType=INTEGER}, 
+      #{rebate,jdbcType=DECIMAL}, #{rebateRatio,jdbcType=DECIMAL}, #{quench,jdbcType=BIT}, 
+      #{nitrogen,jdbcType=BIT}, #{isSpoilage,jdbcType=BIT}, #{spoilage,jdbcType=DECIMAL}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.mt.order.common.model.ComputePartCost">
+        insert into compute_part_cost
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="computeId != null">
+                compute_id,
+            </if>
+            <if test="cstMoldNo != null">
+                cst_mold_no,
+            </if>
+            <if test="isDetailCalc != null">
+                is_detail_calc,
+            </if>
+            <if test="partName != null">
+                part_name,
+            </if>
+            <if test="partType != null">
+                part_type,
+            </if>
+            <if test="partWeight != null">
+                part_weight,
+            </if>
+            <if test="partLength != null">
+                part_length,
+            </if>
+            <if test="partWidth != null">
+                part_width,
+            </if>
+            <if test="partHeight != null">
+                part_height,
+            </if>
+            <if test="partHardness != null">
+                part_hardness,
+            </if>
+            <if test="partSupplier != null">
+                part_supplier,
+            </if>
+            <if test="partCost != null">
+                part_cost,
+            </if>
+            <if test="isInCost != null">
+                is_in_cost,
+            </if>
+            <if test="partCount != null">
+                part_count,
+            </if>
+            <if test="rebate != null">
+                rebate,
+            </if>
+            <if test="rebateRatio != null">
+                rebate_ratio,
+            </if>
+            <if test="quench != null">
+                quench,
+            </if>
+            <if test="nitrogen != null">
+                nitrogen,
+            </if>
+            <if test="isSpoilage != null">
+                is_spoilage,
+            </if>
+            <if test="spoilage != null">
+                spoilage,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="computeId != null">
+                #{computeId,jdbcType=BIGINT},
+            </if>
+            <if test="cstMoldNo != null">
+                #{cstMoldNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isDetailCalc != null">
+                #{isDetailCalc,jdbcType=BIT},
+            </if>
+            <if test="partName != null">
+                #{partName,jdbcType=VARCHAR},
+            </if>
+            <if test="partType != null">
+                #{partType,jdbcType=VARCHAR},
+            </if>
+            <if test="partWeight != null">
+                #{partWeight,jdbcType=DECIMAL},
+            </if>
+            <if test="partLength != null">
+                #{partLength,jdbcType=VARCHAR},
+            </if>
+            <if test="partWidth != null">
+                #{partWidth,jdbcType=VARCHAR},
+            </if>
+            <if test="partHeight != null">
+                #{partHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="partHardness != null">
+                #{partHardness,jdbcType=VARCHAR},
+            </if>
+            <if test="partSupplier != null">
+                #{partSupplier,jdbcType=VARCHAR},
+            </if>
+            <if test="partCost != null">
+                #{partCost,jdbcType=DECIMAL},
+            </if>
+            <if test="isInCost != null">
+                #{isInCost,jdbcType=BIT},
+            </if>
+            <if test="partCount != null">
+                #{partCount,jdbcType=INTEGER},
+            </if>
+            <if test="rebate != null">
+                #{rebate,jdbcType=DECIMAL},
+            </if>
+            <if test="rebateRatio != null">
+                #{rebateRatio,jdbcType=DECIMAL},
+            </if>
+            <if test="quench != null">
+                #{quench,jdbcType=BIT},
+            </if>
+            <if test="nitrogen != null">
+                #{nitrogen,jdbcType=BIT},
+            </if>
+            <if test="isSpoilage != null">
+                #{isSpoilage,jdbcType=BIT},
+            </if>
+            <if test="spoilage != null">
+                #{spoilage,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.ComputePartCost">
+        update compute_part_cost
+        <set>
+            <if test="computeId != null">
+                compute_id = #{computeId,jdbcType=BIGINT},
+            </if>
+            <if test="cstMoldNo != null">
+                cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+            </if>
+            <if test="isDetailCalc != null">
+                is_detail_calc = #{isDetailCalc,jdbcType=BIT},
+            </if>
+            <if test="partName != null">
+                part_name = #{partName,jdbcType=VARCHAR},
+            </if>
+            <if test="partType != null">
+                part_type = #{partType,jdbcType=VARCHAR},
+            </if>
+            <if test="partWeight != null">
+                part_weight = #{partWeight,jdbcType=DECIMAL},
+            </if>
+            <if test="partLength != null">
+                part_length = #{partLength,jdbcType=VARCHAR},
+            </if>
+            <if test="partWidth != null">
+                part_width = #{partWidth,jdbcType=VARCHAR},
+            </if>
+            <if test="partHeight != null">
+                part_height = #{partHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="partHardness != null">
+                part_hardness = #{partHardness,jdbcType=VARCHAR},
+            </if>
+            <if test="partSupplier != null">
+                part_supplier = #{partSupplier,jdbcType=VARCHAR},
+            </if>
+            <if test="partCost != null">
+                part_cost = #{partCost,jdbcType=DECIMAL},
+            </if>
+            <if test="isInCost != null">
+                is_in_cost = #{isInCost,jdbcType=BIT},
+            </if>
+            <if test="partCount != null">
+                part_count = #{partCount,jdbcType=INTEGER},
+            </if>
+            <if test="rebate != null">
+                rebate = #{rebate,jdbcType=DECIMAL},
+            </if>
+            <if test="rebateRatio != null">
+                rebate_ratio = #{rebateRatio,jdbcType=DECIMAL},
+            </if>
+            <if test="quench != null">
+                quench = #{quench,jdbcType=BIT},
+            </if>
+            <if test="nitrogen != null">
+                nitrogen = #{nitrogen,jdbcType=BIT},
+            </if>
+            <if test="isSpoilage != null">
+                is_spoilage = #{isSpoilage,jdbcType=BIT},
+            </if>
+            <if test="spoilage != null">
+                spoilage = #{spoilage,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.ComputePartCost">
+    update compute_part_cost
+    set compute_id = #{computeId,jdbcType=BIGINT},
+      cst_mold_no = #{cstMoldNo,jdbcType=VARCHAR},
+      is_detail_calc = #{isDetailCalc,jdbcType=BIT},
+      part_name = #{partName,jdbcType=VARCHAR},
+      part_type = #{partType,jdbcType=VARCHAR},
+      part_weight = #{partWeight,jdbcType=DECIMAL},
+      part_length = #{partLength,jdbcType=VARCHAR},
+      part_width = #{partWidth,jdbcType=VARCHAR},
+      part_height = #{partHeight,jdbcType=VARCHAR},
+      part_hardness = #{partHardness,jdbcType=VARCHAR},
+      part_supplier = #{partSupplier,jdbcType=VARCHAR},
+      part_cost = #{partCost,jdbcType=DECIMAL},
+      is_in_cost = #{isInCost,jdbcType=BIT},
+      part_count = #{partCount,jdbcType=INTEGER},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      rebate_ratio = #{rebateRatio,jdbcType=DECIMAL},
+      quench = #{quench,jdbcType=BIT},
+      nitrogen = #{nitrogen,jdbcType=BIT},
+      is_spoilage = #{isSpoilage,jdbcType=BIT},
+      spoilage = #{spoilage,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!-- Alnwick 添加-->
+    <insert id="addPartCost" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="java.util.Map">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into compute_part_cost
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="compute_id != null and andcompute_id !='' ">
+                compute_id,
+            </if>
+            <if test="cst_mold_no != null and cst_mold_no !=''">
+                cst_mold_no,
+            </if>
+            <if test="is_detail_calc != null and is_detail_calc != ''">
+                is_detail_calc,
+            </if>
+            <if test="part_name != null and part_name != ''">
+                part_name,
+            </if>
+            <if test="part_type != null and part_type !=''">
+                part_type,
+            </if>
+            <if test="part_weight != null and part_weight !=''">
+                part_weight,
+            </if>
+            <if test="part_length != null and  part_length !='' ">
+                part_length,
+            </if>
+            <if test="part_width != null and part_width !=''">
+                part_width ,
+            </if>
+            <if test="part_height != null and part_height !=''">
+                part_height,
+            </if>
+            <if test="part_hardness != null and part_hardness !=''">
+                part_hardness,
+            </if>
+            <if test="part_supplier != null and part_supplier !=''">
+                part_supplier,
+            </if>
+            <if test="part_cost != null and part_cost !=''">
+                part_cost,
+            </if>
+            <if test="is_in_cost != null and is_in_cost != ''">
+                is_in_cost,
+            </if>
+            <if test="part_count != null and part_count !=''">
+                part_count,
+            </if>
+            <if test="rebate != null and rebate !=''">
+                rebate,
+            </if>
+            <if test="rebate_ratio != null and rebate_ratio != ''">
+                rebate_ratio,
+            </if>
+            <if test="quench != null and quench != ''">
+                quench,
+            </if>
+            <if test="nitrogen != null and nitrogen != ''">
+                nitrogen,
+            </if>
+            <if test="is_spoilage != null and is_spoilage !=''">
+                is_spoilage,
+            </if>
+            <if test="spoilage != null and spoilage !=''">
+                spoilage,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="compute_id != null and andcompute_id !='' ">
+                #{compute_id,jdbcType=BIGINT},
+            </if>
+            <if test="cst_mold_no != null and cst_mold_no !=''">
+                #{cst_mold_no,jdbcType=VARCHAR},
+            </if>
+            <if test="is_detail_calc != null and is_detail_calc != ''">
+                #{is_detail_calc,jdbcType=BIT},
+            </if>
+            <if test="part_name != null and part_name != ''">
+                #{part_name,jdbcType=VARCHAR},
+            </if>
+            <if test="part_type != null and part_type !=''">
+                #{part_type,jdbcType=VARCHAR},
+            </if>
+            <if test="part_weight != null and part_weight !=''">
+                #{part_weight},
+            </if>
+            <if test="part_length != null and part_length !='' ">
+                #{part_length},
+            </if>
+            <if test="part_width != null and part_width !=''">
+                #{part_width},
+            </if>
+            <if test="part_height != null and part_height !=''">
+                #{part_height},
+            </if>
+            <if test="part_hardness != null and part_hardness !=''">
+                #{part_hardness,jdbcType=VARCHAR},
+            </if>
+            <if test="part_supplier != null and part_supplier !=''">
+                #{part_supplier,jdbcType=VARCHAR},
+            </if>
+            <if test="part_cost != null and part_cost !=''">
+                #{part_cost,jdbcType=DECIMAL},
+            </if>
+            <if test="is_in_cost != null and is_in_cost != ''">
+                #{is_in_cost,jdbcType=BIT},
+            </if>
+            <if test="part_count != null and part_count !=''">
+                #{part_count,jdbcType=INTEGER},
+            </if>
+            <if test="rebate != null and rebate !=''">
+                #{rebate,jdbcType=DECIMAL},
+            </if>
+            <if test="rebate_ratio != null and rebate_ratio != ''">
+                #{rebate_ratio,jdbcType=DECIMAL},
+            </if>
+            <if test="quench != null and quench != ''">
+                #{quench,jdbcType=BIT},
+            </if>
+            <if test="nitrogen != null and nitrogen != ''">
+                #{nitrogen,jdbcType=BIT},
+            </if>
+            <if test="is_spoilage != null and is_spoilage !=''">
+                #{is_spoilage,jdbcType=BIT},
+            </if>
+            <if test="spoilage != null and spoilage !=''">
+                #{spoilage,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updatePartCost" parameterType="java.util.Map">
+        update compute_part_cost
+        <set>
+            <if test="cst_mold_no != null and cst_mold_no !=''">
+                cst_mold_no= #{cst_mold_no,jdbcType=VARCHAR},
+            </if>
+            <if test="is_detail_calc != null and is_detail_calc != ''">
+                is_detail_calc= #{is_detail_calc,jdbcType=BIT},
+            </if>
+            <if test="part_name != null and part_name != ''">
+                part_name=#{part_name,jdbcType=VARCHAR},
+            </if>
+            <if test="part_type != null and part_type !=''">
+                part_type= #{part_type,jdbcType=VARCHAR},
+            </if>
+            <if test="part_weight != null and part_weight !=''">
+                part_weight= #{part_weight,jdbcType=DECIMAL},
+            </if>
+            <if test="part_length != null and part_length !='' ">
+                part_length = #{part_length,jdbcType=VARCHAR},
+            </if>
+            <if test="part_width != null and part_width !=''">
+                part_width = #{part_width,jdbcType=VARCHAR},
+            </if>
+            <if test="part_height != null and part_height !=''">
+                part_height = #{part_height,jdbcType=VARCHAR},
+            </if>
+            <if test="part_hardness != null and part_hardness !=''">
+                part_hardness= #{part_hardness,jdbcType=VARCHAR},
+            </if>
+            <if test="part_supplier != null and part_supplier !=''">
+                part_supplier= #{part_supplier,jdbcType=VARCHAR},
+            </if>
+            <if test="part_cost != null and part_cost !=''">
+                part_cost= #{part_cost,jdbcType=DECIMAL},
+            </if>
+            <if test="is_in_cost != null and is_in_cost != ''">
+                is_in_cost= #{is_in_cost,jdbcType=BIT},
+            </if>
+            <if test="part_count != null and part_count !=''">
+                part_count= #{part_count,jdbcType=INTEGER},
+            </if>
+            <if test="rebate != null and rebate !=''">
+                rebate= #{rebate,jdbcType=DECIMAL},
+            </if>
+            <if test="rebate_ratio != null and rebate_ratio != ''">
+                rebate_ratio= #{rebate_ratio,jdbcType=DECIMAL},
+            </if>
+            <if test="quench != null and quench != ''">
+                quench= #{quench,jdbcType=BIT},
+            </if>
+            <if test="nitrogen != null and nitrogen != ''">
+                nitrogen= #{nitrogen,jdbcType=BIT},
+            </if>
+            <if test="is_spoilage != null and is_spoilage !=''">
+                is_spoilage= #{is_spoilage,jdbcType=BIT},
+            </if>
+            <if test="spoilage != null and spoilage !=''">
+                spoilage=#{spoilage,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{part_id}
+    </update>
+
+
+    <select id="selectPartCost" parameterType="java.util.Map" resultType="java.util.Map">
+     select id as part_id,part_count,is_detail_calc,part_cost,part_hardness,part_height,part_length,part_name,part_type,part_weight,part_width  from   compute_part_cost
+     where   id = #{part_id} and status = 1
+  </select>
+
+
+    <select id="selectGetPartList" parameterType="java.lang.Integer" resultType="java.util.Map">
+    SELECT  part_cost,id as part_id,part_name from compute_part_cost where compute_id= #{compute_id} and status =1
+  </select>
+
+    <update id="deletePart" parameterType="java.util.Map">
+        UPDATE compute_part_cost set status = 0 where compute_id =#{compute_id} and id IN
+        <foreach item="list" collection="part_ids" open="(" separator="," close=")">
+            #{list}
+        </foreach>
+    </update>
+
+
+    <select id="selectComputeId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select compute_id from compute_part_cost where id = #{integer}
+  </select>
+
+    <select id="selectSumStuffCost" parameterType="java.lang.Integer" resultType="java.lang.Double">
+  SELECT sum(part_cost) from compute_part_cost where compute_id = #{compute_id}  and status= 1
+</select>
+
+    <update id="updateEditionPart" parameterType="long">
+   UPDATE compute_part_cost cpc ,compute_part_cost_sub cpcs
+        set cpc.status = 0 ,cpcs.status = 0 ,cpc.handled_time =DATE_FORMAT(now(),'%Y-%m-%d %T')
+        where cpc.compute_id =#{computeId} and cpc.id=cpcs.compute_part_cost_id and cpc.status = 1 and cpcs.status = 1
+  </update>
+
+
+    <select id="selectPartNameRepea" resultType="int">
+        select count(*) from compute_part_cost WHERE part_name = #{part_name}
+        <if test="part_id != null and part_id != ''">
+            <![CDATA[     and    id != {part_id} ]]>
+        </if>
+        and compute_id = #{compute_id} and status = 1
+    </select>
+</mapper>

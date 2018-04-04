@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pm.common.dao.PmShiftSubMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmShiftSub" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shift_id" property="shiftId" jdbcType="BIGINT" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="shift_mins" property="shiftMins" jdbcType="INTEGER" />
+    <result column="is_over_day" property="isOverDay" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="is_mt" property="isMt" jdbcType="CHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ShiftResultMap" type="com.mt.pm.production.bo.PmShiftSubBo" >
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="shift_mins" property="shiftMins" jdbcType="INTEGER" />
+    <result column="is_over_day" property="isOverDay" jdbcType="CHAR" />
+    <result column="the_date" property="theDate" jdbcType="TIMESTAMP"/>
+    <result column="day_hours" property="dayHours" jdbcType="DECIMAL"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shift_id, seq, start_time, end_time, shift_mins, is_over_day, updated_at, created_at, status, is_mt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from pm_shift_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pm_shift_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmShiftSub" >
+    insert into pm_shift_sub (id, shift_id, seq,
+    start_time, end_time, shift_mins,
+    is_over_day,updated_at, created_at, status, is_mt)
+    values (#{id,jdbcType=BIGINT}, #{shiftId,jdbcType=BIGINT}, #{seq,jdbcType=INTEGER},
+    #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{shiftMins,jdbcType=INTEGER},
+    #{isOverDay,jdbcType=CHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, #{isMt,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmShiftSub" >
+    insert into pm_shift_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shiftId != null" >
+        shift_id,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="shiftMins != null" >
+        shift_mins,
+      </if>
+      <if test="isOverDay != null" >
+        is_over_day,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isMt != null" >
+        is_mt,
+      </if>
+      <if test="createdAt != null" >
+        created_at,,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="shiftId != null" >
+        #{shiftId,jdbcType=BIGINT},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftMins != null" >
+        #{shiftMins,jdbcType=INTEGER},
+      </if>
+      <if test="isOverDay != null" >
+        #{isOverDay,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="isMt != null" >
+        #{isMt,jdbcType=CHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmShiftSub" >
+    update pm_shift_sub
+    <set >
+      <if test="shiftId != null" >
+        shift_id = #{shiftId,jdbcType=BIGINT},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftMins != null" >
+        shift_mins = #{shiftMins,jdbcType=INTEGER},
+      </if>
+      <if test="isOverDay != null" >
+        is_over_day = #{isOverDay,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="isMt != null" >
+        is_mt = #{isMt,jdbcType=CHAR},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmShiftSub" >
+    update pm_shift_sub
+    set shift_id = #{shiftId,jdbcType=BIGINT},
+      seq = #{seq,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      shift_mins = #{shiftMins,jdbcType=INTEGER},
+      is_over_day = #{isOverDay,jdbcType=CHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      is_mt = #{isMt,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 查询班次子表详情-->
+  <select id="selectPmShiftSubDetail" parameterType="com.mt.pm.common.pojo.PmShiftPojo" resultType="Map" >
+    select pss.end_time, pss.is_over_day, pss.seq, pss.shift_mins, pss.start_time
+    from pm_shift as ps INNER JOIN pm_shift_sub as pss on ps.id = pss.shift_id
+    where pss.shift_id = #{query.id} and ps.shift_type = '2' and ps.status = 1 and pss.status = 1
+    order by pss.seq asc
+  </select>
+
+  <!-- 删除 -->
+  <update id="deletePmShiftSub" parameterType="com.mt.pm.common.pojo.PmShiftPojo">
+    update pm_shift_sub
+    set status = 0, updated_at = #{updatedAt}
+    where shift_id = #{shiftId} and status = 1
+  </update>
+
+  <!--TODO 查询公司默认班次 -->
+  <select id="selectDefaultShiftSubListByPgid" resultMap="ShiftResultMap">
+    select seq,start_time,end_time,shift_mins,is_over_day from pm_shift_sub as c,
+    (select b.id from department as a , pm_shift as b
+     where a.dep_id = #{pgId} and a.company_id = b.company_id and b.shift_type = "1" ) as d
+     where c.shift_id = d.id and c.status = 1
+  </select>
+
+
+  <!-- TODO 查询公司某部门某天班次段列表 -->
+  <select id="selectPmShiftSubListByDate" resultMap="ShiftResultMap">
+    select seq,start_time,end_time,shift_mins,is_over_day,the_date,day_hours from pm_shift_sub as a,
+    (select shift_id,the_date,day_hours from pm_calendar_sub as b,pm_pg as c
+    where b.calendar_id = c.calendar_id and c.pg_id = #{pgId} and b.the_date BETWEEN #{pmWorkProcedureStartTime} and #{pmWorkProcedureStartTimeMonthLater}) as d
+    where a.shift_id = d.shift_id and a.status = 1
+    ORDER BY d.the_date asc
+  </select>
+
+
+</mapper>

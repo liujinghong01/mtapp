@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan base-package="com.mt.*.controller;com.mt.*.*.controller;com.mt.**.controller;com.mt.common.core.config"/>
+ 	<mvc:annotation-driven  /><!-- cache-period="315360000" -->
+	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+	<!-- 自动扫描 标签 -->
+	<!--<bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swagger2Config"/>-->
+	<bean name="springContextUtil" class="com.mt.common.utils.SpringContextUtil" scope="singleton"></bean>
+
+
+	<!--springMVC 4.X跨域 设置-->
+	<mvc:cors>
+		<mvc:mapping path="/**" allowed-origins="*" allow-credentials="true" max-age="18000" allowed-methods="GET,POST,OPTIONS,DELETE"/>
+	</mvc:cors>
+
+
+	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
+
+
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/*.ico" />
+			<mvc:exclude-mapping path="/*/api-docs" />
+			<mvc:exclude-mapping path="/swagger**" />
+			<mvc:exclude-mapping path="/webjars/**" />
+			<!--<mvc:exclude-mapping path="/api/user/**" />-->
+			<mvc:exclude-mapping path="/configuration/**" />
+			<bean class="com.mt.common.core.interceptor.MaliciousRequestInterceptor">
+				<property name="minRequestIntervalTime" value="500" />
+				<property name="maxMaliciousTimes" value="0" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="objectMapper" class="com.mt.common.controller.JacksonController" init-method="init">
+		<property name="camelCaseToLowerCaseWithUnderscores" value="true" />
+		<property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss" />
+	</bean>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean id="mappingJacksonHttpMessageConverter"
+				  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="objectMapper" />
+				<property name = "supportedMediaTypes" >
+					<list>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="text"/>
+							<constructor-arg index="1" value="plain"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="*"/>
+							<constructor-arg index="1" value="*"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="text"/>
+							<constructor-arg index="1" value="*"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+						<bean class="org.springframework.http.MediaType">
+							<constructor-arg index="0" value="application"/>
+							<constructor-arg index="1" value="json"/>
+							<constructor-arg index="2" value="UTF-8"/>
+						</bean>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!--===============通用视图解析器 begin===============-->
+	<bean id="viewResolverCommon"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+<!--			可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑-->
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.InternalResourceView
+			</value>
+		</property>
+		<property name="order" value="1" />
+	</bean>
+
+
+	<!--===============通用视图解析器 end===============-->
+	
+	
+	<!--  上传文件定义大小 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="utf-8">
+		<property name="maxUploadSize" value="50048000" />	
+	</bean>
+
+
+</beans>

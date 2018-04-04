@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.order.common.dao.ComputePartCostSubMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.order.common.model.ComputePartCostSub" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="compute_part_cost_id" property="computePartCostId" jdbcType="BIGINT" />
+    <result column="sub_part_name" property="subPartName" jdbcType="VARCHAR" />
+    <result column="raw_nature_id" property="rawNatureId" jdbcType="INTEGER" />
+    <result column="raw_nature" property="rawNature" jdbcType="VARCHAR" />
+    <result column="stuff_shape" property="stuffShape" jdbcType="VARCHAR" />
+    <result column="stuff_piece" property="stuffPiece" jdbcType="VARCHAR" />
+    <result column="stuff_length" property="stuffLength" jdbcType="VARCHAR" />
+    <result column="stuff_width" property="stuffWidth" jdbcType="VARCHAR" />
+    <result column="stuff_height" property="stuffHeight" jdbcType="VARCHAR" />
+    <result column="stuff_diameter" property="stuffDiameter" jdbcType="VARCHAR" />
+    <result column="stuff_density" property="stuffDensity" jdbcType="VARCHAR" />
+    <result column="stuff_density_unit" property="stuffDensityUnit" jdbcType="VARCHAR" />
+    <result column="stuff_up" property="stuffUp" jdbcType="VARCHAR" />
+    <result column="stuff_price" property="stuffPrice" jdbcType="VARCHAR" />
+    <result column="is_calc_weight" property="isCalcWeight" jdbcType="BIT" />
+    <result column="stuff_weight" property="stuffWeight" jdbcType="DECIMAL" />
+    <result column="is_quench" property="isQuench" jdbcType="BIT" />
+    <result column="is_nitrogen" property="isNitrogen" jdbcType="BIT" />
+    <result column="is_not_standard_calc" property="isNotStandardCalc" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, compute_part_cost_id, sub_part_name, raw_nature_id, raw_nature, stuff_shape, 
+    stuff_piece, stuff_length, stuff_width, stuff_height, stuff_diameter, stuff_density, 
+    stuff_density_unit, stuff_up, stuff_price, is_calc_weight, stuff_weight, is_quench, 
+    is_nitrogen, is_not_standard_calc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from compute_part_cost_sub
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from compute_part_cost_sub
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.order.common.model.ComputePartCostSub" >
+    insert into compute_part_cost_sub (id, compute_part_cost_id, sub_part_name, 
+      raw_nature_id, raw_nature, stuff_shape, 
+      stuff_piece, stuff_length, stuff_width, 
+      stuff_height, stuff_diameter, stuff_density, 
+      stuff_density_unit, stuff_up, stuff_price, 
+      is_calc_weight, stuff_weight, is_quench, 
+      is_nitrogen, is_not_standard_calc)
+    values (#{id,jdbcType=BIGINT}, #{computePartCostId,jdbcType=BIGINT}, #{subPartName,jdbcType=VARCHAR}, 
+      #{rawNatureId,jdbcType=INTEGER}, #{rawNature,jdbcType=VARCHAR}, #{stuffShape,jdbcType=VARCHAR}, 
+      #{stuffPiece,jdbcType=VARCHAR}, #{stuffLength,jdbcType=VARCHAR}, #{stuffWidth,jdbcType=VARCHAR}, 
+      #{stuffHeight,jdbcType=VARCHAR}, #{stuffDiameter,jdbcType=VARCHAR}, #{stuffDensity,jdbcType=VARCHAR}, 
+      #{stuffDensityUnit,jdbcType=VARCHAR}, #{stuffUp,jdbcType=VARCHAR}, #{stuffPrice,jdbcType=VARCHAR}, 
+      #{isCalcWeight,jdbcType=BIT}, #{stuffWeight,jdbcType=DECIMAL}, #{isQuench,jdbcType=BIT}, 
+      #{isNitrogen,jdbcType=BIT}, #{isNotStandardCalc,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.order.common.model.ComputePartCostSub" >
+    insert into compute_part_cost_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="computePartCostId != null" >
+        compute_part_cost_id,
+      </if>
+      <if test="subPartName != null" >
+        sub_part_name,
+      </if>
+      <if test="rawNatureId != null" >
+        raw_nature_id,
+      </if>
+      <if test="rawNature != null" >
+        raw_nature,
+      </if>
+      <if test="stuffShape != null" >
+        stuff_shape,
+      </if>
+      <if test="stuffPiece != null" >
+        stuff_piece,
+      </if>
+      <if test="stuffLength != null" >
+        stuff_length,
+      </if>
+      <if test="stuffWidth != null" >
+        stuff_width,
+      </if>
+      <if test="stuffHeight != null" >
+        stuff_height,
+      </if>
+      <if test="stuffDiameter != null" >
+        stuff_diameter,
+      </if>
+      <if test="stuffDensity != null" >
+        stuff_density,
+      </if>
+      <if test="stuffDensityUnit != null" >
+        stuff_density_unit,
+      </if>
+      <if test="stuffUp != null" >
+        stuff_up,
+      </if>
+      <if test="stuffPrice != null" >
+        stuff_price,
+      </if>
+      <if test="isCalcWeight != null" >
+        is_calc_weight,
+      </if>
+      <if test="stuffWeight != null" >
+        stuff_weight,
+      </if>
+      <if test="isQuench != null" >
+        is_quench,
+      </if>
+      <if test="isNitrogen != null" >
+        is_nitrogen,
+      </if>
+      <if test="isNotStandardCalc != null" >
+        is_not_standard_calc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="computePartCostId != null" >
+        #{computePartCostId,jdbcType=BIGINT},
+      </if>
+      <if test="subPartName != null" >
+        #{subPartName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawNatureId != null" >
+        #{rawNatureId,jdbcType=INTEGER},
+      </if>
+      <if test="rawNature != null" >
+        #{rawNature,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffShape != null" >
+        #{stuffShape,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffPiece != null" >
+        #{stuffPiece,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffLength != null" >
+        #{stuffLength,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffWidth != null" >
+        #{stuffWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffHeight != null" >
+        #{stuffHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDiameter != null" >
+        #{stuffDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDensity != null" >
+        #{stuffDensity,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDensityUnit != null" >
+        #{stuffDensityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffUp != null" >
+        #{stuffUp,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffPrice != null" >
+        #{stuffPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="isCalcWeight != null" >
+        #{isCalcWeight,jdbcType=BIT},
+      </if>
+      <if test="stuffWeight != null" >
+        #{stuffWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="isQuench != null" >
+        #{isQuench,jdbcType=BIT},
+      </if>
+      <if test="isNitrogen != null" >
+        #{isNitrogen,jdbcType=BIT},
+      </if>
+      <if test="isNotStandardCalc != null" >
+        #{isNotStandardCalc,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.order.common.model.ComputePartCostSub" >
+    update compute_part_cost_sub
+    <set >
+      <if test="computePartCostId != null" >
+        compute_part_cost_id = #{computePartCostId,jdbcType=BIGINT},
+      </if>
+      <if test="subPartName != null" >
+        sub_part_name = #{subPartName,jdbcType=VARCHAR},
+      </if>
+      <if test="rawNatureId != null" >
+        raw_nature_id = #{rawNatureId,jdbcType=INTEGER},
+      </if>
+      <if test="rawNature != null" >
+        raw_nature = #{rawNature,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffShape != null" >
+        stuff_shape = #{stuffShape,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffPiece != null" >
+        stuff_piece = #{stuffPiece,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffLength != null" >
+        stuff_length = #{stuffLength,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffWidth != null" >
+        stuff_width = #{stuffWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffHeight != null" >
+        stuff_height = #{stuffHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDiameter != null" >
+        stuff_diameter = #{stuffDiameter,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDensity != null" >
+        stuff_density = #{stuffDensity,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffDensityUnit != null" >
+        stuff_density_unit = #{stuffDensityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffUp != null" >
+        stuff_up = #{stuffUp,jdbcType=VARCHAR},
+      </if>
+      <if test="stuffPrice != null" >
+        stuff_price = #{stuffPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="isCalcWeight != null" >
+        is_calc_weight = #{isCalcWeight,jdbcType=BIT},
+      </if>
+      <if test="stuffWeight != null" >
+        stuff_weight = #{stuffWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="isQuench != null" >
+        is_quench = #{isQuench,jdbcType=BIT},
+      </if>
+      <if test="isNitrogen != null" >
+        is_nitrogen = #{isNitrogen,jdbcType=BIT},
+      </if>
+      <if test="isNotStandardCalc != null" >
+        is_not_standard_calc = #{isNotStandardCalc,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.order.common.model.ComputePartCostSub" >
+    update compute_part_cost_sub
+    set compute_part_cost_id = #{computePartCostId,jdbcType=BIGINT},
+      sub_part_name = #{subPartName,jdbcType=VARCHAR},
+      raw_nature_id = #{rawNatureId,jdbcType=INTEGER},
+      raw_nature = #{rawNature,jdbcType=VARCHAR},
+      stuff_shape = #{stuffShape,jdbcType=VARCHAR},
+      stuff_piece = #{stuffPiece,jdbcType=VARCHAR},
+      stuff_length = #{stuffLength,jdbcType=VARCHAR},
+      stuff_width = #{stuffWidth,jdbcType=VARCHAR},
+      stuff_height = #{stuffHeight,jdbcType=VARCHAR},
+      stuff_diameter = #{stuffDiameter,jdbcType=VARCHAR},
+      stuff_density = #{stuffDensity,jdbcType=VARCHAR},
+      stuff_density_unit = #{stuffDensityUnit,jdbcType=VARCHAR},
+      stuff_up = #{stuffUp,jdbcType=VARCHAR},
+      stuff_price = #{stuffPrice,jdbcType=VARCHAR},
+      is_calc_weight = #{isCalcWeight,jdbcType=BIT},
+      stuff_weight = #{stuffWeight,jdbcType=DECIMAL},
+      is_quench = #{isQuench,jdbcType=BIT},
+      is_nitrogen = #{isNitrogen,jdbcType=BIT},
+      is_not_standard_calc = #{isNotStandardCalc,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--  Alnwick 添加-->
+
+<insert id="addPartCostSub"  parameterType="java.util.Map">
+  insert into compute_part_cost_sub
+  <trim prefix="(" suffix=")" suffixOverrides="," >
+    <if test="compute_part_cost_id != null and compute_part_cost_id !=''" >
+      compute_part_cost_id,
+    </if>
+    <if test="sub_part_name != null and sub_part_name !=''" >
+      sub_part_name,
+    </if>
+    <if test="raw_nature_id != null and raw_nature_id !=''" >
+      raw_nature_id,
+    </if>
+    <if test="raw_nature != null and raw_nature != ''" >
+      raw_nature,
+    </if>
+    <if test="stuff_shape != null and stuff_shape != ''" >
+      stuff_shape,
+    </if>
+    <if test="stuff_piece != null and stuff_piece !=''" >
+      stuff_piece,
+    </if>
+    <if test="stuff_length != null and stuff_length !=''" >
+      stuff_length,
+    </if>
+    <if test="stuff_width != null and stuff_width !=''" >
+      stuff_width,
+    </if>
+    <if test="stuff_height != null and stuff_height != ''" >
+      stuff_height,
+    </if>
+    <if test="stuff_diameter != null and stuff_diameter != ''" >
+      stuff_diameter,
+    </if>
+    <if test="stuff_density != null and stuff_density !=''" >
+      stuff_density,
+    </if>
+    <if test="stuff_density_unit != null and stuff_density_unit !=''" >
+      stuff_density_unit,
+    </if>
+    <if test="stuff_up != null and stuff_up != ''" >
+      stuff_up,
+    </if>
+    <if test="stuff_price != null and stuff_price != ''" >
+      stuff_price,
+    </if>
+    <if test="is_calc_weight != null and is_calc_weight !=''" >
+      is_calc_weight,
+    </if>
+    <if test="stuff_weight != null and stuff_weight != ''" >
+      stuff_weight,
+    </if>
+    <if test="is_quench != null and is_quench !=''" >
+      is_quench,
+    </if>
+    <if test="is_nitrogen != null and is_nitrogen !=''" >
+      is_nitrogen,
+    </if>
+    <if test="is_not_standard_calc != null and is_not_standard_calc !=''" >
+      is_not_standard_calc,
+    </if>
+  </trim>
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="compute_part_cost_id != null and compute_part_cost_id !=''" >
+      #{compute_part_cost_id,jdbcType=BIGINT},
+    </if>
+    <if test="sub_part_name != null and sub_part_name !=''" >
+      #{sub_part_name,jdbcType=VARCHAR},
+    </if>
+    <if test="raw_nature_id != null and raw_nature_id !=''" >
+      #{raw_nature_id,jdbcType=INTEGER},
+    </if>
+    <if test="raw_nature != null and raw_nature != ''" >
+      #{raw_nature,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_shape != null and stuff_shape != ''" >
+      #{stuff_shape,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_piece != null and stuff_piece !=''" >
+      #{stuff_piece,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_length != null and stuff_length !=''" >
+      #{stuff_length,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_width != null and stuff_width !=''" >
+      #{stuff_width,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_height != null and stuff_height != ''" >
+      #{stuff_height,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_diameter != null and stuff_diameter != ''" >
+      #{stuff_diameter,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_density != null and stuff_density !=''" >
+      #{stuff_density,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_density_unit != null and stuff_density_unit !=''" >
+      #{stuff_density_unit,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_up != null and stuff_up != ''" >
+      #{stuff_up,jdbcType=VARCHAR},
+    </if>
+    <if test="stuff_price != null and stuff_price != ''" >
+      #{stuff_price,jdbcType=VARCHAR},
+    </if>
+    <if test="is_calc_weight != null and is_calc_weight !=''" >
+      #{is_calc_weight,jdbcType=BIT},
+    </if>
+    <if test="stuff_weight != null and stuff_weight != ''" >
+      #{stuff_weight,jdbcType=DECIMAL},
+    </if>
+    <if test="is_quench != null and is_quench !=''" >
+      #{is_quench,jdbcType=BIT},
+    </if>
+    <if test="is_nitrogen != null and is_nitrogen !=''" >
+      #{is_nitrogen,jdbcType=BIT},
+    </if>
+    <if test="is_not_standard_calc != null and is_not_standard_calc !=''" >
+      #{is_not_standard_calc,jdbcType=BIT},
+    </if>
+  </trim>
+</insert>
+
+  <update id="updatePartCostSub"  parameterType="Map">
+    update compute_part_cost_sub
+    <set >
+      <if test="compute_part_cost_id != null and compute_part_cost_id !=''" >
+        compute_part_cost_id= #{compute_part_cost_id,jdbcType=BIGINT},
+      </if>
+      <if test="sub_part_name != null and sub_part_name !=''" >
+        sub_part_name=  #{sub_part_name,jdbcType=VARCHAR},
+      </if>
+      <if test="raw_nature_id != null and raw_nature_id !=''" >
+        raw_nature_id= #{raw_nature_id,jdbcType=INTEGER},
+      </if>
+      <if test="raw_nature != null and raw_nature != ''" >
+        raw_nature= #{raw_nature,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_shape != null and stuff_shape != ''" >
+        stuff_shape=#{stuff_shape,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_piece != null and stuff_piece !=''" >
+        stuff_piece= #{stuff_piece,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_length != null and stuff_length !=''" >
+        stuff_length=  #{stuff_length,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_width != null and stuff_width !=''" >
+        stuff_width= #{stuff_width,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_height != null and stuff_height != ''" >
+        stuff_height= #{stuff_height,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_diameter != null and stuff_diameter != ''" >
+        stuff_diameter=  #{stuff_diameter,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_density != null and stuff_density !=''" >
+        stuff_density= #{stuff_density,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_density_unit != null and stuff_density_unit !=''" >
+        stuff_density_unit=#{stuff_density_unit,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_up != null and stuff_up != ''" >
+        stuff_up=  #{stuff_up,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff_price != null and stuff_price != ''" >
+        stuff_price=  #{stuff_price,jdbcType=VARCHAR},
+      </if>
+      <if test="is_calc_weight != null and is_calc_weight !=''" >
+        is_calc_weight= #{is_calc_weight,jdbcType=BIT},
+      </if>
+      <if test="stuff_weight != null and stuff_weight != ''" >
+        stuff_weight=#{stuff_weight,jdbcType=DECIMAL},
+      </if>
+      <if test="is_quench != null and is_quench !=''" >
+        is_quench=#{is_quench,jdbcType=BIT},
+      </if>
+      <if test="is_nitrogen != null and is_nitrogen !=''" >
+        is_nitrogen= #{is_nitrogen,jdbcType=BIT},
+      </if>
+      <if test="is_not_standard_calc != null and is_not_standard_calc !=''" >
+        is_not_standard_calc= #{is_not_standard_calc,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{sub_part_id}
+  </update>
+
+
+  <select id="selectPartCostSub" resultType="Map" parameterType="java.lang.Integer">
+    SELECT  id as sub_part_id,is_calc_weight,raw_nature,raw_nature_id, stuff_density, stuff_density_unit,stuff_diameter,stuff_height,
+     stuff_length,stuff_piece,stuff_price,stuff_shape,stuff_up,stuff_weight,stuff_width,sub_part_name
+      from  compute_part_cost_sub
+    WHERE  compute_part_cost_id= #{part_id} and status =1
+  </select>
+
+  <update id="deletePartSub"  parameterType="Map" >
+      UPDATE  compute_part_cost_sub set status = 0  where  compute_part_cost_id =#{part_id} and id IN
+    <foreach item="list" collection="sub_part_ids" open="(" separator="," close=")">
+      #{list}
+    </foreach>
+  </update>
+
+</mapper>

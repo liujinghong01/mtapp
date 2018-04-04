@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pm.common.dao.PmDeviceMaintainMapper" >
+  <resultMap id="BaseResultMap" type="com.mt.pm.common.model.PmDeviceMaintain" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="maintain_no" property="maintainNo" jdbcType="VARCHAR" />
+    <result column="prev_end_date" property="prevEndDate" jdbcType="TIMESTAMP" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="cycle" property="cycle" jdbcType="DECIMAL" />
+    <result column="length" property="length" jdbcType="DECIMAL" />
+    <result column="next_start_date" property="nextStartDate" jdbcType="TIMESTAMP" />
+    <result column="next_end_date" property="nextEndDate" jdbcType="TIMESTAMP" />
+    <result column="is_maintained" property="isMaintained" jdbcType="CHAR" />
+    <result column="handler_id" property="handlerId" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_id, device_name, maintain_no, prev_end_date, start_date, end_date, reason, 
+    cycle, length, next_start_date, next_end_date, is_maintained, handler_id, created_at, 
+    updated_at, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pm_device_maintain
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pm_device_maintain
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.pm.common.model.PmDeviceMaintain" >
+    insert into pm_device_maintain (id, device_id, device_name, 
+      maintain_no, prev_end_date, start_date, 
+      end_date, reason, cycle, 
+      length, next_start_date, next_end_date, 
+      is_maintained, handler_id, created_at, 
+      updated_at, status)
+    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{deviceName,jdbcType=VARCHAR}, 
+      #{maintainNo,jdbcType=VARCHAR}, #{prevEndDate,jdbcType=TIMESTAMP}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{cycle,jdbcType=DECIMAL}, 
+      #{length,jdbcType=DECIMAL}, #{nextStartDate,jdbcType=TIMESTAMP}, #{nextEndDate,jdbcType=TIMESTAMP}, 
+      #{isMaintained,jdbcType=CHAR}, #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.pm.common.model.PmDeviceMaintain" >
+    insert into pm_device_maintain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="maintainNo != null" >
+        maintain_no,
+      </if>
+      <if test="prevEndDate != null" >
+        prev_end_date,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="nextStartDate != null" >
+        next_start_date,
+      </if>
+      <if test="nextEndDate != null" >
+        next_end_date,
+      </if>
+      <if test="isMaintained != null" >
+        is_maintained,
+      </if>
+      <if test="handlerId != null" >
+        handler_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainNo != null" >
+        #{maintainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="prevEndDate != null" >
+        #{prevEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="nextStartDate != null" >
+        #{nextStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextEndDate != null" >
+        #{nextEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMaintained != null" >
+        #{isMaintained,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null" >
+        #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.pm.common.model.PmDeviceMaintain" >
+    update pm_device_maintain
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainNo != null" >
+        maintain_no = #{maintainNo,jdbcType=VARCHAR},
+      </if>
+      <if test="prevEndDate != null" >
+        prev_end_date = #{prevEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="nextStartDate != null" >
+        next_start_date = #{nextStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextEndDate != null" >
+        next_end_date = #{nextEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMaintained != null" >
+        is_maintained = #{isMaintained,jdbcType=CHAR},
+      </if>
+      <if test="handlerId != null" >
+        handler_id = #{handlerId,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.pm.common.model.PmDeviceMaintain" >
+    update pm_device_maintain
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      maintain_no = #{maintainNo,jdbcType=VARCHAR},
+      prev_end_date = #{prevEndDate,jdbcType=TIMESTAMP},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      reason = #{reason,jdbcType=VARCHAR},
+      cycle = #{cycle,jdbcType=DECIMAL},
+      length = #{length,jdbcType=DECIMAL},
+      next_start_date = #{nextStartDate,jdbcType=TIMESTAMP},
+      next_end_date = #{nextEndDate,jdbcType=TIMESTAMP},
+      is_maintained = #{isMaintained,jdbcType=CHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--wendy-->
+
+  <select id="selectDeviceMaintainCurr"  resultType="map">
+     SELECT id AS device_id, device_name, cycle, last_start_time AS start_date, last_maintain_reason
+  FROM pm_pg_device
+  WHERE id = #{device_id}
+      AND status = 1
+  </select>
+
+  <select id="selectDeviceCurr"  resultType="map">
+      SELECT reason, length, next_end_date, next_start_date
+  FROM pm_device_maintain
+  WHERE device_id = #{device_id}
+      AND status = 1
+  </select>
+
+  <insert id="addDeviceMaintain" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <selectKey resultType="int" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into pm_device_maintain
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="device_id != null" >
+        device_id,
+      </if>
+      <if test="device_name != null" >
+        device_name,
+      </if>
+      <if test="maintain_no != null" >
+        maintain_no,
+      </if>
+      <if test="prev_end_date != null" >
+        prev_end_date,
+      </if>
+      <if test="start_date != null" >
+        start_date,
+      </if>
+      <if test="end_date != null" >
+        end_date,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="cycle != null" >
+        cycle,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="next_start_date != null" >
+        next_start_date,
+      </if>
+      <if test="next_end_date != null" >
+        next_end_date,
+      </if>
+      <if test="is_maintained != null" >
+        is_maintained,
+      </if>
+      <if test="handler_id != null" >
+        handler_id,
+      </if>
+      <if test="created_at != null" >
+        created_at,
+      </if>
+      <if test="updated_at != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="device_id != null" >
+        #{device_id,jdbcType=BIGINT},
+      </if>
+      <if test="device_name != null" >
+        #{device_name,jdbcType=VARCHAR},
+      </if>
+      <if test="maintain_no != null" >
+        #{maintain_no,jdbcType=VARCHAR},
+      </if>
+      <if test="prev_end_date != null" >
+        #{prev_end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start_date != null" >
+        #{start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end_date != null" >
+        #{end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null" >
+        #{cycle,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="next_start_date != null" >
+        #{next_start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="next_end_date != null" >
+        #{next_end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_maintained != null" >
+        #{is_maintained,jdbcType=CHAR},
+      </if>
+      <if test="handler_id != null" >
+        #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="created_at != null" >
+        #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null" >
+        #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateDeviceMaintain" parameterType="Map" >
+    update pm_device_maintain
+    <set >
+      <if test="device_id != null" >
+        device_id = #{device_id,jdbcType=BIGINT},
+      </if>
+      <if test="device_name != null" >
+        device_name = #{device_name,jdbcType=VARCHAR},
+      </if>
+      <if test="maintain_no != null" >
+        maintain_no = #{maintain_no,jdbcType=VARCHAR},
+      </if>
+      <if test="prev_end_date != null" >
+        prev_end_date = #{prev_end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start_date != null" >
+        start_date = #{start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end_date != null" >
+        end_date = #{end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null" >
+        cycle = #{cycle,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="next_start_date != null" >
+        next_start_date = #{next_start_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="next_end_date != null" >
+        next_end_date = #{next_end_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="is_maintained != null" >
+        is_maintained = #{is_maintained,jdbcType=CHAR},
+      </if>
+      <if test="handler_id != null" >
+        handler_id = #{handler_id,jdbcType=BIGINT},
+      </if>
+      <if test="created_at != null" >
+        created_at = #{created_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated_at != null" >
+        updated_at = #{updated_at,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{maintain_id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mt.pc.common.dao.PcRequestMapper">
+    <resultMap id="BaseResultMap" type="com.mt.pc.common.model.PcRequest">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="request_no" property="requestNo" jdbcType="VARCHAR"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="dep_id" property="depId" jdbcType="INTEGER"/>
+        <result column="dep_name" property="depName" jdbcType="VARCHAR"/>
+        <result column="reason" property="reason" jdbcType="VARCHAR"/>
+        <result column="approve_step" property="approveStep" jdbcType="VARCHAR"/>
+        <result column="approve_sugg" property="approveSugg" jdbcType="VARCHAR"/>
+        <result column="request_date" property="requestDate" jdbcType="TIMESTAMP"/>
+        <result column="request_man" property="requestMan" jdbcType="BIGINT"/>
+        <result column="request_man_name" property="requestManName" jdbcType="VARCHAR"/>
+        <result column="handler_id" property="handlerId" jdbcType="BIGINT"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, request_no, company_id, company_name, dep_id, dep_name, reason, approve_step, 
+    approve_sugg, request_date, request_man, request_man_name, handler_id, created_at, 
+    updated_at, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pc_request
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pc_request
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.mt.pc.common.model.PcRequest">
+    insert into pc_request (id, request_no, company_id, 
+      company_name, dep_id, dep_name, 
+      reason, approve_step, approve_sugg, 
+      request_date, request_man, request_man_name, 
+      handler_id, created_at, updated_at, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{requestNo,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{depId,jdbcType=INTEGER}, #{depName,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{approveStep,jdbcType=VARCHAR}, #{approveSugg,jdbcType=VARCHAR}, 
+      #{requestDate,jdbcType=TIMESTAMP}, #{requestMan,jdbcType=BIGINT}, #{requestManName,jdbcType=VARCHAR}, 
+      #{handlerId,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.mt.pc.common.model.PcRequest">
+        insert into pc_request
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="requestNo != null">
+                request_no,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="depId != null">
+                dep_id,
+            </if>
+            <if test="depName != null">
+                dep_name,
+            </if>
+            <if test="reason != null">
+                reason,
+            </if>
+            <if test="approveStep != null">
+                approve_step,
+            </if>
+            <if test="approveSugg != null">
+                approve_sugg,
+            </if>
+            <if test="requestDate != null">
+                request_date,
+            </if>
+            <if test="requestMan != null">
+                request_man,
+            </if>
+            <if test="requestManName != null">
+                request_man_name,
+            </if>
+            <if test="handlerId != null">
+                handler_id,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="requestNo != null">
+                #{requestNo,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="depId != null">
+                #{depId,jdbcType=INTEGER},
+            </if>
+            <if test="depName != null">
+                #{depName,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="approveStep != null">
+                #{approveStep,jdbcType=VARCHAR},
+            </if>
+            <if test="approveSugg != null">
+                #{approveSugg,jdbcType=VARCHAR},
+            </if>
+            <if test="requestDate != null">
+                #{requestDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="requestMan != null">
+                #{requestMan,jdbcType=BIGINT},
+            </if>
+            <if test="requestManName != null">
+                #{requestManName,jdbcType=VARCHAR},
+            </if>
+            <if test="handlerId != null">
+                #{handlerId,jdbcType=BIGINT},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.pc.common.model.PcRequest">
+        update pc_request
+        <set>
+            <if test="requestNo != null">
+                request_no = #{requestNo,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="depId != null">
+                dep_id = #{depId,jdbcType=INTEGER},
+            </if>
+            <if test="depName != null">
+                dep_name = #{depName,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="approveStep != null">
+                approve_step = #{approveStep,jdbcType=VARCHAR},
+            </if>
+            <if test="approveSugg != null">
+                approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+            </if>
+            <if test="requestDate != null">
+                request_date = #{requestDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="requestMan != null">
+                request_man = #{requestMan,jdbcType=BIGINT},
+            </if>
+            <if test="requestManName != null">
+                request_man_name = #{requestManName,jdbcType=VARCHAR},
+            </if>
+            <if test="handlerId != null">
+                handler_id = #{handlerId,jdbcType=BIGINT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.pc.common.model.PcRequest">
+    update pc_request
+    set request_no = #{requestNo,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=INTEGER},
+      dep_name = #{depName,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      approve_step = #{approveStep,jdbcType=VARCHAR},
+      approve_sugg = #{approveSugg,jdbcType=VARCHAR},
+      request_date = #{requestDate,jdbcType=TIMESTAMP},
+      request_man = #{requestMan,jdbcType=BIGINT},
+      request_man_name = #{requestManName,jdbcType=VARCHAR},
+      handler_id = #{handlerId,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!--Alnwick 添加-->
+
+    <insert id="addRequestModify" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        insert into pc_request
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="request_no != null and request_no != ''">
+                request_no,
+            </if>
+            <if test="companyId != null and companyId != ''">
+                company_id,
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name,
+            </if>
+            <if test="dep_id != null and dep_id != ''">
+                dep_id,
+            </if>
+            <if test="dep_name != null and  dep_name != ''">
+                dep_name,
+            </if>
+            <if test="reason != null and reason != ''">
+                reason,
+            </if>
+            <if test="approve_step != null and approve_step != ''">
+                approve_step,
+            </if>
+            <if test="approve_sugg != null and approve_sugg != ''">
+                approve_sugg,
+            </if>
+            <if test="request_date != null and request_date != ''">
+                request_date,
+            </if>
+            <if test="request_man != null and request_man != ''">
+                request_man,
+            </if>
+            <if test="request_man_name != null and request_man_name != ''">
+                request_man_name,
+            </if>
+            <if test="created_at != null and created_at != ''">
+                created_at,
+            </if>
+            <if test="coin != null and coin != ''">
+                coin,
+            </if>
+            <if test="coin_name != null and coin_name != ''">
+                coin_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="request_no != null and request_no != ''">
+                #{request_no,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null and companyId != ''">
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="dep_id != null and dep_id != ''">
+                #{dep_id,jdbcType=INTEGER},
+            </if>
+            <if test="dep_name != null and  dep_name != ''">
+                #{dep_name,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null and reason != ''">
+                #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="approve_step != null and approve_step != ''">
+                #{approve_step,jdbcType=VARCHAR},
+            </if>
+            <if test="approve_sugg != null and approve_sugg != ''">
+                #{approve_sugg,jdbcType=VARCHAR},
+            </if>
+            <if test="request_date != null and request_date != ''">
+                #{request_date},
+            </if>
+            <if test="request_man != null and request_man != ''">
+                #{request_man,jdbcType=BIGINT},
+            </if>
+            <if test="request_man_name != null and request_man_name != ''">
+                #{request_man_name,jdbcType=VARCHAR},
+            </if>
+            <if test="created_at != null and created_at != ''">
+                #{created_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="coin != null and coin != ''">
+                #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="coin_name != null and coin_name != ''">
+                #{coin_name,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updeteRequestModify" parameterType="map">
+        update pc_request
+        <set>
+            <if test="request_no != null and request_no != ''">
+                request_no= #{request_no,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null and companyId != ''">
+                company_id= #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name= #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="dep_id != null and dep_id != ''">
+                dep_id= #{dep_id,jdbcType=INTEGER},
+            </if>
+            <if test="dep_name != null and  dep_name != ''">
+                dep_name= #{dep_name,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null and reason != ''">
+                reason= #{reason,jdbcType=VARCHAR},
+            </if>
+            <if test="approve_step != null and approve_step != ''">
+                approve_step= #{approve_step,jdbcType=VARCHAR},
+            </if>
+            <if test="approve_sugg != null and approve_sugg != ''">
+                approve_sugg= #{approve_sugg,jdbcType=VARCHAR},
+            </if>
+            <if test="request_date != null and request_date != ''">
+                request_date= #{request_date},
+            </if>
+            <if test="request_man != null and request_man != ''">
+                request_man= #{request_man,jdbcType=BIGINT},
+            </if>
+            <if test="request_man_name != null and request_man_name != ''">
+                request_man_name= #{request_man_name,jdbcType=VARCHAR},
+            </if>
+            <if test="handler_id != null and handler_id != ''">
+                handler_id =#{handler_id},
+            </if>
+            <if test="updated_at != null and updated_at != ''">
+                updated_at= #{updated_at,jdbcType=TIMESTAMP},
+            </if>
+            <if test="coin != null and coin != ''">
+                coin=  #{coin,jdbcType=VARCHAR},
+            </if>
+            <if test="coin_name != null and coin_name != ''">
+                coin_name=   #{coin_name,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE
+        id = #{request_id}
+    </update>
+
+    <select id="selectIdAndNo" parameterType="java.lang.Long" resultType="map">
+      SELECT
+              request_no,id as request_id
+        from  pc_request
+        WHERE  id = #{request_id}
+  </select>
+
+    <update id="deleteRequest" parameterType="java.lang.Long">
+    UPDATE  pc_request
+       SET  status = 0
+       WHERE id = #{requestId}
+  </update>
+
+    <select id="queryRequest" resultType="map" parameterType="java.lang.Long">
+      SELECT
+              id as request_id ,approve_step,approve_sugg,dep_id,dep_name,reason,
+              DATE_FORMAT(request_date,'%Y-%m-%d')  request_date,
+              request_man,request_man_name,request_no
+        FROM  pc_request
+        WHERE id = #{requestId} and status = 1
+  </select>
+
+    <select id="selectRequesList" parameterType="map" resultType="map">
+        SELECT
+        approve_step,approve_sugg,dep_id,dep_name,reason,DATE_FORMAT(request_date,'%Y-%m-%d') request_date,
+        id as request_id,request_man,request_man_name,request_no
+        FROM pc_request
+        WHERE
+        <if test="approve_step != null and approve_step.size >0">
+            approve_step in
+            <foreach collection="approve_step" item="as"  open="(" separator="," close=")">
+                #{as}
+           </foreach>  and
+        </if>
+        company_id = #{companyId} and status = 1 limit #{page},#{page_size}
+    </select>
+
+    <select id="totalCount" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(id)
+        FROM pc_request
+        WHERE
+        <if test="approve_step != null and approve_step.size >0">
+            approve_step in
+            <foreach collection="approve_step" item="as"  open="(" separator="," close=")">
+                #{as}
+            </foreach>  and
+        </if>
+        company_id = #{companyId} and status = 1
+    </select>
+
+    <select id="getCoin" parameterType="java.lang.Integer" resultType="map">
+        SELECT dict_code as coin,dict_name as coin_name from dictionary  WHERE  company_id = #{companyId}  and dict_type="COIN_TYPE" and is_default = 1
+    </select>
+
+</mapper>

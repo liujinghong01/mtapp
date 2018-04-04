@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.upms.common.dao.MyFriendMapper">
+    <resultMap id="BaseResultMap" type="com.mt.upms.common.model.MyFriend">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="my_uid" jdbcType="BIGINT" property="myUid"/>
+        <result column="my_name" jdbcType="VARCHAR" property="myName"/>
+        <result column="fri_uid" jdbcType="BIGINT" property="friUid"/>
+        <result column="fri_name" jdbcType="VARCHAR" property="friName"/>
+        <result column="is_active" jdbcType="BIT" property="isActive"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="fri_avatar" jdbcType="VARCHAR" property="friAvatar"/>
+        <result column="fri_phone" jdbcType="VARCHAR" property="friPhone"/>
+        <result column="fri_com_name" jdbcType="VARCHAR" property="friComName"/>
+        <result column="fri_email" jdbcType="VARCHAR" property="friEmail"/>
+        <result column="relation" jdbcType="VARCHAR" property="relation"/>
+        <result column="fri_com_id" jdbcType="INTEGER" property="friComId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, my_uid, my_name, fri_uid, fri_name, is_active, created_at, updated_at, fri_avatar,
+    fri_phone, fri_com_name, fri_email, relation, fri_com_id
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from my_friend
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from my_friend
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.mt.upms.common.model.MyFriend">
+    insert into my_friend (id, my_uid, my_name,
+    fri_uid, fri_name, is_active,
+    created_at, updated_at, fri_avatar,
+    fri_phone, fri_com_name, fri_email,
+    relation, fri_com_id)
+    values (#{id,jdbcType=BIGINT}, #{myUid,jdbcType=BIGINT}, #{myName,jdbcType=VARCHAR},
+    #{friUid,jdbcType=BIGINT}, #{friName,jdbcType=VARCHAR}, #{isActive,jdbcType=BIT},
+    #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{friAvatar,jdbcType=VARCHAR},
+    #{friPhone,jdbcType=VARCHAR}, #{friComName,jdbcType=VARCHAR}, #{friEmail,jdbcType=VARCHAR},
+    #{relation,jdbcType=VARCHAR}, #{friComId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.mt.upms.common.model.MyFriend">
+        insert into my_friend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="myUid != null">
+                my_uid,
+            </if>
+            <if test="myName != null">
+                my_name,
+            </if>
+            <if test="friUid != null">
+                fri_uid,
+            </if>
+            <if test="friName != null">
+                fri_name,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="friAvatar != null">
+                fri_avatar,
+            </if>
+            <if test="friPhone != null">
+                fri_phone,
+            </if>
+            <if test="friComName != null">
+                fri_com_name,
+            </if>
+            <if test="friEmail != null">
+                fri_email,
+            </if>
+            <if test="relation != null">
+                relation,
+            </if>
+            <if test="friComId != null">
+                fri_com_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="myUid != null">
+                #{myUid,jdbcType=BIGINT},
+            </if>
+            <if test="myName != null">
+                #{myName,jdbcType=VARCHAR},
+            </if>
+            <if test="friUid != null">
+                #{friUid,jdbcType=BIGINT},
+            </if>
+            <if test="friName != null">
+                #{friName,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="friAvatar != null">
+                #{friAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="friPhone != null">
+                #{friPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="friComName != null">
+                #{friComName,jdbcType=VARCHAR},
+            </if>
+            <if test="friEmail != null">
+                #{friEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="relation != null">
+                #{relation,jdbcType=VARCHAR},
+            </if>
+            <if test="friComId != null">
+                #{friComId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mt.upms.common.model.MyFriend">
+        update my_friend
+        <set>
+            <if test="myUid != null">
+                my_uid = #{myUid,jdbcType=BIGINT},
+            </if>
+            <if test="myName != null">
+                my_name = #{myName,jdbcType=VARCHAR},
+            </if>
+            <if test="friUid != null">
+                fri_uid = #{friUid,jdbcType=BIGINT},
+            </if>
+            <if test="friName != null">
+                fri_name = #{friName,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=BIT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="friAvatar != null">
+                fri_avatar = #{friAvatar,jdbcType=VARCHAR},
+            </if>
+            <if test="friPhone != null">
+                fri_phone = #{friPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="friComName != null">
+                fri_com_name = #{friComName,jdbcType=VARCHAR},
+            </if>
+            <if test="friEmail != null">
+                fri_email = #{friEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="relation != null">
+                relation = #{relation,jdbcType=VARCHAR},
+            </if>
+            <if test="friComId != null">
+                fri_com_id = #{friComId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mt.upms.common.model.MyFriend">
+    update my_friend
+    set my_uid = #{myUid,jdbcType=BIGINT},
+    my_name = #{myName,jdbcType=VARCHAR},
+    fri_uid = #{friUid,jdbcType=BIGINT},
+    fri_name = #{friName,jdbcType=VARCHAR},
+    is_active = #{isActive,jdbcType=BIT},
+    created_at = #{createdAt,jdbcType=TIMESTAMP},
+    updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+    fri_avatar = #{friAvatar,jdbcType=VARCHAR},
+    fri_phone = #{friPhone,jdbcType=VARCHAR},
+    fri_com_name = #{friComName,jdbcType=VARCHAR},
+    fri_email = #{friEmail,jdbcType=VARCHAR},
+    relation = #{relation,jdbcType=VARCHAR},
+    fri_com_id = #{friComId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <!-- ****** 自定义 ******* -->
+
+    <select id="friendList" resultType="map">
+  SELECT  fri_avatar,fri_name,fri_uid from my_friend WHERE my_uid = #{uId}
+</select>
+
+    <select id="friendView" resultType="map">
+    SELECT  fri_avatar,fri_name,fri_uid,fri_com_name,fri_email,fri_phone,relation
+    from my_friend
+    <where>
+        my_uid = #{uId} and fri_uid=#{friUid}
+        <if test="friComId == null "> and fri_com_id is null </if>
+        <if test="friComId != null ">and fri_com_id=#{friComId}</if>
+    </where>
+  </select>
+
+<select id="selectMyFriend"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from my_friend
+    where ( my_uid = #{myUid} and fri_uid = #{friUid} )
+    or ( my_uid = #{friUid} and fri_uid = #{myUid} )
+    LIMIT 1
+</select>
+
+    <select id="seletUId" resultType="long">
+        select distinct fri_uid from my_friend WHERE my_uid=#{uId};
+    </select>
+</mapper>

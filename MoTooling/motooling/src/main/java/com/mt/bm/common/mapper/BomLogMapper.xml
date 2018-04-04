@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mt.bm.common.dao.BomLogMapper">
+  <resultMap id="BaseResultMap" type="com.mt.bm.common.model.BomLog">
+    <id column="bom_log_id" jdbcType="BIGINT" property="bomLogId" />
+    <result column="bom_id" jdbcType="BIGINT" property="bomId" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="mold_no" jdbcType="VARCHAR" property="moldNo" />
+    <result column="bom_type" jdbcType="CHAR" property="bomType" />
+    <result column="crt_id" jdbcType="VARCHAR" property="crtId" />
+    <result column="crt_time" jdbcType="TIMESTAMP" property="crtTime" />
+    <result column="upt_id" jdbcType="VARCHAR" property="uptId" />
+    <result column="upt_time" jdbcType="TIMESTAMP" property="uptTime" />
+    <result column="upt_reason" jdbcType="VARCHAR" property="uptReason" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="app_time" jdbcType="TIMESTAMP" property="appTime" />
+    <result column="app_flag" jdbcType="CHAR" property="appFlag" />
+    <result column="app_remark" jdbcType="VARCHAR" property="appRemark" />
+    <result column="edition" jdbcType="INTEGER" property="edition" />
+    <result column="max_nodepos" jdbcType="INTEGER" property="maxNodepos" />
+    <result column="plan_stuff_cost" jdbcType="DECIMAL" property="planStuffCost" />
+    <result column="handler_id" jdbcType="VARCHAR" property="handlerId" />
+    <result column="handled_time" jdbcType="TIMESTAMP" property="handledTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bom_log_id, bom_id, company_id, company_name, mold_no, bom_type, crt_id, crt_time, 
+    upt_id, upt_time, upt_reason, app_id, app_time, app_flag, app_remark, edition, max_nodepos, 
+    plan_stuff_cost, handler_id, handled_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bm_bom_log
+    where bom_log_id = #{bomLogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bm_bom_log
+    where bom_log_id = #{bomLogId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mt.bm.common.model.BomLog">
+    insert into bm_bom_log (bom_log_id, bom_id, company_id, 
+      company_name, mold_no, bom_type, 
+      crt_id, crt_time, upt_id, 
+      upt_time, upt_reason, app_id, 
+      app_time, app_flag, app_remark, 
+      edition, max_nodepos, plan_stuff_cost, 
+      handler_id, handled_time)
+    values (#{bomLogId,jdbcType=BIGINT}, #{bomId,jdbcType=BIGINT}, #{companyId,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{moldNo,jdbcType=VARCHAR}, #{bomType,jdbcType=CHAR}, 
+      #{crtId,jdbcType=VARCHAR}, #{crtTime,jdbcType=TIMESTAMP}, #{uptId,jdbcType=VARCHAR}, 
+      #{uptTime,jdbcType=TIMESTAMP}, #{uptReason,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, 
+      #{appTime,jdbcType=TIMESTAMP}, #{appFlag,jdbcType=CHAR}, #{appRemark,jdbcType=VARCHAR}, 
+      #{edition,jdbcType=INTEGER}, #{maxNodepos,jdbcType=INTEGER}, #{planStuffCost,jdbcType=DECIMAL},
+      #{handlerId,jdbcType=VARCHAR}, #{handledTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mt.bm.common.model.BomLog">
+    insert into bm_bom_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bomLogId != null">
+        bom_log_id,
+      </if>
+      <if test="bomId != null">
+        bom_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="moldNo != null">
+        mold_no,
+      </if>
+      <if test="bomType != null">
+        bom_type,
+      </if>
+      <if test="crtId != null">
+        crt_id,
+      </if>
+      <if test="crtTime != null">
+        crt_time,
+      </if>
+      <if test="uptId != null">
+        upt_id,
+      </if>
+      <if test="uptTime != null">
+        upt_time,
+      </if>
+      <if test="uptReason != null">
+        upt_reason,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="appTime != null">
+        app_time,
+      </if>
+      <if test="appFlag != null">
+        app_flag,
+      </if>
+      <if test="appRemark != null">
+        app_remark,
+      </if>
+      <if test="edition != null">
+        edition,
+      </if>
+      <if test="maxNodepos != null">
+        max_nodepos,
+      </if>
+      <if test="planStuffCost != null">
+        plan_stuff_cost,
+      </if>
+      <if test="handlerId != null">
+        handler_id,
+      </if>
+      <if test="handledTime != null">
+        handled_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bomLogId != null">
+        #{bomLogId,jdbcType=BIGINT},
+      </if>
+      <if test="bomId != null">
+        #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bomType != null">
+        #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="crtId != null">
+        #{crtId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptId != null">
+        #{uptId,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptReason != null">
+        #{uptReason,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTime != null">
+        #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appFlag != null">
+        #{appFlag,jdbcType=CHAR},
+      </if>
+      <if test="appRemark != null">
+        #{appRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="edition != null">
+        #{edition,jdbcType=INTEGER},
+      </if>
+      <if test="maxNodepos != null">
+        #{maxNodepos,jdbcType=INTEGER},
+      </if>
+      <if test="planStuffCost != null">
+        #{planStuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlerId != null">
+        #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mt.bm.common.model.BomLog">
+    update bm_bom_log
+    <set>
+      <if test="bomId != null">
+        bom_id = #{bomId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="moldNo != null">
+        mold_no = #{moldNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bomType != null">
+        bom_type = #{bomType,jdbcType=CHAR},
+      </if>
+      <if test="crtId != null">
+        crt_id = #{crtId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null">
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptId != null">
+        upt_id = #{uptId,jdbcType=VARCHAR},
+      </if>
+      <if test="uptTime != null">
+        upt_time = #{uptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uptReason != null">
+        upt_reason = #{uptReason,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTime != null">
+        app_time = #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appFlag != null">
+        app_flag = #{appFlag,jdbcType=CHAR},
+      </if>
+      <if test="appRemark != null">
+        app_remark = #{appRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="edition != null">
+        edition = #{edition,jdbcType=INTEGER},
+      </if>
+      <if test="maxNodepos != null">
+        max_nodepos = #{maxNodepos,jdbcType=INTEGER},
+      </if>
+      <if test="planStuffCost != null">
+        plan_stuff_cost = #{planStuffCost,jdbcType=DECIMAL},
+      </if>
+      <if test="handlerId != null">
+        handler_id = #{handlerId,jdbcType=VARCHAR},
+      </if>
+      <if test="handledTime != null">
+        handled_time = #{handledTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bom_log_id = #{bomLogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mt.bm.common.model.BomLog">
+    update bm_bom_log
+    set bom_id = #{bomId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      mold_no = #{moldNo,jdbcType=VARCHAR},
+      bom_type = #{bomType,jdbcType=CHAR},
+      crt_id = #{crtId,jdbcType=VARCHAR},
+      crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      upt_id = #{uptId,jdbcType=VARCHAR},
+      upt_time = #{uptTime,jdbcType=TIMESTAMP},
+      upt_reason = #{uptReason,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      app_time = #{appTime,jdbcType=TIMESTAMP},
+      app_flag = #{appFlag,jdbcType=CHAR},
+      app_remark = #{appRemark,jdbcType=VARCHAR},
+      edition = #{edition,jdbcType=INTEGER},
+      max_nodepos = #{maxNodepos,jdbcType=INTEGER},
+      plan_stuff_cost = #{planStuffCost,jdbcType=DECIMAL},
+      handler_id = #{handlerId,jdbcType=VARCHAR},
+      handled_time = #{handledTime,jdbcType=TIMESTAMP}
+    where bom_log_id = #{bomLogId,jdbcType=BIGINT}
+  </update>
+</mapper>
