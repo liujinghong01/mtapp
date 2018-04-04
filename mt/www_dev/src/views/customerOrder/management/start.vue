@@ -17,6 +17,7 @@
       </item>
       <cst-item label="数量" editType="number" v-model="order_startup.count" :canEdit="false"></cst-item>
       <cst-item label="未税单价" editType="number" v-model="order_startup.up" :canEdit="false"></cst-item>
+      <cst-item label="未税总价" editType="number" v-model="order_startup.price" :canEdit="false"></cst-item>
       <item>
         <span>是否制定BOM</span>
 
