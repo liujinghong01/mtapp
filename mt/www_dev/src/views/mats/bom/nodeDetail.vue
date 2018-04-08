@@ -328,7 +328,7 @@
             console.log(e)
           }
         })
-        this.mate_info.weight=volume*rawnature.density
+        this.mate_info.weight=volume*rawnature.density/1000000
         this.mate_info.plan_price=volume*rawnature.density*rawnature.procure_price
 
         // rawnaturePrice(requestData).then(res=>{
@@ -341,6 +341,7 @@
         // })
       },
       saveBtn(){//保存
+        alert(this.mat_type_name)
         if(this.mat_type_name==='0'){
           let weight=this.mate_info.weight
           if(this.node_info.total_qty>0){

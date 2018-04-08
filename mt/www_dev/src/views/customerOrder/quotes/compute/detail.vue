@@ -342,12 +342,12 @@
           if( sess.get('stuff_cost')!==null){
             that.compute.stuff_cost=sess.get('stuff_cost')
             sess.remove('stuff_cost')
-            this.saveData()
+            // this.saveData()
           }
           if( sess.get('process_cost')!==null){
             that.compute.process_cost=sess.get('process_cost')
             sess.remove('process_cost')
-            this.saveData()
+            // this.saveData()
           }
         }).catch(error => {
           $toast.show(error.description)

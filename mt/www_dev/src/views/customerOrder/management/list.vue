@@ -42,6 +42,7 @@
                   <p>产品名称：<a class="cst-name">{{item.prod_name}}</a></p>
                   <span class="no">产品类型: {{item.type_name}}</span>
                   <span class="no">数量:{{item.count}}</span>
+                  <p v-show="item.reason!==null">再制原因: <span style="float: none;color: #416eb6;">{{ item.reason }}</span></p>
                   <i class="icon ion-ios-arrow-down arrow" v-show="!item.check" @click.stop="arrowClick(item)"></i>
                   <i class="icon ion-ios-arrow-up arrow" v-show="item.check" @click.stop="arrowClick(item)"></i>
                 </div>
@@ -66,7 +67,7 @@
             <div v-for="(item, index) in items[2].list" :key="index"  >
               <item class="item-icon-right" @click.native="$router.forward('/customerOrder/order/lineInfo/checkOnly/'+item.order_line_id)">
                 <div :class="['item-cont',item.swipe?'active':'']">
-                  <!--<p>客户产品名称：<a class="prd-name">{{item.cst_name}}</a></p>-->
+                  <!--<p>客户名称：<a class="prd-name">{{item.cst_name}}</a></p>-->
                   <p>客户：<a class="cst-name">{{item.cst_name}}</a></p>
                   <p>定单编号：<a class="cst-name">{{item.project_no}}</a></p>
                   <p>产品名称：<a class="cst-name">{{item.prod_name}}</a></p>

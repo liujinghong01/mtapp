@@ -31,7 +31,7 @@
 
       <item style="margin: 0" @click.native="prodsClick">
         <span>制品信息：</span>
-        <span class="item-note" style="padding-right: 20px;width: 80%;text-align: right"
+        <span class="prodItem"
               v-for="(item,index) in cst_order_line.prod_list">
               {{ item.cst_prod_name }}
         </span>

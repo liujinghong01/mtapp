@@ -198,7 +198,7 @@
             console.log(e)
           }
         })
-        this.mate_info.weight=volume*rawnature.density
+        this.mate_info.weight=volume*rawnature.density/1000000
         this.mate_info.plan_price=volume*rawnature.density*rawnature.procure_price
       },
       rawnatureList(){//获取材质列表

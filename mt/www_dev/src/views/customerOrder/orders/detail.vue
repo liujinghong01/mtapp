@@ -22,8 +22,16 @@
 
         <!--<cst-item label="交货方式"  v-model="project.delivery_type" editType="text" :action="action" > </cst-item>-->
         <cst-item label="交货地点"  v-model="project.delivery_place" editType="text" :action="action" > </cst-item>
-        <!--<cst-item label="是否含税"  v-model="project.is_include_tax" editType="text" :action="action" :canEdit="false" ></cst-item>-->
-        <item style="padding-left: 15px">
+        <cst-item label="发票类型"
+                  v-model="project.invoice_type_name"
+                  editType="text"
+                  :action="action"
+                  :hasArrow="true"
+                  @click.native="changeType('invoiceType')"
+                  :canEdit="false" ></cst-item>
+
+
+        <item style="padding-left: 15px;margin: 0">
           是否含税:
           <label>
             <input type="radio" name="is_include_tax" value="1" v-model="project.is_include_tax">是
@@ -32,16 +40,8 @@
             <input type="radio" name="is_include_tax" value="0" v-model="project.is_include_tax">否
           </label>
         </item>
-        <cst-item label="税率(%)" v-show="project.is_include_tax==='1'"  v-model="project.tax_ratio" editType="number" :action="action" > </cst-item>
-        <!--<cst-item label="发票类型"  v-model="project.invoice_type" editType="text" :action="action" > </cst-item>-->
+        <cst-item label="税率(%)" v-show="project.is_include_tax==='1'"  v-model="project.tax_ratio" editType="number" > </cst-item>
 
-        <cst-item label="发票类型"
-                  v-model="project.invoice_type_name"
-                  editType="text"
-                  :action="action"
-                  :hasArrow="true"
-                  @click.native="changeType('invoiceType')"
-                  :canEdit="false" ></cst-item>
 
         <cst-item label="业务员"
                   v-model="project.salesman_name"
@@ -211,6 +211,7 @@
           case 'invoiceType':{
             this.project.invoice_type = item.code;
             this.project.invoice_type_name = item.name;
+            this.project.tax_ratio=item.tax_ratio
             break
           }
           case 'coin':{

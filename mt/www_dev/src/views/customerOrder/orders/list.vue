@@ -29,6 +29,7 @@
               <swipe-item :item="item" swipeItemText="删除" :canSwipe="false" v-on:SwipeItemClick="delItem" v-on:ItemClick="onItemClick" :obj="item">
                 <span>业务员:{{item.salesman_name}}</span>  <span>定单编号:{{item.project_no}}</span>
                 <span>客户:{{item.cst_name}}</span>  <span>日期:{{item.order_accept_date}}</span>
+
               </swipe-item>
             </div>
 
@@ -293,8 +294,10 @@
       },
       onItemClick(item){
         let btnShow=''
-        if(this.tabIndex===0||this.tabIndex===3){
+        if(this.tabIndex===0){
           btnShow='isSubmit'
+        }else if(this.tabIndex===3){
+          btnShow='return'
         }else{
           btnShow='isApproval'
         }

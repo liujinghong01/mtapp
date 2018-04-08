@@ -143,10 +143,10 @@
         })
       },
       submit(){//提交审批
-        // if(this.orderLines.length<1){
-        //   $toast.show('请先配置行信息')
-        //   return
-        // }
+        if(this.orderLines.length<1){
+          $toast.show('请先配置行信息')
+          return
+        }
         $dialog.confirm({
           theme: 'ios',
           title: '确定要提交审批吗？',
