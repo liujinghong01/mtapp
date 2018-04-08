@@ -364,11 +364,11 @@
               $toast.show('请输入交货地点',600)
               return
             }
-            if(this.purchase.invoice_type_name==='请选择'){
+            if(this.purchase.coin_name==='请选择'){
               $toast.show('请选择币种',600)
               return
             }
-            if(this.purchase.coin_name==='请选择'){
+            if(this.purchase.invoice_type_name==='请选择'){
               $toast.show('请选发票类型',600)
               return
             }
