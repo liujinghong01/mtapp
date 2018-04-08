@@ -28,7 +28,7 @@
                   :action="action" :canEdit="false" :hasArrow="this.action!=='check'" @click.native="onSelect('rawnature')" >
         </cst-item>
         <cst-item   label="物料单价" v-model="mate_info.plan_price" :placeholder="'0'" :action="this.action" editType="number">{{newPrice}}</cst-item>
-        <cst-item   label="重量" v-model="mate_info.weight" :placeholder="'0'" :action="this.action" editType="number"></cst-item>
+        <cst-item   label="胚料重量" v-model="mate_info.weight" :placeholder="'0'" :action="this.action" editType="number"></cst-item>
       </div>
       <div v-show="mate_info.mat_type_name==='标准件'" class="standard">
         <cst-item label="规格型号" v-model="mate_info.spec "
