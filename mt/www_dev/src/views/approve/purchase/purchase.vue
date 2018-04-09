@@ -40,8 +40,8 @@
 //        ],
         tabIndex:0,
         pageModels:[
-          {curr_page:0,page_size:10},
-          {curr_page:0,page_size:10},
+          {curr_page:0,page_size:30},
+          {curr_page:0,page_size:30},
         ],
         query:{       //查询条件
           start_date:'',    //报价开始日期
