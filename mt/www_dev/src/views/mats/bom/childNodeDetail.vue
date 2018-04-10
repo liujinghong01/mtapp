@@ -176,6 +176,10 @@
         if(this.action==='check'){
           return
         }
+        if(this.cascadeData.rawnature_list.length<1){
+          return
+        }
+
         let volume=''
         let rawnature=''
         if(this.mate_info.shape==='1'){
@@ -185,13 +189,7 @@
           this.mate_info.spec='Φ:'+this.mate_info.length+'  H:'+this.mate_info.height
           volume=Math.PI*(parseFloat(this.mate_info.length)/2)*(parseFloat(this.mate_info.length)/2)*parseFloat(this.mate_info.height)
         }
-        const requestData={
-          height:this.mate_info.height,
-          length:this.mate_info.length,
-          width:this.mate_info.width,
-          rawnature_id:this.mate_info.rawnature_id,
-          shape:this.mate_info.shape,
-        }
+
         this.cascadeData.rawnature_list.forEach((e,i)=>{
           if(e.raw_nature_id===this.mate_info.rawnature_id){
             rawnature=e
@@ -357,7 +355,6 @@
         this.selectInfo.selectSwitch=true
       },
       checked(item,index){
-        console.log(item)
         switch (this.selectInfo.selectType){
           case 'mat_type':{
             this.mate_info.mat_type_name=item

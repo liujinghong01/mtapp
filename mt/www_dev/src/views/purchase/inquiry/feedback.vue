@@ -24,7 +24,11 @@
 
       <cst-item v-if="action==='check'" label="期望交货日期" v-model="inquiry_info.delivery_date" :hasArrow="false" :action="action" :canEdit="false"></cst-item>
       <datepicker  v-else  v-model="inquiry_info.delivery_date" label="期望交货日期" date-format="yyyy-mm-dd"></datepicker>
-      <cst-item label="交货地点" placeholder="请输入交货地点" v-model="inquiry_info.delivery_place" :action="action=='new'?'action':'check'"></cst-item>
+      <!--<cst-item label="交货地点"  v-model="inquiry_info.delivery_place" :action="action=='new'?'action':'check'"></cst-item>-->
+      <item>
+        交货地址：
+        <textarea :disabled="action=='new'?'action':'check'" style="width: 100%;height: 56px;padding: 3px 0;border: 1px solid #ddd;margin: 5px 0 0 0"  placeholder="请填写交货地址"     v-model="inquiry_info.delivery_place" ></textarea>
+      </item>
       <!--<cst-item label="币种" v-model="inquiry_info.coin_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('coin')"></cst-item>-->
       <!--<cst-item label="发票种类" v-model="inquiry_info.invoice_type_name" :hasArrow="true" :action="action==='new'?'action':'check'" :canEdit="false" @click.native="chooseDic('invoiceType')"></cst-item>-->
       <!--<cst-item label="税率" v-model="inquiry_info.tax_ratio" :action="action==='new'?'action':'check'" :canEdit="true" editType="number"></cst-item>-->
@@ -65,7 +69,8 @@
       <item style="margin-top: 8px">
         总金额{{ totalPrice }}
         <span class="item-note">{{ inquiry_info.total_price }}</span>
-      </item><textarea  :disabled="action!=='new'" v-show="this.action!=='action'"  >备注：{{ inquiry_info.remark }}</textarea>
+      </item>
+      <textarea  :disabled="action!=='new'" v-show="this.action!=='action'"  >备注：{{ inquiry_info.remark }}</textarea>
       <textarea  placeholder="请填写说明"   v-show="this.action==='action'"  v-model="inquiry_info.remark" ></textarea>
     </div>
     <sidebar-check :showFilter="showFilter" :dicType="dicType" :chosen="chosen" v-on:hideMask="showFilter=false"></sidebar-check>
@@ -102,7 +107,7 @@
   import {todayDate} from '@/utils'
   import {mapGetters} from 'vuex'
   import SidebarCheck from "../../../components/sidebarCheck";
-  import { supInquiryFeedbackDetail,submitFeddback,sendInquiry } from '@/api/purchase/inquiry';
+  import { supInquiryFeedbackDetail,submitFeddback,sendInquiry,getCompany } from '@/api/purchase/inquiry';
   export default{
     name:'inquiryFeedback',
     components: {
@@ -155,6 +160,7 @@
     mounted() {
       this.action = this.$route.params.action
       if(this.action==='new'){
+        this.getCompanyInfo()
         if(this.chosenCompany.deps.length<1){
           this.inquiry_info.purch_man_name = this.userinfo.username
           this.inquiry_info.purch_man_email = this.userinfo.email
@@ -316,6 +322,15 @@
             }
           }
         }
+      },
+      //查询公司详情
+      getCompanyInfo(){
+
+        getCompany({}).then(res=>{
+          this.inquiry_info.delivery_place=res.address
+        }).catch(error=>{
+          $toast.show(error.description);
+        })
       },
       //查询供货商反馈单详情
       supplierFeedbackDetail(){

@@ -95,7 +95,7 @@
         </div>
         <div  class="page-content remark" v-if="tabIndex===3">
           <div style="padding: 5px 15px;min-height: 200px;background-color: white">
-            <div class="remarkItem" v-for="(item,index) in remarkList"><span>{{item.seq_no}}</span> <input v-model="item.remark"/><span v-show="action!=='check'" style="float:right;color: #416eb6;" @click="delRemark(index)">删除</span></div>
+            <div class="remarkItem" v-for="(item,index) in remarkList"><span>{{index+1}}</span> <input v-model="item.remark"/><span v-show="action!=='check'" style="float:right;color: #416eb6;" @click="delRemark(index)">删除</span></div>
             <div class="remarkItem" v-for="item in chosenRemarkTemplate"><span>{{item.seq_no}}</span> <input v-model="item.remark"/></div>
             <textarea placeholder="手动添加备注" v-model="remark" v-if="action==='new'||action==='edit'"></textarea>
             <textarea v-model="remark" v-else disabled></textarea>
@@ -380,6 +380,13 @@
             break
           }
           case 3:{
+            if(this.remark.trim()!==''){
+              this.remarkList.push({
+                remark:this.remark,
+                seq_no:this.remarkList.length+1
+              })
+            }
+
             const requestData = {
               quote_id:this.quote_id,
               remark_list:this.remarkList.concat(this.chosenRemarkTemplate)

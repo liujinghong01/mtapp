@@ -74,4 +74,12 @@ export function submitFeddback(data) {
     data
   });
 }
+//查询公司详情 api/company/get-company-profile
+export function getCompany(data) {
+  return fetch({
+    url: 'api/company/get-company-profile',
+    method: 'post',
+    data
+  });
+}
 

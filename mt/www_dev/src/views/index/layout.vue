@@ -25,10 +25,10 @@
             path: '/home'
           },
           {
-            iconOn: 'iconfont icon-xiaoxixuanzhong',
-            iconOff: 'iconfont icon-xiaoxi',
-            text: '通知',
-            badge: '15',
+            iconOn: 'iconfont ion-ios-world',
+            iconOff: 'iconfont ion-ios-world-outline ',
+            text: '厂圈',
+            // badge: '15',
             path: '/notice'
           },
           {

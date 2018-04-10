@@ -305,6 +305,9 @@
         })
       },
       rawnaturePrice(){//计算价格
+        if(this.cascadeData.rawnature_list.length<1){
+          return
+        }
         let volume=''
         let rawnature=''
         if(this.mate_info.shape==='1'){
@@ -313,13 +316,6 @@
         }else if(this.mate_info.shape==='2'){
           this.mate_info.spec='Φ:'+this.mate_info.length+'  H:'+this.mate_info.height
           volume=Math.PI*(parseFloat(this.mate_info.length)/2)*(parseFloat(this.mate_info.length)/2)*parseFloat(this.mate_info.height)
-        }
-        const requestData={
-          height:this.mate_info.height,
-          length:this.mate_info.length,
-          width:this.mate_info.width,
-          rawnature_id:this.mate_info.rawnature_id,
-          shape:this.mate_info.shape,
         }
         //修改为前端计算
         this.cascadeData.rawnature_list.forEach((e,i)=>{
@@ -341,7 +337,6 @@
         // })
       },
       saveBtn(){//保存
-        alert(this.mat_type_name)
         if(this.mat_type_name==='0'){
           let weight=this.mate_info.weight
           if(this.node_info.total_qty>0){

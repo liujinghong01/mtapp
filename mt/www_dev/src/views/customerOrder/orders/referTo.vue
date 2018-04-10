@@ -231,14 +231,14 @@
           const requestData = {
             compute_id: item.compute_id
           }
-          computeDetail(requestData).then(res => {
-            this.compute = res
-            $toast.hide()
-
-          }).catch(error => {
-            this.isShow=false
-            $toast.show(error.description,600)
-          })
+          // computeDetail(requestData).then(res => {
+          //   this.compute = res
+          //   $toast.hide()
+          //
+          // }).catch(error => {
+          //   this.isShow=false
+          //   $toast.show(error.description,600)
+          // })
         }else{
           this.quote_id=item.quote_id
           this.getData()

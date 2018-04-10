@@ -30,8 +30,8 @@
           <scroll class="page-content"
                   :on-infinite="onInfinite">
             <div v-for="(item, index) in items[1].list" :key="index"  style="clear:both;"  >
-              <div style="float: left; width: 80%">
-                <swipe-item :item="item" swipeItemText="删除" v-on:SwipeItemClick="delItem" v-on:ItemClick="onItemClick(item,'isApproval')" v-on:SwipeLeft="onSwipeLeft" :obj="item">
+              <div >
+                <swipe-item :item="item" swipeItemText="撤销" v-on:SwipeItemClick="revokeItem" v-on:ItemClick="onItemClick(item,'isApproval')" v-on:SwipeLeft="onSwipeLeft" :obj="item">
                   <p>编号:{{item.compute_no}}</p>
                   <p>制品信息：{{ item.prod_info }}</p>
                   <p>类型:{{item.type_name}}</p>
@@ -39,15 +39,7 @@
                   <p>核算日期:{{item.created_at}}</p>
                 </swipe-item>
               </div>
-              <div style="float: left; width: 20%">
-                <swipe-item :item="item" swipeItemText="撤销" v-on:SwipeItemClick="delItem" v-on:ItemClick="alert('ok');" v-on:SwipeLeft="onSwipeLeft" :obj="item">
-                  <p>&nbsp;</p>
-                  <p>&nbsp;</p>
-                  <p>撤销</p>
-                  <p>&nbsp;</p>
-                  <p>&nbsp;</p>
-                </swipe-item>
-              </div>
+
             </div><br><br><br><br><br><br><br>
             <div v-if="pageModels[1].curr_page >= pageModels[1].total_page" slot="infinite" class="text-center">没有更多数据</div>
           </scroll>
@@ -127,7 +119,7 @@
   import { cstSupSearch } from '@/api/supply'
   import swipeItem from '@/components/swipeItem'
   import _ from 'lodash'
-  import {list,del} from '@/api/customerOrder/compute'
+  import {list,del,submitApprove} from '@/api/customerOrder/compute'
   import sess from '@/utils/sess'
     export default{
       name:'computeList',
@@ -272,6 +264,46 @@
         closeMask(){
           this.$set(this.currItem,'swipe',false);
           this.currItem = {}
+        },
+        revokeItem(item){
+
+          /* Confirm 确认框 */
+          $dialog.confirm({
+            // 设置为ios样式
+            theme: 'ios',
+            // 标题
+            title: '确定要撤销吗？',
+            // 取消按钮文本
+            cancelText: '取消',
+            // 确定按钮文本
+            okText: '确定'
+          }).then((res) => {
+            if(res){
+              // del(reqData).then(res=>{
+              //   $toast.show('删除成功')
+              //   this.items[this.tabIndex].list = this.items[this.tabIndex].list.filter(i=>{
+              //     return i.compute_id != item.compute_id
+              //   })
+              // }).catch(error=>{
+              //   $toast.show(error.description)
+              // })
+              const reqData = {
+                bill_id: item.compute_id,
+                bill_type: '1',
+                approve_flag: '3',
+                approve_step: item.approve_step
+              }
+              submitApprove(reqData).then(res => {
+                this.items[this.tabIndex].list = this.items[this.tabIndex].list.filter(i=>{
+                      return i.compute_id != item.compute_id
+                    })
+                $toast.show('撤销成功')
+              }).catch(error => {
+                $toast.show(error.description)
+                console.log(error.description)
+              })
+            }
+          })
         },
         delItem(item){
           const reqData = {
