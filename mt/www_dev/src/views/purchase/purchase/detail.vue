@@ -111,7 +111,7 @@
   import SidebarCheck from "../../../components/sidebarCheck";
   import {todayDate} from '@/utils/'
   import { mapGetters } from 'vuex'
-  import { purchaseModify,purchaseSubmitApprove,purchaseDetail } from '@/api/purchase/purchase'
+  import { purchaseModify,purchaseSubmitApprove,purchaseDetail,getCompany} from '@/api/purchase/purchase'
   import { submitApprove } from '@/api/approve'
   import { queryMatBySupplier } from '@/api/dic'
   import MwCheckbox from "../../../components/mwCheckbox";
@@ -217,7 +217,7 @@
       created(){
         this.action = this.$route.params.action
         if(this.action==='new'){
-
+          this.getCompanyInfo()
           if(this.chosenCompany.deps.length<1){
             this.purchase.purchman_name = this.userinfo.username
             this.purchase.purchman_email = this.userinfo.email
@@ -332,6 +332,14 @@
             }).catch(error=>{
               $toast.show(error.description)
             })
+          },
+
+          getCompanyInfo(){
+             getCompany({}).then(res=>{
+               this.purchase.delivery_place=res.address
+             }).catch(error=>{
+               $toast.show(error.description);
+             })
           },
           queryMats(){
             if(this.purchase.sup_company_id===''){

@@ -325,7 +325,6 @@
       },
       //查询公司详情
       getCompanyInfo(){
-
         getCompany({}).then(res=>{
           this.inquiry_info.delivery_place=res.address
         }).catch(error=>{

@@ -25,6 +25,7 @@
       <cst-item label="企业认证" v-model="companyInfo.licence" ></cst-item>
       <cst-item label="管理员设置"></cst-item>
       <cst-item label="所在地区" v-model="companyInfo_edit.country"  :canEdit="true" :action="action"></cst-item>
+      <cst-item label="公司地址" v-model="companyInfo_edit.address"  :canEdit="true" :action="action"></cst-item>
     </div>
     <div class="mw-page-footer" v-show="action === 'edit'">
         <div class="btns" @click="saveData">
