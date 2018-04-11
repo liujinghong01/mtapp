@@ -67,7 +67,7 @@
           this.cst_prods.forEach((e,i)=>{
             if(e.cst_prod_name === item.cst_prod_name && i!==index){
               item.cst_prod_name=''
-              $toast.show('您填写的名称又重复，请重新填写',600)
+              $toast.show('您填写的名称又重复，请重新填写',2000)
             }
           })
       },
@@ -95,7 +95,7 @@
       addOneProd(){
         let obj = {
           cst_prod_name:'',
-          cavity_total:'',
+          cavity_total:'1',
           prod_id:null
         }
         this.cst_prods.push(obj)
@@ -113,11 +113,6 @@
         this.cst_prods.forEach(o=>{
           if (!o.cst_prod_name.trim()) {
             $toast.show('制品名称不能为空')
-            a = false
-            return
-          }
-          if (!o.cavity_total) {
-            $toast.show('腔数不能为0')
             a = false
             return
           }

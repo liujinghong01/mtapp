@@ -39,10 +39,8 @@
 
           <item >
             <span class="isMust">入库是否质检</span>
-            <label ><input  name="isQc" :disabled="action ==='check'" type="radio" value="1" v-model="mate_info.is_qc"/> 是</label>
-            <label ><input name="isQc" :disabled="action==='check'" type="radio" value="0"  v-model="mate_info.is_qc"/> 否</label>
-
-
+            <label><input  name="isQc" type="radio"  value="1"  v-model="mate_info.is_qc"  checked="checked" /> 是</label>
+            <label><input  name="isQc" type="radio"  value="0"  v-model="mate_info.is_qc" /> 否</label>
           </item>
          <item  >
             备注 :

@@ -101,7 +101,7 @@
         addOneProd(){
           let obj = {
             cst_prod_name:'',
-            cavity_total:'',
+            cavity_total:'1',
           }
           this.cst_prods.push(obj)
         },

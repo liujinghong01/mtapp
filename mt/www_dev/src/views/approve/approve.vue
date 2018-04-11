@@ -61,7 +61,8 @@
             }
             submitApprove(reqData).then(res=>{
               $toast.show('提交成功')
-              history.go(-1)
+              //跳转页面
+              this.$router.push({path:'/approve/requisitions'})
             }).catch(error=>{
               $toast.show(error.description)
             })

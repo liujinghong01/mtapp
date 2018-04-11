@@ -18,7 +18,8 @@
                       <!--<i class="icon ion-ios-arrow-right"></i>-->
                     </div>
                     <div class="row">
-                      <span>类型 : {{item.dep_name}}</span>
+                      <span v-if="item.purch_type==1">采购类型：物料采购</span>
+                      <span v-else="item.purch_type==2">采购类型：外协采购</span>
                     </div>
                     <div  class="row">
                       <span>供应商 : {{item.sup_name}}</span>

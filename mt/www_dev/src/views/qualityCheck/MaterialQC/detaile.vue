@@ -12,8 +12,10 @@
             <cst-item v-show=" action!=='new' "  label="质检单号：" v-model="purch_qc_no " editType="text"></cst-item>
             <cst-item label="采购单号：" v-model="purch_qc_info.purch_no " editType="text"></cst-item>
             <cst-item   label="供应商：" v-model="purch_qc_info.sup_name"   editType="text"></cst-item>
-            <item style="margin-bottom: 0px;" v-if="purch_qc_info.purch_type==1">采购类型：<span style="float: right">物料采购</span></item>
-            <item style="margin-bottom: 0px;" v-else>采购类型：<span style="float: right">外协采购</span></item>
+            <item style="margin-bottom: 0px;" v-if="purch_qc_info.purch_type==1">
+            采购类型：<span style="float: right">物料采购</span></item>
+            <item style="margin-bottom: 0px;" v-else="purch_qc_info.purch_type==2">
+            采购类型：<span style="float: right">外协采购</span></item>
             <cst-item   label="质检日期：" v-model="purch_qc_info.qc_date"   editType="text"></cst-item>
             <cst-item   label="质检员：" v-model="purch_qc_info.inspector"   editType="text"></cst-item>
           </div>
@@ -249,6 +251,7 @@
               $toast.show(item.mat_desc+'数量输入有误',700)
               return
             }
+            console.log(purch_qc_detail_list)
             if(purch_qc_detail_list.length<1){
               $toast.show('请选择质检项',700)
               return

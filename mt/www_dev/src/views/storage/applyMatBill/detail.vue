@@ -2,12 +2,15 @@
     <div class="mw-page page storage" v-nav="{hideNavbar:true}">
         <div class="mw-page-header">
             <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
-            <span>领料审请单</span>
+            <span>领料申请单</span>
             <i class="right" v-show="action==='check'" @click="action='edit'">编辑</i>
             <i class="right" v-show="action==='edit'" @click="action='check'">取消</i>
             <i class="right" v-show="action==='new'"></i>
         </div>
         <div class="mw-page-content">
+        <div id="box">
+          <cst-item label="领料类型" v-show="isShow" v-model="apply_mat_info.aplly_type" :action="action" placeholder="0"></cst-item>
+        </div>
           <cst-item label="申请人" v-model="userinfo.fullname" :canEdit="false"></cst-item>
           <cst-item label="申请日期" v-model="apply_mat_info.request_date" :canEdit="false"></cst-item>
           <cst-item label="申请部门" v-model="chosenCompany.deps[0].dep_name" :canEdit="false"></cst-item>
@@ -47,6 +50,14 @@
   import { billModify,billDetail } from '@/api/storage/applyMatBill'
   import {submitApprove} from '@/api/customerOrder/compute'
   import sess from '@/utils/sess'
+  window.onload = function(){
+     var vm = new Vue({
+         el:'#box',
+         data:{
+           isShow:false,
+         },
+     });
+  }
   export default{
     name:'applyMatBillDetail',
     components: {CstItem},
@@ -60,6 +71,7 @@
           approve_sugg: "",
           dep_id: 1,
           dep_name: "",
+          aplly_type:'0',
           request_date:todayDate()
         },
         action:'',

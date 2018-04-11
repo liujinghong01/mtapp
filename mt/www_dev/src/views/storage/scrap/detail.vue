@@ -162,6 +162,7 @@
           }
           getScrapDetail(requestData).then(res => {
             this.scrap_no=res.scrap_mat_info.scrap_no
+            this.dep_id=res.scrap_mat_info.dep_id
             this.dep_name=res.scrap_mat_info.dep_name
             this.request_date=res.scrap_mat_info.request_date
             this.store_mat_list=res.scrap_mat_info.scrap_detail_list
@@ -210,14 +211,14 @@
           if(listIndexOf==0){
             const requestData={
               scrap_mat_info:{
-                approve_step:'',
+                approve_step:this.step,
                 approve_sugg:'',
                 dep_id:this.dep_id,
                 dep_name:this.dep_name,
                 request_date:todayDate(),
                 scrap_detail_list:this.store_mat_list,
-                scrap_id:'',
-                scrap_no:''
+                scrap_id:this.scrap_id,
+                scrap_no:this.scrap_no
               }
             }
             scrapSubmit(requestData).then(res => {
