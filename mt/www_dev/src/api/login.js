@@ -95,10 +95,10 @@ export function bindWX(data) {
 }
 
 //生成头像图片
-//api/user/api/profile_picture
+//api/user/app/profile_picture
 export function profilePicture(data) {
   return fetch({
-    url: '/api/user/api/profile_picture',
+    url: '/api/user/app/profile_picture',
     method: 'post',
     data
   });

@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="page" v-nav="{hideNavbar:true}">
-      <div class="page-content" >
+      <div class="page-content" style="z-index: 1" >
 
         <div id="banner" style="display: none" @scroll="scroll()" @touchstart="touchstart()" @touchend="touchend()" @touchmove="touchmove()"> <!--@touchend="touchend()"-->
           <div id="bannerBox" :style="{width:5*width+'px'}" >
@@ -53,60 +53,47 @@
               </div>
             </div>
             <div class="card-box">
-              <!--<div class="card"></div>-->
-              <swiper ref="swiper"
-                      direction="horizontal"
-                      width="100%"
-                      height="100%"
-                      pager-color="#416eb6"
-                      pager-bg-color="#e5e4e3"
-                      hide-pager="false"
-              >
-                <swiper-item>
-                  <div class="card">{{ apps.length }}</div>
-                </swiper-item>
-                <swiper-item>
-                  <div class="card">2</div>
-                </swiper-item>
-                <swiper-item>
-                  <div class="card">3</div>
-                </swiper-item>
-              </swiper>
+              <div class="card">
+                <img src="../../assets/img/home/tongji.png"  style="width: 100%;height: 100%" alt="">
+
+              </div>
+              <!--<swiper ref="swiper"-->
+                      <!--direction="horizontal"-->
+                      <!--width="100%"-->
+                      <!--height="100%"-->
+                      <!--pager-color="#416eb6"-->
+                      <!--pager-bg-color="#e5e4e3"-->
+                      <!--hide-pager="false"-->
+              <!--&gt;-->
+                <!--<swiper-item>-->
+                  <!--<div class="card">{{ apps.length }}</div>-->
+                <!--</swiper-item>-->
+                <!--<swiper-item>-->
+                  <!--<div class="card">2</div>-->
+                <!--</swiper-item>-->
+                <!--<swiper-item>-->
+                  <!--<div class="card">3</div>-->
+                <!--</swiper-item>-->
+              <!--</swiper>-->
             </div>
           </div>
 
           <div class="count">
-            <div class="count-tab">
-              <ul>
-                <li class="active">计划</li>
-                <li>进度</li>
-                <li>结果</li>
-              </ul>
+            <div class="block-title">
+              <p>设备稼动率（4月）</p>
             </div>
             <div class="count-swipe">
-              <div>
-                <div>
-                  <!--<chart-->
-                    <!--:options="option1"-->
-                    <!--auto-resize style="width: 100%;height: 100%"-->
-                  <!--/>-->
+              <div v-bind:style="{width:UtilizationRate.length/3*100+'%'}">
+                <div v-for="(item,index) in UtilizationRate" v-bind:style="{ width:1/UtilizationRate.length*100+'%' }">
+                  <div>
+                    <img v-if="item.rate==60" src="../../assets/img/home/60.png" alt="">
+                    <img v-else-if="item.rate==80" src="../../assets/img/home/80.png" alt="">
+                    <img v-else='item.rate==25' src="../../assets/img/home/25.png" alt="">
+                    <p v-bind:style="{color :item.color}">{{ item.rate }}%</p>
+                  </div>
+                  <p v-bind:style="{color :item.color}">{{ item.name }}</p>
                 </div>
-                <div>
-                  <!--<chart-->
-                    <!--:options="option1"-->
-                    <!--auto-resize style="width: 100%;height: 100%"-->
-                  <!--/>-->
-                </div>
-                <div>
-                  <!--<chart-->
-                    <!--:options="option1"-->
-                    <!--auto-resize style="width: 100%;height: 100%"-->
-                  <!--/>-->
-                </div>
-
               </div>
-
-
             </div>
           </div>
           <!--<div class="modules">-->
@@ -116,33 +103,40 @@
 
         <div class="item-divider-ios" style="padding-top: 15px"></div>
 
-        <div class="news-list">
-          <div class="news">
-            <img src="../../../static/images/index/news/article_1.png" height="100%">
-            <div class="news-content">
-              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了EMS...</div>
-            </div>
+        <div class="image-text">
+          <div class="block-title">
+            <p>公司动态</p>
           </div>
-          <div class="news">
-            <img src="../../../static/images/index/news/article_1.png" height="100%">
-            <div class="news-content">
-              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
-            </div>
-          </div>
-          <div class="news">
-            <img src="../../../static/images/index/news/article_1.png" height="100%">
-            <div class="news-content">
-              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
-            </div>
-          </div>
-          <div class="news">
-            <img src="../../../static/images/index/news/article_1.png" height="100%">
-            <div class="news-content">
-              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+          <div class="image-text-list">
+            <div class="news-list">
+              <div class="news">
+                <img src="../../../static/images/index/news/article_1.png" height="100%">
+                <div class="news-content">
+                  <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+                  <div class="detail">随着制造精益化、制造数字化的不断发展，形成了EMS...</div>
+                </div>
+              </div>
+              <div class="news">
+                <img src="../../../static/images/index/news/article_1.png" height="100%">
+                <div class="news-content">
+                  <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+                  <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+                </div>
+              </div>
+              <div class="news">
+                <img src="../../../static/images/index/news/article_1.png" height="100%">
+                <div class="news-content">
+                  <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+                  <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+                </div>
+              </div>
+              <div class="news">
+                <img src="../../../static/images/index/news/article_1.png" height="100%">
+                <div class="news-content">
+                  <p class="title">MES与APS有啥区别？智能工厂布局必知！</p>
+                  <p class="detail">随着制造精益化、制造数字化的不断发展，形成了...</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -220,6 +214,23 @@
           // {name:'来料质检','icon':'icon-zhijian','path':'/qualityCheck/MaterialQC',},
           // {name:'库存数据','icon':'icon-kucunguanli','path':'storage/baseInfo',},
           // {name:'统计','icon':'icon-kucunguanli','path':'storage/baseInfo',}
+        ],
+        UtilizationRate:[
+          {
+            name:'CNC',
+            rate:60,
+            color:'#FE9732'
+          },
+          {
+            name:'EDM',
+            rate:80,
+            color:'#5FD859'
+          },
+          {
+            name:'铣床',
+            rate:25,
+            color:'#FE3B32'
+          }
         ],
         position:[
           {x:1,y:1},
@@ -368,6 +379,33 @@
 </script>
 <style type="text/css" lang="scss">
 
+  .block-title{
+    width: 100%;
+    height: 28px;
+    position: relative;
+    padding-left:10px ;
+    &:before{
+      display: block;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      height: 12px ;
+      width: 2px;
+      font-size: 12px;
+      background: #416eb6;
+
+    }
+    p{
+      font-size: 12px;
+      line-height: 28px;
+      color: #416eb6;
+      margin: 0;
+      border-bottom: 1px solid #ddd ;
+
+    }
+
+  }
 
   .top{
     height: 60px;
@@ -519,25 +557,7 @@
       padding: 0;
       box-shadow: 0 -2px 4px 0 rgba(200, 200, 200, 0.5);
 
-      &>.count-tab{
-        width: 100%;
-        height: 30px;
-        ul{
-          width: 100%;
-          height: 30px;
-          li{
-            width: 33.33%;
-            height: 30px;
-            float: left;
-            text-align: center;
-            line-height: 30px;
-            color: #416eb6;
-            &.active{
-              border-bottom: 2px solid #416eb6;
-            }
-          }
-        }
-      }
+
       &>.count-swipe{
         overflow: hidden;
         overflow-x: auto;
@@ -545,22 +565,40 @@
         height: 170px;
         margin: 0;
         padding: 0;
+        background: url("../../assets/img/home-beakground.png") no-repeat center center ;
+        background-size: 100% 100%;
         &::-webkit-scrollbar{
           width: 0;
           height: 0;
         }
         &>div{
-          width: 300%;
+          min-width: 100%;
           height: 170px;
           margin: 0;
           padding: 0;
           &>div{
-            width: 33.33%;
-            height: 150px;
+            height: 170px;
             float: left;
             margin: 0;
-            margin-top: 10px;
             padding: 0;
+            text-align: center;
+            position: relative;
+            &>div{
+              img{
+                width: 70px;
+                height: 70px;
+                margin-top: 40px;
+              }
+              &>p{
+                position: absolute;
+                width: 100%;
+                height: 20px;
+                line-height: 20px;
+                left: 0;
+                top: 66px;
+              }
+            }
+
           }
 
 
@@ -581,32 +619,59 @@
       }
     }
   }
-  .news-list{
+  .image-text{
     width: 100%;
-    margin-bottom: 50px;
-    .news{
-      height: 120px;
-      padding: 15px;
-      display: flex;
-      img{
-        float: left;
-      }
-      .news-content{
-        height: 100%;
-        margin-left: 15px;
-        width: 60%;
-        .title{
+    background: #fff;
+    .news-list{
+      width: 100%;
+      margin-bottom: 50px;
+      .news{
+        height: 120px;
+        padding:10px 15px;
+        display: flex;
+        position: relative;
+        &:after{
+          display: block;
+          content: '';
+          position: absolute;
           width: 100%;
-          font-weight: bold;
+          height: 1px;
+          background: #ddd;
+          bottom: 0;
+          left: 15px;
         }
-        .detail{
-          margin-top: 10px;
-          font-size: 12px;
-          opacity: .5;
+        img{
+          height: 100%;
+          float: left;
         }
-      }
+        .news-content{
+          height: 100%;
+          height: 100px;
+          margin-left: 15px;
+          width: 60%;
 
+          /*overflow: hidden;*/
+
+          .title{
+            width: 100%;
+            height: 50px;
+            line-height: 25px;
+            font-weight: bold;
+            overflow: hidden;
+          }
+          .detail{
+            margin-top: 10px;
+            height: 40px;
+            font-size: 12px;
+            line-height: 20px;
+            opacity: .5;
+            overflow: hidden;
+          }
+        }
+
+      }
     }
+
   }
   #banner{
     width: 100%;height: 200px;
