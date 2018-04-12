@@ -28,6 +28,8 @@ import Approve from '@/views/approve'
 import CRM from '@/views/crm'
 //生产管理
 import  Production from '@/views/production'
+// 统计页面
+import  statistics from '@/views/statistics'
 
 
 /*
@@ -1091,8 +1093,22 @@ const routes = [
       },
 
     ]
+  },
+  {
+    path: '/statistics',   //统计页面
+    name: 'statistics',
+    component: statistics,
+    redirect: 'noredirect',
+    children:[
+      {
+        path: 'chart',
+        name: 'statisticsChart',
+        component: function (resolve) {
+          require(['@/views/statistics/chart'], resolve)
+        }
+      }
+    ]
   }
-
 ]
 
 export default routes
