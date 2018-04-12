@@ -1,94 +1,200 @@
 <template>
   <section>
-  <div class="navbar top" style="position: fixed;visibility: visible">
+    <div class="navbar top" style="position: fixed;visibility: visible">
       <div class="search" @click="$router.forward('/search')">
         <input type="search">
         <div class="inputMask"><i class="icon ion-ios-search-strong" style="margin-right: 10px"></i>搜索</div>
       </div>
-  </div>
-  <div class="page" v-nav="{hideNavbar:true}">
-    <div class="page-content">
-      <div id="banner" style="display: none" @scroll="scroll()" @touchstart="touchstart()" @touchend="touchend()" @touchmove="touchmove()"> <!--@touchend="touchend()"-->
-        <div id="bannerBox" :style="{width:5*width+'px'}" >
-          <div class="bannerItem"  :style="{width:width+'px'}">
-            <div class="itemContent" :style="{transform:'scale('+position[0].x+','+position[0].y+')'}">
-              1
-            </div>
-          </div>myApps
-          <div class="bannerItem"  :style="{width:width+'px'}">
-            <div class="itemContent" :style="{transform:'scale('+position[1].x+','+position[1].y+')'}">
-              2
+    </div>
+    <div class="page" v-nav="{hideNavbar:true}">
+      <div class="page-content" >
+
+        <div id="banner" style="display: none" @scroll="scroll()" @touchstart="touchstart()" @touchend="touchend()" @touchmove="touchmove()"> <!--@touchend="touchend()"-->
+          <div id="bannerBox" :style="{width:5*width+'px'}" >
+            <div class="bannerItem"  :style="{width:width+'px'}">
+              <div class="itemContent" :style="{transform:'scale('+position[0].x+','+position[0].y+')'}">
+                1
+              </div>
             </div>myApps
-          </div>
-          <div class="bannerItem"  :style="{width:width+'px'}">
-            <div class="itemContent" :style="{transform:'scale('+position[2].x+','+position[2].y+')'}">
-              3
+            <div class="bannerItem"  :style="{width:width+'px'}">
+              <div class="itemContent" :style="{transform:'scale('+position[1].x+','+position[1].y+')'}">
+                2
+              </div>myApps
+            </div>
+            <div class="bannerItem"  :style="{width:width+'px'}">
+              <div class="itemContent" :style="{transform:'scale('+position[2].x+','+position[2].y+')'}">
+                3
+              </div>
+            </div><div class="bannerItem"  :style="{width:width+'px'}">
+            <div class="itemContent" :style="{transform:'scale('+position[3].x+','+position[3].y+')'}">
+              4
             </div>
           </div><div class="bannerItem"  :style="{width:width+'px'}">
-          <div class="itemContent" :style="{transform:'scale('+position[3].x+','+position[3].y+')'}">
-            4
+            <div class="itemContent" :style="{transform:'scale('+position[4].x+','+position[4].y+')'}">
+              5
+            </div>
           </div>
-        </div><div class="bannerItem"  :style="{width:width+'px'}">
-          <div class="itemContent" :style="{transform:'scale('+position[4].x+','+position[4].y+')'}">
-            5
           </div>
         </div>
-        </div>
-      </div>
-      <div class="home-content">
-        <div class="tools-content">
-          <cells :items="entrances" :on-cell-click="onCellClick1" row="1" col="4"></cells>
-        </div>
-        <div class="modules">
-          <cells :items="modules" :on-cell-click="onCellClick" row="2" col="4"></cells>
-        </div>
-      </div>
-      <div class="item-divider-ios" style="padding-top: 15px"></div>
-      <div class="news-list">
-        <div class="news">
-          <img src="../../../static/images/index/news/article_1.png" height="100%">
-          <div class="news-content">
-            <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-            <div class="detail">随着制造精益化、制造数字化的不断发展，形成了EMS...</div>
+        <div class="home-content">
+          <div class="home-top">
+            <div class="background"></div>
+            <div class="tools-content">
+              <!--<cells :items="entrances" :on-cell-click="onCellClick1" row="1" col="4"></cells>-->
+              <div v-bind:style="{width:(1+apps.length)/4*100+'%'}">
+                <div @click="onCellClick(index)" v-bind:style="{width:1/(1+apps.length)*100+'%'}" v-for="(item,index) in apps">
+                  <div> <i class="icon iconfont" :class="item.icon"></i> </div>
+                  <span>{{item.name}}</span>
+                </div>
+                <div @click="onCellClick()" v-bind:style="{width:1/(1+apps.length)*100+'%'}" >
+                  <div> <i class="icon  ion-more" ></i> </div>
+                  <span>更多</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-box">
+              <!--<div class="card"></div>-->
+              <swiper ref="swiper"
+                      direction="horizontal"
+                      width="100%"
+                      height="100%"
+                      pager-color="#416eb6"
+                      pager-bg-color="#e5e4e3"
+                      hide-pager="false"
+              >
+                <swiper-item>
+                  <div class="card">{{ apps.length }}</div>
+                </swiper-item>
+                <swiper-item>
+                  <div class="card">2</div>
+                </swiper-item>
+                <swiper-item>
+                  <div class="card">3</div>
+                </swiper-item>
+              </swiper>
+            </div>
           </div>
-        </div>
-        <div class="news">
-          <img src="../../../static/images/index/news/article_1.png" height="100%">
-          <div class="news-content">
-            <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-            <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+
+          <div class="count">
+            <div class="count-tab">
+              <ul>
+                <li class="active">计划</li>
+                <li>进度</li>
+                <li>结果</li>
+              </ul>
+            </div>
+            <div class="count-swipe">
+              <div>
+                <div>
+                  <!--<chart-->
+                    <!--:options="option1"-->
+                    <!--auto-resize style="width: 100%;height: 100%"-->
+                  <!--/>-->
+                </div>
+                <div>
+                  <!--<chart-->
+                    <!--:options="option1"-->
+                    <!--auto-resize style="width: 100%;height: 100%"-->
+                  <!--/>-->
+                </div>
+                <div>
+                  <!--<chart-->
+                    <!--:options="option1"-->
+                    <!--auto-resize style="width: 100%;height: 100%"-->
+                  <!--/>-->
+                </div>
+
+              </div>
+
+
+            </div>
           </div>
+          <!--<div class="modules">-->
+          <!--<cells :items="modules" :on-cell-click="onCellClick" row="2" col="4"></cells>-->
+          <!--</div>-->
         </div>
-        <div class="news">
-          <img src="../../../static/images/index/news/article_1.png" height="100%">
-          <div class="news-content">
-            <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-            <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+
+        <div class="item-divider-ios" style="padding-top: 15px"></div>
+
+        <div class="news-list">
+          <div class="news">
+            <img src="../../../static/images/index/news/article_1.png" height="100%">
+            <div class="news-content">
+              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了EMS...</div>
+            </div>
           </div>
-        </div>
-        <div class="news">
-          <img src="../../../static/images/index/news/article_1.png" height="100%">
-          <div class="news-content">
-            <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
-            <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+          <div class="news">
+            <img src="../../../static/images/index/news/article_1.png" height="100%">
+            <div class="news-content">
+              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+            </div>
+          </div>
+          <div class="news">
+            <img src="../../../static/images/index/news/article_1.png" height="100%">
+            <div class="news-content">
+              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+            </div>
+          </div>
+          <div class="news">
+            <img src="../../../static/images/index/news/article_1.png" height="100%">
+            <div class="news-content">
+              <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
+              <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
 </template>
 <script>
   import { mapGetters } from 'vuex'
   import storage from '@/utils/storage'
   export default {
-      name:'home',
+    name:'home',
     data(){
       return {
         keywords:'',
         times:'',
         endTimes:'',
         width:screen.width*0.84,
+
+        option1:{
+          series: [{
+            name:'',
+            type: 'pie',
+            radius: ['0%', '80%'],
+            label: {
+              normal: {
+                formatter: function(params) {
+                  var res = params.seriesName;
+                  res += params.name + ' : ' + params.value;
+                  return res;
+                }
+              }
+            },
+            data: [
+              {
+                value: 11,
+                name: '拖期',
+                itemStyle:{color:'#f82327'}
+              },
+              {
+                value: 11,
+                name: '未开始',
+                itemStyle:{color:'#fb8627'}
+              },
+              {
+                value: 33,
+                name: '进行中',
+                itemStyle:{color: '#51d447'}
+              },
+            ]
+          }]
+        },
         entrances:[
           '<div class="tool"><i class="icon iconfont icon-saoyisao"></i><br><span>扫一扫</span></div>',
           '<div class="tool"><i class="icon iconfont icon-shenpi"></i><span class="badge tip"><p></p></span><br><span>审批</span></div>',
@@ -96,23 +202,24 @@
           '<div class="tool"><i class="icon iconfont icon-baogao"></i><span class="badge tip"><p></p></span><br><span>报告</span></div>',
         ],
         modules:[
-          '<div class="tool"><i class="icon iconfont icon-hesuandan"></i><br><span>报价核算单</span></div>',
+          /*'<div class="tool"><i class="icon iconfont icon-hesuandan"></i><br><span>报价核算单</span></div>',
           '<div class="tool"><i class="icon iconfont icon-baojiadan"></i><br><span>报价单</span></div>',
           '<div class="tool"><i class="icon iconfont icon-kehudingdan"></i><br><span>客户定单</span></div>',
           '<div class="tool"><i class="icon iconfont icon-shengchanguanli"></i><br><span>生产</span></div>',
           '<div class="tool"><i class="icon iconfont icon-chejianzuoye"></i><br><span>工作日历</span></div>',
           '<div class="tool"><i class="icon iconfont icon-zhijian"></i><br><span>来料质检</span></div>',
           '<div class="tool"><i class="icon iconfont icon-kucunguanli"></i><br><span>库存数据</span></div>',
-          '<div class="tool"><i class="icon iconfont icon-tianjia"></i><br><span>更多</span></div>',
+          '<div class="tool"><i class="icon iconfont icon-tianjia"></i><br><span>更多</span></div>',*/
         ],
         apps:[
           {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute'},
           {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',},
           {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list',},
-          {name:'生产管理','icon':'icon-shengchanguanli','path':'/production/schedulList',},
-          {name:'工作日历','icon':'icon-chejianzuoye','path':'production/shopCalendar',},
-          {name:'来料质检','icon':'icon-zhijian','path':'/qualityCheck/MaterialQC',},
-          {name:'库存数据','icon':'icon-kucunguanli','path':'storage/baseInfo',}
+          // {name:'生产管理','icon':'icon-shengchanguanli','path':'/production/schedulList',},
+          // {name:'工作日历','icon':'icon-chejianzuoye','path':'production/shopCalendar',},
+          // {name:'来料质检','icon':'icon-zhijian','path':'/qualityCheck/MaterialQC',},
+          // {name:'库存数据','icon':'icon-kucunguanli','path':'storage/baseInfo',},
+          // {name:'统计','icon':'icon-kucunguanli','path':'storage/baseInfo',}
         ],
         position:[
           {x:1,y:1},
@@ -133,14 +240,13 @@
     },
     mounted(){
       const myApps = JSON.parse(storage.get('myApps'))
-      console.log(myApps)
       if(myApps&&myApps!=''){
         this.apps = myApps
         this.modules.length = 0;
       }
       this.apps.forEach(item=>{
         this.modules.push('<div class="tool"><i class="icon iconfont '+item.icon+'"></i><br><span>'+item.name+'</span></div>')
-      })
+    })
       this.modules.push('<div class="tool"><i class="icon iconfont icon-tianjia"></i><br><span>更多</span></div>')
     },
     computed:mapGetters([
@@ -262,6 +368,7 @@
 </script>
 <style type="text/css" lang="scss">
 
+
   .top{
     height: 60px;
     background-color: #416eb6;
@@ -290,6 +397,8 @@
   }
   .home-content{
     min-height: 250px;
+    background: #fff;
+
     .cells{
       margin: 0;
       .row{
@@ -310,8 +419,33 @@
         }
       }
     }
+    .home-top{
+      width: 100%;
+      height: 280px;
+      position: relative;
+      .background{
+        width: 100%;
+        height:150px;
+        background: url("../../assets/img/download.png") no-repeat center center;
+        background-size: 100% 100%;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        z-index: 10;
+      }
+
+    }
     .tools-content{
-      height: 100px;
+      height: 80px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      background-color: #416eb6;
+      overflow: hidden;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
       .cells{
         height: 100%;
         background-color: #416eb6;
@@ -321,6 +455,115 @@
           .col{
             height: 100px;
           }
+        }
+      }
+      &::-webkit-scrollbar{
+        width: 0;height: 0;
+      }
+      &>div{
+        min-width: 100%;
+        height: 100%;
+        &>div{
+          float: left;
+          height: 100%;
+          color: #fff;
+          text-align: center;
+          div{
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin:5px auto;
+            background: #fff;
+            border-radius: 50%;
+            color: #416eb6;
+            i{
+              font-size: 22px;
+            }
+          }
+          span{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .card-box{
+      width: 100%;
+      height: 200px;
+
+      position: absolute;
+      top: 90px;
+      left: 0;
+      z-index: 100;
+      margin: 0;
+      padding: 0;
+      .card{
+        width: 288px;
+        height:197px ;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin: 0;
+        padding: 0;
+        margin-left: -144px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 1px 2px 6px 2px rgba(54, 150, 255, 0.1);
+
+      }
+    }
+    .count{
+      width: 100%;
+      height: 200px;
+      margin: 0;
+      margin-top: 20px;
+      padding: 0;
+      box-shadow: 0 -2px 4px 0 rgba(200, 200, 200, 0.5);
+
+      &>.count-tab{
+        width: 100%;
+        height: 30px;
+        ul{
+          width: 100%;
+          height: 30px;
+          li{
+            width: 33.33%;
+            height: 30px;
+            float: left;
+            text-align: center;
+            line-height: 30px;
+            color: #416eb6;
+            &.active{
+              border-bottom: 2px solid #416eb6;
+            }
+          }
+        }
+      }
+      &>.count-swipe{
+        overflow: hidden;
+        overflow-x: auto;
+        width: 100%;
+        height: 170px;
+        margin: 0;
+        padding: 0;
+        &::-webkit-scrollbar{
+          width: 0;
+          height: 0;
+        }
+        &>div{
+          width: 300%;
+          height: 170px;
+          margin: 0;
+          padding: 0;
+          &>div{
+            width: 33.33%;
+            height: 150px;
+            float: left;
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+          }
+
+
         }
       }
     }
