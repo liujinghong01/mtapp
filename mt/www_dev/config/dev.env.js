@@ -11,7 +11,11 @@ module.exports = merge(prodEnv, {
   //BASE_API: '"http://192.168.1.20:8080"'
   // BASE_API: '"http://192.168.2.172:8080"'
   // BASE_API: '"http://localhost:8080"'
+<<<<<<< Updated upstream
   BASE_API: '"http://localhost:8080"'
+=======
+   BASE_API: '"http://localhost:8080"'
+>>>>>>> Stashed changes
 
 })
 

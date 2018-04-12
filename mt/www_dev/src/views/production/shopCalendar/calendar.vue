@@ -497,6 +497,7 @@
 		      	this.shiftList.forEach((item,index)=>{
 		      		if(item.shift_name===shiftName){
 		      		  let day=this.curr_month[Index]
+		      		  console.log(1111111)
                 day.shift_info=item
                 this.detailList(day,item)
 		      		}
