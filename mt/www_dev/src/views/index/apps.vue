@@ -59,10 +59,6 @@
             {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute', identity:'compute',hasPermission:false},
             {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list', identity:'quote',hasPermission:false},
             {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list',  identity:'cst_order',hasPermission:false},
-            {name:'生产管理','icon':'icon-shengchanguanli','path':'/customerOrder/manage/list',  identity:'pm',hasPermission:false},
-            {name:'车间作业','icon':'icon-chejianzuoye','path':'/customerOrder/compute', identity:'task_manager',hasPermission:false},
-            {name:'质检','icon':'icon-zhijian','path':'/qualityCheck/MaterialQC',  identity:'qm',hasPermission:false},
-            {name:'库存管理','icon':'icon-kucunguanli','path':'/storage/baseInfo', identity:'iv',hasPermission:false}
           ],
           apps:[
             {
@@ -71,7 +67,6 @@
                 {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute',  identity:'compute',hasPermission:false},
                 {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',  identity:'quote',hasPermission:false},
                 {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list', identity:'cst_order',hasPermission:false},
-                {name:'定单管理','icon':'icon-hesuandan','path':'/customerOrder/manage/list', identity:'order_operate',hasPermission:false},
               ]
             },
             {
@@ -148,7 +143,12 @@
           return false
         },
         removeMyApps(item){
-          this.myApps.splice(this.myApps.indexOf(item),1)
+          if(this.myApps.length>1){
+            this.myApps.splice(this.myApps.indexOf(item),1)
+          }else{
+            $toast.show('最少保留一个应用',600)
+          }
+
         },
         addApp(item){
           if(this.myApps.length===7){

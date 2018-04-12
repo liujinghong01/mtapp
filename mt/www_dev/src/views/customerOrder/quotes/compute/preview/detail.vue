@@ -3,7 +3,7 @@
     <div class="mw-page-header">
       <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
       <span>核算单</span>
-      <i class="right" v-if="compute.approve_step!=='step0'&&btnShow!=='approve'" @click="edit()">编辑</i>
+      <i class="right" v-if="compute.approve_step!=='step0'&&compute.approve_step!=='step20'&&btnShow!=='approve'" @click="edit()">编辑</i>
       <i class="right" v-else></i>
     </div>
 
