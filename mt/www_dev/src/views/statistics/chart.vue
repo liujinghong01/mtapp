@@ -1,13 +1,11 @@
 <template>
     <div class="mw-page page" v-nav="{hideNavbar:true}">
-        <div class="mw-page-header">
-            <von-header>
-              <button class="button button-icon ion-ios-arrow-back" slot="left" @click="$router.go(-1)"></button>
-              <span slot="title">cnc</span>
-              <button class="button button-icon" slot="right">4月</button>
-            </von-header>
-        </div>
-        <div class="mw-page-content">
+      <div class="mw-page-header">
+        <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
+        <span>CNC</span>
+        <i class="right   " >4月</i>
+      </div>
+        <div class="mw-page-content has-tab">
           <div class="chart">
             <!-- 图表展示 -->
             <div>
@@ -170,9 +168,9 @@
   background: #fff;
 }
   .chart {
-    height: 300px;
+    height: 190px;
     width: 100%;
-    background: url('../../assets/img/chart-demo.png');
+    background: url('../../assets/img/chart-demo.png') no-repeat center center;
     background-size: cover;
   }
 

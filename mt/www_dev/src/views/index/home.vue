@@ -82,7 +82,7 @@
             <div class="block-title">
               <p>设备稼动率（4月）</p>
             </div>
-            <div class="count-swipe">
+            <div class="count-swipe" @click="this.$router.forward('/statistics/chart');">
               <div v-bind:style="{width:UtilizationRate.length/3*100+'%'}">
                 <div v-for="(item,index) in UtilizationRate" v-bind:style="{ width:1/UtilizationRate.length*100+'%' }">
                   <div>
@@ -230,6 +230,11 @@
             name:'铣床',
             rate:25,
             color:'#FE3B32'
+          },
+          {
+            name:'磨床',
+            rate:80,
+            color:'#5FD859'
           }
         ],
         position:[
@@ -567,6 +572,7 @@
         padding: 0;
         background: url("../../assets/img/home-beakground.png") no-repeat center center ;
         background-size: 100% 100%;
+        -webkit-overflow-scrolling: touch;
         &::-webkit-scrollbar{
           width: 0;
           height: 0;
