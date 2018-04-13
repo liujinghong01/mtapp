@@ -1045,6 +1045,11 @@ const routes = [
           require(['@/views/production/MaterialRequisition/matList'], resolve)
         }
       },
+      {   //车间看板
+        path: 'workshop', name: 'workshop', component: function (resolve) {
+          require(['@/views/production/workshop/detaile'], resolve)
+        }
+      },
 
 
 

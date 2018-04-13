@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="card-box">
-              <div class="card">
+              <div class="card" @click="this.$router.forward('/production/workshop');">
                 <img src="../../assets/img/home/tongji.png"  style="width: 100%;height: 100%" alt="">
 
               </div>

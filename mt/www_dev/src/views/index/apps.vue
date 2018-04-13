@@ -67,6 +67,7 @@
                 {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute',  identity:'compute',hasPermission:false},
                 {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',  identity:'quote',hasPermission:false},
                 {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list', identity:'cst_order',hasPermission:false},
+                {name:'定单管理','icon':'icon-hesuandan','path':'/customerOrder/manage/list', identity:'order_operate',hasPermission:false},
               ]
             },
             {
