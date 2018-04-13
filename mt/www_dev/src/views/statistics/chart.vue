@@ -164,9 +164,10 @@
 </script>
 
 <style lang="scss" scoped>
-.page{
-  background: #fff;
-}
+  .page {
+    background: #fff;
+  }
+
   .chart {
     height: 190px;
     width: 100%;
@@ -177,6 +178,11 @@
   .list {
     padding-top: 20px;
     overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
   }
 
   .list-date {
