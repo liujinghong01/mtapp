@@ -47,6 +47,9 @@
                   <i class="icon ion-ios-arrow-up arrow" v-show="item.check" @click.stop="arrowClick(item)"></i>
                 </div>
               </item>
+              <!-- <ul :class="['reasons',item.check?'active':'']" v-show="item.reason!==null">
+                <li class="item">再制原因: <span style="float: none;color: #416eb6;">{{ item.reason }}</span></li>
+              </ul> -->
               <ul :class="['actions',item.check?'active':'']">
                 <li :class="['action',item.check?'active':'']" @click="showPoppue('stop')">
                   <i class="icon ion-ios-pause"></i>
@@ -78,6 +81,9 @@
                   <i class="icon ion-ios-arrow-up arrow" v-show="item.check" @click.stop="arrowClick(item)"></i>
                 </div>
               </item>
+              <!-- <ul :class="['reasons',item.check?'active':'']">
+                <li class="item">暂停原因: <span style="float: none;color: #416eb6;">{{ item.reason }}</span></li>
+              </ul> -->
               <ul :class="['actions',item.check?'active':'']">
                 <li :class="['action',item.check?'active':'']" @click="showPoppue('start')">
                   <i class="icon ion-ios-pause"></i>
@@ -100,10 +106,14 @@
                   <p>产品名称：<a class="cst-name">{{item.prod_name}}</a></p>
                   <span class="no">产品类型: {{item.type_name}}</span>
                   <span class="no">数量:{{item.count}}</span>
+                  <p>完结原因:<span style="float: none;color: #416eb6;">{{item.reason}}</span></p>
                   <i class="icon ion-ios-arrow-down arrow" v-show="!item.check" @click.stop="arrowClick(item)"></i>
                   <i class="icon ion-ios-arrow-up arrow" v-show="item.check" @click.stop="arrowClick(item)"></i>
                 </div>
               </item>
+              <!-- <ul :class="['reasons',item.check?'active':'']">
+                <li class="item">暂停原因: <span style="float: none;color: #416eb6;">{{ item.reason }}</span></li>
+              </ul> -->
               <ul :class="['actions',item.check?'active':'']">
                 <li :class="['action',item.check?'active':'']" @click="showPoppue('restart')">
                   <i class="icon ion-ios-pause"></i>
@@ -191,7 +201,7 @@
         ...mapGetters(['chosenCompany']),
       },
       methods:{
-        onTabClick(index){  //切换审批状态
+       onTabClick(index){  //切换审批状态
           console.log('onTabClick');
           const that = this;
           if(index===this.tabIndex){
@@ -413,6 +423,26 @@
       height: 40px;
     }
   }
+
+// .reasons{
+  //   width: 100%;
+  //   margin: 0 auto;
+  //   height: 0;
+  //   background-color: white;
+  //   overflow-y: hidden;
+  //   transition:height .5s;
+  //   -moz-transition:height .5s; /* Firefox 4 */
+  //   -webkit-transition:height .5s; /* Safari and Chrome */
+  //   -o-transition:height .5s; /* Opera */
+  //   .reason{
+  //     text-align: center;
+  //     color: #416eb6;
+  //   }
+  //   &.active{
+  //     height: auto;
+  //   }
+  // }
+
   .item{
     .item-cont{
       span{
