@@ -50,6 +50,7 @@
 <script>
   import sess from '@/utils/sess'
   export default{
+    name:'workshop',
     data(){
       return{
         width:'100%',

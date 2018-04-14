@@ -53,8 +53,17 @@
               </div>
             </div>
             <div class="card-box">
-              <div class="card" @click="this.$router.forward('/production/workshop');">
-                <img src="../../assets/img/home/tongji.png"  style="width: 100%;height: 100%" alt="">
+              <div class="card" >
+                <!--<img src="../../assets/img/home/tongji.png"  style="width: 100%;height: 100%" alt="">-->
+                <h3>事件通知 <i @click="this.$router.forward('/production/workshop');" class="ion-chevron-right"></i></h3>
+                <ul>
+                  <li v-for="(item,index) in eventList" @click="this.$router.forward('/production/paymentInfo');">
+                    <i></i>
+                    <p>{{ item.name }}</p>
+                    <span>{{ item.timer }}</span>
+                  </li>
+
+                </ul>
 
               </div>
               <!--<swiper ref="swiper"-->
@@ -99,6 +108,29 @@
           <!--<div class="modules">-->
           <!--<cells :items="modules" :on-cell-click="onCellClick" row="2" col="4"></cells>-->
           <!--</div>-->
+          <div class="count">
+            <div class="block-title">
+              <p>当天设备实时看板</p>
+            </div>
+            <div class="count-swipe" @click="this.$router.forward('/production/workshop');">
+              <div v-bind:style="{width:(board.length+1)/3*100+'%'}">
+                <div v-for="(item,index) in board" v-bind:style="{ width:1/(board.length+1)*100+'%' }">
+                  <div>
+                    <img v-if="item.rate==75" src="../../assets/img/home/75.png" alt="">
+                    <img v-else-if="item.rate==80" src="../../assets/img/home/80.png" alt="">
+                    <img v-else='item.rate==25' src="../../assets/img/home/25.png" alt="">
+                    <p v-bind:style="{color :item.color}">{{ item.rate }}%</p>
+                  </div>
+                  <p v-bind:style="{color :item.color}">{{ item.name }}</p>
+
+                </div>
+                <div v-bind:style="{ width:1/(board.length+1)*100+'%' }">
+                  <p  style="font-size: 12px;padding-top: 54px;margin-bottom: 6px">最新统计时间</p>
+                  <h3 style="font-size: 16px;margin: 0">{{todayDate }}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="item-divider-ios" style="padding-top: 15px"></div>
@@ -146,6 +178,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
+  import { todayDate } from '@/utils'
   import storage from '@/utils/storage'
   export default {
     name:'home',
@@ -155,7 +188,7 @@
         times:'',
         endTimes:'',
         width:screen.width*0.84,
-
+        todayDate:'',
         option1:{
           series: [{
             name:'',
@@ -215,6 +248,41 @@
           // {name:'库存数据','icon':'icon-kucunguanli','path':'storage/baseInfo',},
           // {name:'统计','icon':'icon-kucunguanli','path':'storage/baseInfo',}
         ],
+        board:[
+          {
+            name:'开机率',
+            rate:75,
+            color:'#5FD859'
+          },
+          {
+            name:'负荷率',
+            rate:80,
+            color:'#5FD859'
+          }
+        ],
+        eventList:[
+          {
+            name:'3月份应付供应商账款已确认',
+            timer:'4月15号'
+          },
+          {
+            name:'金联 投标项目中标',
+            timer:'4月14号'
+          },
+          {
+            name:'海枫 投诉8D报告 客户满意',
+            timer:'4月14号'
+          },
+          {
+            name:'亚林宇集团 项目成功签收 ',
+            timer:'4月13号'
+          },
+          {
+            name:'超能集团 项目首期款已付',
+            timer:'4月12号'
+          }
+        ],
+
         UtilizationRate:[
           {
             name:'CNC',
@@ -255,6 +323,8 @@
       }
     },
     mounted(){
+      let myDate = new Date();
+      this.todayDate=todayDate() +'  '+myDate.getHours()+':00'
       const myApps = JSON.parse(storage.get('myApps'))
       if(myApps&&myApps!=''){
         this.apps = myApps
@@ -551,6 +621,64 @@
         background: #fff;
         border-radius: 6px;
         box-shadow: 1px 2px 6px 2px rgba(54, 150, 255, 0.1);
+        h3{
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          color: #416eb6;
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0;
+          box-shadow: 0 5px 10px 0 rgba(84,149,255,0.10);
+          position: relative;
+          i{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 0;
+            top: 0;
+            line-height: 40px;
+            color: #416eb6;
+
+
+          }
+        }
+        ul{
+          width: 100%;
+          padding-top: 10px;
+          li{
+            width: 100%;
+            height: 28px;
+            line-height: 28px;
+            font-size: 12px;
+            position: relative;
+            i{
+              position: absolute;
+              width: 12px;
+              height: 12px;
+              left: 8px;
+              top: 8px;
+              border-radius: 50%;
+              border: 3px solid  #A9CAFF;
+              background: #5495FF;
+            }
+            p{
+              width: 200px;
+              margin: 0;
+              padding-left: 28px;
+            }
+            span{
+              position: absolute;
+              width: 88px;
+              height: 40px;
+              top: 0;
+              right: 0;
+              padding-right: 15px;
+              color: #416eb6;
+              text-align: right;
+            }
+          }
+        }
 
       }
     }

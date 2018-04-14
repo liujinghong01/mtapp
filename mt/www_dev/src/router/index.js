@@ -1050,6 +1050,11 @@ const routes = [
           require(['@/views/production/workshop/detaile'], resolve)
         }
       },
+      {   //应付供应商账款表
+        path: 'paymentInfo', name: 'paymentInfo', component: function (resolve) {
+          require(['@/views/production/workshop/paymentInfo'], resolve)
+        }
+      },
 
 
 
