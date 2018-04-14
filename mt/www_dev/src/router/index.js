@@ -30,6 +30,8 @@ import CRM from '@/views/crm'
 import  Production from '@/views/production'
 // 统计页面
 import  statistics from '@/views/statistics'
+// 事件通知
+import  notification from '@/views/notification'
 
 
 /*
@@ -1110,6 +1112,36 @@ const routes = [
         name: 'statisticsChart',
         component: function (resolve) {
           require(['@/views/statistics/chart'], resolve)
+        }
+      }
+    ]
+  },
+  {
+    path: '/notification',   // 事件通知
+    name: 'notification',
+    component: notification,
+    redirect: 'noredirect',
+    children:[
+      {
+        path: 'list',
+        name: 'notificationList',
+        component: function (resolve) {
+          require(['@/views/notification/list'], resolve)
+        }
+      },
+      // 详情页面,暂时未做
+      // {
+      //   path: 'detail',
+      //   name: 'notificationDetail',
+      //   component: function (resolve) {
+      //     require(['@/views/notification/detail'], resolve)
+      //   }
+      // },
+      {
+        path: 'subscribe',
+        name: 'notificationSubscribe',
+        component: function (resolve) {
+          require(['@/views/notification/subscribe'], resolve)
         }
       }
     ]

@@ -3,7 +3,7 @@
       <div class="mw-page-header">
         <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
         <span>CNC</span>
-        <i class="right   " >4月</i>
+        <i class="right">4月</i>
       </div>
         <div class="mw-page-content has-tab">
           <div class="chart">
@@ -143,7 +143,7 @@
 <script>
   import storage from "@/utils/storage";
   export default {
-    name: "approveMain",
+    name: "statisticsChart",
     data() {
       return {
         listHeight:300
