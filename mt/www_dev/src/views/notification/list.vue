@@ -12,7 +12,7 @@
       :on-refresh="onRefresh"
       >
         <div v-for="(item, index) in items[0].list" :key="index">
-          <item class="item-icon-right" @click.native="$router.forward(''+item.id)">
+          <item class="item-icon-right" @click.native="this.$router.forward('/production/paymentInfo');">
             <div :class="['item-cont',item.swipe?'active':'']" >
               <p>{{item.title}}</p>
               <p>{{item.date}}</p>

@@ -55,7 +55,7 @@
             <div class="card-box">
               <div class="card" >
                 <!--<img src="../../assets/img/home/tongji.png"  style="width: 100%;height: 100%" alt="">-->
-                <h3>事件通知 <i @click="this.$router.forward('/production/workshop');" class="ion-chevron-right"></i></h3>
+                <h3>事件通知 <i @click="this.$router.forward('/notification/list');" class="ion-chevron-right"></i></h3>
                 <ul>
                   <li v-for="(item,index) in eventList" @click="this.$router.forward('/production/paymentInfo');">
                     <i></i>
