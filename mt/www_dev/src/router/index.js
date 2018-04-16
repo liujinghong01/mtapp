@@ -33,6 +33,7 @@ import  statistics from '@/views/statistics'
 // 事件通知
 import  notification from '@/views/notification'
 
+import  news from '@/views/news'
 
 /*
  * meta
@@ -1149,6 +1150,21 @@ const routes = [
           require(['@/views/notification/subscribe'], resolve)
         }
       }
+    ]
+  },
+  {
+    path: '/news',   // 新闻咨询
+    name: 'news',
+    component: news,
+    redirect: 'noredirect',
+    children:[
+      {
+        path: 'detail/:id',
+        name: 'notificationDetail',
+        component: function (resolve) {
+          require(['@/views/news/detail'], resolve)
+        }
+      },
     ]
   }
 ]

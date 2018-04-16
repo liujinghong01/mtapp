@@ -141,34 +141,34 @@
           </div>
           <div class="image-text-list">
             <div class="news-list">
-              <div class="news">
+              <router-link to="/news/detail/1" tag="div" class="news">
                 <img src="../../../static/images/index/news/article_1.png" height="100%">
                 <div class="news-content">
                   <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
                   <div class="detail">随着制造精益化、制造数字化的不断发展，形成了EMS...</div>
                 </div>
-              </div>
-              <div class="news">
+              </router-link>
+              <router-link to="/news/detail/2" tag="div" class="news">
                 <img src="../../../static/images/index/news/article_1.png" height="100%">
                 <div class="news-content">
                   <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
                   <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
                 </div>
-              </div>
-              <div class="news">
+              </router-link>
+              <router-link to="/news/detail/3" tag="div" class="news">
                 <img src="../../../static/images/index/news/article_1.png" height="100%">
                 <div class="news-content">
                   <div class="title">MES与APS有啥区别？智能工厂布局必知！</div>
                   <div class="detail">随着制造精益化、制造数字化的不断发展，形成了...</div>
                 </div>
-              </div>
-              <div class="news">
+              </router-link>
+              <router-link to="/news/detail/4" tag="div" class="news">
                 <img src="../../../static/images/index/news/article_1.png" height="100%">
                 <div class="news-content">
                   <p class="title">MES与APS有啥区别？智能工厂布局必知！</p>
                   <p class="detail">随着制造精益化、制造数字化的不断发展，形成了...</p>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
