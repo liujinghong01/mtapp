@@ -27,13 +27,15 @@ import Approve from '@/views/approve'
 //供应商&客户相关
 import CRM from '@/views/crm'
 //生产管理
-import  Production from '@/views/production'
+import Production from '@/views/production'
 // 统计页面
-import  statistics from '@/views/statistics'
+import statistics from '@/views/statistics'
 // 事件通知
-import  notification from '@/views/notification'
+import notification from '@/views/notification'
 
-import  news from '@/views/news'
+import news from '@/views/news'
+// 员工完工达成情况
+import assessment from '@/views/assessment'
 
 /*
  * meta
@@ -1166,7 +1168,22 @@ const routes = [
         }
       },
     ]
-  }
+  },
+  {
+    path: '/assessment',   // 考核，（员工完成情况）
+    name: 'assessment',
+    component: assessment,
+    redirect: 'noredirect',
+    children:[
+      {
+        path: 'list',
+        name: 'assessment',
+        component: function (resolve) {
+          require(['@/views/assessment/list'], resolve)
+        }
+      },
+    ]
+  },
 ]
 
 export default routes
