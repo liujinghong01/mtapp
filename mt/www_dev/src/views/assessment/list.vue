@@ -9,7 +9,7 @@
       <tabs :tab-items="tabs" :tab-index="tabIndex" :on-tab-click="onTabClick"></tabs>
       <div class="list-wrap">
           <ul class="list">
-            <li class="list-item">
+            <li class="list-item list-title">
               <div>名次</div>
               <div>姓名</div>
               <div>积分</div>
@@ -17,23 +17,38 @@
               <div></div>
             </li>
           </ul>
-
-          <ul class="list">
-            <template v-for="(item,index) in items">
-              <li class="list-item list-item-content"  v-bind:key="item.id">
-                <div>{{item.id}}</div>
+          <!-- 顶部排名 -->
+          <ul class="list list-top">
+            <template v-for="(item,index) in itemsTop">
+              <li class="list-item"  v-bind:key="item.id">
+                <div class="rank"><span v-if="item.id!==1&&item.id!==2&&item.id!==3">{{item.id}}</span></div>
                 <div>{{item.name}}</div>
                 <div>{{item.points}}</div>
                 <div>{{item.time}}</div>
-                <div @click="select(items,index)"><i :class="['icon', item.checked?'ion-android-checkbox-outline':'ion-android-checkbox-outline-blank']"></i></div>
+                <div @click="select(itemsTop,index,'top')"><i :class="['icon', item.checked?'ion-android-checkbox-outline':'ion-android-checkbox-outline-blank']"></i></div>
+              </li>
+            </template>
+          </ul>
+          <div class="list list-more">
+            点击查看更多人员
+          </div>
+          <!-- 尾部排名 -->
+          <ul class="list list-bottom">
+            <template v-for="(item,index) in itemsBottom">
+              <li class="list-item"  v-bind:key="item.id">
+                <div class="rank"><span v-if="item.id!==1&&item.id!==2&&item.id!==3">{{item.id}}</span></div>
+                <div>{{item.name}}</div>
+                <div>{{item.points}}</div>
+                <div>{{item.time}}</div>
+                <div @click="select(itemsBottom,index,'bottom')"><i :class="['icon', item.checked?'ion-android-checkbox-outline':'ion-android-checkbox-outline-blank']"></i></div>
               </li>
             </template>
           </ul>
       </div>
     </div>
     <div class="mw-page-footer">
-      <md-button class="button button-calm block">奖励</md-button>
-      <md-button class="button button-light block">警告</md-button>
+      <button class="button button-calm button-block">奖励</button>
+      <button class="button button-light button-block">警告</button>
     </div>
 
   </div>
@@ -51,7 +66,7 @@
         },
         tabs: ['昨天','上周','上个月','其他月份'],
         tabIndex: 0,
-        items:[
+        itemsTop:[
           {
             id:1,
             name:'张山',
@@ -71,38 +86,50 @@
             name:'李四',
             points: 456,
             time: 19,
-             checked:false
+            checked:false
           },
-          {
-            id:4,
+        ],
+        itemsBottom:[{
+            id:10,
             name:'李四',
             points: 123,
             time: 19,
-             checked:false
+            checked:false
           },
           {
-            id:5,
-            name:'李四',
-            points: 123,
-            time: 19,
-            checked:true
-          },
-          {
-            id:6,
+            id:11,
             name:'李四',
             points: 123,
             time: 19,
             checked:true
           },
-        ]
+          {
+            id:12,
+            name:'李四',
+            points: 123,
+            time: 19,
+            checked:true
+        }]
       };
     },
 
     methods: {
       // 选项切换
-      select(item,index){
-        let checked = this.items[index].checked
-        this.items[index].checked = checked === true ? false : true;
+      select(item,index,type){
+        let checked = item[index].checked
+        // this.itemsTop[index].checked = checked === true ? false : true;
+        switch (type) {
+          case 'top':
+              // let checked = this.itemsTop[index].checked
+              this.itemsTop[index].checked = checked === true ? false : true
+            break;
+            case 'bottom':
+              // let checked = this.itemsTop[index].checked
+              this.itemsBottom[index].checked = checked === true ? false : true
+              break;
+          default:
+            break;
+        }
       },
       onSelectAll(){
         console.log('SelectAll')
@@ -151,27 +178,56 @@
 .list{
   background: #fff;
 }
+.list-title{
+  color: #5A5A5A;
+}
+.list-more{
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  color: #5495FF ;
+}
 
 .list-item{
   display: flex;
   justify-content: space-around;
   text-align: center;
   align-items: center;
-  min-height: 40px;
+  min-height: 36px;
   margin:10px 10px 0;
   border-radius: 4px;
+  font-size: 12px;
   div{
-    height: 100%;
+    // height: 20px;
     flex: 1 0 20%;
+    position: relative;
   }
-  &.list-item-content:nth-child(1){
+
+  .rank{
+    height: 20px;
+  }
+
+  @at-root .list-top &:nth-child(1){
     background: #FF7980;
+    .rank{
+      height: 20px;
+      background: url(../../assets/img/assessment/1.png) no-repeat center;
+      background-size: contain;
+    }
   }
-  &.list-item-content:nth-child(2){
+  @at-root .list-top &:nth-child(2){
     background: #FFD370;
+    .rank{
+      background: url(../../assets/img/assessment/2.png) no-repeat center;
+      background-size: contain;
+    }
   }
-  &.list-item-content:nth-child(3){
+  @at-root .list-top &:nth-child(3){
     background: #7CC2FE;
+    .rank{
+      background: url(../../assets/img/assessment/3.png) no-repeat center;
+      background-size: contain;
+    }
   }
 }
 .mw-page-footer{
@@ -180,7 +236,9 @@
   bottom: 0;
   display: flex;
   .button{
-    flex: 1
+    flex: 1;
+    margin: 0;
+    align-items: center;
   }
 }
 
