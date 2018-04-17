@@ -47,8 +47,8 @@
       </div>
     </div>
     <div class="mw-page-footer">
-      <button class="button button-calm button-block">奖励</button>
-      <button class="button button-light button-block">警告</button>
+      <button class="button button-calm button-block"><i class="icon iconfont">&#xe6ec;</i> 奖励</button>
+      <button class="button button-light button-block" style="color:#11c1f3"><i class="icon iconfont">&#xe63d;</i> 警告</button>
     </div>
 
   </div>
