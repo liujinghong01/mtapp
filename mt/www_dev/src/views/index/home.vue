@@ -131,6 +131,34 @@
               </div>
             </div>
           </div>
+
+          <div>
+            <div class="block-title">
+              <p>员工完工达成情况</p>
+            </div>
+            <div>
+              <ul class="assessment-list">
+                <li class="list-line-title">
+                  <div class="list-item">名次</div>
+                  <div class="list-item">姓名</div>
+                  <div class="list-item">积分</div>
+                  <div class="list-item">完成工时(h)</div>
+                </li>
+                <li>
+                  <div class="list-item"><span></span></div>
+                  <div class="list-item">周年</div>
+                  <div class="list-item">1280</div>
+                  <div class="list-item">12</div>
+                </li>
+                <li>
+                  <div class="list-item">最后一名</div>
+                  <div class="list-item">陈欣欣</div>
+                  <div class="list-item">570</div>
+                  <div class="list-item">8</div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="item-divider-ios" style="padding-top: 15px"></div>
@@ -750,6 +778,28 @@
             font-size: 24px!important;
           }
         }
+      }
+    }
+    .assessment-list{
+      li{
+        display: flex;
+        height: 36px;
+        align-items: center;
+        font-size: 12px;
+        &:first-child{
+          font-size: 10px;
+          color:#5a5a5a;
+        }
+        &:nth-child(2) .list-item:first-child{
+          background: url(../../assets/img/assessment/1.png) no-repeat center;
+          background-size: contain;
+        }
+      }
+      .list-item{
+        height: 20px;;
+        flex:1 0 25%;
+        text-align: center;
+
       }
     }
   }
