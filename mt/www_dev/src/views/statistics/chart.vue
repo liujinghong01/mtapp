@@ -8,7 +8,7 @@
         <div class="mw-page-content has-tab">
           <div class="chart">
             <!-- 图表展示 -->
-            <div>
+            <div id="chart" >
 
             </div>
           </div>
@@ -146,17 +146,69 @@
     name: "statisticsChart",
     data() {
       return {
-        listHeight:300
-
-      };
+        listHeight:300,
+      }
     },
-    methods: {},
-      created(){
+    mounted(){
+      this.drawLine('chart')
+    },
+    created(){
       console.log('created')
       this.listHeight = window.innerHeight-360;
     },
     activated(){
       console.log('activated')
+    },
+    methods: {
+      drawLine(el,data){
+        let option={
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['', '5', '10', '15', '20', '25', ''],
+            itemStyle:{color:'#639EFF'},
+            axisLine: {
+              lineStyle: {
+                color: '#fff'
+              }
+            },
+          },
+          yAxis: {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#fff'
+              }
+            },
+            axisTick: {
+              inside: true
+            },
+            splitLine: {
+              show: true
+            },
+            axisLabel: {
+              inside: true,
+              formatter: '{value}\n'
+            },
+          },
+          series: [{
+            data: [60, 80, 180, 100, 60, 80, 70],
+            type: 'line',
+            smooth: true,
+            itemStyle:{color:'#639EFF',fontSize:'60'},
+            areaStyle: {color:'#639EFF'}
+          },
+            {
+              data: [[0, 80], [40, 80]],
+              type: 'line'
+            }
+          ]
+        }
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById(el))
+        // 绘制图表
+        myChart.setOption(option)
+      }
     }
 
   };
@@ -171,8 +223,17 @@
   .chart {
     height: 190px;
     width: 100%;
-    background: url('../../assets/img/chart-demo.png') no-repeat center center;
+    /*background: url('../../assets/img/chart-demo.png') no-repeat center center;*/
     background-size: cover;
+    position: relative;
+    background: #416eb6;
+    #chart{
+      width: 124%;
+      height: 140%;
+      position: absolute;
+      left: -12%;
+      top:-25%;
+    }
   }
 
   .list {

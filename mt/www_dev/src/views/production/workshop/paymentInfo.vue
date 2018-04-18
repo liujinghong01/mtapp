@@ -8,7 +8,8 @@
     <div class="mw-page-content" style="padding-top: 15px">
         <div class="pieBox">
           <i></i>
-          <img src="../../../assets/img/workshop/pie.png" alt="">
+          <div class="echarts"></div>
+          <div id="echarts"></div>
           <div class="pie-list">
             <div class="pie-item" v-for="(item,index) in data">
               <i>
@@ -81,12 +82,41 @@
       }
     },
     computed:{
+
     },
     activated(){
     },
     mounted(){
+      let data=[]
+      this.data.forEach((e,i)=>{
+        data.push({value:parseFloat(e.value),itemStyle:{color:e.color}})
+      })
+
+      this.drawPie('echarts',data)
     },
-    methods: {}
+    methods: {
+      drawPie(el,data){
+        let option={
+          series: [
+            {
+              name:'',
+              type:'pie',
+              radius: ['50%', '100%'],
+              label: {
+                normal: {
+                  show: false,
+                },
+              },
+              data:data
+            }
+          ]
+        }
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById(el))
+        // 绘制图表
+        myChart.setOption(option)
+      },
+    }
   }
 </script>
 <style lang="scss" scoped>
@@ -100,7 +130,15 @@
     padding: 15px;
     position: relative;
     margin-bottom: 20px;
-    img{
+    .echarts{
+      position: absolute;
+      left: 15px;
+      top:15px;
+      width: 140px;
+      height: 140px;
+      z-index: 10;
+    }
+    #echarts{
       width: 140px;
       height: 140px;
     }

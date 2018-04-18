@@ -21,6 +21,9 @@ import '@/styles/index.scss';
 
 import vuexI18n from 'vuex-i18n'
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 Vue.use(vuexI18n.plugin,store);
 // Vue.use(iconSvg)
 
