@@ -8,7 +8,6 @@
     </div>
     <div class="page" v-nav="{hideNavbar:true}">
       <div class="page-content" style="z-index: 1" >
-
         <div id="banner" style="display: none" @scroll="scroll()" @touchstart="touchstart()" @touchend="touchend()" @touchmove="touchmove()"> <!--@touchend="touchend()"-->
           <div id="bannerBox" :style="{width:5*width+'px'}" >
             <div class="bannerItem"  :style="{width:width+'px'}">
@@ -93,11 +92,13 @@
             </div>
             <div class="count-swipe" @click="this.$router.forward('/statistics/chart');">
               <div v-bind:style="{width:UtilizationRate.length/3*100+'%'}">
-                <div v-for="(item,index) in UtilizationRate" v-bind:style="{ width:1/UtilizationRate.length*100+'%' }">
+                <div  v-for="(item,index) in UtilizationRate" v-bind:style="{ width:1/UtilizationRate.length*100+'%' }">
                   <div>
-                    <img v-if="item.rate==60" src="../../assets/img/home/60.png" alt="">
-                    <img v-else-if="item.rate==80" src="../../assets/img/home/80.png" alt="">
-                    <img v-else='item.rate==25' src="../../assets/img/home/25.png" alt="">
+                    <div  v-bind:id="'UzRate'+index"></div>
+
+                    <!--<img v-if="item.rate==60" src="../../assets/img/home/60.png" alt="">-->
+                    <!--<img v-else-if="item.rate==80" src="../../assets/img/home/80.png" alt="">-->
+                    <!--<img v-else='item.rate==25' src="../../assets/img/home/25.png" alt="">-->
                     <p v-bind:style="{color :item.color}">{{ item.rate }}%</p>
                   </div>
                   <p v-bind:style="{color :item.color}">{{ item.name }}</p>
@@ -116,16 +117,14 @@
               <div v-bind:style="{width:(board.length+1)/3*100+'%'}">
                 <div v-for="(item,index) in board" v-bind:style="{ width:1/(board.length+1)*100+'%' }">
                   <div>
-                    <img v-if="item.rate==75" src="../../assets/img/home/75.png" alt="">
-                    <img v-else-if="item.rate==80" src="../../assets/img/home/80.png" alt="">
-                    <img v-else='item.rate==25' src="../../assets/img/home/25.png" alt="">
+                    <div  v-bind:id="'board'+index"></div>
                     <p v-bind:style="{color :item.color}">{{ item.rate }}%</p>
                   </div>
                   <p v-bind:style="{color :item.color}">{{ item.name }}</p>
 
                 </div>
                 <div v-bind:style="{ width:1/(board.length+1)*100+'%' }">
-                  <p  style="font-size: 12px;padding-top: 54px;margin-bottom: 6px">最新统计时间</p>
+                  <p  style="font-size: 12px;padding-top: 70px;margin-bottom: 6px">最新统计时间</p>
                   <h3 style="font-size: 16px;margin: 0">{{todayDate }}</h3>
                 </div>
               </div>
@@ -348,9 +347,24 @@
         currLeft:'',
         banner:'',
 
+
       }
     },
     mounted(){
+      this.UtilizationRate.forEach((e,i)=>{
+        let data=[
+          {value:(100-e.rate),itemStyle:{color:'#EFFCEF'}},
+          {value:e.rate,itemStyle:{color:e.color}},
+          ]
+        this.drawPie('UzRate'+i,data)
+      })
+      this.board.forEach((e,i)=>{
+        let data=[
+          {value:(100-e.rate),itemStyle:{color:'#EFFCEF'}},
+          {value:e.rate,itemStyle:{color:e.color}},
+          ]
+        this.drawPie('board'+i,data)
+      })
       let myDate = new Date();
       this.todayDate=todayDate() +'  '+myDate.getHours()+':00'
       const myApps = JSON.parse(storage.get('myApps'))
@@ -369,6 +383,27 @@
       'chosenCompany'
     ]),
     methods: {
+      drawPie(el,data){
+        let option={
+          series: [
+            {
+              name:'',
+              type:'pie',
+              radius: ['50%', '70%'],
+              label: {
+                normal: {
+                  show: false,
+                },
+              },
+              data:data
+            }
+          ]
+        }
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById(el))
+        // 绘制图表
+        myChart.setOption(option)
+      },
       onCellClick(item){
         if (!this.chosenCompany) {
           $dialog.confirm({
@@ -746,6 +781,14 @@
             text-align: center;
             position: relative;
             &>div{
+              width: 100%;
+              height: 140px;
+              &>div{
+                width: 100%;
+                height: 100%;
+                position: absolute;left: 0;
+                top: 0;
+              }
               img{
                 width: 70px;
                 height: 70px;
@@ -757,7 +800,8 @@
                 height: 20px;
                 line-height: 20px;
                 left: 0;
-                top: 66px;
+                top: 50%;
+                margin-top: -10px;
               }
             }
 
