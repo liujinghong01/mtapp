@@ -9,9 +9,11 @@
           <cst-item label="物料类型:" v-model="mate_info.mat_type_name" @click.native="selectMatType()" :isMust="true"
                     action="check"  :hasArrow="true"  >
           </cst-item>
+          <cst-item label="物料仓库:" v-model="mate_info.store_house_name" @click.native="selectMatStore()" :isMust="true"
+                    action="check"  :hasArrow="true"  >
+          </cst-item>
           <!--<cst-item label="物料名称"   v-model="mate_info.mat_name " :action="this.action"  editType="number" :hasArrow="false"></cst-item>-->
           <cst-item label="物料名称" placeholder="请输入物料名称"  v-model="mate_info.mat_name"  action="action"  editType="text" :isMust="true"></cst-item>
-
           <!--<cst-item label="物料编号"   v-model="mate_info.mat_no " :action="this.action"  editType="text" :hasArrow="false"></cst-item>-->
           <cst-item label="物料编号" placeholder="请输入物料编号"  v-model="mate_info.mat_no"  action="action"  editType="text" :isMust="true"></cst-item>
           <cst-item label="规格型号" placeholder="请输入规格型号"  v-model="mate_info.spec"  action="action"  editType="text" :isMust="true"></cst-item>
@@ -67,7 +69,7 @@
 
 <script>
   import CstItem from "@/components/cstItem";
-  import { storageMats,UnitList,rawNatureList,matModify,getMatDetaile } from '@/api/storage/baseInfo'
+  import { storageMats,UnitList,rawNatureList,matModify,getMatDetaile,storageList} from '@/api/storage/baseInfo'
   import timePicker from "@/components/timePicker"
     export default{
       name:'newMat',
@@ -77,6 +79,7 @@
       },
       data(){
         return {
+          houseList:[],
           selectType:'',
           showPicker:false,
           pickerType:'radio',
@@ -159,6 +162,16 @@
             $toast.show(error.description)
           })
         },
+        // 获取仓库列表
+        getStoreList(){
+          let reqData = {
+            is_paging:0
+          }
+          storageList(reqData).then(res=>{
+            this.houseList = res.storehouse_list
+          })
+
+        },
         newMat(){
           $router.forward({path:'/storage/newMat'})
         },
@@ -233,7 +246,10 @@
             $toast.show(error.description)
           })
         },
+        // 选择物料类型
         selectMatType(){
+          // 获取仓库列表
+          this.getStoreList()
           this.selectType='matType'
           if(this.matTypeList.length>0){
             this.pickerValue={
@@ -244,12 +260,34 @@
             this.matTypeList.forEach((e,i)=>{
               this.pickerList.push({
                 val:e.mat_type_name,
-                id:e.mat_type_id
+                id:e.mat_type_id,
+                store_house_id:e.store_house_id,
+                store_house_name:e.store_house_name
               })
             })
             this.showPicker=true
           }else{
 
+          }
+        },
+        // 选择仓库
+        selectMatStore(){
+          this.selectType ='matStore'
+          if(this.houseList.length>0){
+            this.pickerValue={
+              val:this.mate_info.store_house_name,
+              id:this.mate_info.store_house_id
+            }
+            this.pickerList=[]
+            this.houseList.forEach((e,i)=>{
+              this.pickerList.push({
+                val:e.store_house_name,
+                id:e.store_house_id
+              })
+            })
+            this.showPicker=true
+          }else{
+            $toast.show('请先选择物料类型',700)
           }
         },
         selectUnit(){
@@ -291,14 +329,22 @@
           }
         },
         chosen(e){
+          console.log(e)
           if(this.selectType==='matType'){
             this.mate_info.mat_type_name=e.val
             this.mate_info.mat_type_id=e.id
+            this.mate_info.store_house_id=e.store_house_id
+            this.mate_info.store_house_name=e.store_house_name
+            console.log('matType',this.mate_info)
           }else if(this.selectType==='unit'){
             this.mate_info.unit_no=e.val
           }else if(this.selectType==='rawnature'){
             this.mate_info.rawnature_name=e.val
              this.mate_info.rawnature_id=e.id
+          }else if(this.selectType==='matStore'){
+            this.mate_info.store_house_name=e.val
+            this.mate_info.store_house_id=e.id
+            console.log('matStore',this.mate_info)
           }
         }
 
