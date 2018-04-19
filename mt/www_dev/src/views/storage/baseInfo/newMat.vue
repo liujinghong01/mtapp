@@ -91,6 +91,8 @@
           action:'',
           mat_id:'',
           mate_info:{//		object
+            store_house_id:'', // 仓库id
+            store_house_name:'请选择', // 仓库名
             batch_qty:1,//	采购批量	number	@mock=
             bin_no:"",//	储位编号	string	@mock=
             handled_time:"",//	操作时间	string	@mock=
@@ -161,23 +163,24 @@
           }).catch(error=>{
             $toast.show(error.description)
           })
-        },
-        // 获取仓库列表
-        getStoreList(){
-          let reqData = {
-            is_paging:0
-          }
+          // 获取仓库列表
           storageList(reqData).then(res=>{
             this.houseList = res.storehouse_list
+          }).catch(error=>{
+            $toast.show(error.description)
           })
-
         },
+
         newMat(){
           $router.forward({path:'/storage/newMat'})
         },
         save(){
           if(this.mate_info.mat_type_name==='请选择'){
             $toast.show('请选择物料类型',600)
+            return
+          }
+          if(this.mate_info.store_house_name==='请选择'||this.mate_info.store_house_name===null){
+            $toast.show('请选择请物料仓库',600)
             return
           }
           if(this.mate_info.mat_name.replace(/\s+/g,"")===''){
@@ -218,16 +221,16 @@
             $toast.show('请选择材质',600)
             return
           }
-          if(this.mate_info.weight.replace(/\s+/g,"")===''){
+          if(this.mate_info.weight.toString().replace(/\s+/g,"")===''){
             $toast.show('请输入重量',600)
             return
           }
 
-          if(this.mate_info.plan_price.replace(/\s+/g,"")===''){
+          if(this.mate_info.plan_price.toString().replace(/\s+/g,"")===''){
             $toast.show('请输入单价',600)
             return
           }
-          if(this.mate_info.min_stock_qty.replace(/\s+/g,"")===''){
+          if(this.mate_info.min_stock_qty.toString().replace(/\s+/g,"")===''){
             $toast.show('请输入安全库存',600)
             return
           }
@@ -248,8 +251,6 @@
         },
         // 选择物料类型
         selectMatType(){
-          // 获取仓库列表
-          this.getStoreList()
           this.selectType='matType'
           if(this.matTypeList.length>0){
             this.pickerValue={
