@@ -98,7 +98,7 @@
             handled_time:"",//	操作时间	string	@mock=
             handler_id:"",//	操作人	number	@mock=
             height:"",//	高	number	长方形或圆柱体时为高，管状体为管长
-            is_qc:"",//	是否需要质检	string	@mock=
+            is_qc:1,//	是否需要质检	string	@mock=
             is_unused:"",//	是否废弃	string	@mock=
             length:"",//	长	number	长方形时为长，圆柱体时为底面直径，管状体时为外圆直径
             mat_desc:"",//	物料描述	string	@mock=
