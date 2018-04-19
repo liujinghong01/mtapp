@@ -11,6 +11,7 @@
           </div>
           <div class="page-content" v-show="tabIndex===0" style="flex: 1;position: relative;">
             <cst-item label="物料类型" v-model="mate_info.mat_type_name " action="check"   ></cst-item>
+            <cst-item label="物料类型" v-model="mate_info.store_house_name " action="check"   ></cst-item>
             <cst-item label="物料名称" v-model="mate_info.mat_name " action="check"  :hasArrow="false"  > </cst-item>
             <cst-item label="物料编号" v-model="mate_info.mat_no " action="check" :hasArrow="false"  ></cst-item>
             <cst-item label="规格型号" v-model="mate_info.spec " action="check"  :hasArrow="false"  ></cst-item>
