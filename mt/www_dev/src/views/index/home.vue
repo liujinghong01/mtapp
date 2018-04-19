@@ -266,9 +266,11 @@
           '<div class="tool"><i class="icon iconfont icon-tianjia"></i><br><span>更多</span></div>',*/
         ],
         apps:[
+          {name:'审批','icon':'icon-shenpi','path':'/approve',},
           {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute'},
           {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',},
           {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list',},
+
           // {name:'生产管理','icon':'icon-shengchanguanli','path':'/production/schedulList',},
           // {name:'工作日历','icon':'icon-chejianzuoye','path':'production/shopCalendar',},
           // {name:'来料质检','icon':'icon-zhijian','path':'/qualityCheck/MaterialQC',},

@@ -1,12 +1,13 @@
 <template>
   <div class="mw-page page storage" v-nav="{hideNavbar:true}">
-    <div class="mw-page-header">
+    <div class="mw-page-header" style="height: 40px">
       <i class="left icon ion-ios-arrow-back" @click="$router.go(-1)"></i>
       <span>{{ year+'/'+month }}</span>
       <i class="right" @click="action='action'" v-show="this.calendar_id==='new'" ></i>
       <i class="right" @click="action='action'" v-show="action!=='action'&&this.calendar_id!=='new'" style="flex: 0 0 21%;">编辑</i>
       <i class="right" @click="cancelEdit"  v-show="action==='action'&&this.calendar_id!=='new'" style="flex: 0 0 21%;">取消</i>
     </div>
+    <div class="mw-page-content">
     <div class="calendar">
       <div class="cd-header">
         <span>日</span>
@@ -46,6 +47,7 @@
           保存
         </div>
       </div>
+    </div>
     </div>
 		<time-picker
       v-on:chosen="chosen"
@@ -520,7 +522,7 @@
 .calendar{
   width: 100%;
   height: 360px;
-  margin-top: -14px;
+  margin-top: -5px;
   .cd-header{
     height: 30px;
     line-height: 30px;
