@@ -517,6 +517,22 @@ const routes = [
         },
       },
 
+      //新报价单
+      { //报价单详情
+        path: 'quote/quotes_detaile',
+        name: 'quotes_detaile',
+        component: function (resolve) {
+          require(['@/views/customerOrder/quotes/quotes/quotes_detaile'], resolve)
+        },
+      },
+      { //报价单列表
+        path: 'quote/quotes_list',
+        name: 'quotes_list',
+        component: function (resolve) {
+          require(['@/views/customerOrder/quotes/quotes/quotes_list'], resolve)
+        },
+      },
+
 
       //定单
       { //客户定单列表

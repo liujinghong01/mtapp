@@ -268,7 +268,8 @@
         apps:[
           {name:'审批','icon':'icon-shenpi','path':'/approve',},
           {name:'报价核算单','icon':'icon-hesuandan','path':'/customerOrder/compute'},
-          {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',},
+          // {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/list',},
+          {name:'报价单','icon':'icon-baojiadan','path':'/customerOrder/quote/quotes_detaile',},
           {name:'客户定单','icon':'icon-kehudingdan','path':'/customerOrder/order/list',},
 
           // {name:'生产管理','icon':'icon-shengchanguanli','path':'/production/schedulList',},
@@ -327,11 +328,6 @@
             name:'铣床',
             rate:25,
             color:'#FE3B32'
-          },
-          {
-            name:'磨床',
-            rate:80,
-            color:'#5FD859'
           }
         ],
         position:[

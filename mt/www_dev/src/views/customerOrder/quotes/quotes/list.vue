@@ -158,9 +158,11 @@
       },
       mounted() {
         this.query.approve_step.push('step10')
+
       },
       activated(){
         this.setList(true)
+
       },
       computed:{
         ...mapGetters(['chosenCompany']),
@@ -244,6 +246,11 @@
           },400)
         },
         setList(refresh){
+          let number=0
+          for(var i=0;i<=100;i++){
+            number+=i
+            console.log(number)
+          }
           const that = this;
           const requestData={
             curr_page:refresh?1:++that.pageModels[that.tabIndex].curr_page,
